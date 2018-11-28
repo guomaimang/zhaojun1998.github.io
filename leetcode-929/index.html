@@ -105,7 +105,7 @@
 <meta property="og:site_name" content="赵俊的博客">
 <meta property="og:description" content="题意 给与一组 email 地址，email 分为两部分， @ 前我们称为 local name, @ 后称为 domain name。现规定只可以出现小写字母和字符 .、+。其中 . 可以忽略, 如 `alice.z@leetcode.com和al.icez@leetcode.com都表示alicez@leetcode.com。+出现在local name中时，将忽略第一个+后的所有内容，如m.">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-11-19T15:35:45.000Z">
+<meta property="og:updated_time" content="2018-11-28T13:59:42.218Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="LeetCode 929 Unique Email Addresses">
 <meta name="twitter:description" content="题意 给与一组 email 地址，email 分为两部分， @ 前我们称为 local name, @ 后称为 domain name。现规定只可以出现小写字母和字符 .、+。其中 . 可以忽略, 如 `alice.z@leetcode.com和al.icez@leetcode.com都表示alicez@leetcode.com。+出现在local name中时，将忽略第一个+后的所有内容，如m.">
@@ -1904,7 +1904,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #a83d45;
+  background: #ff16ed;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -3255,12 +3255,24 @@ ul.breadcrumb li+li:last-child {
                 
               
 
-              <time title="创建时间：2018-11-19 22:23:49 / 修改时间：23:35:45" itemprop="dateCreated datePublished" datetime="2018-11-19T22:23:49+08:00">2018-11-19</time>
+              <time title="创建时间：2018-11-19 22:23:49" itemprop="dateCreated datePublished" datetime="2018-11-19T22:23:49+08:00">2018-11-19</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-11-28 21:59:42" itemprop="dateModified" datetime="2018-11-28T21:59:42+08:00">2018-11-28</time>
               
             
           </span>
@@ -3336,6 +3348,7 @@ ul.breadcrumb li+li:last-child {
 <p>给与一组 <code>email</code> 地址，<code>email</code> 分为两部分， <code>@</code> 前我们称为 <code>local name</code>, <code>@</code> 后称为 <code>domain name</code>。现规定只可以出现小写字母和字符 <code>.</code>、<code>+</code>。<br>其中 <code>.</code> 可以忽略, 如 <a href="mailto:`alice.z@leetcode.com" target="_blank" rel="noopener">`alice.z@leetcode.com</a><code>和</code><a href="mailto:al.icez@leetcode.com" target="_blank" rel="noopener">al.icez@leetcode.com</a><code>都表示</code><a href="mailto:alicez@leetcode.com" target="_blank" rel="noopener">alicez@leetcode.com</a><code>。</code>+<code>出现在</code>local name<code>中时，将忽略第一个</code>+<code>后的所有内容，如</code><a href="mailto:m.y+name@email.com" target="_blank" rel="noopener">m.y+name@email.com</a><code>和</code><a href="mailto:m.y@email.com" target="_blank" rel="noopener">m.y@email.com</a><code>都表示</code><a href="mailto:my@email.com" target="_blank" rel="noopener">my@email.com</a>`。</p>
 </blockquote>
 <h2 id="解法"><a href="#解法" class="headerlink" title="解法"></a>解法</h2><p>按照题意，先取 <code>local name</code> 的第一个字符到第一个加号之前的内容, 然后删除其中的所有 <code>.</code>, 并与 <code>@</code> 后的 <code>domain name</code> 拼接, 将结果放入 Set 集合中，最后返回 Set 的长度即可。</p>
+<a id="more"></a>
 <figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>{</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">numUniqueEmails</span><span class="params">(String[] emails)</span> </span>{</span><br><span class="line">        Set&lt;String&gt; set = <span class="keyword">new</span> HashSet&lt;&gt;();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (String email : emails) {</span><br><span class="line">            <span class="keyword">int</span> start = email.indexOf(<span class="string">"+"</span>);</span><br><span class="line">            <span class="keyword">int</span> end = email.indexOf(<span class="string">"@"</span>);</span><br><span class="line">            String localName = email.substring(<span class="number">0</span>, start);</span><br><span class="line">            localName = localName.replace(<span class="string">"."</span>, <span class="string">""</span>);</span><br><span class="line">            String domainName = email.substring(end, email.length());</span><br><span class="line">            set.add(localName + domainName);</span><br><span class="line">        }</span><br><span class="line">        <span class="keyword">return</span> set.size();</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
 <blockquote>
 <p>Runtime: 35 ms, faster than 63.93% of Java online submissions for Unique Email Addresses.</p>
@@ -3462,7 +3475,7 @@ ul.breadcrumb li+li:last-child {
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">135</span>
+                    <span class="site-state-item-count">136</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>

@@ -97,18 +97,18 @@
 
 
 
-  <meta name="description" content="题意 传入字符串，将其小写形式。  解法根据 ASCII 码判断并返回即可，大写 A - Z 为 065 - 090，小写 a - z 为 097 - 122，正好相隔 32，当为大写时，将 ASCII 码 + 32 即可。 123456789101112class Solution &amp;#123;    public String toLowerCase(String str) &amp;#123;">
+  <meta name="description" content="题意 传入字符串，将其小写形式。  解法根据 ASCII 码判断并返回即可，大写 A - Z 为 065 - 090，小写 a - z 为 097 - 122，正好相隔 32，当为大写时，将 ASCII 码 + 32 即可。">
 <meta name="keywords" content="字符串,leetcode">
 <meta property="og:type" content="article">
 <meta property="og:title" content="LeetCode 709 To Lower Case">
 <meta property="og:url" content="http://www.zhaojun.im/leetcode-709/index.html">
 <meta property="og:site_name" content="赵俊的博客">
-<meta property="og:description" content="题意 传入字符串，将其小写形式。  解法根据 ASCII 码判断并返回即可，大写 A - Z 为 065 - 090，小写 a - z 为 097 - 122，正好相隔 32，当为大写时，将 ASCII 码 + 32 即可。 123456789101112class Solution &amp;#123;    public String toLowerCase(String str) &amp;#123;">
+<meta property="og:description" content="题意 传入字符串，将其小写形式。  解法根据 ASCII 码判断并返回即可，大写 A - Z 为 065 - 090，小写 a - z 为 097 - 122，正好相隔 32，当为大写时，将 ASCII 码 + 32 即可。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-11-19T15:36:07.000Z">
+<meta property="og:updated_time" content="2018-11-28T13:59:16.208Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="LeetCode 709 To Lower Case">
-<meta name="twitter:description" content="题意 传入字符串，将其小写形式。  解法根据 ASCII 码判断并返回即可，大写 A - Z 为 065 - 090，小写 a - z 为 097 - 122，正好相隔 32，当为大写时，将 ASCII 码 + 32 即可。 123456789101112class Solution &amp;#123;    public String toLowerCase(String str) &amp;#123;">
+<meta name="twitter:description" content="题意 传入字符串，将其小写形式。  解法根据 ASCII 码判断并返回即可，大写 A - Z 为 065 - 090，小写 a - z 为 097 - 122，正好相隔 32，当为大写时，将 ASCII 码 + 32 即可。">
 
 
 
@@ -1904,7 +1904,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #a83d45;
+  background: #ff16ed;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -3255,12 +3255,24 @@ ul.breadcrumb li+li:last-child {
                 
               
 
-              <time title="创建时间：2018-11-19 22:23:53 / 修改时间：23:36:07" itemprop="dateCreated datePublished" datetime="2018-11-19T22:23:53+08:00">2018-11-19</time>
+              <time title="创建时间：2018-11-19 22:23:53" itemprop="dateCreated datePublished" datetime="2018-11-19T22:23:53+08:00">2018-11-19</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-11-28 21:59:16" itemprop="dateModified" datetime="2018-11-28T21:59:16+08:00">2018-11-28</time>
               
             
           </span>
@@ -3336,6 +3348,7 @@ ul.breadcrumb li+li:last-child {
 <p>传入字符串，将其小写形式。</p>
 </blockquote>
 <h2 id="解法"><a href="#解法" class="headerlink" title="解法"></a>解法</h2><p>根据 <code>ASCII</code> 码判断并返回即可，大写 A - Z 为 065 - 090，小写 a - z 为 097 - 122，正好相隔 32，当为大写时，将 ASCII 码 + 32 即可。</p>
+<a id="more"></a>
 <figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>{</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">toLowerCase</span><span class="params">(String str)</span> </span>{</span><br><span class="line">        <span class="keyword">char</span>[] chars = str.toCharArray();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; chars.length; i++) {</span><br><span class="line">            <span class="keyword">char</span> c = chars[i];</span><br><span class="line">            <span class="keyword">if</span> (c &gt;= <span class="number">65</span> &amp;&amp; c &lt;= <span class="number">90</span>) {</span><br><span class="line">                chars[i] = (c += <span class="number">32</span>);</span><br><span class="line">            }</span><br><span class="line">        }</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> String(chars);</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
 <blockquote>
 <p>Runtime: 0 ms, faster than 100.00% of Java online submissions for To Lower Case.</p>
@@ -3462,7 +3475,7 @@ ul.breadcrumb li+li:last-child {
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">135</span>
+                    <span class="site-state-item-count">136</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>

@@ -97,18 +97,18 @@
 
 
 
-  <meta name="description" content="题意 给定一个字符串, 翻转字符串中的每个单词, 每个单词以空格分隔, 保留空格和初始单词顺序。  解法首先按照空格对字符串进行分隔，然后将每个单词进行翻转后再拼接回字符串即可，需要注意拼接时记得加空格，但最后一个单词不需要加。 12345678910111213141516171819class Solution &amp;#123;    public String reverseWords(Stri">
+  <meta name="description" content="题意 给定一个字符串, 翻转字符串中的每个单词, 每个单词以空格分隔, 保留空格和初始单词顺序。  解法首先按照空格对字符串进行分隔，然后将每个单词进行翻转后再拼接回字符串即可，需要注意拼接时记得加空格，但最后一个单词不需要加。">
 <meta name="keywords" content="字符串,leetcode">
 <meta property="og:type" content="article">
 <meta property="og:title" content="LeetCode 557 Reverse Words in a String III">
 <meta property="og:url" content="http://www.zhaojun.im/leetcode-557/index.html">
 <meta property="og:site_name" content="赵俊的博客">
-<meta property="og:description" content="题意 给定一个字符串, 翻转字符串中的每个单词, 每个单词以空格分隔, 保留空格和初始单词顺序。  解法首先按照空格对字符串进行分隔，然后将每个单词进行翻转后再拼接回字符串即可，需要注意拼接时记得加空格，但最后一个单词不需要加。 12345678910111213141516171819class Solution &amp;#123;    public String reverseWords(Stri">
+<meta property="og:description" content="题意 给定一个字符串, 翻转字符串中的每个单词, 每个单词以空格分隔, 保留空格和初始单词顺序。  解法首先按照空格对字符串进行分隔，然后将每个单词进行翻转后再拼接回字符串即可，需要注意拼接时记得加空格，但最后一个单词不需要加。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-11-20T14:26:09.000Z">
+<meta property="og:updated_time" content="2018-11-28T13:59:07.534Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="LeetCode 557 Reverse Words in a String III">
-<meta name="twitter:description" content="题意 给定一个字符串, 翻转字符串中的每个单词, 每个单词以空格分隔, 保留空格和初始单词顺序。  解法首先按照空格对字符串进行分隔，然后将每个单词进行翻转后再拼接回字符串即可，需要注意拼接时记得加空格，但最后一个单词不需要加。 12345678910111213141516171819class Solution &amp;#123;    public String reverseWords(Stri">
+<meta name="twitter:description" content="题意 给定一个字符串, 翻转字符串中的每个单词, 每个单词以空格分隔, 保留空格和初始单词顺序。  解法首先按照空格对字符串进行分隔，然后将每个单词进行翻转后再拼接回字符串即可，需要注意拼接时记得加空格，但最后一个单词不需要加。">
 
 
 
@@ -1904,7 +1904,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #a83d45;
+  background: #ff16ed;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -3255,12 +3255,24 @@ ul.breadcrumb li+li:last-child {
                 
               
 
-              <time title="创建时间：2018-11-20 22:10:34 / 修改时间：22:26:09" itemprop="dateCreated datePublished" datetime="2018-11-20T22:10:34+08:00">2018-11-20</time>
+              <time title="创建时间：2018-11-20 22:10:34" itemprop="dateCreated datePublished" datetime="2018-11-20T22:10:34+08:00">2018-11-20</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-11-28 21:59:07" itemprop="dateModified" datetime="2018-11-28T21:59:07+08:00">2018-11-28</time>
               
             
           </span>
@@ -3336,6 +3348,7 @@ ul.breadcrumb li+li:last-child {
 <p>给定一个字符串, 翻转字符串中的每个单词, 每个单词以空格分隔, 保留空格和初始单词顺序。</p>
 </blockquote>
 <h2 id="解法"><a href="#解法" class="headerlink" title="解法"></a>解法</h2><p>首先按照空格对字符串进行分隔，然后将每个单词进行翻转后再拼接回字符串即可，需要注意拼接时记得加空格，但最后一个单词不需要加。</p>
+<a id="more"></a>
 <figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>{</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">reverseWords</span><span class="params">(String s)</span> </span>{</span><br><span class="line">        StringBuilder result = <span class="keyword">new</span> StringBuilder();</span><br><span class="line"></span><br><span class="line">        String[] strs = s.split(<span class="string">" "</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (String str : strs) {</span><br><span class="line">            <span class="keyword">char</span>[] chars = str.toCharArray();</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>, j = chars.length - <span class="number">1</span>; i &lt; j; i++, j--) {</span><br><span class="line">                <span class="keyword">char</span> c = chars[i];</span><br><span class="line">                chars[i] = chars[j];</span><br><span class="line">                chars[j] = c;</span><br><span class="line">            }</span><br><span class="line">            result.append(<span class="keyword">new</span> String(chars)).append(<span class="string">" "</span>);</span><br><span class="line">        }</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> result.substring(<span class="number">0</span>, result.length() - <span class="number">1</span>);</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
 <blockquote>
 <p>Runtime: 6 ms, faster than 93.75% of Java online submissions for Reverse Words in a String III.</p>
@@ -3375,8 +3388,8 @@ ul.breadcrumb li+li:last-child {
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/leetcode-657/" rel="next" title="LeetCode 657 Robot Return to Origin">
-                <i class="fa fa-chevron-left"></i> LeetCode 657 Robot Return to Origin
+              <a href="/leetcode-344/" rel="next" title="LeetCode 344 Reverse String">
+                <i class="fa fa-chevron-left"></i> LeetCode 344 Reverse String
               </a>
             
           </div>
@@ -3385,8 +3398,8 @@ ul.breadcrumb li+li:last-child {
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/leetcode-344/" rel="prev" title="LeetCode 344 Reverse String">
-                LeetCode 344 Reverse String <i class="fa fa-chevron-right"></i>
+              <a href="/leetcode-917/" rel="prev" title="LeetCode 917 Reverse Only Letters">
+                LeetCode 917 Reverse Only Letters <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -3462,7 +3475,7 @@ ul.breadcrumb li+li:last-child {
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">135</span>
+                    <span class="site-state-item-count">136</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
