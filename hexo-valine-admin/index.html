@@ -74,7 +74,7 @@
   var CONFIG = {
     root: '/',
     scheme: 'Pisces',
-    version: '6.3.0',
+    version: '6.6.0',
     sidebar: {"position":"left","display":"post","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
     fancybox: true,
     fastclick: true,
@@ -149,6 +149,8 @@
       s.parentNode.insertBefore(hm, s);
     })();
   </script>
+
+
 
 
 
@@ -431,14 +433,19 @@ h6 {
 p {
   margin: 0 0 20px 0;
 }
-a {
+a,
+span.exturl {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  background-color: transparent;
   color: #555;
   text-decoration: none;
   outline: none;
   border-bottom: 1px solid #999;
-  word-wrap: break-word;
+  cursor: pointer;
 }
-a:hover {
+a:hover,
+span.exturl:hover {
   color: #222;
   border-bottom-color: #222;
 }
@@ -560,7 +567,7 @@ table {
   border-spacing: 0;
   border: 1px solid #ddd;
   font-size: 14px;
-  word-wrap: break-all;
+  word-break: break-all;
 }
 table>tbody>tr:nth-of-type(odd) {
   background-color: #f9f9f9;
@@ -665,8 +672,9 @@ code {
   font-family: consolas, Menlo, "PingFang SC", "Microsoft YaHei", monospace;
 }
 code {
-  padding: 2px 4px;
+  overflow-wrap: break-word;
   word-wrap: break-word;
+  padding: 2px 4px;
   color: #555;
   background: #eee;
   border-radius: 3px;
@@ -1126,17 +1134,14 @@ pre .javascript .function {
   margin: 10px;
 }
 .back-to-top {
-  display: none;
-  margin: 20px -10px -20px;
+  visibility: hidden;
+  margin: 8px -10px -20px;
   background: #f5f7f9;
   font-size: 12px;
   opacity: 0.6;
   cursor: pointer;
   text-align: center;
   -webkit-transform: translateZ(0);
-  transition-duration: 0.2s;
-  transition-timing-function: ease-in-out;
-  transition-delay: 0s;
 }
 .back-to-top:hover {
   opacity: 0.8;
@@ -1152,7 +1157,10 @@ pre .javascript .function {
   }
 }
 .back-to-top.back-to-top-on {
-  display: block;
+  visibility: visible;
+  transition-duration: 0.2s;
+  transition-timing-function: ease-in-out;
+  transition-delay: 0s;
 }
 .header {
   background: transparent;
@@ -1264,7 +1272,8 @@ pre .javascript .function {
     margin-top: 10px;
   }
 }
-.menu .menu-item a {
+.menu .menu-item a,
+.menu .menu-item span.exturl {
   display: block;
   font-size: 13px;
   line-height: inherit;
@@ -1275,7 +1284,7 @@ pre .javascript .function {
   transition-delay: 0s;
 }
 .menu .menu-item a:hover,
-.menu-item-active a {
+.menu .menu-item span.exturl:hover {
   border-bottom-color: #222;
 }
 .menu .menu-item .fa {
@@ -1285,12 +1294,13 @@ pre .javascript .function {
   opacity: 0;
 }
 .post-body {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
   font-family: 'Lato', "PingFang SC", "Microsoft YaHei", sans-serif;
 }
-@media (max-width: 767px) {
-  .post-body {
-    word-break: break-word;
-  }
+.post-body .exturl .fa {
+  font-size: 14px;
+  margin-left: 4px;
 }
 .post-body .fancybox img {
   display: block !important;
@@ -1511,7 +1521,8 @@ pre .javascript .function {
   margin-left: 3px;
   opacity: 0.6;
 }
-.posts-collapse .post-title a {
+.posts-collapse .post-title a,
+.posts-collapse .post-title span.exturl {
   color: #666;
   border-bottom: none;
 }
@@ -1522,8 +1533,9 @@ pre .javascript .function {
   display: none;
 }
 .posts-expand .post-title {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
   text-align: center;
-  word-break: break-word;
   font-weight: 400;
 }
 .posts-expand .post-title-link {
@@ -1561,7 +1573,8 @@ pre .javascript .function {
   transform: scaleX(1);
 }
 .posts-expand .post-title-link .fa {
-  font-size: 16px;
+  font-size: 20px;
+  margin-left: 5px;
 }
 .posts-expand .post-meta {
   margin: 3px 0 60px 0;
@@ -1712,6 +1725,16 @@ pre .javascript .function {
 .fancybox-close:hover {
   border: none;
 }
+.post-copyright {
+  margin: 2em 0 0;
+  padding: 0.5em 1em;
+  border-left: 3px solid #ff1700;
+  background-color: #f9f9f9;
+  list-style: none;
+}
+.post-copyright i.fa {
+  font-size: 15px;
+}
 .rtl.post-body p,
 .rtl.post-body a,
 .rtl.post-body h1,
@@ -1819,16 +1842,6 @@ pre .javascript .function {
 .site-author-image {
   border-radius: 100%;
 }
-.site-author-image img:hover {
-  -webkit-transform: rotateZ(360deg);
-  -moz-transform: rotateZ(360deg);
-  -ms-transform: rotate(360deg);
-  -webkit-transform: rotateZ(360deg);
-  -moz-transform: rotateZ(360deg);
-  -ms-transform: rotateZ(360deg);
-  -o-transform: rotateZ(360deg);
-  transform: rotateZ(360deg);
-}
 .site-author-name {
   margin: 0;
   text-align: center;
@@ -1911,7 +1924,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #ff16ed;
+  background: #6f94ee;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -1929,7 +1942,8 @@ pre .javascript .function {
 .links-of-blogroll-item {
   padding: 2px 10px;
 }
-.links-of-blogroll-item a {
+.links-of-blogroll-item a,
+.links-of-blogroll-item span.exturl {
   max-width: 280px;
   box-sizing: border-box;
   display: inline-block;
@@ -2339,6 +2353,10 @@ pre .javascript .function {
   border: 1px solid #fff;
   border-radius: 50%;
 }
+.page-archive .fa {
+  font-size: 15px;
+  margin-left: 5px;
+}
 .category-all-page .category-all-title {
   text-align: center;
 }
@@ -2435,9 +2453,10 @@ pre .javascript .function {
 }
 #schedule ul#event-list li.event-past {
   background: #fcfcfc;
+  padding: 15px 0 15px 10px;
 }
 #schedule ul#event-list li.event-past > * {
-  opacity: 0.6;
+  opacity: 0.9;
 }
 #schedule ul#event-list li.event-past h2.event-summary {
   color: #bbb;
@@ -2460,6 +2479,23 @@ pre .javascript .function {
   animation: dot-flash 1s alternate infinite ease-in-out;
 }
 #schedule ul#event-list li.event-now * {
+  color: #fff !important;
+}
+#schedule ul#event-list li.event-future {
+  background: #222;
+  color: #fff;
+  padding: 15px 0 15px 10px;
+}
+#schedule ul#event-list li.event-future h2.event-summary:before {
+  -webkit-transform: scale(1.2);
+  -moz-transform: scale(1.2);
+  -ms-transform: scale(1.2);
+  -o-transform: scale(1.2);
+  transform: scale(1.2);
+  color: #fff;
+  animation: dot-flash 1s alternate infinite ease-in-out;
+}
+#schedule ul#event-list li.event-future * {
   color: #fff !important;
 }
 @-moz-keyframes dot-flash {
@@ -2761,11 +2797,31 @@ ul.breadcrumb li+li:last-child {
     display: block !important;
   }
 }
+.menu-item-active a,
+.menu .menu-item a:hover,
+.menu .menu-item span.exturl:hover {
+  background: #f9f9f9;
+  border-bottom-color: #fff;
+}
+.menu-item-active a:after,
+.menu .menu-item a:hover:after,
+.menu .menu-item span.exturl:hover:after {
+  content: " ";
+  position: absolute;
+  top: 50%;
+  margin-top: -3px;
+  right: 15px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: #bbb;
+}
 .menu .menu-item {
   display: block;
   margin: 0;
 }
-.menu .menu-item a {
+.menu .menu-item a,
+.menu .menu-item span.exturl {
   position: relative;
   box-sizing: border-box;
   padding: 5px 20px;
@@ -2776,10 +2832,11 @@ ul.breadcrumb li+li:last-child {
   transition-timing-function: ease-in-out;
   transition-delay: 0s;
 }
-.menu .menu-item a:hover,
-.menu-item-active a {
-  background: #f9f9f9;
-  border-bottom-color: #fff;
+@media (hover: none) {
+  .menu .menu-item a:hover,
+  .menu .menu-item span.exturl:hover {
+    background: none;
+  }
 }
 .menu .menu-item .badge {
   display: inline-block;
@@ -2798,17 +2855,6 @@ ul.breadcrumb li+li:last-child {
 }
 .menu .menu-item br {
   display: none;
-}
-.menu-item-active a:after {
-  content: " ";
-  position: absolute;
-  top: 50%;
-  margin-top: -3px;
-  right: 15px;
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background-color: #bbb;
 }
 .btn-bar {
   background-color: #fff;
@@ -2894,22 +2940,22 @@ ul.breadcrumb li+li:last-child {
   clear: both;
 }
 .sidebar a,
-.sidebar .exturl {
+.sidebar span.exturl {
   color: #555;
 }
 .sidebar a:hover,
-.sidebar .exturl:hover {
+.sidebar span.exturl:hover {
   color: #222;
 }
 .site-state-item {
   padding: 0 10px;
 }
 .links-of-author-item a:before,
-.links-of-author-item .exturl:before {
+.links-of-author-item span.exturl:before {
   display: none;
 }
 .links-of-author-item a,
-.links-of-author-item .exturl {
+.links-of-author-item span.exturl {
   border-bottom: none;
   text-decoration: underline;
 }
@@ -2935,7 +2981,7 @@ ul.breadcrumb li+li:last-child {
   flex-wrap: wrap;
   justify-content: center;
 }
-.links-of-author .exturl {
+.links-of-author span.exturl {
   font-size: 13px;
 }
 .links-of-author-item {
@@ -2955,12 +3001,12 @@ ul.breadcrumb li+li:last-child {
   text-overflow: ellipsis;
 }
 .links-of-author-item a,
-.links-of-author-item .exturl {
+.links-of-author-item span.exturl {
   display: block;
   text-decoration: none;
 }
 .links-of-author-item a:hover,
-.links-of-author-item .exturl:hover {
+.links-of-author-item span.exturl:hover {
   border-radius: 4px;
   background: #eee;
 }
@@ -3091,56 +3137,119 @@ ul.breadcrumb li+li:last-child {
         
           
           <li class="menu-item menu-item-home">
-    <a href="/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
   </li>
         
         
         
           
           <li class="menu-item menu-item-categories">
-    <a href="/categories/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
   </li>
         
         
         
           
           <li class="menu-item menu-item-tags">
-    <a href="/tags/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
   </li>
         
         
         
           
           <li class="menu-item menu-item-archives">
-    <a href="/archives/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
   </li>
         
         
         
           
           <li class="menu-item menu-item-about">
-    <a href="/about/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
   </li>
         
         
         
           
           <li class="menu-item menu-item-friends">
-    <a href="/friends/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-child"></i> <br>友链</a>
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/friends/" rel="section"><i class="menu-item-icon fa fa-fw fa-child"></i> <br>友链</a>
+
   </li>
         
         
         
           
           <li class="menu-item menu-item-script">
-    <a href="/script/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-terminal"></i> <br>脚本</a>
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/script/" rel="section"><i class="menu-item-icon fa fa-fw fa-terminal"></i> <br>脚本</a>
+
   </li>
 
       
@@ -3351,14 +3460,14 @@ ul.breadcrumb li+li:last-child {
       
 
       
-        <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>此项目是一个对 <a href="https://valine.js.org" target="_blank" rel="noopener">Valine</a> 评论系统的拓展应用，可增强 <code>Valine</code> 的邮件通知功能。基于 Leancloud 的云引擎与云函数。可以提供邮件 <code>通知站长</code> 和 <code>@ 通知</code> 的功能，而且还支持自定义邮件通知模板。</p>
-<p><a href="https://github.com/zhaojun1998/Valine-Admin/blob/master/%E9%AB%98%E7%BA%A7%E9%85%8D%E7%BD%AE.md#邮件通知展示" target="_blank" rel="noopener">点击查看演示</a></p>
+        <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>此项目是一个对 <span class="exturl" data-url="aHR0cHM6Ly92YWxpbmUuanMub3Jn" title="https://valine.js.org">Valine<i class="fa fa-external-link"></i></span> 评论系统的拓展应用，可增强 <code>Valine</code> 的邮件通知功能。基于 Leancloud 的云引擎与云函数。可以提供邮件 <code>通知站长</code> 和 <code>@ 通知</code> 的功能，而且还支持自定义邮件通知模板。</p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3poYW9qdW4xOTk4L1ZhbGluZS1BZG1pbi9ibG9iL21hc3Rlci8lRTklQUIlOTglRTclQkElQTclRTklODUlOEQlRTclQkQlQUUubWQj6YKu5Lu26YCa55+l5bGV56S6" title="https://github.com/zhaojun1998/Valine-Admin/blob/master/%E9%AB%98%E7%BA%A7%E9%85%8D%E7%BD%AE.md#邮件通知展示">点击查看演示<i class="fa fa-external-link"></i></span></p>
 <blockquote>
-<p><strong>注：本项目修改于 panjunwen 的项目 : <a href="https://github.com/panjunwen/Valine-Admin" target="_blank" rel="noopener">Valine-Admin</a>，原作者博客: <a href="https://panjunwen.com/valine-admin-document/" target="_blank" rel="noopener">Valine Admin 配置手册</a></strong>, (部分逻辑于功能不同，还请读者不要搞混配置项.)</p>
+<p><strong>注：本项目修改于 panjunwen 的项目 : <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3Bhbmp1bndlbi9WYWxpbmUtQWRtaW4=" title="https://github.com/panjunwen/Valine-Admin">Valine-Admin<i class="fa fa-external-link"></i></span>，原作者博客: <span class="exturl" data-url="aHR0cHM6Ly9wYW5qdW53ZW4uY29tL3ZhbGluZS1hZG1pbi1kb2N1bWVudC8=" title="https://panjunwen.com/valine-admin-document/">Valine Admin 配置手册<i class="fa fa-external-link"></i></span></strong>, (部分逻辑于功能不同，还请读者不要搞混配置项.)</p>
 </blockquote>
 <a id="more"></a>
-<h2 id="快速开始"><a href="#快速开始" class="headerlink" title="快速开始"></a>快速开始</h2><p>首先需要确保 Valine 的基础功能是正常的，参考 <a href="https://valine.js.org" target="_blank" rel="noopener">Valine Docs</a>。</p>
-<p>然后进入 <a href="https://leancloud.cn/dashboard/applist.html#/apps" target="_blank" rel="noopener">Leancloud</a> 对应的 Valine 应用中。</p>
+<h2 id="快速开始"><a href="#快速开始" class="headerlink" title="快速开始"></a>快速开始</h2><p>首先需要确保 Valine 的基础功能是正常的，参考 <span class="exturl" data-url="aHR0cHM6Ly92YWxpbmUuanMub3Jn" title="https://valine.js.org">Valine Docs<i class="fa fa-external-link"></i></span>。</p>
+<p>然后进入 <span class="exturl" data-url="aHR0cHM6Ly9sZWFuY2xvdWQuY24vZGFzaGJvYXJkL2FwcGxpc3QuaHRtbCMvYXBwcw==" title="https://leancloud.cn/dashboard/applist.html#/apps">Leancloud<i class="fa fa-external-link"></i></span> 对应的 Valine 应用中。</p>
 <p>点击 <code>云引擎 -&gt; 设置</code> 填写代码库并保存：<code>https://github.com/zhaojun1998/Valine-Admin</code></p>
 <p><img width="700" src="https://cdn.jun6.net/201804211508_545.png"></p>
 <p>切换到部署标签页，分支使用 master，点击部署即可：<br><img width="700" src="https://cdn.jun6.net/201801112055_212.png"><br><img width="700" src="https://cdn.jun6.net/201804211336_271.png"></p>
@@ -3370,16 +3479,16 @@ ul.breadcrumb li+li:last-child {
 <li><code>SITE_URL</code> : 网站地址, <strong>最后不要加 <code>/</code> 。</strong></li>
 <li><code>SMTP_USER</code> : SMTP 服务用户名，一般为邮箱地址。</li>
 <li><code>SMTP_PASS</code> : SMTP 密码，一般为授权码，而不是邮箱的登陆密码，请自行查询对应邮件服务商的获取方式</li>
-<li><code>SMTP_SERVICE</code> : 邮件服务提供商，支持 <code>QQ</code>、<code>163</code>、<code>126</code>、<code>Gmail</code>、<code>"Yahoo"</code>、<code>......</code>  ，全部支持请参考 : <a href="https://nodemailer.com/smtp/well-known/#supported-services" target="_blank" rel="noopener">Nodemailer Supported services</a>。</li>
+<li><code>SMTP_SERVICE</code> : 邮件服务提供商，支持 <code>QQ</code>、<code>163</code>、<code>126</code>、<code>Gmail</code>、<code>"Yahoo"</code>、<code>......</code>  ，全部支持请参考 : <span class="exturl" data-url="aHR0cHM6Ly9ub2RlbWFpbGVyLmNvbS9zbXRwL3dlbGwta25vd24vI3N1cHBvcnRlZC1zZXJ2aWNlcw==" title="https://nodemailer.com/smtp/well-known/#supported-services">Nodemailer Supported services<i class="fa fa-external-link"></i></span>。</li>
 <li><code>SENDER_NAME</code> : 寄件人名称。</li>
 </ul>
-<h2 id="高级配置"><a href="#高级配置" class="headerlink" title="高级配置"></a>高级配置</h2><p><a href="https://github.com/zhaojun1998/Valine-Admin/blob/master/%E9%AB%98%E7%BA%A7%E9%85%8D%E7%BD%AE.md#%E8%87%AA%E5%AE%9A%E4%B9%89%E9%82%AE%E4%BB%B6%E6%A8%A1%E6%9D%BF" target="_blank" rel="noopener">自定义邮件模板</a></p>
-<p><a href="https://github.com/zhaojun1998/Valine-Admin/blob/master/%E9%AB%98%E7%BA%A7%E9%85%8D%E7%BD%AE.md#%E8%87%AA%E5%AE%9A%E4%B9%89%E6%94%B6%E4%BB%B6%E9%82%AE%E7%AE%B1" target="_blank" rel="noopener">自定义收件邮箱</a></p>
-<p><a href="https://github.com/zhaojun1998/Valine-Admin/blob/master/%E9%AB%98%E7%BA%A7%E9%85%8D%E7%BD%AE.md#%E8%87%AA%E5%AE%9A%E4%B9%89%E9%82%AE%E4%BB%B6%E6%9C%8D%E5%8A%A1%E5%99%A8" target="_blank" rel="noopener">自定义邮件服务器</a></p>
-<p><a href="https://github.com/zhaojun1998/Valine-Admin/blob/master/%E9%AB%98%E7%BA%A7%E9%85%8D%E7%BD%AE.md#web-%E8%AF%84%E8%AE%BA%E7%AE%A1%E7%90%86" target="_blank" rel="noopener">Web 评论管理</a></p>
-<p><a href="https://github.com/zhaojun1998/Valine-Admin/blob/master/%E9%AB%98%E7%BA%A7%E9%85%8D%E7%BD%AE.md#leancloud-%E4%BC%91%E7%9C%A0%E7%AD%96%E7%95%A5" target="_blank" rel="noopener">Leancloud 休眠策略(必看)</a></p>
+<h2 id="高级配置"><a href="#高级配置" class="headerlink" title="高级配置"></a>高级配置</h2><p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3poYW9qdW4xOTk4L1ZhbGluZS1BZG1pbi9ibG9iL21hc3Rlci8lRTklQUIlOTglRTclQkElQTclRTklODUlOEQlRTclQkQlQUUubWQjJUU4JTg3JUFBJUU1JUFFJTlBJUU0JUI5JTg5JUU5JTgyJUFFJUU0JUJCJUI2JUU2JUE4JUExJUU2JTlEJUJG" title="https://github.com/zhaojun1998/Valine-Admin/blob/master/%E9%AB%98%E7%BA%A7%E9%85%8D%E7%BD%AE.md#%E8%87%AA%E5%AE%9A%E4%B9%89%E9%82%AE%E4%BB%B6%E6%A8%A1%E6%9D%BF">自定义邮件模板<i class="fa fa-external-link"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3poYW9qdW4xOTk4L1ZhbGluZS1BZG1pbi9ibG9iL21hc3Rlci8lRTklQUIlOTglRTclQkElQTclRTklODUlOEQlRTclQkQlQUUubWQjJUU4JTg3JUFBJUU1JUFFJTlBJUU0JUI5JTg5JUU2JTk0JUI2JUU0JUJCJUI2JUU5JTgyJUFFJUU3JUFFJUIx" title="https://github.com/zhaojun1998/Valine-Admin/blob/master/%E9%AB%98%E7%BA%A7%E9%85%8D%E7%BD%AE.md#%E8%87%AA%E5%AE%9A%E4%B9%89%E6%94%B6%E4%BB%B6%E9%82%AE%E7%AE%B1">自定义收件邮箱<i class="fa fa-external-link"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3poYW9qdW4xOTk4L1ZhbGluZS1BZG1pbi9ibG9iL21hc3Rlci8lRTklQUIlOTglRTclQkElQTclRTklODUlOEQlRTclQkQlQUUubWQjJUU4JTg3JUFBJUU1JUFFJTlBJUU0JUI5JTg5JUU5JTgyJUFFJUU0JUJCJUI2JUU2JTlDJThEJUU1JThBJUExJUU1JTk5JUE4" title="https://github.com/zhaojun1998/Valine-Admin/blob/master/%E9%AB%98%E7%BA%A7%E9%85%8D%E7%BD%AE.md#%E8%87%AA%E5%AE%9A%E4%B9%89%E9%82%AE%E4%BB%B6%E6%9C%8D%E5%8A%A1%E5%99%A8">自定义邮件服务器<i class="fa fa-external-link"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3poYW9qdW4xOTk4L1ZhbGluZS1BZG1pbi9ibG9iL21hc3Rlci8lRTklQUIlOTglRTclQkElQTclRTklODUlOEQlRTclQkQlQUUubWQjd2ViLSVFOCVBRiU4NCVFOCVBRSVCQSVFNyVBRSVBMSVFNyU5MCU4Ng==" title="https://github.com/zhaojun1998/Valine-Admin/blob/master/%E9%AB%98%E7%BA%A7%E9%85%8D%E7%BD%AE.md#web-%E8%AF%84%E8%AE%BA%E7%AE%A1%E7%90%86">Web 评论管理<i class="fa fa-external-link"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3poYW9qdW4xOTk4L1ZhbGluZS1BZG1pbi9ibG9iL21hc3Rlci8lRTklQUIlOTglRTclQkElQTclRTklODUlOEQlRTclQkQlQUUubWQjbGVhbmNsb3VkLSVFNCVCQyU5MSVFNyU5QyVBMCVFNyVBRCU5NiVFNyU5NSVBNQ==" title="https://github.com/zhaojun1998/Valine-Admin/blob/master/%E9%AB%98%E7%BA%A7%E9%85%8D%E7%BD%AE.md#leancloud-%E4%BC%91%E7%9C%A0%E7%AD%96%E7%95%A5">Leancloud 休眠策略(必看)<i class="fa fa-external-link"></i></span></p>
 <h2 id="更新历史"><a href="#更新历史" class="headerlink" title="更新历史"></a>更新历史</h2><ul>
-<li>7.7 兼容 <code>valine v1.2.0-beta</code> 版本对 at 的更改 <a href="https://valine.js.org/changelog.html#v1-2-0-beta-2018-06-30" target="_blank" rel="noopener">点击查看</a>。</li>
+<li>7.7 兼容 <code>valine v1.2.0-beta</code> 版本对 at 的更改 <span class="exturl" data-url="aHR0cHM6Ly92YWxpbmUuanMub3JnL2NoYW5nZWxvZy5odG1sI3YxLTItMC1iZXRhLTIwMTgtMDYtMzA=" title="https://valine.js.org/changelog.html#v1-2-0-beta-2018-06-30">点击查看<i class="fa fa-external-link"></i></span>。</li>
 <li>7.1 修复 <code>Web</code> 后台登录安全 <code>bug</code></li>
 <li>6.14 添加自定义邮件服务器功能. <a href="/高级配置.md#自定义邮件服务器">点击查看</a></li>
 </ul>
@@ -3399,9 +3508,9 @@ ul.breadcrumb li+li:last-child {
 <p>分析了一下上方的策略，如果不想付费的话，最佳使用方案就设置定时器，每天 7 - 23 点每 20 分钟访问一次，这样可以保持每天的绝大多数时间邮件服务是正常的。</p>
 <p>附 <code>Linux crontab</code> 定时器代码：</p>
 <figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">*/20 7-23 * * * curl https://你配置的域名前缀.leanapp.cn</span><br></pre></td></tr></tbody></table></figure>
-<p>注 : 此 <code>crontab</code> 不是<code>LeanCloud</code> 后台的定时任务，如果你没有 <code>Linux</code> 机器来配置此定时器，那么可以在此 <a href="https://github.com/zhaojun1998/Valine-Admin/issues/1" target="_blank" rel="noopener">issues</a> 中回复我，我帮你加上。</p>
+<p>注 : 此 <code>crontab</code> 不是<code>LeanCloud</code> 后台的定时任务，如果你没有 <code>Linux</code> 机器来配置此定时器，那么可以在此 <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3poYW9qdW4xOTk4L1ZhbGluZS1BZG1pbi9pc3N1ZXMvMQ==" title="https://github.com/zhaojun1998/Valine-Admin/issues/1">issues<i class="fa fa-external-link"></i></span> 中回复我，我帮你加上。</p>
 <blockquote>
-<p>如对本项目有意见或建议，欢迎去 Github 提 <a href="https://github.com/zhaojun1998/Valine-Admin/issues" target="_blank" rel="noopener">issues</a>。</p>
+<p>如对本项目有意见或建议，欢迎去 Github 提 <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3poYW9qdW4xOTk4L1ZhbGluZS1BZG1pbi9pc3N1ZXM=" title="https://github.com/zhaojun1998/Valine-Admin/issues">issues<i class="fa fa-external-link"></i></span>。</p>
 </blockquote>
 
       
@@ -3416,7 +3525,33 @@ ul.breadcrumb li+li:last-child {
     
 
     
+       
+    
+    
 
+    
+      <div>
+        
+
+
+
+  
+
+
+
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>赵俊</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    
+    <a href="http://www.zhaojun.im/hexo-valine-admin/" title="Hexo 优化 --- Valine 扩展之邮件通知">http://www.zhaojun.im/hexo-valine-admin/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC8="><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</span> 许可协议。转载请注明出处！</li>
+</ul>
+
+      </div>
     
 
     <footer class="post-footer">
@@ -3477,6 +3612,7 @@ ul.breadcrumb li+li:last-child {
   
     <div class="comments" id="comments">
     </div>
+
   
 
 
@@ -3527,7 +3663,7 @@ ul.breadcrumb li+li:last-child {
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">136</span>
+                    <span class="site-state-item-count">137</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -3808,6 +3944,14 @@ ul.breadcrumb li+li:last-child {
           
 
           
+             <div class="cc-license motion-element" itemprop="license">
+              
+                
+              
+              
+              
+              <span class="exturl cc-opacity" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC8="><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></span>
+             </div>
           
 
           
@@ -3820,15 +3964,15 @@ ul.breadcrumb li+li:last-child {
               <ul class="links-of-blogroll-list">
                 
                   <li class="links-of-blogroll-item">
-                    <a href="http://98.tn" title="在线网盘" target="_blank">在线网盘</a>
+                    <span class="exturl" data-url="aHR0cDovLzk4LnRu" title="http://98.tn">在线网盘</span>
                   </li>
                 
                   <li class="links-of-blogroll-item">
-                    <a href="https://img.zhaojun.im" title="免费图床" target="_blank">免费图床</a>
+                    <span class="exturl" data-url="aHR0cHM6Ly9pbWcuemhhb2p1bi5pbQ==" title="https://img.zhaojun.im">免费图床</span>
                   </li>
                 
                   <li class="links-of-blogroll-item">
-                    <a href="http://json.zhaojun.im" title="在线 JSON 解析" target="_blank">在线 JSON 解析</a>
+                    <span class="exturl" data-url="aHR0cDovL2pzb24uemhhb2p1bi5pbQ==" title="http://json.zhaojun.im">在线 JSON 解析</span>
                   </li>
                 
               </ul>
@@ -3880,7 +4024,7 @@ ul.breadcrumb li+li:last-child {
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">© 2016 — <span itemprop="copyrightYear">2018</span>
+        <div class="copyright">© 2016 – <span itemprop="copyrightYear">2018</span>
   <span class="with-love" id="animate">
     <i class="fa fa-user"></i>
   </span>
@@ -3892,11 +4036,7 @@ ul.breadcrumb li+li:last-child {
 </div>
 
 
-  
-
-
-
-  <div class="powered-by">由 <a class="theme-link" target="_blank" rel="external nofollow" href="https://hexo.io">Hexo</a> 强力驱动 v3.7.1</div>
+  <div class="powered-by">由 <span class="exturl theme-link" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> 强力驱动 v3.8.0</div>
 
 
 
@@ -3904,7 +4044,7 @@ ul.breadcrumb li+li:last-child {
 
 
 
-  <div class="theme-info">主题 — <a class="theme-link" target="_blank" rel="external nofollow" href="https://theme-next.org">NexT.Pisces</a> v6.3.0</div>
+  <div class="theme-info">主题 – <span class="exturl theme-link" data-url="aHR0cHM6Ly90aGVtZS1uZXh0Lm9yZw==">NexT.Pisces</span> v6.6.0</div>
 
 
 
@@ -4074,6 +4214,8 @@ ul.breadcrumb li+li:last-child {
   
 
   
+
+  
   
 
   
@@ -4081,6 +4223,8 @@ ul.breadcrumb li+li:last-child {
   
 
   
+  
+
 
   
 
@@ -4124,6 +4268,8 @@ ul.breadcrumb li+li:last-child {
   </style>
   
 
+
+  
 
 
 

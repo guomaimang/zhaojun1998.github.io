@@ -74,7 +74,7 @@
   var CONFIG = {
     root: '/',
     scheme: 'Pisces',
-    version: '6.3.0',
+    version: '6.6.0',
     sidebar: {"position":"left","display":"post","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
     fancybox: true,
     fastclick: true,
@@ -142,6 +142,8 @@
       s.parentNode.insertBefore(hm, s);
     })();
   </script>
+
+
 
 
 
@@ -424,14 +426,19 @@ h6 {
 p {
   margin: 0 0 20px 0;
 }
-a {
+a,
+span.exturl {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  background-color: transparent;
   color: #555;
   text-decoration: none;
   outline: none;
   border-bottom: 1px solid #999;
-  word-wrap: break-word;
+  cursor: pointer;
 }
-a:hover {
+a:hover,
+span.exturl:hover {
   color: #222;
   border-bottom-color: #222;
 }
@@ -553,7 +560,7 @@ table {
   border-spacing: 0;
   border: 1px solid #ddd;
   font-size: 14px;
-  word-wrap: break-all;
+  word-break: break-all;
 }
 table>tbody>tr:nth-of-type(odd) {
   background-color: #f9f9f9;
@@ -658,8 +665,9 @@ code {
   font-family: consolas, Menlo, "PingFang SC", "Microsoft YaHei", monospace;
 }
 code {
-  padding: 2px 4px;
+  overflow-wrap: break-word;
   word-wrap: break-word;
+  padding: 2px 4px;
   color: #555;
   background: #eee;
   border-radius: 3px;
@@ -1119,17 +1127,14 @@ pre .javascript .function {
   margin: 10px;
 }
 .back-to-top {
-  display: none;
-  margin: 20px -10px -20px;
+  visibility: hidden;
+  margin: 8px -10px -20px;
   background: #f5f7f9;
   font-size: 12px;
   opacity: 0.6;
   cursor: pointer;
   text-align: center;
   -webkit-transform: translateZ(0);
-  transition-duration: 0.2s;
-  transition-timing-function: ease-in-out;
-  transition-delay: 0s;
 }
 .back-to-top:hover {
   opacity: 0.8;
@@ -1145,7 +1150,10 @@ pre .javascript .function {
   }
 }
 .back-to-top.back-to-top-on {
-  display: block;
+  visibility: visible;
+  transition-duration: 0.2s;
+  transition-timing-function: ease-in-out;
+  transition-delay: 0s;
 }
 .header {
   background: transparent;
@@ -1257,7 +1265,8 @@ pre .javascript .function {
     margin-top: 10px;
   }
 }
-.menu .menu-item a {
+.menu .menu-item a,
+.menu .menu-item span.exturl {
   display: block;
   font-size: 13px;
   line-height: inherit;
@@ -1268,7 +1277,7 @@ pre .javascript .function {
   transition-delay: 0s;
 }
 .menu .menu-item a:hover,
-.menu-item-active a {
+.menu .menu-item span.exturl:hover {
   border-bottom-color: #222;
 }
 .menu .menu-item .fa {
@@ -1278,12 +1287,13 @@ pre .javascript .function {
   opacity: 0;
 }
 .post-body {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
   font-family: 'Lato', "PingFang SC", "Microsoft YaHei", sans-serif;
 }
-@media (max-width: 767px) {
-  .post-body {
-    word-break: break-word;
-  }
+.post-body .exturl .fa {
+  font-size: 14px;
+  margin-left: 4px;
 }
 .post-body .fancybox img {
   display: block !important;
@@ -1504,7 +1514,8 @@ pre .javascript .function {
   margin-left: 3px;
   opacity: 0.6;
 }
-.posts-collapse .post-title a {
+.posts-collapse .post-title a,
+.posts-collapse .post-title span.exturl {
   color: #666;
   border-bottom: none;
 }
@@ -1515,8 +1526,9 @@ pre .javascript .function {
   display: none;
 }
 .posts-expand .post-title {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
   text-align: center;
-  word-break: break-word;
   font-weight: 400;
 }
 .posts-expand .post-title-link {
@@ -1554,7 +1566,8 @@ pre .javascript .function {
   transform: scaleX(1);
 }
 .posts-expand .post-title-link .fa {
-  font-size: 16px;
+  font-size: 20px;
+  margin-left: 5px;
 }
 .posts-expand .post-meta {
   margin: 3px 0 60px 0;
@@ -1705,6 +1718,16 @@ pre .javascript .function {
 .fancybox-close:hover {
   border: none;
 }
+.post-copyright {
+  margin: 2em 0 0;
+  padding: 0.5em 1em;
+  border-left: 3px solid #ff1700;
+  background-color: #f9f9f9;
+  list-style: none;
+}
+.post-copyright i.fa {
+  font-size: 15px;
+}
 .rtl.post-body p,
 .rtl.post-body a,
 .rtl.post-body h1,
@@ -1812,16 +1835,6 @@ pre .javascript .function {
 .site-author-image {
   border-radius: 100%;
 }
-.site-author-image img:hover {
-  -webkit-transform: rotateZ(360deg);
-  -moz-transform: rotateZ(360deg);
-  -ms-transform: rotate(360deg);
-  -webkit-transform: rotateZ(360deg);
-  -moz-transform: rotateZ(360deg);
-  -ms-transform: rotateZ(360deg);
-  -o-transform: rotateZ(360deg);
-  transform: rotateZ(360deg);
-}
 .site-author-name {
   margin: 0;
   text-align: center;
@@ -1904,7 +1917,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #ff16ed;
+  background: #6f94ee;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -1922,7 +1935,8 @@ pre .javascript .function {
 .links-of-blogroll-item {
   padding: 2px 10px;
 }
-.links-of-blogroll-item a {
+.links-of-blogroll-item a,
+.links-of-blogroll-item span.exturl {
   max-width: 280px;
   box-sizing: border-box;
   display: inline-block;
@@ -2332,6 +2346,10 @@ pre .javascript .function {
   border: 1px solid #fff;
   border-radius: 50%;
 }
+.page-archive .fa {
+  font-size: 15px;
+  margin-left: 5px;
+}
 .category-all-page .category-all-title {
   text-align: center;
 }
@@ -2428,9 +2446,10 @@ pre .javascript .function {
 }
 #schedule ul#event-list li.event-past {
   background: #fcfcfc;
+  padding: 15px 0 15px 10px;
 }
 #schedule ul#event-list li.event-past > * {
-  opacity: 0.6;
+  opacity: 0.9;
 }
 #schedule ul#event-list li.event-past h2.event-summary {
   color: #bbb;
@@ -2453,6 +2472,23 @@ pre .javascript .function {
   animation: dot-flash 1s alternate infinite ease-in-out;
 }
 #schedule ul#event-list li.event-now * {
+  color: #fff !important;
+}
+#schedule ul#event-list li.event-future {
+  background: #222;
+  color: #fff;
+  padding: 15px 0 15px 10px;
+}
+#schedule ul#event-list li.event-future h2.event-summary:before {
+  -webkit-transform: scale(1.2);
+  -moz-transform: scale(1.2);
+  -ms-transform: scale(1.2);
+  -o-transform: scale(1.2);
+  transform: scale(1.2);
+  color: #fff;
+  animation: dot-flash 1s alternate infinite ease-in-out;
+}
+#schedule ul#event-list li.event-future * {
   color: #fff !important;
 }
 @-moz-keyframes dot-flash {
@@ -2754,11 +2790,31 @@ ul.breadcrumb li+li:last-child {
     display: block !important;
   }
 }
+.menu-item-active a,
+.menu .menu-item a:hover,
+.menu .menu-item span.exturl:hover {
+  background: #f9f9f9;
+  border-bottom-color: #fff;
+}
+.menu-item-active a:after,
+.menu .menu-item a:hover:after,
+.menu .menu-item span.exturl:hover:after {
+  content: " ";
+  position: absolute;
+  top: 50%;
+  margin-top: -3px;
+  right: 15px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: #bbb;
+}
 .menu .menu-item {
   display: block;
   margin: 0;
 }
-.menu .menu-item a {
+.menu .menu-item a,
+.menu .menu-item span.exturl {
   position: relative;
   box-sizing: border-box;
   padding: 5px 20px;
@@ -2769,10 +2825,11 @@ ul.breadcrumb li+li:last-child {
   transition-timing-function: ease-in-out;
   transition-delay: 0s;
 }
-.menu .menu-item a:hover,
-.menu-item-active a {
-  background: #f9f9f9;
-  border-bottom-color: #fff;
+@media (hover: none) {
+  .menu .menu-item a:hover,
+  .menu .menu-item span.exturl:hover {
+    background: none;
+  }
 }
 .menu .menu-item .badge {
   display: inline-block;
@@ -2791,17 +2848,6 @@ ul.breadcrumb li+li:last-child {
 }
 .menu .menu-item br {
   display: none;
-}
-.menu-item-active a:after {
-  content: " ";
-  position: absolute;
-  top: 50%;
-  margin-top: -3px;
-  right: 15px;
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background-color: #bbb;
 }
 .btn-bar {
   background-color: #fff;
@@ -2887,22 +2933,22 @@ ul.breadcrumb li+li:last-child {
   clear: both;
 }
 .sidebar a,
-.sidebar .exturl {
+.sidebar span.exturl {
   color: #555;
 }
 .sidebar a:hover,
-.sidebar .exturl:hover {
+.sidebar span.exturl:hover {
   color: #222;
 }
 .site-state-item {
   padding: 0 10px;
 }
 .links-of-author-item a:before,
-.links-of-author-item .exturl:before {
+.links-of-author-item span.exturl:before {
   display: none;
 }
 .links-of-author-item a,
-.links-of-author-item .exturl {
+.links-of-author-item span.exturl {
   border-bottom: none;
   text-decoration: underline;
 }
@@ -2928,7 +2974,7 @@ ul.breadcrumb li+li:last-child {
   flex-wrap: wrap;
   justify-content: center;
 }
-.links-of-author .exturl {
+.links-of-author span.exturl {
   font-size: 13px;
 }
 .links-of-author-item {
@@ -2948,12 +2994,12 @@ ul.breadcrumb li+li:last-child {
   text-overflow: ellipsis;
 }
 .links-of-author-item a,
-.links-of-author-item .exturl {
+.links-of-author-item span.exturl {
   display: block;
   text-decoration: none;
 }
 .links-of-author-item a:hover,
-.links-of-author-item .exturl:hover {
+.links-of-author-item span.exturl:hover {
   border-radius: 4px;
   background: #eee;
 }
@@ -3084,56 +3130,119 @@ ul.breadcrumb li+li:last-child {
         
           
           <li class="menu-item menu-item-home">
-    <a href="/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
   </li>
         
         
         
           
           <li class="menu-item menu-item-categories">
-    <a href="/categories/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
   </li>
         
         
         
           
           <li class="menu-item menu-item-tags">
-    <a href="/tags/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
   </li>
         
         
         
           
           <li class="menu-item menu-item-archives">
-    <a href="/archives/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
   </li>
         
         
         
           
           <li class="menu-item menu-item-about">
-    <a href="/about/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
   </li>
         
         
         
           
           <li class="menu-item menu-item-friends">
-    <a href="/friends/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-child"></i> <br>友链</a>
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/friends/" rel="section"><i class="menu-item-icon fa fa-fw fa-child"></i> <br>友链</a>
+
   </li>
         
         
         
           
           <li class="menu-item menu-item-script">
-    <a href="/script/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-terminal"></i> <br>脚本</a>
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/script/" rel="section"><i class="menu-item-icon fa fa-fw fa-terminal"></i> <br>脚本</a>
+
   </li>
 
       
@@ -3346,10 +3455,10 @@ ul.breadcrumb li+li:last-child {
       
         <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>作为一个博主，我认为文章的排版还是很重要的，一份好的排版的文章也是对读者的一份尊重，就好像在博客中代码要用代码块高亮起来一样。</p>
 <p>我也经常遇到问题时去看别人的博客，但是好多博主的排版甚是难看，有些甚至连最基本的代码块都没有，看起来很是不舒服，所以今天发布一篇关于排版的文章，希望其他的博主看到以后，可以重视起来，养成一个良好的排版习惯，方便自己也方便他人。</p>
-<p>本文摘自 GitHub 上的 <a href="https://github.com/mzlogin/chinese-copywriting-guidelines" target="_blank" rel="noopener">中文文案排版指北</a>。</p>
+<p>本文摘自 GitHub 上的 <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL216bG9naW4vY2hpbmVzZS1jb3B5d3JpdGluZy1ndWlkZWxpbmVz" title="https://github.com/mzlogin/chinese-copywriting-guidelines">中文文案排版指北<i class="fa fa-external-link"></i></span>。</p>
 <a id="more"></a>
 <h2 id="空格"><a href="#空格" class="headerlink" title="空格"></a>空格</h2><p>「有研究显示，打字的时候不喜欢在中文和英文之间加空格的人，感情路都走得很辛苦，有七成的比例会在 34 岁的时候跟自己不爱的人结婚，而其余三成的人最后只能把遗产留给自己的猫。毕竟爱情跟书写都需要适时地留白。</p>
-<p>与大家共勉之。」——<a href="https://github.com/vinta/pangu.js" target="_blank" rel="noopener">vinta/paranoid-auto-spacing</a></p>
+<p>与大家共勉之。」——<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3ZpbnRhL3Bhbmd1Lmpz" title="https://github.com/vinta/pangu.js">vinta/paranoid-auto-spacing<i class="fa fa-external-link"></i></span></p>
 <h3 id="中英文之间需要增加空格"><a href="#中英文之间需要增加空格" class="headerlink" title="中英文之间需要增加空格"></a>中英文之间需要增加空格</h3><p>正确：</p>
 <div class="note success"><p>在 LeanCloud 上，数据存储是围绕 <code>AVObject</code> 进行的。</p></div>
 <p>错误：</p>
@@ -3374,12 +3483,12 @@ ul.breadcrumb li+li:last-child {
 <div class="note success"><p>刚刚买了一部 iPhone，好开心！</p></div>
 <p>错误：</p>
 <div class="note danger"><p>刚刚买了一部 iPhone ，好开心！</p></div>
-<h3 id="ms-text-autospace-to-the-rescue"><a href="#ms-text-autospace-to-the-rescue" class="headerlink" title="-ms-text-autospace to the rescue?"></a><code>-ms-text-autospace</code> to the rescue?</h3><p>Microsoft 有个 <a href="http://msdn.microsoft.com/en-us/library/ie/ms531164(v=vs.85" target="_blank" rel="noopener"><code>-ms-text-autospace</code></a>.aspx) 的 CSS 属性可以实现自动为中英文之间增加空白。不过目前并未普及，另外在其他应用场景，例如 OS X、iOS 的用户界面目前并不存在这个特性，所以请继续保持随手加空格的习惯。</p>
+<h3 id="ms-text-autospace-to-the-rescue"><a href="#ms-text-autospace-to-the-rescue" class="headerlink" title="-ms-text-autospace to the rescue?"></a><code>-ms-text-autospace</code> to the rescue?</h3><p>Microsoft 有个 <span class="exturl" data-url="aHR0cDovL21zZG4ubWljcm9zb2Z0LmNvbS9lbi11cy9saWJyYXJ5L2llL21zNTMxMTY0KHY9dnMuODU=" title="http://msdn.microsoft.com/en-us/library/ie/ms531164(v=vs.85"><code>-ms-text-autospace</code><i class="fa fa-external-link"></i></span>.aspx) 的 CSS 属性可以实现自动为中英文之间增加空白。不过目前并未普及，另外在其他应用场景，例如 OS X、iOS 的用户界面目前并不存在这个特性，所以请继续保持随手加空格的习惯。</p>
 <h2 id="标点符号"><a href="#标点符号" class="headerlink" title="标点符号"></a>标点符号</h2><h3 id="不重复使用标点符号"><a href="#不重复使用标点符号" class="headerlink" title="不重复使用标点符号"></a>不重复使用标点符号</h3><p>正确：</p>
 <div class="note success"><p>德国队竟然战胜了巴西队！</p><p>她竟然对你说「喵」？！</p></div>
 <p>错误：</p>
 <div class="note danger"><p>德国队竟然战胜了巴西队！！</p><p>德国队竟然战胜了巴西队！！！！！！！！</p><p>她竟然对你说「喵」？？！！</p><p>她竟然对你说「喵」？！？！？？！！</p></div>
-<h2 id="全角和半角"><a href="#全角和半角" class="headerlink" title="全角和半角"></a>全角和半角</h2><p>不明白什么是全角（全形）与半角（半形）符号？请查看维基百科词条『<a href="http://zh.wikipedia.org/wiki/%E5%85%A8%E5%BD%A2%E5%92%8C%E5%8D%8A%E5%BD%A2" target="_blank" rel="noopener">全角和半角</a>』。</p>
+<h2 id="全角和半角"><a href="#全角和半角" class="headerlink" title="全角和半角"></a>全角和半角</h2><p>不明白什么是全角（全形）与半角（半形）符号？请查看维基百科词条『<span class="exturl" data-url="aHR0cDovL3poLndpa2lwZWRpYS5vcmcvd2lraS8lRTUlODUlQTglRTUlQkQlQTIlRTUlOTIlOEMlRTUlOEQlOEElRTUlQkQlQTI=" title="http://zh.wikipedia.org/wiki/%E5%85%A8%E5%BD%A2%E5%92%8C%E5%8D%8A%E5%BD%A2">全角和半角<i class="fa fa-external-link"></i></span>』。</p>
 <h3 id="使用全角中文标点"><a href="#使用全角中文标点" class="headerlink" title="使用全角中文标点"></a>使用全角中文标点</h3><p>正确：</p>
 <div class="note success"><p>嗨！你知道嘛？今天前台的小妹跟我说「喵」了哎！</p><p>核磁共振成像（NMRI）是什么原理都不知道？JFGI！</p></div>
 <p>错误：</p>
@@ -3420,39 +3529,39 @@ ul.breadcrumb li+li:last-child {
 </thead>
 <tbody>
 <tr>
-<td><a href="https://github.com/vinta/paranoid-auto-spacing" target="_blank" rel="noopener">vinta/paranoid-auto-spacing</a></td>
+<td><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3ZpbnRhL3BhcmFub2lkLWF1dG8tc3BhY2luZw==" title="https://github.com/vinta/paranoid-auto-spacing">vinta/paranoid-auto-spacing<i class="fa fa-external-link"></i></span></td>
 <td>JavaScript</td>
 </tr>
 <tr>
-<td><a href="https://github.com/huei90/pangu.node" target="_blank" rel="noopener">huei90/pangu.node</a></td>
+<td><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2h1ZWk5MC9wYW5ndS5ub2Rl" title="https://github.com/huei90/pangu.node">huei90/pangu.node<i class="fa fa-external-link"></i></span></td>
 <td>Node.js</td>
 </tr>
 <tr>
-<td><a href="https://github.com/huacnlee/auto-correct" target="_blank" rel="noopener">huacnlee/auto-correct</a></td>
+<td><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2h1YWNubGVlL2F1dG8tY29ycmVjdA==" title="https://github.com/huacnlee/auto-correct">huacnlee/auto-correct<i class="fa fa-external-link"></i></span></td>
 <td>Ruby</td>
 </tr>
 <tr>
-<td><a href="https://github.com/sparanoid/space-lover" target="_blank" rel="noopener">sparanoid/space-lover</a></td>
+<td><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3NwYXJhbm9pZC9zcGFjZS1sb3Zlcg==" title="https://github.com/sparanoid/space-lover">sparanoid/space-lover<i class="fa fa-external-link"></i></span></td>
 <td>PHP (WordPress)</td>
 </tr>
 <tr>
-<td><a href="https://github.com/NauxLiu/auto-correct" target="_blank" rel="noopener">nauxliu/auto-correct</a></td>
+<td><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL05hdXhMaXUvYXV0by1jb3JyZWN0" title="https://github.com/NauxLiu/auto-correct">nauxliu/auto-correct<i class="fa fa-external-link"></i></span></td>
 <td>PHP</td>
 </tr>
 <tr>
-<td><a href="https://github.com/ricoa/copywriting-correct" target="_blank" rel="noopener">ricoa/copywriting-correct</a></td>
+<td><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3JpY29hL2NvcHl3cml0aW5nLWNvcnJlY3Q=" title="https://github.com/ricoa/copywriting-correct">ricoa/copywriting-correct<i class="fa fa-external-link"></i></span></td>
 <td>PHP</td>
 </tr>
 <tr>
-<td><a href="https://github.com/hotoo/pangu.vim" target="_blank" rel="noopener">hotoo/pangu.vim</a></td>
+<td><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2hvdG9vL3Bhbmd1LnZpbQ==" title="https://github.com/hotoo/pangu.vim">hotoo/pangu.vim<i class="fa fa-external-link"></i></span></td>
 <td>Vim</td>
 </tr>
 <tr>
-<td><a href="https://github.com/sparanoid/grunt-auto-spacing" target="_blank" rel="noopener">sparanoid/grunt-auto-spacing</a></td>
+<td><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3NwYXJhbm9pZC9ncnVudC1hdXRvLXNwYWNpbmc=" title="https://github.com/sparanoid/grunt-auto-spacing">sparanoid/grunt-auto-spacing<i class="fa fa-external-link"></i></span></td>
 <td>Node.js (Grunt)</td>
 </tr>
 <tr>
-<td><a href="https://github.com/hjiang/scripts/blob/master/add-space-between-latin-and-cjk" target="_blank" rel="noopener">hjiang/scripts/add-space-between-latin-and-cjk</a></td>
+<td><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2hqaWFuZy9zY3JpcHRzL2Jsb2IvbWFzdGVyL2FkZC1zcGFjZS1iZXR3ZWVuLWxhdGluLWFuZC1jams=" title="https://github.com/hjiang/scripts/blob/master/add-space-between-latin-and-cjk">hjiang/scripts/add-space-between-latin-and-cjk<i class="fa fa-external-link"></i></span></td>
 <td>Python</td>
 </tr>
 </tbody>
@@ -3467,92 +3576,92 @@ ul.breadcrumb li+li:last-child {
 </thead>
 <tbody>
 <tr>
-<td><a href="http://www.apple.com/cn/" target="_blank" rel="noopener">Apple 中国</a></td>
+<td><span class="exturl" data-url="aHR0cDovL3d3dy5hcHBsZS5jb20vY24v" title="http://www.apple.com/cn/">Apple 中国<i class="fa fa-external-link"></i></span></td>
 <td>Yes</td>
 <td>N/A</td>
 </tr>
 <tr>
-<td><a href="http://www.apple.com/hk/" target="_blank" rel="noopener">Apple 香港</a></td>
+<td><span class="exturl" data-url="aHR0cDovL3d3dy5hcHBsZS5jb20vaGsv" title="http://www.apple.com/hk/">Apple 香港<i class="fa fa-external-link"></i></span></td>
 <td>Yes</td>
 <td>N/A</td>
 </tr>
 <tr>
-<td><a href="http://www.apple.com/tw/" target="_blank" rel="noopener">Apple 台湾</a></td>
+<td><span class="exturl" data-url="aHR0cDovL3d3dy5hcHBsZS5jb20vdHcv" title="http://www.apple.com/tw/">Apple 台湾<i class="fa fa-external-link"></i></span></td>
 <td>Yes</td>
 <td>N/A</td>
 </tr>
 <tr>
-<td><a href="http://www.microsoft.com/zh-cn/" target="_blank" rel="noopener">Microsoft 中国</a></td>
+<td><span class="exturl" data-url="aHR0cDovL3d3dy5taWNyb3NvZnQuY29tL3poLWNuLw==" title="http://www.microsoft.com/zh-cn/">Microsoft 中国<i class="fa fa-external-link"></i></span></td>
 <td>Yes</td>
 <td>N/A</td>
 </tr>
 <tr>
-<td><a href="http://www.microsoft.com/zh-hk/" target="_blank" rel="noopener">Microsoft 香港</a></td>
+<td><span class="exturl" data-url="aHR0cDovL3d3dy5taWNyb3NvZnQuY29tL3poLWhrLw==" title="http://www.microsoft.com/zh-hk/">Microsoft 香港<i class="fa fa-external-link"></i></span></td>
 <td>Yes</td>
 <td>N/A</td>
 </tr>
 <tr>
-<td><a href="http://www.microsoft.com/zh-tw/" target="_blank" rel="noopener">Microsoft 台湾</a></td>
+<td><span class="exturl" data-url="aHR0cDovL3d3dy5taWNyb3NvZnQuY29tL3poLXR3Lw==" title="http://www.microsoft.com/zh-tw/">Microsoft 台湾<i class="fa fa-external-link"></i></span></td>
 <td>Yes</td>
 <td>N/A</td>
 </tr>
 <tr>
-<td><a href="https://leancloud.cn/" target="_blank" rel="noopener">LeanCloud</a></td>
+<td><span class="exturl" data-url="aHR0cHM6Ly9sZWFuY2xvdWQuY24v" title="https://leancloud.cn/">LeanCloud<i class="fa fa-external-link"></i></span></td>
 <td>Yes</td>
 <td>N/A</td>
 </tr>
 <tr>
-<td><a href="https://www.zhihu.com/" target="_blank" rel="noopener">知乎</a></td>
+<td><span class="exturl" data-url="aHR0cHM6Ly93d3cuemhpaHUuY29tLw==" title="https://www.zhihu.com/">知乎<i class="fa fa-external-link"></i></span></td>
 <td>Yes</td>
 <td>部分用户达成</td>
 </tr>
 <tr>
-<td><a href="https://www.v2ex.com/" target="_blank" rel="noopener">V2EX</a></td>
+<td><span class="exturl" data-url="aHR0cHM6Ly93d3cudjJleC5jb20v" title="https://www.v2ex.com/">V2EX<i class="fa fa-external-link"></i></span></td>
 <td>Yes</td>
 <td>Yes</td>
 </tr>
 <tr>
-<td><a href="https://segmentfault.com/" target="_blank" rel="noopener">SegmentFault</a></td>
+<td><span class="exturl" data-url="aHR0cHM6Ly9zZWdtZW50ZmF1bHQuY29tLw==" title="https://segmentfault.com/">SegmentFault<i class="fa fa-external-link"></i></span></td>
 <td>Yes</td>
 <td>部分用户达成</td>
 </tr>
 <tr>
-<td><a href="http://apple4us.com/" target="_blank" rel="noopener">Apple4us</a></td>
+<td><span class="exturl" data-url="aHR0cDovL2FwcGxlNHVzLmNvbS8=" title="http://apple4us.com/">Apple4us<i class="fa fa-external-link"></i></span></td>
 <td>Yes</td>
 <td>N/A</td>
 </tr>
 <tr>
-<td><a href="https://www.wandoujia.com/" target="_blank" rel="noopener">豌豆荚</a></td>
+<td><span class="exturl" data-url="aHR0cHM6Ly93d3cud2FuZG91amlhLmNvbS8=" title="https://www.wandoujia.com/">豌豆荚<i class="fa fa-external-link"></i></span></td>
 <td>Yes</td>
 <td>N/A</td>
 </tr>
 <tr>
-<td><a href="https://ruby-china.org/" target="_blank" rel="noopener">Ruby China</a></td>
+<td><span class="exturl" data-url="aHR0cHM6Ly9ydWJ5LWNoaW5hLm9yZy8=" title="https://ruby-china.org/">Ruby China<i class="fa fa-external-link"></i></span></td>
 <td>Yes</td>
 <td>标题达成</td>
 </tr>
 <tr>
-<td><a href="https://phphub.org/" target="_blank" rel="noopener">PHPHub</a></td>
+<td><span class="exturl" data-url="aHR0cHM6Ly9waHBodWIub3JnLw==" title="https://phphub.org/">PHPHub<i class="fa fa-external-link"></i></span></td>
 <td>Yes</td>
 <td>标题达成</td>
 </tr>
 <tr>
-<td><a href="http://sspai.com/" target="_blank" rel="noopener">少数派</a></td>
+<td><span class="exturl" data-url="aHR0cDovL3NzcGFpLmNvbS8=" title="http://sspai.com/">少数派<i class="fa fa-external-link"></i></span></td>
 <td>Yes</td>
 <td>N/A</td>
 </tr>
 </tbody>
 </table>
 <h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><ul>
-<li><a href="http://grammar.about.com/od/punctuationandmechanics/a/Guidelines-For-Using-Capital-Letters.htm" target="_blank" rel="noopener">Guidelines for Using Capital Letters</a></li>
-<li><a href="http://en.wikipedia.org/wiki/Letter_case" target="_blank" rel="noopener">Letter case - Wikipedia</a></li>
-<li><a href="http://www.oxforddictionaries.com/words/punctuation" target="_blank" rel="noopener">Punctuation - Oxford Dictionaries</a></li>
-<li><a href="https://owl.english.purdue.edu/owl/section/1/6/" target="_blank" rel="noopener">Punctuation - The Purdue OWL</a></li>
-<li><a href="http://www.wikihow.com/Use-English-Punctuation-Correctly" target="_blank" rel="noopener">How to Use English Punctuation Corrently - wikiHow</a></li>
-<li><a href="https://zh.opensuse.org/index.php?title=Help:%E6%A0%BC%E5%BC%8F" target="_blank" rel="noopener">格式 - openSUSE</a></li>
-<li><a href="http://zh.wikipedia.org/wiki/%E5%85%A8%E5%BD%A2%E5%92%8C%E5%8D%8A%E5%BD%A2" target="_blank" rel="noopener">全角和半角 - 维基百科</a></li>
-<li><a href="http://zh.wikipedia.org/wiki/%E5%BC%95%E8%99%9F" target="_blank" rel="noopener">引号 - 维基百科</a></li>
-<li><a href="http://zh.wikipedia.org/wiki/%E7%96%91%E5%95%8F%E9%A9%9A%E5%98%86%E8%99%9F" target="_blank" rel="noopener">疑问惊叹号 - 维基百科</a></li>
+<li><span class="exturl" data-url="aHR0cDovL2dyYW1tYXIuYWJvdXQuY29tL29kL3B1bmN0dWF0aW9uYW5kbWVjaGFuaWNzL2EvR3VpZGVsaW5lcy1Gb3ItVXNpbmctQ2FwaXRhbC1MZXR0ZXJzLmh0bQ==" title="http://grammar.about.com/od/punctuationandmechanics/a/Guidelines-For-Using-Capital-Letters.htm">Guidelines for Using Capital Letters<i class="fa fa-external-link"></i></span></li>
+<li><span class="exturl" data-url="aHR0cDovL2VuLndpa2lwZWRpYS5vcmcvd2lraS9MZXR0ZXJfY2FzZQ==" title="http://en.wikipedia.org/wiki/Letter_case">Letter case - Wikipedia<i class="fa fa-external-link"></i></span></li>
+<li><span class="exturl" data-url="aHR0cDovL3d3dy5veGZvcmRkaWN0aW9uYXJpZXMuY29tL3dvcmRzL3B1bmN0dWF0aW9u" title="http://www.oxforddictionaries.com/words/punctuation">Punctuation - Oxford Dictionaries<i class="fa fa-external-link"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9vd2wuZW5nbGlzaC5wdXJkdWUuZWR1L293bC9zZWN0aW9uLzEvNi8=" title="https://owl.english.purdue.edu/owl/section/1/6/">Punctuation - The Purdue OWL<i class="fa fa-external-link"></i></span></li>
+<li><span class="exturl" data-url="aHR0cDovL3d3dy53aWtpaG93LmNvbS9Vc2UtRW5nbGlzaC1QdW5jdHVhdGlvbi1Db3JyZWN0bHk=" title="http://www.wikihow.com/Use-English-Punctuation-Correctly">How to Use English Punctuation Corrently - wikiHow<i class="fa fa-external-link"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly96aC5vcGVuc3VzZS5vcmcvaW5kZXgucGhwP3RpdGxlPUhlbHA6JUU2JUEwJUJDJUU1JUJDJThG" title="https://zh.opensuse.org/index.php?title=Help:%E6%A0%BC%E5%BC%8F">格式 - openSUSE<i class="fa fa-external-link"></i></span></li>
+<li><span class="exturl" data-url="aHR0cDovL3poLndpa2lwZWRpYS5vcmcvd2lraS8lRTUlODUlQTglRTUlQkQlQTIlRTUlOTIlOEMlRTUlOEQlOEElRTUlQkQlQTI=" title="http://zh.wikipedia.org/wiki/%E5%85%A8%E5%BD%A2%E5%92%8C%E5%8D%8A%E5%BD%A2">全角和半角 - 维基百科<i class="fa fa-external-link"></i></span></li>
+<li><span class="exturl" data-url="aHR0cDovL3poLndpa2lwZWRpYS5vcmcvd2lraS8lRTUlQkMlOTUlRTglOTklOUY=" title="http://zh.wikipedia.org/wiki/%E5%BC%95%E8%99%9F">引号 - 维基百科<i class="fa fa-external-link"></i></span></li>
+<li><span class="exturl" data-url="aHR0cDovL3poLndpa2lwZWRpYS5vcmcvd2lraS8lRTclOTYlOTElRTUlOTUlOEYlRTklQTklOUElRTUlOTglODYlRTglOTklOUY=" title="http://zh.wikipedia.org/wiki/%E7%96%91%E5%95%8F%E9%A9%9A%E5%98%86%E8%99%9F">疑问惊叹号 - 维基百科<i class="fa fa-external-link"></i></span></li>
 </ul>
 
       
@@ -3567,7 +3676,33 @@ ul.breadcrumb li+li:last-child {
     
 
     
+       
+    
+    
 
+    
+      <div>
+        
+
+
+
+  
+
+
+
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>赵俊</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    
+    <a href="http://www.zhaojun.im/chinese-copywriting-guidelines/" title="中文文案排版指北「转载」">http://www.zhaojun.im/chinese-copywriting-guidelines/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC8="><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</span> 许可协议。转载请注明出处！</li>
+</ul>
+
+      </div>
     
 
     <footer class="post-footer">
@@ -3626,6 +3761,7 @@ ul.breadcrumb li+li:last-child {
   
     <div class="comments" id="comments">
     </div>
+
   
 
 
@@ -3676,7 +3812,7 @@ ul.breadcrumb li+li:last-child {
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">136</span>
+                    <span class="site-state-item-count">137</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -3957,6 +4093,14 @@ ul.breadcrumb li+li:last-child {
           
 
           
+             <div class="cc-license motion-element" itemprop="license">
+              
+                
+              
+              
+              
+              <span class="exturl cc-opacity" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC8="><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></span>
+             </div>
           
 
           
@@ -3969,15 +4113,15 @@ ul.breadcrumb li+li:last-child {
               <ul class="links-of-blogroll-list">
                 
                   <li class="links-of-blogroll-item">
-                    <a href="http://98.tn" title="在线网盘" target="_blank">在线网盘</a>
+                    <span class="exturl" data-url="aHR0cDovLzk4LnRu" title="http://98.tn">在线网盘</span>
                   </li>
                 
                   <li class="links-of-blogroll-item">
-                    <a href="https://img.zhaojun.im" title="免费图床" target="_blank">免费图床</a>
+                    <span class="exturl" data-url="aHR0cHM6Ly9pbWcuemhhb2p1bi5pbQ==" title="https://img.zhaojun.im">免费图床</span>
                   </li>
                 
                   <li class="links-of-blogroll-item">
-                    <a href="http://json.zhaojun.im" title="在线 JSON 解析" target="_blank">在线 JSON 解析</a>
+                    <span class="exturl" data-url="aHR0cDovL2pzb24uemhhb2p1bi5pbQ==" title="http://json.zhaojun.im">在线 JSON 解析</span>
                   </li>
                 
               </ul>
@@ -4029,7 +4173,7 @@ ul.breadcrumb li+li:last-child {
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">© 2016 — <span itemprop="copyrightYear">2018</span>
+        <div class="copyright">© 2016 – <span itemprop="copyrightYear">2018</span>
   <span class="with-love" id="animate">
     <i class="fa fa-user"></i>
   </span>
@@ -4041,11 +4185,7 @@ ul.breadcrumb li+li:last-child {
 </div>
 
 
-  
-
-
-
-  <div class="powered-by">由 <a class="theme-link" target="_blank" rel="external nofollow" href="https://hexo.io">Hexo</a> 强力驱动 v3.7.1</div>
+  <div class="powered-by">由 <span class="exturl theme-link" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> 强力驱动 v3.8.0</div>
 
 
 
@@ -4053,7 +4193,7 @@ ul.breadcrumb li+li:last-child {
 
 
 
-  <div class="theme-info">主题 — <a class="theme-link" target="_blank" rel="external nofollow" href="https://theme-next.org">NexT.Pisces</a> v6.3.0</div>
+  <div class="theme-info">主题 – <span class="exturl theme-link" data-url="aHR0cHM6Ly90aGVtZS1uZXh0Lm9yZw==">NexT.Pisces</span> v6.6.0</div>
 
 
 
@@ -4223,6 +4363,8 @@ ul.breadcrumb li+li:last-child {
   
 
   
+
+  
   
 
   
@@ -4230,6 +4372,8 @@ ul.breadcrumb li+li:last-child {
   
 
   
+  
+
 
   
 
@@ -4273,6 +4417,8 @@ ul.breadcrumb li+li:last-child {
   </style>
   
 
+
+  
 
 
 

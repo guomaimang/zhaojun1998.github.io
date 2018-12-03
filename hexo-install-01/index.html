@@ -74,7 +74,7 @@
   var CONFIG = {
     root: '/',
     scheme: 'Pisces',
-    version: '6.3.0',
+    version: '6.6.0',
     sidebar: {"position":"left","display":"post","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
     fancybox: true,
     fastclick: true,
@@ -159,6 +159,8 @@
       s.parentNode.insertBefore(hm, s);
     })();
   </script>
+
+
 
 
 
@@ -441,14 +443,19 @@ h6 {
 p {
   margin: 0 0 20px 0;
 }
-a {
+a,
+span.exturl {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  background-color: transparent;
   color: #555;
   text-decoration: none;
   outline: none;
   border-bottom: 1px solid #999;
-  word-wrap: break-word;
+  cursor: pointer;
 }
-a:hover {
+a:hover,
+span.exturl:hover {
   color: #222;
   border-bottom-color: #222;
 }
@@ -570,7 +577,7 @@ table {
   border-spacing: 0;
   border: 1px solid #ddd;
   font-size: 14px;
-  word-wrap: break-all;
+  word-break: break-all;
 }
 table>tbody>tr:nth-of-type(odd) {
   background-color: #f9f9f9;
@@ -675,8 +682,9 @@ code {
   font-family: consolas, Menlo, "PingFang SC", "Microsoft YaHei", monospace;
 }
 code {
-  padding: 2px 4px;
+  overflow-wrap: break-word;
   word-wrap: break-word;
+  padding: 2px 4px;
   color: #555;
   background: #eee;
   border-radius: 3px;
@@ -1136,17 +1144,14 @@ pre .javascript .function {
   margin: 10px;
 }
 .back-to-top {
-  display: none;
-  margin: 20px -10px -20px;
+  visibility: hidden;
+  margin: 8px -10px -20px;
   background: #f5f7f9;
   font-size: 12px;
   opacity: 0.6;
   cursor: pointer;
   text-align: center;
   -webkit-transform: translateZ(0);
-  transition-duration: 0.2s;
-  transition-timing-function: ease-in-out;
-  transition-delay: 0s;
 }
 .back-to-top:hover {
   opacity: 0.8;
@@ -1162,7 +1167,10 @@ pre .javascript .function {
   }
 }
 .back-to-top.back-to-top-on {
-  display: block;
+  visibility: visible;
+  transition-duration: 0.2s;
+  transition-timing-function: ease-in-out;
+  transition-delay: 0s;
 }
 .header {
   background: transparent;
@@ -1274,7 +1282,8 @@ pre .javascript .function {
     margin-top: 10px;
   }
 }
-.menu .menu-item a {
+.menu .menu-item a,
+.menu .menu-item span.exturl {
   display: block;
   font-size: 13px;
   line-height: inherit;
@@ -1285,7 +1294,7 @@ pre .javascript .function {
   transition-delay: 0s;
 }
 .menu .menu-item a:hover,
-.menu-item-active a {
+.menu .menu-item span.exturl:hover {
   border-bottom-color: #222;
 }
 .menu .menu-item .fa {
@@ -1295,12 +1304,13 @@ pre .javascript .function {
   opacity: 0;
 }
 .post-body {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
   font-family: 'Lato', "PingFang SC", "Microsoft YaHei", sans-serif;
 }
-@media (max-width: 767px) {
-  .post-body {
-    word-break: break-word;
-  }
+.post-body .exturl .fa {
+  font-size: 14px;
+  margin-left: 4px;
 }
 .post-body .fancybox img {
   display: block !important;
@@ -1521,7 +1531,8 @@ pre .javascript .function {
   margin-left: 3px;
   opacity: 0.6;
 }
-.posts-collapse .post-title a {
+.posts-collapse .post-title a,
+.posts-collapse .post-title span.exturl {
   color: #666;
   border-bottom: none;
 }
@@ -1532,8 +1543,9 @@ pre .javascript .function {
   display: none;
 }
 .posts-expand .post-title {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
   text-align: center;
-  word-break: break-word;
   font-weight: 400;
 }
 .posts-expand .post-title-link {
@@ -1571,7 +1583,8 @@ pre .javascript .function {
   transform: scaleX(1);
 }
 .posts-expand .post-title-link .fa {
-  font-size: 16px;
+  font-size: 20px;
+  margin-left: 5px;
 }
 .posts-expand .post-meta {
   margin: 3px 0 60px 0;
@@ -1722,6 +1735,16 @@ pre .javascript .function {
 .fancybox-close:hover {
   border: none;
 }
+.post-copyright {
+  margin: 2em 0 0;
+  padding: 0.5em 1em;
+  border-left: 3px solid #ff1700;
+  background-color: #f9f9f9;
+  list-style: none;
+}
+.post-copyright i.fa {
+  font-size: 15px;
+}
 .rtl.post-body p,
 .rtl.post-body a,
 .rtl.post-body h1,
@@ -1829,16 +1852,6 @@ pre .javascript .function {
 .site-author-image {
   border-radius: 100%;
 }
-.site-author-image img:hover {
-  -webkit-transform: rotateZ(360deg);
-  -moz-transform: rotateZ(360deg);
-  -ms-transform: rotate(360deg);
-  -webkit-transform: rotateZ(360deg);
-  -moz-transform: rotateZ(360deg);
-  -ms-transform: rotateZ(360deg);
-  -o-transform: rotateZ(360deg);
-  transform: rotateZ(360deg);
-}
 .site-author-name {
   margin: 0;
   text-align: center;
@@ -1921,7 +1934,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #ff16ed;
+  background: #6f94ee;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -1939,7 +1952,8 @@ pre .javascript .function {
 .links-of-blogroll-item {
   padding: 2px 10px;
 }
-.links-of-blogroll-item a {
+.links-of-blogroll-item a,
+.links-of-blogroll-item span.exturl {
   max-width: 280px;
   box-sizing: border-box;
   display: inline-block;
@@ -2349,6 +2363,10 @@ pre .javascript .function {
   border: 1px solid #fff;
   border-radius: 50%;
 }
+.page-archive .fa {
+  font-size: 15px;
+  margin-left: 5px;
+}
 .category-all-page .category-all-title {
   text-align: center;
 }
@@ -2445,9 +2463,10 @@ pre .javascript .function {
 }
 #schedule ul#event-list li.event-past {
   background: #fcfcfc;
+  padding: 15px 0 15px 10px;
 }
 #schedule ul#event-list li.event-past > * {
-  opacity: 0.6;
+  opacity: 0.9;
 }
 #schedule ul#event-list li.event-past h2.event-summary {
   color: #bbb;
@@ -2470,6 +2489,23 @@ pre .javascript .function {
   animation: dot-flash 1s alternate infinite ease-in-out;
 }
 #schedule ul#event-list li.event-now * {
+  color: #fff !important;
+}
+#schedule ul#event-list li.event-future {
+  background: #222;
+  color: #fff;
+  padding: 15px 0 15px 10px;
+}
+#schedule ul#event-list li.event-future h2.event-summary:before {
+  -webkit-transform: scale(1.2);
+  -moz-transform: scale(1.2);
+  -ms-transform: scale(1.2);
+  -o-transform: scale(1.2);
+  transform: scale(1.2);
+  color: #fff;
+  animation: dot-flash 1s alternate infinite ease-in-out;
+}
+#schedule ul#event-list li.event-future * {
   color: #fff !important;
 }
 @-moz-keyframes dot-flash {
@@ -2771,11 +2807,31 @@ ul.breadcrumb li+li:last-child {
     display: block !important;
   }
 }
+.menu-item-active a,
+.menu .menu-item a:hover,
+.menu .menu-item span.exturl:hover {
+  background: #f9f9f9;
+  border-bottom-color: #fff;
+}
+.menu-item-active a:after,
+.menu .menu-item a:hover:after,
+.menu .menu-item span.exturl:hover:after {
+  content: " ";
+  position: absolute;
+  top: 50%;
+  margin-top: -3px;
+  right: 15px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: #bbb;
+}
 .menu .menu-item {
   display: block;
   margin: 0;
 }
-.menu .menu-item a {
+.menu .menu-item a,
+.menu .menu-item span.exturl {
   position: relative;
   box-sizing: border-box;
   padding: 5px 20px;
@@ -2786,10 +2842,11 @@ ul.breadcrumb li+li:last-child {
   transition-timing-function: ease-in-out;
   transition-delay: 0s;
 }
-.menu .menu-item a:hover,
-.menu-item-active a {
-  background: #f9f9f9;
-  border-bottom-color: #fff;
+@media (hover: none) {
+  .menu .menu-item a:hover,
+  .menu .menu-item span.exturl:hover {
+    background: none;
+  }
 }
 .menu .menu-item .badge {
   display: inline-block;
@@ -2808,17 +2865,6 @@ ul.breadcrumb li+li:last-child {
 }
 .menu .menu-item br {
   display: none;
-}
-.menu-item-active a:after {
-  content: " ";
-  position: absolute;
-  top: 50%;
-  margin-top: -3px;
-  right: 15px;
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background-color: #bbb;
 }
 .btn-bar {
   background-color: #fff;
@@ -2904,22 +2950,22 @@ ul.breadcrumb li+li:last-child {
   clear: both;
 }
 .sidebar a,
-.sidebar .exturl {
+.sidebar span.exturl {
   color: #555;
 }
 .sidebar a:hover,
-.sidebar .exturl:hover {
+.sidebar span.exturl:hover {
   color: #222;
 }
 .site-state-item {
   padding: 0 10px;
 }
 .links-of-author-item a:before,
-.links-of-author-item .exturl:before {
+.links-of-author-item span.exturl:before {
   display: none;
 }
 .links-of-author-item a,
-.links-of-author-item .exturl {
+.links-of-author-item span.exturl {
   border-bottom: none;
   text-decoration: underline;
 }
@@ -2945,7 +2991,7 @@ ul.breadcrumb li+li:last-child {
   flex-wrap: wrap;
   justify-content: center;
 }
-.links-of-author .exturl {
+.links-of-author span.exturl {
   font-size: 13px;
 }
 .links-of-author-item {
@@ -2965,12 +3011,12 @@ ul.breadcrumb li+li:last-child {
   text-overflow: ellipsis;
 }
 .links-of-author-item a,
-.links-of-author-item .exturl {
+.links-of-author-item span.exturl {
   display: block;
   text-decoration: none;
 }
 .links-of-author-item a:hover,
-.links-of-author-item .exturl:hover {
+.links-of-author-item span.exturl:hover {
   border-radius: 4px;
   background: #eee;
 }
@@ -3101,56 +3147,119 @@ ul.breadcrumb li+li:last-child {
         
           
           <li class="menu-item menu-item-home">
-    <a href="/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
   </li>
         
         
         
           
           <li class="menu-item menu-item-categories">
-    <a href="/categories/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
   </li>
         
         
         
           
           <li class="menu-item menu-item-tags">
-    <a href="/tags/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
   </li>
         
         
         
           
           <li class="menu-item menu-item-archives">
-    <a href="/archives/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
   </li>
         
         
         
           
           <li class="menu-item menu-item-about">
-    <a href="/about/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
   </li>
         
         
         
           
           <li class="menu-item menu-item-friends">
-    <a href="/friends/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-child"></i> <br>友链</a>
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/friends/" rel="section"><i class="menu-item-icon fa fa-fw fa-child"></i> <br>友链</a>
+
   </li>
         
         
         
           
           <li class="menu-item menu-item-script">
-    <a href="/script/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-terminal"></i> <br>脚本</a>
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/script/" rel="section"><i class="menu-item-icon fa fa-fw fa-terminal"></i> <br>脚本</a>
+
   </li>
 
       
@@ -3364,18 +3473,18 @@ ul.breadcrumb li+li:last-child {
         <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>我一直想搭建一个个人博客，要求就是简洁，支持Markdown，可以显示文章的TOC目录。<br>寻找的过程中也遇到了很多坑，教程基本上都不完整，或者是直接copy别人的，而且很多教程中是将其部署到github pages上 ，但是介于网速问题，还是选择了国内的Coding。下面先将我的经历给大家分享下。</p>
 <a id="more"></a>
 <ul>
-<li><a href="http://jpress.io" target="_blank" rel="noopener">JPress</a> ：国产，开源，基于JFinal开发的，主题生态系统正在快速完善中，但是markdown支持不好，所以就放弃了。</li>
-<li><a href="https://ghost.org" target="_blank" rel="noopener">Ghost</a> : 也很简洁，基于Node.js开发，有后台管理页。与markdown支持不错，但是本人英语不好，<a href="http://www.ghostchina.com/" target="_blank" rel="noopener">Ghost国内站</a>也不再继续更新，虽然基本可以满足我的需求，但是迫于强迫症还是放弃了。</li>
-<li><a href="https://hexo.io/zh-cn/" target="_blank" rel="noopener">Hexo</a> ： 很简洁，可以直接生成纯html界面，优点是支持它的环境十分好找，可以直接用<code>github</code>、<code>coding</code>、<code>七牛云存储</code>等静态页面托管，可以省下VPS服务器的费用。  </li>
+<li><span class="exturl" data-url="aHR0cDovL2pwcmVzcy5pbw==" title="http://jpress.io">JPress<i class="fa fa-external-link"></i></span> ：国产，开源，基于JFinal开发的，主题生态系统正在快速完善中，但是markdown支持不好，所以就放弃了。</li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9naG9zdC5vcmc=" title="https://ghost.org">Ghost<i class="fa fa-external-link"></i></span> : 也很简洁，基于Node.js开发，有后台管理页。与markdown支持不错，但是本人英语不好，<span class="exturl" data-url="aHR0cDovL3d3dy5naG9zdGNoaW5hLmNvbS8=" title="http://www.ghostchina.com/">Ghost国内站<i class="fa fa-external-link"></i></span>也不再继续更新，虽然基本可以满足我的需求，但是迫于强迫症还是放弃了。</li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlvL3poLWNuLw==" title="https://hexo.io/zh-cn/">Hexo<i class="fa fa-external-link"></i></span> ： 很简洁，可以直接生成纯html界面，优点是支持它的环境十分好找，可以直接用<code>github</code>、<code>coding</code>、<code>七牛云存储</code>等静态页面托管，可以省下VPS服务器的费用。  </li>
 </ul>
 <h2 id="需求条件"><a href="#需求条件" class="headerlink" title="需求条件"></a>需求条件</h2><ul>
 <li><strong>Windows电脑一台</strong> (没用过Mac，所以无法做Mac的教程)</li>
-<li><strong>熟悉Markdown语法</strong> (现学也可以，<a href="http://www.jianshu.com/p/7bd23251da0a" target="_blank" rel="noopener">入门教程</a> )</li>
+<li><strong>熟悉Markdown语法</strong> (现学也可以，<span class="exturl" data-url="aHR0cDovL3d3dy5qaWFuc2h1LmNvbS9wLzdiZDIzMjUxZGEwYQ==" title="http://www.jianshu.com/p/7bd23251da0a">入门教程<i class="fa fa-external-link"></i></span> )</li>
 <li><strong>耐心</strong> (有耐心按照教程一步一步执行下，不能嫌麻烦就半途而废)</li>
 </ul>
-<h2 id="安装Git"><a href="#安装Git" class="headerlink" title="安装Git"></a>安装Git</h2><p>下载地址：<a href="https://git-scm.com/download/win" target="_blank" rel="noopener">传送门</a><br>这一步最好选择第二项，其他的默认就好<br><img src="https://cdn.jun6.net/image_1b9a9037fkpivqr1cfs1itv1to81m.png" alt=""></p>
+<h2 id="安装Git"><a href="#安装Git" class="headerlink" title="安装Git"></a>安装Git</h2><p>下载地址：<span class="exturl" data-url="aHR0cHM6Ly9naXQtc2NtLmNvbS9kb3dubG9hZC93aW4=" title="https://git-scm.com/download/win">传送门<i class="fa fa-external-link"></i></span><br>这一步最好选择第二项，其他的默认就好<br><img src="https://cdn.jun6.net/image_1b9a9037fkpivqr1cfs1itv1to81m.png" alt=""></p>
 <p>安装完后打开 cmd  输入 <code>git --version</code> 来测试是否安装成功。<br><img src="https://cdn.jun6.net/image_1b9a94d9q74j1e75nlfju181g23.png" alt=""></p>
-<h2 id="安装Node-js"><a href="#安装Node-js" class="headerlink" title="安装Node.js"></a>安装Node.js</h2><p>下载地址：<a href="https://nodejs.org/dist/v4.2.3/node-v4.2.3-x64.msi" target="_blank" rel="noopener">传送门</a><br>下载安装即可，没有特殊配置，无限下一步。<br>安装完后打开 cmd  输入 <code>node -v</code> 来测试是否安装成功。<br><img src="https://cdn.jun6.net/image_1b9a8is9f14le18bl8ljj9vk69.png" alt=""></p>
+<h2 id="安装Node-js"><a href="#安装Node-js" class="headerlink" title="安装Node.js"></a>安装Node.js</h2><p>下载地址：<span class="exturl" data-url="aHR0cHM6Ly9ub2RlanMub3JnL2Rpc3QvdjQuMi4zL25vZGUtdjQuMi4zLXg2NC5tc2k=" title="https://nodejs.org/dist/v4.2.3/node-v4.2.3-x64.msi">传送门<i class="fa fa-external-link"></i></span><br>下载安装即可，没有特殊配置，无限下一步。<br>安装完后打开 cmd  输入 <code>node -v</code> 来测试是否安装成功。<br><img src="https://cdn.jun6.net/image_1b9a8is9f14le18bl8ljj9vk69.png" alt=""></p>
 <h2 id="安装Hexo"><a href="#安装Hexo" class="headerlink" title="安装Hexo"></a>安装Hexo</h2><p>首先在你电脑上找一个位置来安装Hexo。然后在那个文件夹中打开cmd (shift + 右键)</p>
 <h3 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h3><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm config <span class="built_in">set</span> registry http://registry.cnpmjs.org <span class="comment">#修改安装源为中国镜像。</span></span><br><span class="line">npm install hexo-cli -g</span><br></pre></td></tr></tbody></table></figure>
 <h3 id="初始化Hexo"><a href="#初始化Hexo" class="headerlink" title="初始化Hexo"></a>初始化Hexo</h3><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo init</span><br><span class="line">npm install</span><br><span class="line">npm install hexo-util --save</span><br></pre></td></tr></tbody></table></figure>
@@ -3383,7 +3492,7 @@ ul.breadcrumb li+li:last-child {
 <blockquote>
 <p>然后在浏览器的地址栏上面输入localhost:4000就可看到自己博客的样子。Ctrl + C 可以终止预览<br><img src="https://cdn.jun6.net/image_1b954n1051sak1s7if6e1dmd1s9t9.png" alt=""></p>
 </blockquote>
-<h2 id="配置Coding"><a href="#配置Coding" class="headerlink" title="配置Coding"></a>配置Coding</h2><p>Cdoing官网：<a href="https://coding.net/" target="_blank" rel="noopener">https://coding.net/</a><br>注册后创建一个新项目<br><img src="https://cdn.jun6.net/image_1b9a9c9vamdbphj1t4k1sh21o2j2g.png" alt="image_1b9a9c9vamdbphj1t4k1sh21o2j2g.png-9.2kB"><br><img src="https://cdn.jun6.net/image_1b9a9oeo41vco1koh1orv1uog1hf32t.png" alt="image_1b9a9oeo41vco1koh1orv1uog1hf32t.png-129.4kB"></p>
+<h2 id="配置Coding"><a href="#配置Coding" class="headerlink" title="配置Coding"></a>配置Coding</h2><p>Cdoing官网：<span class="exturl" data-url="aHR0cHM6Ly9jb2RpbmcubmV0Lw==" title="https://coding.net/">https://coding.net/<i class="fa fa-external-link"></i></span><br>注册后创建一个新项目<br><img src="https://cdn.jun6.net/image_1b9a9c9vamdbphj1t4k1sh21o2j2g.png" alt="image_1b9a9c9vamdbphj1t4k1sh21o2j2g.png-9.2kB"><br><img src="https://cdn.jun6.net/image_1b9a9oeo41vco1koh1orv1uog1hf32t.png" alt="image_1b9a9oeo41vco1koh1orv1uog1hf32t.png-129.4kB"></p>
 <blockquote>
 <p>项目名称，项目描述随意填写，项目选择私有项目。然后点击创建。</p>
 </blockquote>
@@ -3458,7 +3567,7 @@ ul.breadcrumb li+li:last-child {
 </ul>
 <p><img src="http://static.zybuluo.com/qq0502497/wz8sej7ty91858nbyumq3nrj/image_1b9aj31jbnprshi1lte19kruit7p.png" alt="image_1b9aj31jbnprshi1lte19kruit7p.png-4.9kB"><br>然后在去Coding上就可以看到部署的文件了<br><img src="http://static.zybuluo.com/qq0502497/923qcqqm2zwm0i9x52poeupy/image_1b9aj4q1n116u1rkp1hlpep21qq786.png" alt="image_1b9aj4q1n116u1rkp1hlpep21qq786.png-85.9kB"></p>
 <blockquote>
-<p>至此，搭建完成。有关Hexo的详细配置，请参阅<a href="https://hexo.io/zh-cn/docs/" target="_blank" rel="noopener">Hexo官方文档</a>。</p>
+<p>至此，搭建完成。有关Hexo的详细配置，请参阅<span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlvL3poLWNuL2RvY3Mv" title="https://hexo.io/zh-cn/docs/">Hexo官方文档<i class="fa fa-external-link"></i></span>。</p>
 </blockquote>
 <p>如本文中有错误，欢迎在评论中进行指正。转账请注明出处，谢谢支持。</p>
 
@@ -3474,7 +3583,33 @@ ul.breadcrumb li+li:last-child {
     
 
     
+       
+    
+    
 
+    
+      <div>
+        
+
+
+
+  
+
+
+
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>赵俊</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    
+    <a href="http://www.zhaojun.im/hexo-install-01/" title="Hexo搭建 --- 1、搭建 Hexo 博客并部署到 Coding">http://www.zhaojun.im/hexo-install-01/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC8="><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</span> 许可协议。转载请注明出处！</li>
+</ul>
+
+      </div>
     
 
     <footer class="post-footer">
@@ -3527,6 +3662,7 @@ ul.breadcrumb li+li:last-child {
   
     <div class="comments" id="comments">
     </div>
+
   
 
 
@@ -3577,7 +3713,7 @@ ul.breadcrumb li+li:last-child {
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">136</span>
+                    <span class="site-state-item-count">137</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -3858,6 +3994,14 @@ ul.breadcrumb li+li:last-child {
           
 
           
+             <div class="cc-license motion-element" itemprop="license">
+              
+                
+              
+              
+              
+              <span class="exturl cc-opacity" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC8="><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></span>
+             </div>
           
 
           
@@ -3870,15 +4014,15 @@ ul.breadcrumb li+li:last-child {
               <ul class="links-of-blogroll-list">
                 
                   <li class="links-of-blogroll-item">
-                    <a href="http://98.tn" title="在线网盘" target="_blank">在线网盘</a>
+                    <span class="exturl" data-url="aHR0cDovLzk4LnRu" title="http://98.tn">在线网盘</span>
                   </li>
                 
                   <li class="links-of-blogroll-item">
-                    <a href="https://img.zhaojun.im" title="免费图床" target="_blank">免费图床</a>
+                    <span class="exturl" data-url="aHR0cHM6Ly9pbWcuemhhb2p1bi5pbQ==" title="https://img.zhaojun.im">免费图床</span>
                   </li>
                 
                   <li class="links-of-blogroll-item">
-                    <a href="http://json.zhaojun.im" title="在线 JSON 解析" target="_blank">在线 JSON 解析</a>
+                    <span class="exturl" data-url="aHR0cDovL2pzb24uemhhb2p1bi5pbQ==" title="http://json.zhaojun.im">在线 JSON 解析</span>
                   </li>
                 
               </ul>
@@ -3930,7 +4074,7 @@ ul.breadcrumb li+li:last-child {
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">© 2016 — <span itemprop="copyrightYear">2018</span>
+        <div class="copyright">© 2016 – <span itemprop="copyrightYear">2018</span>
   <span class="with-love" id="animate">
     <i class="fa fa-user"></i>
   </span>
@@ -3942,11 +4086,7 @@ ul.breadcrumb li+li:last-child {
 </div>
 
 
-  
-
-
-
-  <div class="powered-by">由 <a class="theme-link" target="_blank" rel="external nofollow" href="https://hexo.io">Hexo</a> 强力驱动 v3.7.1</div>
+  <div class="powered-by">由 <span class="exturl theme-link" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> 强力驱动 v3.8.0</div>
 
 
 
@@ -3954,7 +4094,7 @@ ul.breadcrumb li+li:last-child {
 
 
 
-  <div class="theme-info">主题 — <a class="theme-link" target="_blank" rel="external nofollow" href="https://theme-next.org">NexT.Pisces</a> v6.3.0</div>
+  <div class="theme-info">主题 – <span class="exturl theme-link" data-url="aHR0cHM6Ly90aGVtZS1uZXh0Lm9yZw==">NexT.Pisces</span> v6.6.0</div>
 
 
 
@@ -4124,6 +4264,8 @@ ul.breadcrumb li+li:last-child {
   
 
   
+
+  
   
 
   
@@ -4131,6 +4273,8 @@ ul.breadcrumb li+li:last-child {
   
 
   
+  
+
 
   
 
@@ -4174,6 +4318,8 @@ ul.breadcrumb li+li:last-child {
   </style>
   
 
+
+  
 
 
 

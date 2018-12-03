@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[LeetCode 27 Remove Element]]></title>
+    <url>%2Fleetcode-27%2F</url>
+    <content type="text"><![CDATA[题意 给定一个字符串数组，从数组中删除指定值 n，返回删除后的长度 k。（并不用真的删除，元素顺序可以改变，只需要保证返回的前 k 个数字不包含 n 即可。） 解法定义 left 为 0, right 为数组长度 - 1，left 依次向右走，碰到当前元素等于 n 时，将 right 所在的元素覆盖 n 所在的元素，并将 right 左移一位，直到 left 碰到 right。 1234567891011class Solution &#123; public int removeElement(int[] nums, int val) &#123; int len = nums.length; for (int i = 0; i &lt; len; i++) &#123; while (nums[i] == val &amp;&amp; i &lt; len) &#123; nums[i] = nums[--len]; &#125; &#125; return len; &#125;&#125; Runtime: 4 ms, faster than 99.11% of Java online submissions for Remove Element.]]></content>
+      <categories>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>数组</tag>
+        <tag>leetcode</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[LeetCode 917 Reverse Only Letters]]></title>
     <url>%2Fleetcode-917%2F</url>
     <content type="text"><![CDATA[题意 反转字符串，但只反转字符串中的字母，即 a-z，A-Z。其他的字符保持原位。 Example 1: 12Input: &quot;ab-cd&quot;Output: &quot;dc-ba&quot; Example 2:12Input: &quot;a-bC-dEf-ghIj&quot;Output: &quot;j-Ih-gfE-dCba&quot; Example 3:12Input: &quot;Test1ng-Leet=code-Q!&quot;Output: &quot;Qedo1ct-eeLg=ntse-T!&quot; 解法将字符串转为字符数组，用两个指针，从两端向中间走, 依次找下一个字母进行交换，直到两个指针相碰撞。 1234567891011121314151617181920212223242526class Solution &#123; public String reverseOnlyLetters(String S) &#123; char[] chars = S.toCharArray(); int i = 0, j = chars.length - 1; while (i &lt; j) &#123; while (i &lt; j &amp;&amp; !isLetter(chars[i])) &#123; i++; &#125; while (i &lt; j &amp;&amp; !isLetter(chars[j])) &#123; j--; &#125; if (i &lt; j) &#123; char temp = chars[i]; chars[i] = chars[j]; chars[j] = temp; i++; j--; &#125; &#125; return new String(chars); &#125; private boolean isLetter(char c) &#123; return (c &gt;= 65 &amp;&amp; c &lt;= 90) || (c &gt;= 97 &amp;&amp; c &lt;= 122); &#125;&#125; Runtime: 5 ms, faster than 93.93% of Java online submissions for Reverse Only Letters.]]></content>
@@ -13,9 +25,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[LeetCode 557 Reverse Words in a String III]]></title>
-    <url>%2Fleetcode-557%2F</url>
-    <content type="text"><![CDATA[题意 给定一个字符串, 翻转字符串中的每个单词, 每个单词以空格分隔, 保留空格和初始单词顺序。 解法首先按照空格对字符串进行分隔，然后将每个单词进行翻转后再拼接回字符串即可，需要注意拼接时记得加空格，但最后一个单词不需要加。 12345678910111213141516171819class Solution &#123; public String reverseWords(String s) &#123; StringBuilder result = new StringBuilder(); String[] strs = s.split(" "); for (String str : strs) &#123; char[] chars = str.toCharArray(); for (int i = 0, j = chars.length - 1; i &lt; j; i++, j--) &#123; char c = chars[i]; chars[i] = chars[j]; chars[j] = c; &#125; result.append(new String(chars)).append(" "); &#125; return result.substring(0, result.length() - 1); &#125;&#125; Runtime: 6 ms, faster than 93.75% of Java online submissions for Reverse Words in a String III.]]></content>
+    <title><![CDATA[LeetCode 344 Reverse String]]></title>
+    <url>%2Fleetcode-344%2F</url>
+    <content type="text"><![CDATA[题意 翻转字符串。 解法两个指针，分别在首和尾，都向中间走，直到首超过尾。 1234567891011class Solution &#123; public String reverseString(String s) &#123; char[] chars = s.toCharArray(); for (int i = 0, j = chars.length - 1; i &lt; j; i++, j--) &#123; char temp = chars[i]; chars[i] = chars[j]; chars[j] = temp; &#125; return new String(chars); &#125;&#125; Runtime: 2 ms, faster than 79.62% of Java online submissions for Reverse String.]]></content>
       <categories>
         <category>算法</category>
       </categories>
@@ -25,9 +37,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[LeetCode 344 Reverse String]]></title>
-    <url>%2Fleetcode-344%2F</url>
-    <content type="text"><![CDATA[题意 翻转字符串。 解法两个指针，分别在首和尾，都向中间走，直到首超过尾。 1234567891011class Solution &#123; public String reverseString(String s) &#123; char[] chars = s.toCharArray(); for (int i = 0, j = chars.length - 1; i &lt; j; i++, j--) &#123; char temp = chars[i]; chars[i] = chars[j]; chars[j] = temp; &#125; return new String(chars); &#125;&#125; Runtime: 2 ms, faster than 79.62% of Java online submissions for Reverse String.]]></content>
+    <title><![CDATA[LeetCode 557 Reverse Words in a String III]]></title>
+    <url>%2Fleetcode-557%2F</url>
+    <content type="text"><![CDATA[题意 给定一个字符串, 翻转字符串中的每个单词, 每个单词以空格分隔, 保留空格和初始单词顺序。 解法首先按照空格对字符串进行分隔，然后将每个单词进行翻转后再拼接回字符串即可，需要注意拼接时记得加空格，但最后一个单词不需要加。 12345678910111213141516171819class Solution &#123; public String reverseWords(String s) &#123; StringBuilder result = new StringBuilder(); String[] strs = s.split(" "); for (String str : strs) &#123; char[] chars = str.toCharArray(); for (int i = 0, j = chars.length - 1; i &lt; j; i++, j--) &#123; char c = chars[i]; chars[i] = chars[j]; chars[j] = c; &#125; result.append(new String(chars)).append(" "); &#125; return result.substring(0, result.length() - 1); &#125;&#125; Runtime: 6 ms, faster than 93.75% of Java online submissions for Reverse Words in a String III.]]></content>
       <categories>
         <category>算法</category>
       </categories>
@@ -708,9 +720,9 @@
       </categories>
       <tags>
         <tag>剑指offer</tag>
+        <tag>栈</tag>
         <tag>递归</tag>
         <tag>二叉树</tag>
-        <tag>栈</tag>
       </tags>
   </entry>
   <entry>

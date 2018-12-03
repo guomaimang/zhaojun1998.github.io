@@ -74,7 +74,7 @@
   var CONFIG = {
     root: '/',
     scheme: 'Pisces',
-    version: '6.3.0',
+    version: '6.6.0',
     sidebar: {"position":"left","display":"post","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
     fancybox: true,
     fastclick: true,
@@ -141,6 +141,8 @@
       s.parentNode.insertBefore(hm, s);
     })();
   </script>
+
+
 
 
 
@@ -423,14 +425,19 @@ h6 {
 p {
   margin: 0 0 20px 0;
 }
-a {
+a,
+span.exturl {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  background-color: transparent;
   color: #555;
   text-decoration: none;
   outline: none;
   border-bottom: 1px solid #999;
-  word-wrap: break-word;
+  cursor: pointer;
 }
-a:hover {
+a:hover,
+span.exturl:hover {
   color: #222;
   border-bottom-color: #222;
 }
@@ -552,7 +559,7 @@ table {
   border-spacing: 0;
   border: 1px solid #ddd;
   font-size: 14px;
-  word-wrap: break-all;
+  word-break: break-all;
 }
 table>tbody>tr:nth-of-type(odd) {
   background-color: #f9f9f9;
@@ -657,8 +664,9 @@ code {
   font-family: consolas, Menlo, "PingFang SC", "Microsoft YaHei", monospace;
 }
 code {
-  padding: 2px 4px;
+  overflow-wrap: break-word;
   word-wrap: break-word;
+  padding: 2px 4px;
   color: #555;
   background: #eee;
   border-radius: 3px;
@@ -1118,17 +1126,14 @@ pre .javascript .function {
   margin: 10px;
 }
 .back-to-top {
-  display: none;
-  margin: 20px -10px -20px;
+  visibility: hidden;
+  margin: 8px -10px -20px;
   background: #f5f7f9;
   font-size: 12px;
   opacity: 0.6;
   cursor: pointer;
   text-align: center;
   -webkit-transform: translateZ(0);
-  transition-duration: 0.2s;
-  transition-timing-function: ease-in-out;
-  transition-delay: 0s;
 }
 .back-to-top:hover {
   opacity: 0.8;
@@ -1144,7 +1149,10 @@ pre .javascript .function {
   }
 }
 .back-to-top.back-to-top-on {
-  display: block;
+  visibility: visible;
+  transition-duration: 0.2s;
+  transition-timing-function: ease-in-out;
+  transition-delay: 0s;
 }
 .header {
   background: transparent;
@@ -1256,7 +1264,8 @@ pre .javascript .function {
     margin-top: 10px;
   }
 }
-.menu .menu-item a {
+.menu .menu-item a,
+.menu .menu-item span.exturl {
   display: block;
   font-size: 13px;
   line-height: inherit;
@@ -1267,7 +1276,7 @@ pre .javascript .function {
   transition-delay: 0s;
 }
 .menu .menu-item a:hover,
-.menu-item-active a {
+.menu .menu-item span.exturl:hover {
   border-bottom-color: #222;
 }
 .menu .menu-item .fa {
@@ -1277,12 +1286,13 @@ pre .javascript .function {
   opacity: 0;
 }
 .post-body {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
   font-family: 'Lato', "PingFang SC", "Microsoft YaHei", sans-serif;
 }
-@media (max-width: 767px) {
-  .post-body {
-    word-break: break-word;
-  }
+.post-body .exturl .fa {
+  font-size: 14px;
+  margin-left: 4px;
 }
 .post-body .fancybox img {
   display: block !important;
@@ -1503,7 +1513,8 @@ pre .javascript .function {
   margin-left: 3px;
   opacity: 0.6;
 }
-.posts-collapse .post-title a {
+.posts-collapse .post-title a,
+.posts-collapse .post-title span.exturl {
   color: #666;
   border-bottom: none;
 }
@@ -1514,8 +1525,9 @@ pre .javascript .function {
   display: none;
 }
 .posts-expand .post-title {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
   text-align: center;
-  word-break: break-word;
   font-weight: 400;
 }
 .posts-expand .post-title-link {
@@ -1553,7 +1565,8 @@ pre .javascript .function {
   transform: scaleX(1);
 }
 .posts-expand .post-title-link .fa {
-  font-size: 16px;
+  font-size: 20px;
+  margin-left: 5px;
 }
 .posts-expand .post-meta {
   margin: 3px 0 60px 0;
@@ -1704,6 +1717,16 @@ pre .javascript .function {
 .fancybox-close:hover {
   border: none;
 }
+.post-copyright {
+  margin: 2em 0 0;
+  padding: 0.5em 1em;
+  border-left: 3px solid #ff1700;
+  background-color: #f9f9f9;
+  list-style: none;
+}
+.post-copyright i.fa {
+  font-size: 15px;
+}
 .rtl.post-body p,
 .rtl.post-body a,
 .rtl.post-body h1,
@@ -1811,16 +1834,6 @@ pre .javascript .function {
 .site-author-image {
   border-radius: 100%;
 }
-.site-author-image img:hover {
-  -webkit-transform: rotateZ(360deg);
-  -moz-transform: rotateZ(360deg);
-  -ms-transform: rotate(360deg);
-  -webkit-transform: rotateZ(360deg);
-  -moz-transform: rotateZ(360deg);
-  -ms-transform: rotateZ(360deg);
-  -o-transform: rotateZ(360deg);
-  transform: rotateZ(360deg);
-}
 .site-author-name {
   margin: 0;
   text-align: center;
@@ -1903,7 +1916,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #ff16ed;
+  background: #6f94ee;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -1921,7 +1934,8 @@ pre .javascript .function {
 .links-of-blogroll-item {
   padding: 2px 10px;
 }
-.links-of-blogroll-item a {
+.links-of-blogroll-item a,
+.links-of-blogroll-item span.exturl {
   max-width: 280px;
   box-sizing: border-box;
   display: inline-block;
@@ -2331,6 +2345,10 @@ pre .javascript .function {
   border: 1px solid #fff;
   border-radius: 50%;
 }
+.page-archive .fa {
+  font-size: 15px;
+  margin-left: 5px;
+}
 .category-all-page .category-all-title {
   text-align: center;
 }
@@ -2427,9 +2445,10 @@ pre .javascript .function {
 }
 #schedule ul#event-list li.event-past {
   background: #fcfcfc;
+  padding: 15px 0 15px 10px;
 }
 #schedule ul#event-list li.event-past > * {
-  opacity: 0.6;
+  opacity: 0.9;
 }
 #schedule ul#event-list li.event-past h2.event-summary {
   color: #bbb;
@@ -2452,6 +2471,23 @@ pre .javascript .function {
   animation: dot-flash 1s alternate infinite ease-in-out;
 }
 #schedule ul#event-list li.event-now * {
+  color: #fff !important;
+}
+#schedule ul#event-list li.event-future {
+  background: #222;
+  color: #fff;
+  padding: 15px 0 15px 10px;
+}
+#schedule ul#event-list li.event-future h2.event-summary:before {
+  -webkit-transform: scale(1.2);
+  -moz-transform: scale(1.2);
+  -ms-transform: scale(1.2);
+  -o-transform: scale(1.2);
+  transform: scale(1.2);
+  color: #fff;
+  animation: dot-flash 1s alternate infinite ease-in-out;
+}
+#schedule ul#event-list li.event-future * {
   color: #fff !important;
 }
 @-moz-keyframes dot-flash {
@@ -2753,11 +2789,31 @@ ul.breadcrumb li+li:last-child {
     display: block !important;
   }
 }
+.menu-item-active a,
+.menu .menu-item a:hover,
+.menu .menu-item span.exturl:hover {
+  background: #f9f9f9;
+  border-bottom-color: #fff;
+}
+.menu-item-active a:after,
+.menu .menu-item a:hover:after,
+.menu .menu-item span.exturl:hover:after {
+  content: " ";
+  position: absolute;
+  top: 50%;
+  margin-top: -3px;
+  right: 15px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: #bbb;
+}
 .menu .menu-item {
   display: block;
   margin: 0;
 }
-.menu .menu-item a {
+.menu .menu-item a,
+.menu .menu-item span.exturl {
   position: relative;
   box-sizing: border-box;
   padding: 5px 20px;
@@ -2768,10 +2824,11 @@ ul.breadcrumb li+li:last-child {
   transition-timing-function: ease-in-out;
   transition-delay: 0s;
 }
-.menu .menu-item a:hover,
-.menu-item-active a {
-  background: #f9f9f9;
-  border-bottom-color: #fff;
+@media (hover: none) {
+  .menu .menu-item a:hover,
+  .menu .menu-item span.exturl:hover {
+    background: none;
+  }
 }
 .menu .menu-item .badge {
   display: inline-block;
@@ -2790,17 +2847,6 @@ ul.breadcrumb li+li:last-child {
 }
 .menu .menu-item br {
   display: none;
-}
-.menu-item-active a:after {
-  content: " ";
-  position: absolute;
-  top: 50%;
-  margin-top: -3px;
-  right: 15px;
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background-color: #bbb;
 }
 .btn-bar {
   background-color: #fff;
@@ -2886,22 +2932,22 @@ ul.breadcrumb li+li:last-child {
   clear: both;
 }
 .sidebar a,
-.sidebar .exturl {
+.sidebar span.exturl {
   color: #555;
 }
 .sidebar a:hover,
-.sidebar .exturl:hover {
+.sidebar span.exturl:hover {
   color: #222;
 }
 .site-state-item {
   padding: 0 10px;
 }
 .links-of-author-item a:before,
-.links-of-author-item .exturl:before {
+.links-of-author-item span.exturl:before {
   display: none;
 }
 .links-of-author-item a,
-.links-of-author-item .exturl {
+.links-of-author-item span.exturl {
   border-bottom: none;
   text-decoration: underline;
 }
@@ -2927,7 +2973,7 @@ ul.breadcrumb li+li:last-child {
   flex-wrap: wrap;
   justify-content: center;
 }
-.links-of-author .exturl {
+.links-of-author span.exturl {
   font-size: 13px;
 }
 .links-of-author-item {
@@ -2947,12 +2993,12 @@ ul.breadcrumb li+li:last-child {
   text-overflow: ellipsis;
 }
 .links-of-author-item a,
-.links-of-author-item .exturl {
+.links-of-author-item span.exturl {
   display: block;
   text-decoration: none;
 }
 .links-of-author-item a:hover,
-.links-of-author-item .exturl:hover {
+.links-of-author-item span.exturl:hover {
   border-radius: 4px;
   background: #eee;
 }
@@ -3084,56 +3130,119 @@ ul.breadcrumb li+li:last-child {
         
           
           <li class="menu-item menu-item-home">
-    <a href="/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
   </li>
         
         
         
           
           <li class="menu-item menu-item-categories">
-    <a href="/categories/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
   </li>
         
         
         
           
           <li class="menu-item menu-item-tags">
-    <a href="/tags/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
   </li>
         
         
         
           
           <li class="menu-item menu-item-archives">
-    <a href="/archives/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
   </li>
         
         
         
           
           <li class="menu-item menu-item-about">
-    <a href="/about/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
   </li>
         
         
         
           
           <li class="menu-item menu-item-friends">
-    <a href="/friends/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-child"></i> <br>友链</a>
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/friends/" rel="section"><i class="menu-item-icon fa fa-fw fa-child"></i> <br>友链</a>
+
   </li>
         
         
         
           
           <li class="menu-item menu-item-script">
-    <a href="/script/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-terminal"></i> <br>脚本</a>
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/script/" rel="section"><i class="menu-item-icon fa fa-fw fa-terminal"></i> <br>脚本</a>
+
   </li>
 
       
@@ -3213,6 +3322,210 @@ ul.breadcrumb li+li:last-child {
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.zhaojun.im/Java基础-IO流之字符流缓冲区/">
+
+    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="赵俊">
+      <meta itemprop="description" content="一个 Java 学习者的博客，分享 Java 干货, VPS 知识, 软件推荐等。">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="赵俊的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/Java基础-IO流之字符流缓冲区/" class="post-title-link" itemprop="http://www.zhaojun.im/page/21/index.html">Java基础：IO流之字符流缓冲区</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2017-03-21 21:52:07" itemprop="dateCreated datePublished" datetime="2017-03-21T21:52:07+08:00">2017-03-21</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-07-06 11:32:37" itemprop="dateModified" datetime="2018-07-06T11:32:37+08:00">2018-07-06</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/Java基础-IO流之字符流缓冲区/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/Java基础-IO流之字符流缓冲区/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/Java基础-IO流之字符流缓冲区/" class="leancloud_visitors" data-flag-title="Java基础：IO流之字符流缓冲区">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数：</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="字符流缓冲区"><a href="#字符流缓冲区" class="headerlink" title="字符流缓冲区"></a>字符流缓冲区</h2><p>字符流的缓冲区：BufferedWriter 和 BufferedReader</p>
+<ul>
+<li>缓冲区的出现时为了提高流的操作效率而出现的.</li>
+<li>需要被提高效率的流作为参数传递给缓冲区的构造函数</li>
+<li>缓冲区的原理就是在缓冲区中封装了一个数组，存入数据后一次取出</li>
+</ul>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/Java基础-IO流之字符流缓冲区/" rel="contents">
+                阅读全文 »
+              </a>
+            </div>
+         
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+       
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://www.zhaojun.im/Java基础-IO流之字符流/">
 
     <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -3232,9 +3545,8 @@ ul.breadcrumb li+li:last-child {
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/Java基础-IO流之字符流/" itemprop="url">
-                  Java基础：IO流之字符流
-                </a>
+                
+                <a href="/Java基础-IO流之字符流/" class="post-title-link" itemprop="http://www.zhaojun.im/page/21/index.html">Java基础：IO流之字符流</a>
               
             
           </h2>
@@ -3353,11 +3665,13 @@ ul.breadcrumb li+li:last-child {
 <h2 id="字节输出流"><a href="#字节输出流" class="headerlink" title="字节输出流"></a>字节输出流</h2><p>字符流中的输出流的基类是 Writer，但是该方法是抽象的，只能使用创建其子类对象。</p>
 <p>由于最常用的操作是文件，所以这里我们选择 FileWrite 来演示。</p>
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/Java基础-IO流之字符流/" rel="contents">
-              阅读全文 »
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/Java基础-IO流之字符流/" rel="contents">
+                阅读全文 »
+              </a>
+            </div>
+         
           <!--/noindex-->
         
       
@@ -3371,6 +3685,9 @@ ul.breadcrumb li+li:last-child {
 
     
 
+    
+       
+    
     
 
     
@@ -3429,9 +3746,8 @@ ul.breadcrumb li+li:last-child {
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/Java基础-静态导入/" itemprop="url">
-                  Java基础：静态导入
-                </a>
+                
+                <a href="/Java基础-静态导入/" class="post-title-link" itemprop="http://www.zhaojun.im/page/21/index.html">Java基础：静态导入</a>
               
             
           </h2>
@@ -3550,11 +3866,13 @@ ul.breadcrumb li+li:last-child {
 <p>该特性的作用是将某个类中的所有静态成员导入进来。</p>
 <p>例如我们经常用的工具类 Collections、Arrays 等包含很多静态方法的类，调用时有些麻烦，这时就可以用新特性：静态导入。</p>
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/Java基础-静态导入/" rel="contents">
-              阅读全文 »
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/Java基础-静态导入/" rel="contents">
+                阅读全文 »
+              </a>
+            </div>
+         
           <!--/noindex-->
         
       
@@ -3568,6 +3886,9 @@ ul.breadcrumb li+li:last-child {
 
     
 
+    
+       
+    
     
 
     
@@ -3626,9 +3947,8 @@ ul.breadcrumb li+li:last-child {
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/Java基础-可变参数/" itemprop="url">
-                  Java基础：可变参数
-                </a>
+                
+                <a href="/Java基础-可变参数/" class="post-title-link" itemprop="http://www.zhaojun.im/page/21/index.html">Java基础：可变参数</a>
               
             
           </h2>
@@ -3747,11 +4067,13 @@ ul.breadcrumb li+li:last-child {
 <p>该特性可以解决某个方法<strong>参数数量不确定，但参数类型确定的情况</strong></p>
 <p>例如：当需要定义一个方法，该方法的功能是计算传入 int 类型的 n 个参数的和，由于计算的数量不确定，所以不便使用方法重载的方式，因为过于麻烦。</p>
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/Java基础-可变参数/" rel="contents">
-              阅读全文 »
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/Java基础-可变参数/" rel="contents">
+                阅读全文 »
+              </a>
+            </div>
+         
           <!--/noindex-->
         
       
@@ -3765,6 +4087,9 @@ ul.breadcrumb li+li:last-child {
 
     
 
+    
+       
+    
     
 
     
@@ -3823,9 +4148,8 @@ ul.breadcrumb li+li:last-child {
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/Java基础-泛型/" itemprop="url">
-                  Java基础：泛型
-                </a>
+                
+                <a href="/Java基础-泛型/" class="post-title-link" itemprop="http://www.zhaojun.im/page/21/index.html">Java基础：泛型</a>
               
             
           </h2>
@@ -3947,11 +4271,13 @@ ul.breadcrumb li+li:last-child {
 <li>泛型技术是给编译器使用的技术,用于编译时期。确保了类型的安全。</li>
 </ul>
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/Java基础-泛型/" rel="contents">
-              阅读全文 »
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/Java基础-泛型/" rel="contents">
+                阅读全文 »
+              </a>
+            </div>
+         
           <!--/noindex-->
         
       
@@ -3965,6 +4291,9 @@ ul.breadcrumb li+li:last-child {
 
     
 
+    
+       
+    
     
 
     
@@ -4023,9 +4352,8 @@ ul.breadcrumb li+li:last-child {
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/Java基础-StringBuffer 与 StringBuilder/" itemprop="url">
-                  Java基础：StringBuffer 与 StringBuilder
-                </a>
+                
+                <a href="/Java基础-StringBuffer 与 StringBuilder/" class="post-title-link" itemprop="http://www.zhaojun.im/page/21/index.html">Java基础：StringBuffer 与 StringBuilder</a>
               
             
           </h2>
@@ -4155,11 +4483,13 @@ ul.breadcrumb li+li:last-child {
 <li>StringBuilder 是线程不同步。</li>
 </ul>
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/Java基础-StringBuffer 与 StringBuilder/" rel="contents">
-              阅读全文 »
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/Java基础-StringBuffer 与 StringBuilder/" rel="contents">
+                阅读全文 »
+              </a>
+            </div>
+         
           <!--/noindex-->
         
       
@@ -4174,214 +4504,8 @@ ul.breadcrumb li+li:last-child {
     
 
     
-
+       
     
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.zhaojun.im/Java基础-字符串/">
-
-    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="赵俊">
-      <meta itemprop="description" content="一个 Java 学习者的博客，分享 Java 干货, VPS 知识, 软件推荐等。">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="赵俊的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/Java基础-字符串/" itemprop="url">
-                  Java基础：字符串
-                </a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2017-03-05 19:06:00" itemprop="dateCreated datePublished" datetime="2017-03-05T19:06:00+08:00">2017-03-05</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2018-07-06 11:32:37" itemprop="dateModified" datetime="2018-07-06T11:32:37+08:00">2018-07-06</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/Java基础-字符串/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/Java基础-字符串/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/Java基础-字符串/" class="leancloud_visitors" data-flag-title="Java基础：字符串">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数：</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><ul>
-<li>字符串是一个特殊的对象</li>
-<li>字符串一旦初始化就不可以被改变</li>
-</ul>
-<h2 id="字符串的创建方式"><a href="#字符串的创建方式" class="headerlink" title="字符串的创建方式"></a>字符串的创建方式</h2><pre><code class="java">String str1 = <span class="string">"abc"</span>;
-String str2 = <span class="keyword">new</span> String(<span class="string">"abc"</span>);
-</code></pre>
-<p><strong>str1 和 str2 有什么区别？</strong></p>
-<ul>
-<li>s1 在内存中有一个对象</li>
-<li>s2 在内存中有两个对象</li>
-</ul>
-<pre><code class="java">System.out.println(str1 == str2);     <span class="comment">//false 比较地址是否相同</span>
-System.out.println(str1.equals(str2));  <span class="comment">//true  比较字符串的内容是否相同。</span>
-</code></pre>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/Java基础-字符串/" rel="contents">
-              阅读全文 »
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
     
 
     
@@ -4455,7 +4579,7 @@ System.out.println(str1.equals(str2));  <span class="comment">//true  比较字�
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">136</span>
+                    <span class="site-state-item-count">137</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -4736,6 +4860,14 @@ System.out.println(str1.equals(str2));  <span class="comment">//true  比较字�
           
 
           
+             <div class="cc-license motion-element" itemprop="license">
+              
+                
+              
+              
+              
+              <span class="exturl cc-opacity" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC8="><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></span>
+             </div>
           
 
           
@@ -4748,15 +4880,15 @@ System.out.println(str1.equals(str2));  <span class="comment">//true  比较字�
               <ul class="links-of-blogroll-list">
                 
                   <li class="links-of-blogroll-item">
-                    <a href="http://98.tn" title="在线网盘" target="_blank">在线网盘</a>
+                    <span class="exturl" data-url="aHR0cDovLzk4LnRu" title="http://98.tn">在线网盘</span>
                   </li>
                 
                   <li class="links-of-blogroll-item">
-                    <a href="https://img.zhaojun.im" title="免费图床" target="_blank">免费图床</a>
+                    <span class="exturl" data-url="aHR0cHM6Ly9pbWcuemhhb2p1bi5pbQ==" title="https://img.zhaojun.im">免费图床</span>
                   </li>
                 
                   <li class="links-of-blogroll-item">
-                    <a href="http://json.zhaojun.im" title="在线 JSON 解析" target="_blank">在线 JSON 解析</a>
+                    <span class="exturl" data-url="aHR0cDovL2pzb24uemhhb2p1bi5pbQ==" title="http://json.zhaojun.im">在线 JSON 解析</span>
                   </li>
                 
               </ul>
@@ -4792,7 +4924,7 @@ System.out.println(str1.equals(str2));  <span class="comment">//true  比较字�
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">© 2016 — <span itemprop="copyrightYear">2018</span>
+        <div class="copyright">© 2016 – <span itemprop="copyrightYear">2018</span>
   <span class="with-love" id="animate">
     <i class="fa fa-user"></i>
   </span>
@@ -4804,11 +4936,7 @@ System.out.println(str1.equals(str2));  <span class="comment">//true  比较字�
 </div>
 
 
-  
-
-
-
-  <div class="powered-by">由 <a class="theme-link" target="_blank" rel="external nofollow" href="https://hexo.io">Hexo</a> 强力驱动 v3.7.1</div>
+  <div class="powered-by">由 <span class="exturl theme-link" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> 强力驱动 v3.8.0</div>
 
 
 
@@ -4816,7 +4944,7 @@ System.out.println(str1.equals(str2));  <span class="comment">//true  比较字�
 
 
 
-  <div class="theme-info">主题 — <a class="theme-link" target="_blank" rel="external nofollow" href="https://theme-next.org">NexT.Pisces</a> v6.3.0</div>
+  <div class="theme-info">主题 – <span class="exturl theme-link" data-url="aHR0cHM6Ly90aGVtZS1uZXh0Lm9yZw==">NexT.Pisces</span> v6.6.0</div>
 
 
 
@@ -4982,6 +5110,8 @@ System.out.println(str1.equals(str2));  <span class="comment">//true  比较字�
   
 
   
+
+  
   
 
   
@@ -4989,6 +5119,8 @@ System.out.println(str1.equals(str2));  <span class="comment">//true  比较字�
   
 
   
+  
+
 
   
 
@@ -5032,6 +5164,8 @@ System.out.println(str1.equals(str2));  <span class="comment">//true  比较字�
   </style>
   
 
+
+  
 
 
 
