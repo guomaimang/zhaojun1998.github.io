@@ -101,7 +101,7 @@
 <meta name="keywords" content="Java, Hexo, Valine, Hexo 评论系统, Valine 邮件通知,  多线程, 算法, Spring">
 <meta property="og:type" content="website">
 <meta property="og:title" content="赵俊的博客">
-<meta property="og:url" content="http://www.zhaojun.im/tags/vps/index.html">
+<meta property="og:url" content="http://www.zhaojun.im/tags/VPS/index.html">
 <meta property="og:site_name" content="赵俊的博客">
 <meta property="og:description" content="一个 Java 学习者的博客，分享 Java 干货, VPS 知识, 软件推荐等。">
 <meta property="og:locale" content="zh-CN">
@@ -114,7 +114,7 @@
 
 
 
-  <link rel="canonical" href="http://www.zhaojun.im/tags/vps/">
+  <link rel="canonical" href="http://www.zhaojun.im/tags/VPS/">
 
 
 
@@ -124,7 +124,7 @@
   };
 </script>
 
-  <title>标签: vps | 赵俊的博客</title>
+  <title>标签: VPS | 赵俊的博客</title>
   
 
 
@@ -1916,7 +1916,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #c6bb22;
+  background: #ffcfff;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -3340,7 +3340,7 @@ ul.breadcrumb li+li:last-child {
 
     <div id="posts" class="posts-collapse">
       <div class="collection-title">
-        <h2>vps<small>标签</small>
+        <h2>VPS<small>标签</small>
         </h2>
       </div>
 
@@ -3352,43 +3352,17 @@ ul.breadcrumb li+li:last-child {
 
       <h3 class="post-title">
         
-            <a class="post-title-link" href="/docker-speedtest/" itemprop="url">
+            <a class="post-title-link" href="/digitalocean-mount-volume/" itemprop="url">
               
-                <span itemprop="name">使用 Docker 快速安装 HTML5-Based Speedtest，可以准确的测试本地到 VPS 的网络速度</span>
-              
-            </a>
-        
-      </h3>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2018-05-28T18:47:46+08:00" content="2018-05-28">
-          05-28
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-      
-        
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
-        
-            <a class="post-title-link" href="/kodcloud-aria2/" itemprop="url">
-              
-                <span itemprop="name">搭建一个自己的云盘 + 离线下载站</span>
+                <span itemprop="name">DigitalOcean 挂载 volume 硬盘</span>
               
             </a>
         
       </h3>
 
       <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2018-01-04T20:44:52+08:00" content="2018-01-04">
-          01-04
+        <time class="post-time" itemprop="dateCreated" datetime="2018-08-15T14:25:59+08:00" content="2018-08-15">
+          08-15
         </time>
       </div>
 
@@ -3447,7 +3421,7 @@ ul.breadcrumb li+li:last-child {
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">138</span>
+                    <span class="site-state-item-count">139</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -4398,6 +4372,28 @@ ul.breadcrumb li+li:last-child {
         var code = $(this).parent().find('.code').find('.line').map(function (i, e) {
           return $(e).text()
         }).toArray().join('\n')
+        var ta = document.createElement('textarea')
+        document.body.appendChild(ta)
+        ta.style.position = 'absolute'
+        ta.style.top = '0px'
+        ta.style.left = '0px'
+        ta.value = code
+        ta.select()
+        ta.focus()
+        var result = document.execCommand('copy')
+        document.body.removeChild(ta)
+        
+          if(result)$(this).text('复制成功')
+          else $(this).text('复制失败')
+        
+        $(this).blur()
+      })).on('mouseleave', function (e) {
+        var $b = $(this).find('.copy-btn')
+        setTimeout(function () {
+          $b.text('复制')
+        }, 300)
+      }).append(e)
+    })</script></body></html>ay().join('\n')
         var ta = document.createElement('textarea')
         document.body.appendChild(ta)
         ta.style.position = 'absolute'

@@ -1,6 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[LeetCode 80 Remove Duplicates from Sorted Array II]]></title>
+    <url>%2Fleetcode-80%2F</url>
+    <content type="text"><![CDATA[题意 给定一个数组，删除其中的重复元素，使重复项最多出现两次，然后返回新的长度，要求 O(1) 空间复杂度。 例 1: 123给予 nums = [1, 1, 1, 2, 2, 3],你的函数应该返回 length = 5,前五个元素分别为 1, 1, 2, 2, 3. 例 2: 123给予 nums = [0, 0, 1, 1, 1, 1, 2, 3, 3],你的函数应该返回 length = 7,前五个元素分别为 0, 0, 1, 1, 2, 3, 3. 解法和 LeetCode 26 Remove Duplicates from Sorted Array 这道题比较类似。定义变量 k，表示待修改的元素位置，默认为 0，然后遍历后面的元素判断符合条件时，覆盖 k，然后 k 向后移动一位。判断条件为： 遍历的元素 n 不等于元素 k，也就代表不重复 遍历的元素 n 等于元素 k，但不等于 k - 1。则表示已经有两个重复元素了 对于第二点，需要注意，当 k = 0 时，没有 k - 1。 1234567891011class Solution &#123; public int removeDuplicates(int[] nums) &#123; int k = 0; for (int i = 1; i &lt; nums.length; i++) &#123; if (nums[i] != nums[k] || k == 0 || (nums[i] == nums[k] &amp;&amp; nums[i] != nums[k - 1])) &#123; nums[++k] = nums[i]; &#125; &#125; return k + 1; &#125;&#125; Runtime: 6 ms, faster than 95.36% of Java online submissions for Remove Duplicates from Sorted Array II.]]></content>
+      <categories>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>数组</tag>
+        <tag>leetcode</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[LeetCode 26 Remove Duplicates from Sorted Array]]></title>
+    <url>%2Fleetcode-26%2F</url>
+    <content type="text"><![CDATA[题意 给定一个有序的 int 数组，使每个元素只出现一次，并返回新的长度。要求在原数组修改，即 O(1) 的空间复杂度。 解法从头开始获取不重复的元素，依次填充到数组的前几位，并返回不重复的元素个数。 1234567891011class Solution &#123; public int removeDuplicates(int[] nums) &#123; int k = 0; for (int i = 1; i &lt; nums.length; i++) &#123; if (nums[i] != nums[k]) &#123; nums[++k] = nums[i]; &#125; &#125; return k+1; &#125;&#125; Runtime: 7 ms, faster than 82.95% of Java online submissions for Remove Duplicates from Sorted Array.]]></content>
+      <categories>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>数组</tag>
+        <tag>leetcode</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[LeetCode 27 Remove Element]]></title>
     <url>%2Fleetcode-27%2F</url>
     <content type="text"><![CDATA[题意 给定一个字符串数组，从数组中删除指定值 n，返回删除后的长度 k。（并不用真的删除，元素顺序可以改变，只需要保证返回的前 k 个数字不包含 n 即可。） 解法定义 left 为 0, right 为数组长度 - 1，left 依次向右走，碰到当前元素等于 n 时，将 right 所在的元素覆盖 n 所在的元素，并将 right 左移一位，直到 left 碰到 right。 1234567891011class Solution &#123; public int removeElement(int[] nums, int val) &#123; int len = nums.length; for (int i = 0; i &lt; len; i++) &#123; while (nums[i] == val &amp;&amp; i &lt; len) &#123; nums[i] = nums[--len]; &#125; &#125; return len; &#125;&#125; Runtime: 4 ms, faster than 99.11% of Java online submissions for Remove Element.]]></content>
@@ -25,18 +49,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[LeetCode 344 Reverse String]]></title>
-    <url>%2Fleetcode-344%2F</url>
-    <content type="text"><![CDATA[题意 翻转字符串。 解法两个指针，分别在首和尾，都向中间走，直到首超过尾。 1234567891011class Solution &#123; public String reverseString(String s) &#123; char[] chars = s.toCharArray(); for (int i = 0, j = chars.length - 1; i &lt; j; i++, j--) &#123; char temp = chars[i]; chars[i] = chars[j]; chars[j] = temp; &#125; return new String(chars); &#125;&#125; Runtime: 2 ms, faster than 79.62% of Java online submissions for Reverse String.]]></content>
-      <categories>
-        <category>算法</category>
-      </categories>
-      <tags>
-        <tag>字符串</tag>
-        <tag>leetcode</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[LeetCode 557 Reverse Words in a String III]]></title>
     <url>%2Fleetcode-557%2F</url>
     <content type="text"><![CDATA[题意 给定一个字符串, 翻转字符串中的每个单词, 每个单词以空格分隔, 保留空格和初始单词顺序。 解法首先按照空格对字符串进行分隔，然后将每个单词进行翻转后再拼接回字符串即可，需要注意拼接时记得加空格，但最后一个单词不需要加。 12345678910111213141516171819class Solution &#123; public String reverseWords(String s) &#123; StringBuilder result = new StringBuilder(); String[] strs = s.split(" "); for (String str : strs) &#123; char[] chars = str.toCharArray(); for (int i = 0, j = chars.length - 1; i &lt; j; i++, j--) &#123; char c = chars[i]; chars[i] = chars[j]; chars[j] = c; &#125; result.append(new String(chars)).append(" "); &#125; return result.substring(0, result.length() - 1); &#125;&#125; Runtime: 6 ms, faster than 93.75% of Java online submissions for Reverse Words in a String III.]]></content>
@@ -49,14 +61,14 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[LeetCode 26 Remove Duplicates from Sorted Array]]></title>
-    <url>%2Fleetcode-26%2F</url>
-    <content type="text"><![CDATA[题意 给定一个有序的 int 数组，使每个元素只出现一次，并返回新的长度。要求在原数组修改，即 O(1) 的空间复杂度。 解法从头开始获取不重复的元素，依次填充到数组的前几位，并返回不重复的元素个数。 1234567891011class Solution &#123; public int removeDuplicates(int[] nums) &#123; int k = 0; for (int i = 1; i &lt; nums.length; i++) &#123; if (nums[i] != nums[k]) &#123; nums[++k] = nums[i]; &#125; &#125; return k+1; &#125;&#125; Runtime: 7 ms, faster than 82.95% of Java online submissions for Remove Duplicates from Sorted Array.]]></content>
+    <title><![CDATA[LeetCode 344 Reverse String]]></title>
+    <url>%2Fleetcode-344%2F</url>
+    <content type="text"><![CDATA[题意 翻转字符串。 解法两个指针，分别在首和尾，都向中间走，直到首超过尾。 1234567891011class Solution &#123; public String reverseString(String s) &#123; char[] chars = s.toCharArray(); for (int i = 0, j = chars.length - 1; i &lt; j; i++, j--) &#123; char temp = chars[i]; chars[i] = chars[j]; chars[j] = temp; &#125; return new String(chars); &#125;&#125; Runtime: 2 ms, faster than 79.62% of Java online submissions for Reverse String.]]></content>
       <categories>
         <category>算法</category>
       </categories>
       <tags>
-        <tag>数组</tag>
+        <tag>字符串</tag>
         <tag>leetcode</tag>
       </tags>
   </entry>
@@ -745,8 +757,8 @@
         <category>算法</category>
       </categories>
       <tags>
-        <tag>位运算</tag>
         <tag>剑指offer</tag>
+        <tag>位运算</tag>
       </tags>
   </entry>
   <entry>
