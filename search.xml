@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[LeetCode 299 Bulls and Cows]]></title>
+    <url>%2Fleetcode-299%2F</url>
+    <content type="text"><![CDATA[题意 你正和你的朋友一起玩下面的公牛和母牛游戏：你写下一个数字然后让你的朋友猜猜这个数字是多少. 每当你的朋友猜测时, 你提供一个提示, 表明所述猜测中有多少位数与你的密码完全匹配，包括数字和位置(称为”公牛”)以及有多少位数与密码匹配但位于错误的位置(称为”奶牛”)。编写一个函数, 根据秘密数字和朋友的猜测返回提示, 用于 A 表示公牛, B 表示奶牛. 解法刚开始我的想法是依次获取公牛和奶牛的数量, 但奶牛的判断需要 O(n^2) 的时间复杂度, 后面想到, 用所有匹配的数量 - 公牛的数量就是奶牛的数量, 只需要 O(n) 的时间复杂度和 O(1) 的空间复杂度. 1234567891011121314151617181920public String getHint(String secret, String guess) &#123; int[] table = new int[10]; int total = 0; int bulls = 0; for (char c :secret.toCharArray()) &#123; table[c - '0']++; &#125; for (int i = 0; i &lt; guess.length(); i++) &#123; if (secret.charAt(i) == guess.charAt(i)) &#123; bulls++; &#125; if (table[guess.charAt(i) - '0']-- &gt; 0) &#123; total++; &#125; &#125; return bulls + "A" + (total - bulls) + "B";&#125; Runtime: 1 ms, faster than 100.00% of Java online submissions for Bulls and Cows.]]></content>
+      <categories>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>数组</tag>
+        <tag>leetcode</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[LeetCode 80 Remove Duplicates from Sorted Array II]]></title>
     <url>%2Fleetcode-80%2F</url>
     <content type="text"><![CDATA[题意 给定一个数组，删除其中的重复元素，使重复项最多出现两次，然后返回新的长度，要求 O(1) 空间复杂度。 例 1: 123给予 nums = [1, 1, 1, 2, 2, 3],你的函数应该返回 length = 5,前五个元素分别为 1, 1, 2, 2, 3. 例 2: 123给予 nums = [0, 0, 1, 1, 1, 1, 2, 3, 3],你的函数应该返回 length = 7,前五个元素分别为 0, 0, 1, 1, 2, 3, 3. 解法和 LeetCode 26 Remove Duplicates from Sorted Array 这道题比较类似。定义变量 k，表示待修改的元素位置，默认为 0，然后遍历后面的元素判断符合条件时，覆盖 k，然后 k 向后移动一位。判断条件为： 遍历的元素 n 不等于元素 k，也就代表不重复 遍历的元素 n 等于元素 k，但不等于 k - 1。则表示已经有两个重复元素了 对于第二点，需要注意，当 k = 0 时，没有 k - 1。 1234567891011class Solution &#123; public int removeDuplicates(int[] nums) &#123; int k = 0; for (int i = 1; i &lt; nums.length; i++) &#123; if (nums[i] != nums[k] || k == 0 || (nums[i] == nums[k] &amp;&amp; nums[i] != nums[k - 1])) &#123; nums[++k] = nums[i]; &#125; &#125; return k + 1; &#125;&#125; Runtime: 6 ms, faster than 95.36% of Java online submissions for Remove Duplicates from Sorted Array II.]]></content>

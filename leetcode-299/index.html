@@ -97,24 +97,25 @@
 
 
 
-  <meta name="description" content="一个 Java 学习者的博客，分享 Java 干货, VPS 知识, 软件推荐等。">
-<meta name="keywords" content="Java, Hexo, Valine, Hexo 评论系统, Valine 邮件通知,  多线程, 算法, Spring">
-<meta property="og:type" content="website">
-<meta property="og:title" content="赵俊的博客">
-<meta property="og:url" content="http://www.zhaojun.im/categories/速查手册/index.html">
+  <meta name="description" content="题意 你正和你的朋友一起玩下面的公牛和母牛游戏：你写下一个数字然后让你的朋友猜猜这个数字是多少. 每当你的朋友猜测时, 你提供一个提示, 表明所述猜测中有多少位数与你的密码完全匹配，包括数字和位置(称为”公牛”)以及有多少位数与密码匹配但位于错误的位置(称为”奶牛”)。编写一个函数, 根据秘密数字和朋友的猜测返回提示, 用于 A 表示公牛, B 表示奶牛.  解法刚开始我的想法是依次获取公牛和奶牛">
+<meta name="keywords" content="数组,leetcode">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LeetCode 299 Bulls and Cows">
+<meta property="og:url" content="http://www.zhaojun.im/leetcode-299/index.html">
 <meta property="og:site_name" content="赵俊的博客">
-<meta property="og:description" content="一个 Java 学习者的博客，分享 Java 干货, VPS 知识, 软件推荐等。">
+<meta property="og:description" content="题意 你正和你的朋友一起玩下面的公牛和母牛游戏：你写下一个数字然后让你的朋友猜猜这个数字是多少. 每当你的朋友猜测时, 你提供一个提示, 表明所述猜测中有多少位数与你的密码完全匹配，包括数字和位置(称为”公牛”)以及有多少位数与密码匹配但位于错误的位置(称为”奶牛”)。编写一个函数, 根据秘密数字和朋友的猜测返回提示, 用于 A 表示公牛, B 表示奶牛.  解法刚开始我的想法是依次获取公牛和奶牛">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-12-13T15:05:37.546Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="赵俊的博客">
-<meta name="twitter:description" content="一个 Java 学习者的博客，分享 Java 干货, VPS 知识, 软件推荐等。">
+<meta name="twitter:title" content="LeetCode 299 Bulls and Cows">
+<meta name="twitter:description" content="题意 你正和你的朋友一起玩下面的公牛和母牛游戏：你写下一个数字然后让你的朋友猜猜这个数字是多少. 每当你的朋友猜测时, 你提供一个提示, 表明所述猜测中有多少位数与你的密码完全匹配，包括数字和位置(称为”公牛”)以及有多少位数与密码匹配但位于错误的位置(称为”奶牛”)。编写一个函数, 根据秘密数字和朋友的猜测返回提示, 用于 A 表示公牛, B 表示奶牛.  解法刚开始我的想法是依次获取公牛和奶牛">
 
 
 
 
 
 
-  <link rel="canonical" href="http://www.zhaojun.im/categories/速查手册/">
+  <link rel="canonical" href="http://www.zhaojun.im/leetcode-299/">
 
 
 
@@ -124,7 +125,7 @@
   };
 </script>
 
-  <title>分类: 速查手册 | 赵俊的博客</title>
+  <title>LeetCode 299 Bulls and Cows | 赵俊的博客</title>
   
 
 
@@ -3087,7 +3088,7 @@ ul.breadcrumb li+li:last-child {
     
   
 
-  <div class="container sidebar-position-left ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
@@ -3145,7 +3146,7 @@ ul.breadcrumb li+li:last-child {
         
         
           
-          <li class="menu-item menu-item-categories menu-item-active">
+          <li class="menu-item menu-item-categories">
 
     
     
@@ -3301,89 +3302,252 @@ ul.breadcrumb li+li:last-child {
           
             
 
-    
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-    
-
-  
-
-
           
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block category">
+  <div id="posts" class="posts-expand">
+    
 
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h2>速查手册<small>分类</small>
-        </h2>
-      </div>
+  
 
-      
-        
+  
+  
+  
+
+  
 
   <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.zhaojun.im/leetcode-299/">
 
-      <h3 class="post-title">
+    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="赵俊">
+      <meta itemprop="description" content="一个 Java 学习者的博客，分享 Java 干货, VPS 知识, 软件推荐等。">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="赵俊的博客">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/git-help/" itemprop="url">
-              
-                <span itemprop="name">Git 常用命令</span>
-              
-            </a>
         
-      </h3>
+          <h2 class="post-title" itemprop="name headline">LeetCode 299 Bulls and Cows
+              
+            
+          </h2>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2018-01-03T09:46:08+08:00" content="2018-01-03">
-          01-03
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
 
-    </header>
-  </article>
+            
+            
+            
 
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-12-13 23:10:34 / 修改时间：23:05:37" itemprop="dateCreated datePublished" datetime="2018-12-13T23:10:34+08:00">2018-12-13</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/算法/" itemprop="url" rel="index"><span itemprop="name">算法</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/leetcode-299/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/leetcode-299/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/leetcode-299/" class="leancloud_visitors" data-flag-title="LeetCode 299 Bulls and Cows">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数：</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h2><blockquote>
+<p>你正和你的朋友一起玩下面的公牛和母牛游戏：你写下一个数字然后让你的朋友猜猜这个数字是多少. 每当你的朋友猜测时, 你提供一个提示, 表明所述猜测中有多少位数与你的密码完全匹配，包括数字和位置(称为”公牛”)以及有多少位数与密码匹配但位于错误的位置(称为”奶牛”)。<br>编写一个函数, 根据秘密数字和朋友的猜测返回提示, 用于 A 表示公牛, B 表示奶牛.</p>
+</blockquote>
+<h2 id="解法"><a href="#解法" class="headerlink" title="解法"></a>解法</h2><p>刚开始我的想法是依次获取公牛和奶牛的数量, 但奶牛的判断需要 O(n^2) 的时间复杂度, 后面想到, 用所有匹配的数量 - 公牛的数量就是奶牛的数量, 只需要 O(n) 的时间复杂度和 O(1) 的空间复杂度.</p>
+<a id="more"></a>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">getHint</span><span class="params">(String secret, String guess)</span> </span>{</span><br><span class="line">    <span class="keyword">int</span>[] table = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">10</span>];</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">int</span> total = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> bulls = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">char</span> c :secret.toCharArray()) {</span><br><span class="line">        table[c - <span class="string">'0'</span>]++;</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; guess.length(); i++) {</span><br><span class="line">        <span class="keyword">if</span> (secret.charAt(i) == guess.charAt(i)) {</span><br><span class="line">            bulls++;</span><br><span class="line">        }</span><br><span class="line">        <span class="keyword">if</span> (table[guess.charAt(i) - <span class="string">'0'</span>]-- &gt; <span class="number">0</span>) {</span><br><span class="line">            total++;</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> bulls + <span class="string">"A"</span> + (total - bulls)  + <span class="string">"B"</span>;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<blockquote>
+<p>Runtime: 1 ms, faster than 100.00% of Java online submissions for Bulls and Cows.</p>
+</blockquote>
 
       
     </div>
 
+    
+
+    
+    
+    
+
+    
+
+    
+       
+    
+    
+
+    
+      <div>
+        
+
+
+
+  
+
+
+
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>赵俊</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    
+    <a href="http://www.zhaojun.im/leetcode-299/" title="LeetCode 299 Bulls and Cows">http://www.zhaojun.im/leetcode-299/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC8="><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</span> 许可协议。转载请注明出处！</li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/数组/" rel="tag"># 数组</a>
+          
+            <a href="/tags/leetcode/" rel="tag"># leetcode</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/leetcode-80/" rel="next" title="LeetCode 80 Remove Duplicates from Sorted Array II">
+                <i class="fa fa-chevron-left"></i> LeetCode 80 Remove Duplicates from Sorted Array II
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
 
+  </div>
 
 
           </div>
           
+
+  
+    <div class="comments" id="comments">
+    </div>
+
+  
+
+
 
         </div>
         
@@ -3404,8 +3568,17 @@ ul.breadcrumb li+li:last-child {
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -3769,6 +3942,22 @@ ul.breadcrumb li+li:last-child {
       </section>
 
       
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#题意"><span class="nav-number">1.</span> <span class="nav-text">题意</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解法"><span class="nav-number">2.</span> <span class="nav-text">解法</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
 
       
         <div class="back-to-top">
@@ -3926,6 +4115,10 @@ ul.breadcrumb li+li:last-child {
 
 
   
+  
+
+
+
 
   
 
