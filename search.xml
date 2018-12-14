@@ -384,7 +384,7 @@
   <entry>
     <title><![CDATA[Hexo 优化 --- Valine 扩展之邮件通知]]></title>
     <url>%2Fhexo-valine-admin%2F</url>
-    <content type="text"><![CDATA[简介此项目是一个对 Valine 评论系统的拓展应用，可增强 Valine 的邮件通知功能。基于 Leancloud 的云引擎与云函数。可以提供邮件 通知站长 和 @ 通知 的功能，而且还支持自定义邮件通知模板。 点击查看演示 注：本项目修改于 panjunwen 的项目 : Valine-Admin，原作者博客: Valine Admin 配置手册, (部分逻辑于功能不同，还请读者不要搞混配置项.) 快速开始首先需要确保 Valine 的基础功能是正常的，参考 Valine Docs。 然后进入 Leancloud 对应的 Valine 应用中。 点击 云引擎 -&gt; 设置 填写代码库并保存：https://github.com/zhaojun1998/Valine-Admin 切换到部署标签页，分支使用 master，点击部署即可： 配置项此外，你需要设置云引擎的环境变量以提供必要的信息，点击云引擎的设置页，设置如下信息： 必选参数 SITE_NAME : 网站名称。 SITE_URL : 网站地址, 最后不要加 / 。 SMTP_USER : SMTP 服务用户名，一般为邮箱地址。 SMTP_PASS : SMTP 密码，一般为授权码，而不是邮箱的登陆密码，请自行查询对应邮件服务商的获取方式 SMTP_SERVICE : 邮件服务提供商，支持 QQ、163、126、Gmail、&quot;Yahoo&quot;、...... ，全部支持请参考 : Nodemailer Supported services。 SENDER_NAME : 寄件人名称。 高级配置自定义邮件模板 自定义收件邮箱 自定义邮件服务器 Web 评论管理 Leancloud 休眠策略(必看) 更新历史 7.7 兼容 valine v1.2.0-beta 版本对 at 的更改 点击查看。 7.1 修复 Web 后台登录安全 bug 6.14 添加自定义邮件服务器功能. 点击查看 升级 FAQ部署最新代码 : 重启容器: 注: 更新新版本与更改环境变量均需要重启容器后生效。 LeanCloud 休眠策略免费版的 LeanCloud 容器，是有强制性休眠策略的，不能 24 小时运行： 每天必须休眠 6 个小时 30 分钟内没有外部请求，则休眠。 休眠后如果有新的外部请求实例则马上启动（但激活时此次发送邮件会失败）。 分析了一下上方的策略，如果不想付费的话，最佳使用方案就设置定时器，每天 7 - 23 点每 20 分钟访问一次，这样可以保持每天的绝大多数时间邮件服务是正常的。 附 Linux crontab 定时器代码： 1*/20 7-23 * * * curl https://你配置的域名前缀.leanapp.cn 注 : 此 crontab 不是LeanCloud 后台的定时任务，如果你没有 Linux 机器来配置此定时器，那么可以在此 issues 中回复我，我帮你加上。 如对本项目有意见或建议，欢迎去 Github 提 issues。]]></content>
+    <content type="text"><![CDATA[简介此项目是一个对 Valine 评论系统的拓展应用，可增强 Valine 的邮件通知功能。基于 Leancloud 的云引擎与云函数。可以提供邮件 通知站长 和 @ 通知 的功能，而且还支持自定义邮件通知模板。 点击查看演示 注：本项目修改于 panjunwen 的项目 : Valine-Admin，原作者博客: Valine Admin 配置手册, (部分逻辑于功能不同，还请读者不要搞混配置项.) 快速开始首先需要确保 Valine 的基础功能是正常的，参考 Valine Docs。 然后进入 Leancloud 对应的 Valine 应用中。 点击 云引擎 -&gt; 设置 填写代码库并保存：https://github.com/zhaojun1998/Valine-Admin 切换到部署标签页，分支使用 master，点击部署即可： 配置项此外，你需要设置云引擎的环境变量以提供必要的信息，点击云引擎的设置页，设置如下信息： 必选参数 SITE_NAME : 网站名称。 SITE_URL : 网站地址, 最后不要加 / 。 SMTP_USER : SMTP 服务用户名，一般为邮箱地址。 SMTP_PASS : SMTP 密码，一般为授权码，而不是邮箱的登陆密码，请自行查询对应邮件服务商的获取方式 SMTP_SERVICE : 邮件服务提供商，支持 QQ、163、126、Gmail、&quot;Yahoo&quot;、...... ，全部支持请参考 : Nodemailer Supported services。 SENDER_NAME : 寄件人名称。 高级配置自定义邮件模板 自定义收件邮箱 自定义邮件服务器 Web 评论管理 Leancloud 休眠策略(必看) 更新历史 12.01 新增自助添加定时器方式。详见: LeanCloud 自带定时器[推荐方式] 7.30 修复 @ 邮件通知出错 bug (需 Valine 1.3.0 支持)，优化发件逻辑，站长发的评论不再收到邮件通知。 7.7 兼容 valine v1.2.0-beta 版本对 at 的更改 点击查看。 7.1 修复 Web 后台登录安全 bug 6.14 添加自定义邮件服务器功能. 点击查看 升级 FAQ部署最新代码 : 重启容器: 注: 更新新版本与更改环境变量均需要重启容器后生效。 LeanCloud 休眠策略免费版的 LeanCloud 容器，是有强制性休眠策略的，不能 24 小时运行： 每天必须休眠 6 个小时 30 分钟内没有外部请求，则休眠。 休眠后如果有新的外部请求实例则马上启动（但激活时此次发送邮件会失败）。 分析了一下上方的策略，如果不想付费的话，最佳使用方案就设置定时器，每天 7 - 23 点每 20 分钟访问一次，这样可以保持每天的绝大多数时间邮件服务是正常的。 LeanCloud 自带定时器[推荐]首先需要添加环境变量，ADMIN_URL：Web 主机域名，如图所示（添加后重启容器才会生效）： 然后点击云引擎 - 定时任务，新增定时器，按照图片上填写： 添加后要记得点击启用： 启用成功后，每 20 分钟在云引擎的 - 应用日志中可以看到提示： Linux 定时器[老版本方式]附 Linux crontab 定时器代码： 1*/20 7-23 * * * curl https://你配置的域名前缀.leanapp.cn 如对本项目有意见或建议，欢迎去 Github 提 issues。]]></content>
       <categories>
         <category>Hexo</category>
       </categories>
@@ -743,8 +743,8 @@
       </categories>
       <tags>
         <tag>剑指offer</tag>
-        <tag>矩阵</tag>
         <tag>递归</tag>
+        <tag>矩阵</tag>
       </tags>
   </entry>
   <entry>
@@ -756,8 +756,8 @@
       </categories>
       <tags>
         <tag>剑指offer</tag>
-        <tag>递归</tag>
         <tag>栈</tag>
+        <tag>递归</tag>
         <tag>二叉树</tag>
       </tags>
   </entry>
@@ -769,8 +769,8 @@
         <category>算法</category>
       </categories>
       <tags>
-        <tag>剑指offer</tag>
         <tag>位运算</tag>
+        <tag>剑指offer</tag>
       </tags>
   </entry>
   <entry>
