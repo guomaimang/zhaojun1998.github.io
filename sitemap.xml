@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://www.zhaojun.im/friends/index.html</loc>
+    
+    <lastmod>2018-12-18T14:01:11.257Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://www.zhaojun.im/leetcode-299/</loc>
     
     <lastmod>2018-12-14T00:58:12.209Z</lastmod>
@@ -96,13 +103,6 @@
     <loc>http://www.zhaojun.im/leetcode-344/</loc>
     
     <lastmod>2018-11-21T14:17:25.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.zhaojun.im/friends/index.html</loc>
-    
-    <lastmod>2018-11-21T13:51:17.000Z</lastmod>
     
   </url>
   
