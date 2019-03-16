@@ -113,18 +113,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[LeetCode 344 Reverse String]]></title>
-    <url>%2Fleetcode-344%2F</url>
-    <content type="text"><![CDATA[题意 翻转字符串。 解法两个指针，分别在首和尾，都向中间走，直到首超过尾。 1234567891011class Solution &#123; public String reverseString(String s) &#123; char[] chars = s.toCharArray(); for (int i = 0, j = chars.length - 1; i &lt; j; i++, j--) &#123; char temp = chars[i]; chars[i] = chars[j]; chars[j] = temp; &#125; return new String(chars); &#125;&#125; Runtime: 2 ms, faster than 79.62% of Java online submissions for Reverse String.]]></content>
-      <categories>
-        <category>算法</category>
-      </categories>
-      <tags>
-        <tag>字符串</tag>
-        <tag>leetcode</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[LeetCode 557 Reverse Words in a String III]]></title>
     <url>%2Fleetcode-557%2F</url>
     <content type="text"><![CDATA[题意 给定一个字符串, 翻转字符串中的每个单词, 每个单词以空格分隔, 保留空格和初始单词顺序。 解法首先按照空格对字符串进行分隔，然后将每个单词进行翻转后再拼接回字符串即可，需要注意拼接时记得加空格，但最后一个单词不需要加。 12345678910111213141516171819class Solution &#123; public String reverseWords(String s) &#123; StringBuilder result = new StringBuilder(); String[] strs = s.split(" "); for (String str : strs) &#123; char[] chars = str.toCharArray(); for (int i = 0, j = chars.length - 1; i &lt; j; i++, j--) &#123; char c = chars[i]; chars[i] = chars[j]; chars[j] = c; &#125; result.append(new String(chars)).append(" "); &#125; return result.substring(0, result.length() - 1); &#125;&#125; Runtime: 6 ms, faster than 93.75% of Java online submissions for Reverse Words in a String III.]]></content>
@@ -137,9 +125,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[LeetCode 657 Robot Return to Origin]]></title>
-    <url>%2Fleetcode-657%2F</url>
-    <content type="text"><![CDATA[题意 其实就是给一个字符串, 每个字符包含 “U”、”D”、”L”、”R”, 分别表示上下左右, 表示机器人向这个位置走一步, 判断最终是否机器人是否还在原来的位置。 解法这道题很简单，只需要假设当前节点是 0, 0，定义两个变量, i 和 j，默认值都为 0，每当向上 i + 1，向下 i - 1，向右 j + 1，向左 j - 1。最终只需要判断 i 和 j 是否都等于 0 即可。 12345678910111213141516171819class Solution &#123; public boolean judgeCircle(String moves) &#123; int i = 0; int j = 0; char[] chars = moves.toCharArray(); for (char ch : chars) &#123; if (ch == 'U') &#123; i += 1; &#125; else if (ch == 'D') &#123; i -= 1; &#125; else if (ch == 'R') &#123; j += 1; &#125; else if (ch == 'L') &#123; j -= 1; &#125; &#125; return i == 0 &amp;&amp; j == 0; &#125;&#125; Runtime: 8 ms, faster than 97.27% of Java online submissions for Robot Return to Origin.]]></content>
+    <title><![CDATA[LeetCode 344 Reverse String]]></title>
+    <url>%2Fleetcode-344%2F</url>
+    <content type="text"><![CDATA[题意 翻转字符串。 解法两个指针，分别在首和尾，都向中间走，直到首超过尾。 1234567891011class Solution &#123; public String reverseString(String s) &#123; char[] chars = s.toCharArray(); for (int i = 0, j = chars.length - 1; i &lt; j; i++, j--) &#123; char temp = chars[i]; chars[i] = chars[j]; chars[j] = temp; &#125; return new String(chars); &#125;&#125; Runtime: 2 ms, faster than 79.62% of Java online submissions for Reverse String.]]></content>
       <categories>
         <category>算法</category>
       </categories>
@@ -152,6 +140,18 @@
     <title><![CDATA[LeetCode 520 Detect Capital]]></title>
     <url>%2Fleetcode-520%2F</url>
     <content type="text"><![CDATA[题意 给与一个单词，判断其大写字母的使用是否正确，即每个字母都是大写或都是小写，或首字母大写。 Example 1:12Input: &quot;USA&quot;Output: True Example 2:12Input: &quot;FlaG&quot;Output: False 解法定义两个变量，记录小写字母个数和大写字母个数，然后判断条件是否符合。 123456789101112131415161718192021222324252627class Solution &#123; public boolean detectCapitalUse(String word) &#123; if (word.length() &lt; 2) &#123; return true; &#125; char[] chars = word.toCharArray(); int lower = 0, upper = 0; for (int i = 0; i &lt; chars.length; i++) &#123; if (isLowerCaseLetter(chars[i])) &#123; lower++; &#125; else &#123; upper++; &#125; &#125; return lower == chars.length || upper == chars.length || (isUpperCaseLetter(chars[0]) &amp;&amp; lower == chars.length - 1); &#125; public boolean isUpperCaseLetter(char c) &#123; return c &gt;= 65 &amp;&amp; c &lt;= 90; &#125; public boolean isLowerCaseLetter(char c) &#123; return c &gt;= 97 &amp;&amp; c &lt;= 122; &#125;&#125; Runtime: 12 ms, faster than 98.36% of Java online submissions for Detect Capital.]]></content>
+      <categories>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>字符串</tag>
+        <tag>leetcode</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[LeetCode 657 Robot Return to Origin]]></title>
+    <url>%2Fleetcode-657%2F</url>
+    <content type="text"><![CDATA[题意 其实就是给一个字符串, 每个字符包含 “U”、”D”、”L”、”R”, 分别表示上下左右, 表示机器人向这个位置走一步, 判断最终是否机器人是否还在原来的位置。 解法这道题很简单，只需要假设当前节点是 0, 0，定义两个变量, i 和 j，默认值都为 0，每当向上 i + 1，向下 i - 1，向右 j + 1，向左 j - 1。最终只需要判断 i 和 j 是否都等于 0 即可。 12345678910111213141516171819class Solution &#123; public boolean judgeCircle(String moves) &#123; int i = 0; int j = 0; char[] chars = moves.toCharArray(); for (char ch : chars) &#123; if (ch == 'U') &#123; i += 1; &#125; else if (ch == 'D') &#123; i -= 1; &#125; else if (ch == 'R') &#123; j += 1; &#125; else if (ch == 'L') &#123; j -= 1; &#125; &#125; return i == 0 &amp;&amp; j == 0; &#125;&#125; Runtime: 8 ms, faster than 97.27% of Java online submissions for Robot Return to Origin.]]></content>
       <categories>
         <category>算法</category>
       </categories>
@@ -540,8 +540,8 @@
         <category>Hexo</category>
       </categories>
       <tags>
-        <tag>Hexo优化</tag>
         <tag>Hexo</tag>
+        <tag>Hexo优化</tag>
       </tags>
   </entry>
   <entry>
