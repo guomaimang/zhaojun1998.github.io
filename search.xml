@@ -1,7 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title><![CDATA[LeetCode 27 Maximum Binary Tree]]></title>
+    <title><![CDATA[LeetCode 701 Insert into a Binary Search Tree]]></title>
+    <url>%2Fleetcode-701%2F</url>
+    <content type="text"><![CDATA[题意 给定一颗 二叉搜索树 的根节点，和一个要插入的值，将值插入进去，并返回根节点 保证原树中不存在新值 只要保证返回的树同样也是 二叉搜索树 即可 例 : 1234567给予树： 4 / \ 2 7 / \ 1 3 并且要插入的值：5 您可以返回此 二叉搜索树： 12345 4 / \ 2 7 / \ /1 3 5 这棵树也有效： 1234567 5 / \ 2 7 / \ 1 3 \ 4 解法因为是二叉搜索树，所以依次判断新值与每个节点的大小即可，大于当前节点，则判断此节点的右节点与新节点。小于当前节点，则判断此节点的左节点与新节点，直到子节点为空，那么再根据此节点的大小选择放到左侧还是右侧。 12345678910111213141516171819202122232425262728293031323334353637/** * Definition for a binary tree node. * public class TreeNode &#123; * int val; * TreeNode left; * TreeNode right; * TreeNode(int x) &#123; val = x; &#125; * &#125; */class Solution &#123; public TreeNode insertIntoBST(TreeNode root, int val) &#123; if (root == null) &#123; throw new IllegalArgumentException("Tree Root can not be empty"); &#125; TreeNode current = root; TreeNode preNode = null; while (current != null) &#123; preNode = current; if (current.val &lt; val) &#123; current = current.right; &#125; else if (current.val &gt; val)&#123; current = current.left; &#125; &#125; if (preNode.val &lt; val) &#123; System.out.println("1"); preNode.right = new TreeNode(val); &#125; else &#123; System.out.println("2"); preNode.left = new TreeNode(val); &#125; return root; &#125;&#125; Runtime: 1 ms, faster than 100.00% of Java online submissions for Insert into a Binary Search Tree. Memory Usage: 39.8 MB, less than 94.61% of Java online submissions for Insert into a Binary Search Tree.]]></content>
+      <categories>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>数组</tag>
+        <tag>二叉树</tag>
+        <tag>leetcode</tag>
+        <tag>树</tag>
+        <tag>二叉搜索树</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[LeetCode 654 Maximum Binary Tree]]></title>
     <url>%2Fleetcode-654%2F</url>
     <content type="text"><![CDATA[题意 给定一个整数数组，生成一棵 最大二叉树，规则是数组中的最大值为根节点，然后分割出最大值左侧的子数组再构造 最大二叉树，最大值的右侧也构造成 最大二叉树。 例 : 12345678910输入: [3,2,1,6,0,5]输出: 返回表示以下树的根节点: 6 / \ 3 5 \ / 2 0 \ 1 解法根据题意，是经典的分而治之的题目，用递归就可以很简单的实现： 1234567891011121314151617181920public TreeNode constructMaximumBinaryTree(int[] nums) &#123; int len = nums.length; if (len == 0) &#123; return null; &#125; int max = Integer.MIN_VALUE; int maxIndex = -1; for (int i = 0; i &lt; len; i++) &#123; int num = nums[i]; if (num &gt; max) &#123; max = num; maxIndex = i; &#125; &#125; TreeNode node = new TreeNode(max); node.left = constructMaximumBinaryTree(Arrays.copyOfRange(nums, 0, maxIndex)); node.right = constructMaximumBinaryTree(Arrays.copyOfRange(nums, maxIndex + 1, len)); return node; &#125; Runtime: 6 ms, faster than 69.99% of Java online submissions for Maximum Binary Tree. Memory Usage: 39.1 MB, less than 88.96% of Java online submissions for Maximum Binary Tree.]]></content>
       <categories>
@@ -127,9 +142,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[LeetCode 344 Reverse String]]></title>
-    <url>%2Fleetcode-344%2F</url>
-    <content type="text"><![CDATA[题意 翻转字符串。 解法两个指针，分别在首和尾，都向中间走，直到首超过尾。 1234567891011class Solution &#123; public String reverseString(String s) &#123; char[] chars = s.toCharArray(); for (int i = 0, j = chars.length - 1; i &lt; j; i++, j--) &#123; char temp = chars[i]; chars[i] = chars[j]; chars[j] = temp; &#125; return new String(chars); &#125;&#125; Runtime: 2 ms, faster than 79.62% of Java online submissions for Reverse String.]]></content>
+    <title><![CDATA[LeetCode 557 Reverse Words in a String III]]></title>
+    <url>%2Fleetcode-557%2F</url>
+    <content type="text"><![CDATA[题意 给定一个字符串, 翻转字符串中的每个单词, 每个单词以空格分隔, 保留空格和初始单词顺序。 解法首先按照空格对字符串进行分隔，然后将每个单词进行翻转后再拼接回字符串即可，需要注意拼接时记得加空格，但最后一个单词不需要加。 12345678910111213141516171819class Solution &#123; public String reverseWords(String s) &#123; StringBuilder result = new StringBuilder(); String[] strs = s.split(" "); for (String str : strs) &#123; char[] chars = str.toCharArray(); for (int i = 0, j = chars.length - 1; i &lt; j; i++, j--) &#123; char c = chars[i]; chars[i] = chars[j]; chars[j] = c; &#125; result.append(new String(chars)).append(" "); &#125; return result.substring(0, result.length() - 1); &#125;&#125; Runtime: 6 ms, faster than 93.75% of Java online submissions for Reverse Words in a String III.]]></content>
       <categories>
         <category>算法</category>
       </categories>
@@ -139,9 +154,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[LeetCode 557 Reverse Words in a String III]]></title>
-    <url>%2Fleetcode-557%2F</url>
-    <content type="text"><![CDATA[题意 给定一个字符串, 翻转字符串中的每个单词, 每个单词以空格分隔, 保留空格和初始单词顺序。 解法首先按照空格对字符串进行分隔，然后将每个单词进行翻转后再拼接回字符串即可，需要注意拼接时记得加空格，但最后一个单词不需要加。 12345678910111213141516171819class Solution &#123; public String reverseWords(String s) &#123; StringBuilder result = new StringBuilder(); String[] strs = s.split(" "); for (String str : strs) &#123; char[] chars = str.toCharArray(); for (int i = 0, j = chars.length - 1; i &lt; j; i++, j--) &#123; char c = chars[i]; chars[i] = chars[j]; chars[j] = c; &#125; result.append(new String(chars)).append(" "); &#125; return result.substring(0, result.length() - 1); &#125;&#125; Runtime: 6 ms, faster than 93.75% of Java online submissions for Reverse Words in a String III.]]></content>
+    <title><![CDATA[LeetCode 344 Reverse String]]></title>
+    <url>%2Fleetcode-344%2F</url>
+    <content type="text"><![CDATA[题意 翻转字符串。 解法两个指针，分别在首和尾，都向中间走，直到首超过尾。 1234567891011class Solution &#123; public String reverseString(String s) &#123; char[] chars = s.toCharArray(); for (int i = 0, j = chars.length - 1; i &lt; j; i++, j--) &#123; char temp = chars[i]; chars[i] = chars[j]; chars[j] = temp; &#125; return new String(chars); &#125;&#125; Runtime: 2 ms, faster than 79.62% of Java online submissions for Reverse String.]]></content>
       <categories>
         <category>算法</category>
       </categories>
