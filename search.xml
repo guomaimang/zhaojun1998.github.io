@@ -1,6 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[LeetCode 700 Search in a Binary Search Tree]]></title>
+    <url>%2Fleetcode-700%2F</url>
+    <content type="text"><![CDATA[题意 给定一颗 二叉搜索树 的根节点，和一个要插入的值，将值插入进去，并返回根节点 保证原树中不存在新值 只要保证返回的树同样也是 二叉搜索树 即可 例:123456给予一棵树: 4 / \ 2 7 / \ 1 3 对于搜索值: 2, 你应该返回以下子树:123 2 / \ 1 3 解法因为是二叉搜索树, 所以根据二叉搜索树的规则遍历即可. 1234567891011121314151617181920212223/** * Definition for a binary tree node. * public class TreeNode &#123; * int val; * TreeNode left; * TreeNode right; * TreeNode(int x) &#123; val = x; &#125; * &#125; */class Solution &#123; public TreeNode searchBST(TreeNode root, int val) &#123; while (root != null) &#123; if (root.val &lt; val) &#123; root = root.right; &#125; else if (root.val &gt; val) &#123; root = root.left; &#125; else &#123; return root; &#125; &#125; return root; &#125;&#125; Runtime: 0 ms, faster than 100.00% of Java online submissions for Search in a Binary Search Tree. Memory Usage: 40.4 MB, less than 17.60% of Java online submissions for Search in a Binary Search Tree.]]></content>
+      <categories>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>递归</tag>
+        <tag>二叉树</tag>
+        <tag>leetcode</tag>
+        <tag>树</tag>
+        <tag>二叉搜索树</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[LeetCode 344 Merge Two Binary Trees]]></title>
     <url>%2Fleetcode-617%2F</url>
     <content type="text"><![CDATA[题意合并两颗二叉树, 合并规则是相同位置的值进行相加, 返回生成后二叉树的根节点. 例 : 12345678910111213输入: Tree 1 Tree 2 1 2 / \ / \ 3 2 1 3 / \ \ 5 4 7 输出: 3 / \ 4 5 / \ \ 5 4 7 解法基本思路是将两棵树, 合并到左树上, 基本规则是只有当 tree1 和 tree2 相同位置的节点都不为空时, 才能进行相加操作, 当 tree1 为空时, 把 tree2 的节点嫁接过来, 当 tree2 为空时, 保留 tree1 即可. 以此类推, 把每个节点都看成根节点即可. 1234567891011121314class Solution &#123; public TreeNode mergeTrees(TreeNode t1, TreeNode t2) &#123; if (t1 == null) &#123; return t2; &#125; else if (t2 == null) &#123; return t1; &#125; t1.val += t2.val; t1.left = mergeTrees(t1.left, t2.left); t1.right = mergeTrees(t1.right, t2.right); return t1; &#125;&#125; Runtime: 0 ms, faster than 100.00% of Java online submissions for Merge Two Binary Trees.Memory Usage: 41.2 MB, less than 78.32% of Java online submissions for Merge Two Binary Trees.]]></content>
@@ -223,9 +238,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[LeetCode 520 Detect Capital]]></title>
-    <url>%2Fleetcode-520%2F</url>
-    <content type="text"><![CDATA[题意 给与一个单词，判断其大写字母的使用是否正确，即每个字母都是大写或都是小写，或首字母大写。 Example 1:12Input: &quot;USA&quot;Output: True Example 2:12Input: &quot;FlaG&quot;Output: False 解法定义两个变量，记录小写字母个数和大写字母个数，然后判断条件是否符合。 123456789101112131415161718192021222324252627class Solution &#123; public boolean detectCapitalUse(String word) &#123; if (word.length() &lt; 2) &#123; return true; &#125; char[] chars = word.toCharArray(); int lower = 0, upper = 0; for (int i = 0; i &lt; chars.length; i++) &#123; if (isLowerCaseLetter(chars[i])) &#123; lower++; &#125; else &#123; upper++; &#125; &#125; return lower == chars.length || upper == chars.length || (isUpperCaseLetter(chars[0]) &amp;&amp; lower == chars.length - 1); &#125; public boolean isUpperCaseLetter(char c) &#123; return c &gt;= 65 &amp;&amp; c &lt;= 90; &#125; public boolean isLowerCaseLetter(char c) &#123; return c &gt;= 97 &amp;&amp; c &lt;= 122; &#125;&#125; Runtime: 12 ms, faster than 98.36% of Java online submissions for Detect Capital.]]></content>
+    <title><![CDATA[LeetCode 657 Robot Return to Origin]]></title>
+    <url>%2Fleetcode-657%2F</url>
+    <content type="text"><![CDATA[题意 其实就是给一个字符串, 每个字符包含 “U”、”D”、”L”、”R”, 分别表示上下左右, 表示机器人向这个位置走一步, 判断最终是否机器人是否还在原来的位置。 解法这道题很简单，只需要假设当前节点是 0, 0，定义两个变量, i 和 j，默认值都为 0，每当向上 i + 1，向下 i - 1，向右 j + 1，向左 j - 1。最终只需要判断 i 和 j 是否都等于 0 即可。 12345678910111213141516171819class Solution &#123; public boolean judgeCircle(String moves) &#123; int i = 0; int j = 0; char[] chars = moves.toCharArray(); for (char ch : chars) &#123; if (ch == 'U') &#123; i += 1; &#125; else if (ch == 'D') &#123; i -= 1; &#125; else if (ch == 'R') &#123; j += 1; &#125; else if (ch == 'L') &#123; j -= 1; &#125; &#125; return i == 0 &amp;&amp; j == 0; &#125;&#125; Runtime: 8 ms, faster than 97.27% of Java online submissions for Robot Return to Origin.]]></content>
       <categories>
         <category>算法</category>
       </categories>
@@ -235,9 +250,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[LeetCode 657 Robot Return to Origin]]></title>
-    <url>%2Fleetcode-657%2F</url>
-    <content type="text"><![CDATA[题意 其实就是给一个字符串, 每个字符包含 “U”、”D”、”L”、”R”, 分别表示上下左右, 表示机器人向这个位置走一步, 判断最终是否机器人是否还在原来的位置。 解法这道题很简单，只需要假设当前节点是 0, 0，定义两个变量, i 和 j，默认值都为 0，每当向上 i + 1，向下 i - 1，向右 j + 1，向左 j - 1。最终只需要判断 i 和 j 是否都等于 0 即可。 12345678910111213141516171819class Solution &#123; public boolean judgeCircle(String moves) &#123; int i = 0; int j = 0; char[] chars = moves.toCharArray(); for (char ch : chars) &#123; if (ch == 'U') &#123; i += 1; &#125; else if (ch == 'D') &#123; i -= 1; &#125; else if (ch == 'R') &#123; j += 1; &#125; else if (ch == 'L') &#123; j -= 1; &#125; &#125; return i == 0 &amp;&amp; j == 0; &#125;&#125; Runtime: 8 ms, faster than 97.27% of Java online submissions for Robot Return to Origin.]]></content>
+    <title><![CDATA[LeetCode 520 Detect Capital]]></title>
+    <url>%2Fleetcode-520%2F</url>
+    <content type="text"><![CDATA[题意 给与一个单词，判断其大写字母的使用是否正确，即每个字母都是大写或都是小写，或首字母大写。 Example 1:12Input: &quot;USA&quot;Output: True Example 2:12Input: &quot;FlaG&quot;Output: False 解法定义两个变量，记录小写字母个数和大写字母个数，然后判断条件是否符合。 123456789101112131415161718192021222324252627class Solution &#123; public boolean detectCapitalUse(String word) &#123; if (word.length() &lt; 2) &#123; return true; &#125; char[] chars = word.toCharArray(); int lower = 0, upper = 0; for (int i = 0; i &lt; chars.length; i++) &#123; if (isLowerCaseLetter(chars[i])) &#123; lower++; &#125; else &#123; upper++; &#125; &#125; return lower == chars.length || upper == chars.length || (isUpperCaseLetter(chars[0]) &amp;&amp; lower == chars.length - 1); &#125; public boolean isUpperCaseLetter(char c) &#123; return c &gt;= 65 &amp;&amp; c &lt;= 90; &#125; public boolean isLowerCaseLetter(char c) &#123; return c &gt;= 97 &amp;&amp; c &lt;= 122; &#125;&#125; Runtime: 12 ms, faster than 98.36% of Java online submissions for Detect Capital.]]></content>
       <categories>
         <category>算法</category>
       </categories>
