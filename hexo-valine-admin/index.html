@@ -1857,7 +1857,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #410eff;
+  background: #f1d675;
 }
 .feed-link,
 .chat {
@@ -3352,7 +3352,7 @@ ul.breadcrumb li+li:last-child {
 <li>6.14 添加自定义邮件服务器功能. <a href="/高级配置.md#自定义邮件服务器">点击查看</a></li>
 </ul>
 <h2 id="升级-FAQ"><a href="#升级-FAQ" class="headerlink" title="升级 FAQ"></a>升级 FAQ</h2><p><strong>部署最新代码 :</strong></p>
-<p><img src="https://cdn.jun6.net/201806070911_388.png" width="600"></p>
+<p><img src="/images/loading2.gif" data-original="https://cdn.jun6.net/201806070911_388.png" width="600"></p>
 <p><strong>重启容器:</strong></p>
 <p><img width="500" src="https://cdn.jun6.net/201807081507_968.png"></p>
 <blockquote>
@@ -3366,13 +3366,13 @@ ul.breadcrumb li+li:last-child {
 </ul>
 <p>分析了一下上方的策略，如果不想付费的话，最佳使用方案就设置<strong>定时器</strong>，每天 7 - 23 点每 20 分钟访问一次，这样可以保持每天的绝大多数时间邮件服务是正常的。</p>
 <h3 id="LeanCloud-自带定时器-推荐"><a href="#LeanCloud-自带定时器-推荐" class="headerlink" title="LeanCloud 自带定时器[推荐]"></a>LeanCloud 自带定时器[推荐]</h3><p>首先需要添加环境变量，<code>ADMIN_URL</code>：<code>Web 主机域名</code>，如图所示（添加后重启容器才会生效）：</p>
-<p><img src="https://cdn.jun6.net/201812011409_167.png" width="400"></p>
+<p><img src="/images/loading2.gif" data-original="https://cdn.jun6.net/201812011409_167.png" width="400"></p>
 <p>然后点击云引擎 - 定时任务，新增定时器，按照图片上填写：</p>
-<p><img src="https://cdn.jun6.net/201812011433_568.png" width="650"></p>
+<p><img src="/images/loading2.gif" data-original="https://cdn.jun6.net/201812011433_568.png" width="650"></p>
 <p>添加后要记得<strong>点击启用</strong>：</p>
-<p><img src="https://cdn.jun6.net/201812011434_118.png" alt=""></p>
+<p><img src="/images/loading2.gif" data-original="https://cdn.jun6.net/201812011434_118.png" alt=""></p>
 <p>启用成功后，每 20 分钟在云引擎的 - 应用日志中可以看到提示：</p>
-<p><img src="https://cdn.jun6.net/201812011444_783.png" width="500"></p>
+<p><img src="/images/loading2.gif" data-original="https://cdn.jun6.net/201812011444_783.png" width="500"></p>
 <h3 id="Linux-定时器-老版本方式"><a href="#Linux-定时器-老版本方式" class="headerlink" title="Linux 定时器[老版本方式]"></a>Linux 定时器[老版本方式]</h3><p>附 <code>Linux crontab</code> 定时器代码：</p>
 <figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">*/20 7-23 * * * curl https://你配置的域名前缀.leanapp.cn</span><br></pre></td></tr></tbody></table></figure>
 <blockquote>
@@ -3879,7 +3879,7 @@ ul.breadcrumb li+li:last-child {
               
               
               
-              <span class="exturl cc-opacity" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC9kZWVkLnpo"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></span>
+              <span class="exturl cc-opacity" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC9kZWVkLnpo"><img src="/images/loading2.gif" data-original="/images/cc-by-nc-sa.svg" alt="Creative Commons"></span>
              </div>
           
 
@@ -4548,4 +4548,4 @@ ul.breadcrumb li+li:last-child {
         $b.text('复制');
       }, 300);
     }).append(e);
-  })</script></body></html>
+  });!function(e){var l=Array.prototype.slice.call(document.querySelectorAll("img[data-original]"));function t(){for(var r=0;r<l.length;r++)t=l[r],void 0,0<=(n=t.getBoundingClientRect()).top&&0<=n.left&&n.top<=(e.innerHeight||document.documentElement.clientHeight)&&function(t){var n,e,i,o,c=l[r];n=c,e=function(){l=l.filter(function(t){return c!==t})},i=new Image,o=n.getAttribute("data-original"),i.onload=function(){n.src=o,e&&e()},i.src=o}();var t,n}t(),e.addEventListener("scroll",function(){!function(t,n){clearTimeout(t.tId),t.tId=setTimeout(function(){t.call(n)},500)}(t,e)})}(this);</script></body></html>

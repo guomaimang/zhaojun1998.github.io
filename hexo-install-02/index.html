@@ -1850,7 +1850,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #410eff;
+  background: #f1d675;
 }
 .feed-link,
 .chat {
@@ -3326,7 +3326,7 @@ ul.breadcrumb li+li:last-child {
 <blockquote>
 <p>当你看到站点的外观与下图所示类似时即说明你已成功安装 NexT 主题。这是 NexT 默认的 Scheme —— Muse</p>
 </blockquote>
-<p><img src="https://cdn.jun6.net/image_1b959is6t1h57rth1o4l18pe1rscm.png" alt="image_1b959is6t1h57rth1o4l18pe1rscm.png-54.1kB"></p>
+<p><img src="/images/loading2.gif" data-original="https://cdn.jun6.net/image_1b959is6t1h57rth1o4l18pe1rscm.png" alt="image_1b959is6t1h57rth1o4l18pe1rscm.png-54.1kB"></p>
 <p>现在，你已经成功安装并启用了 NexT 主题。下一步我们将要更改一些主题的设定，包括个性化以及集成第三方服务。</p>
 <h2 id="主题设定"><a href="#主题设定" class="headerlink" title="主题设定"></a>主题设定</h2><h3 id="选择-Scheme"><a href="#选择-Scheme" class="headerlink" title="选择 Scheme"></a>选择 Scheme</h3><p>Scheme 是 NexT 提供的一种特性，借助于 Scheme，NexT 为你提供多种不同的外观。同时，几乎所有的配置都可以 在 Scheme 之间共用。目前 NexT 支持三种 Scheme，他们是：</p>
 <ul>
@@ -3368,7 +3368,7 @@ ul.breadcrumb li+li:last-child {
 <h4 id="设置菜单项的显示文本"><a href="#设置菜单项的显示文本" class="headerlink" title="设置菜单项的显示文本"></a>设置菜单项的显示文本</h4><p>在第一步中设置的菜单的名称并不直接用于界面上的展示。Hexo 在生成的时候将使用 这个名称查找对应的语言翻译，并提取显示文本。这些翻译文本放置在 NexT 主题目录下的 languages/{language}.yml （{language} 为你所使用的语言）。</p>
 <p>以简体中文为例，若你需要添加一个菜单项，比如 <code>something</code>。那么就需要修改简体中文对应的翻译文件 <code>languages/zh-Hans.yml</code>，在 menu 字段下添加一项：</p>
 <figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">menu:</span><br><span class="line">  home: 首页</span><br><span class="line">  archives: 归档</span><br><span class="line">  categories: 分类</span><br><span class="line">  tags: 标签</span><br><span class="line">  about: 关于</span><br><span class="line">  search: 搜索</span><br><span class="line">  commonweal: 公益404</span><br><span class="line">  something: 有料</span><br><span class="line">  <span class="comment">##为我们刚才设置的百度链接设置中文字体显示</span></span><br><span class="line">  baidu: 百度</span><br></pre></td></tr></tbody></table></figure>
-<h4 id="设置菜单项的图标"><a href="#设置菜单项的图标" class="headerlink" title="设置菜单项的图标"></a>设置菜单项的图标</h4><p>可以看到默认的3个菜单前都有小图标<br><img src="https://cdn.jun6.net/image_1b95eae6judk1a5f1f8r1kg21v719.png" alt="image_1b95eae6judk1a5f1f8r1kg21v719.png-6.6kB"></p>
+<h4 id="设置菜单项的图标"><a href="#设置菜单项的图标" class="headerlink" title="设置菜单项的图标"></a>设置菜单项的图标</h4><p>可以看到默认的3个菜单前都有小图标<br><img src="/images/loading2.gif" data-original="https://cdn.jun6.net/image_1b95eae6judk1a5f1f8r1kg21v719.png" alt="image_1b95eae6judk1a5f1f8r1kg21v719.png-6.6kB"></p>
 <p>下面我们为刚才设置的<code>百度</code>添加图标。找到 <code>menu_icons</code> 字段。<br>格式是 <code>item name : icon name</code>,其中<code>item name</code>就是刚才我们设置的名字<code>baidu</code>,而<code>icon name</code>是<span class="exturl" data-url="aHR0cDovL2ZvbnRhd2Vzb21lLmlvL2ljb25zLw==" title="http://fontawesome.io/icons/">Font Awesome<i class="fa fa-external-link"></i></span>图标的名称。</p>
 <figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">menu_icons:</span><br><span class="line">  <span class="built_in">enable</span>: <span class="literal">true</span>  <span class="comment">##控制是否显示图标，默认为true。</span></span><br><span class="line">  <span class="comment"># Icon Mapping.</span></span><br><span class="line">  home: home</span><br><span class="line">  about: user</span><br><span class="line">  categories: th</span><br><span class="line">  tags: tags</span><br><span class="line">  archives: archive</span><br><span class="line">  commonweal: heartbeat</span><br><span class="line">  </span><br><span class="line">  <span class="comment">##为 baidu 设置图标 ， 如未配置，则会使用 ？ 作为图标。</span></span><br><span class="line">  baidu: bookmark</span><br></pre></td></tr></tbody></table></figure>
 <h3 id="设置作者昵称"><a href="#设置作者昵称" class="headerlink" title="设置作者昵称"></a>设置作者昵称</h3><p>编辑 <code>站点配置文件</code>， 设置 author 为你的昵称。</p>
@@ -3397,7 +3397,7 @@ ul.breadcrumb li+li:last-child {
 </ol>
 <ul>
 <li>登录后在首页选择 “我要安装”。</li>
-<li>创建站点，填写站点相关信息。注意，多说域名 这一栏填写的即是你的 <code>duoshuo_shortname</code>。<br><img src="https://cdn.jun6.net/image_1b9dvj10q8lg7hm1i5u113017n79.png" alt="image_1b9dvj10q8lg7hm1i5u113017n79.png-107.5kB"></li>
+<li>创建站点，填写站点相关信息。注意，多说域名 这一栏填写的即是你的 <code>duoshuo_shortname</code>。<br><img src="/images/loading2.gif" data-original="https://cdn.jun6.net/image_1b9dvj10q8lg7hm1i5u113017n79.png" alt="image_1b9dvj10q8lg7hm1i5u113017n79.png-107.5kB"></li>
 </ul>
 <ol start="2">
 <li>编辑<code>站点配置文件</code> 添加 <code>duoshuo_shortname</code> 字段（先搜索，如果有就不用），设置如下<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">duoshuo_shortname: your-duoshuo-shortname</span><br></pre></td></tr></tbody></table></figure>
@@ -3938,7 +3938,7 @@ ul.breadcrumb li+li:last-child {
               
               
               
-              <span class="exturl cc-opacity" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC9kZWVkLnpo"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></span>
+              <span class="exturl cc-opacity" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC9kZWVkLnpo"><img src="/images/loading2.gif" data-original="/images/cc-by-nc-sa.svg" alt="Creative Commons"></span>
              </div>
           
 
@@ -4607,4 +4607,4 @@ ul.breadcrumb li+li:last-child {
         $b.text('复制');
       }, 300);
     }).append(e);
-  })</script></body></html>
+  });!function(e){var l=Array.prototype.slice.call(document.querySelectorAll("img[data-original]"));function t(){for(var r=0;r<l.length;r++)t=l[r],void 0,0<=(n=t.getBoundingClientRect()).top&&0<=n.left&&n.top<=(e.innerHeight||document.documentElement.clientHeight)&&function(t){var n,e,i,o,c=l[r];n=c,e=function(){l=l.filter(function(t){return c!==t})},i=new Image,o=n.getAttribute("data-original"),i.onload=function(){n.src=o,e&&e()},i.src=o}();var t,n}t(),e.addEventListener("scroll",function(){!function(t,n){clearTimeout(t.tId),t.tId=setTimeout(function(){t.call(n)},500)}(t,e)})}(this);</script></body></html>

@@ -1850,7 +1850,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #410eff;
+  background: #f1d675;
 }
 .feed-link,
 .chat {
@@ -3342,7 +3342,7 @@ ul.breadcrumb li+li:last-child {
 <p>解压<br></p><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">unzip aria-ng-0.3.0.zip</span><br><span class="line">rm -rf aria-ng-0.3.0.zip</span><br></pre></td></tr></tbody></table></figure><p></p>
 <h2 id="配置域名及-SSL-证书"><a href="#配置域名及-SSL-证书" class="headerlink" title="配置域名及 SSL 证书"></a>配置域名及 SSL 证书</h2><p>阿里有提供免费的 SSL 证书，打开阿里云官网 -&gt; 管理控制台 -&gt; 左侧的安全(云盾) -&gt; CA 证书服务。</p>
 <p>填写相应的信息，申请两个即可，我这里申请是 pan.zhaojun1998.com 和 aria.zhaojun1998.com 的证书。</p>
-<p>申请后几分钟内会自动通过，然后下载证书。<br><img src="https://cdn.jun6.net/201801041355_479.png" alt=""></p>
+<p>申请后几分钟内会自动通过，然后下载证书。<br><img src="/images/loading2.gif" data-original="https://cdn.jun6.net/201801041355_479.png" alt=""></p>
 <p>接下来就是如何将证书上传到服务器的问题了，可以通过前面配置的 kodcloud 云打开 <span class="exturl" data-url="aHR0cDovL2lwL2tvZGNsb3Vk" title="http://ip/kodcloud">http://ip/kodcloud<i class="fa fa-external-link"></i></span> 将证书上传进去，或 ftp 等方式。（只需要上传 数字.key 和 数字.pem 即可）</p>
 <p>最后在 <code>/opt/lampp/apache2</code> 目录下建立一个文件夹 cert，将证书放进来。</p>
 <p>然后编辑 /opt/lampp/apache2/conf/httpd.conf，将域名对应上站点路径和证书。</p>
@@ -3355,7 +3355,7 @@ ul.breadcrumb li+li:last-child {
 <p>修改 root 用户创建文件的默认权限，将超级用户的 uamsk 修改为 002 即可，这个计算方式有兴趣的自行查阅：<br></p><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/bashrc     71行是普通用户的更改，73是超级用户的更改</span><br><span class="line">vim /etc/profile    60行是普通用户的更改，62是超级用户的更改</span><br><span class="line"></span><br><span class="line">source /etc/bashrc      ##刷新bash配置</span><br><span class="line">source /etc/profile     ##刷新系统配置</span><br></pre></td></tr></tbody></table></figure><p></p>
 <p>将 daemon 添加到 root 组<br></p><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">usermod -a -G root daemon</span><br></pre></td></tr></tbody></table></figure><p></p>
 <p>重启 xampp 服务<br></p><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/opt/lampp/lampp restart</span><br></pre></td></tr></tbody></table></figure><p></p>
-<h2 id="结果展示"><a href="#结果展示" class="headerlink" title="结果展示"></a>结果展示</h2><p><img src="https://cdn.jun6.net/201801041435_853.png" alt="aria2"><br><img src="https://cdn.jun6.net/201801041435_111.png" alt="kodcloud"></p>
+<h2 id="结果展示"><a href="#结果展示" class="headerlink" title="结果展示"></a>结果展示</h2><p><img src="/images/loading2.gif" data-original="https://cdn.jun6.net/201801041435_853.png" alt="aria2"><br><img src="/images/loading2.gif" data-original="https://cdn.jun6.net/201801041435_111.png" alt="kodcloud"></p>
 
       
     </div>
@@ -3857,7 +3857,7 @@ ul.breadcrumb li+li:last-child {
               
               
               
-              <span class="exturl cc-opacity" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC9kZWVkLnpo"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></span>
+              <span class="exturl cc-opacity" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC9kZWVkLnpo"><img src="/images/loading2.gif" data-original="/images/cc-by-nc-sa.svg" alt="Creative Commons"></span>
              </div>
           
 
@@ -4526,4 +4526,4 @@ ul.breadcrumb li+li:last-child {
         $b.text('复制');
       }, 300);
     }).append(e);
-  })</script></body></html>
+  });!function(e){var l=Array.prototype.slice.call(document.querySelectorAll("img[data-original]"));function t(){for(var r=0;r<l.length;r++)t=l[r],void 0,0<=(n=t.getBoundingClientRect()).top&&0<=n.left&&n.top<=(e.innerHeight||document.documentElement.clientHeight)&&function(t){var n,e,i,o,c=l[r];n=c,e=function(){l=l.filter(function(t){return c!==t})},i=new Image,o=n.getAttribute("data-original"),i.onload=function(){n.src=o,e&&e()},i.src=o}();var t,n}t(),e.addEventListener("scroll",function(){!function(t,n){clearTimeout(t.tId),t.tId=setTimeout(function(){t.call(n)},500)}(t,e)})}(this);</script></body></html>

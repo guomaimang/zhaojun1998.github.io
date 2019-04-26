@@ -1849,7 +1849,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #410eff;
+  background: #f1d675;
 }
 .feed-link,
 .chat {
@@ -3311,8 +3311,8 @@ ul.breadcrumb li+li:last-child {
       
         <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>你是否有过排查某个用户的操作出现 BUG 时, 从茫茫日志中寻找这个用户操作的痛苦经历, SLF4J 为我们提供了一种基于 <code>ThreadLocal</code> 来实现的 <code>MDC</code> 功能, 用来将自定义信息放入到日志中.</p>
 <p>你可能没太明白啥意思, 那么先来看看效果把:</p>
-<p>普通日志:<br><img src="https://cdn.jun6.net/201902041823_308.png" alt=""></p>
-<p>加上MDC的日志:<br><img src="https://cdn.jun6.net/201902041825_734.png" alt=""></p>
+<p>普通日志:<br><img src="/images/loading2.gif" data-original="https://cdn.jun6.net/201902041823_308.png" alt=""></p>
+<p>加上MDC的日志:<br><img src="/images/loading2.gif" data-original="https://cdn.jun6.net/201902041825_734.png" alt=""></p>
 <a id="more"></a>
 <h2 id="食用方式"><a href="#食用方式" class="headerlink" title="食用方式"></a>食用方式</h2><p>可以使用过滤器, 拦截器或 AOP 等方式来实现, 即在用户请求时, 将用户信息写入到 <code>MDC</code> 中, 然后在请求完成后, 清空此 MDC.</p>
 <p>我这里使用 SpringMVC 的拦截器 <code>HandlerInterceptor</code> 来演示下, (我这里使用了 Shiro, 所以会调用 Shiro 的代码来获取当前登录用户):</p>
@@ -3820,7 +3820,7 @@ ul.breadcrumb li+li:last-child {
               
               
               
-              <span class="exturl cc-opacity" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC9kZWVkLnpo"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></span>
+              <span class="exturl cc-opacity" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC9kZWVkLnpo"><img src="/images/loading2.gif" data-original="/images/cc-by-nc-sa.svg" alt="Creative Commons"></span>
              </div>
           
 
@@ -4489,4 +4489,4 @@ ul.breadcrumb li+li:last-child {
         $b.text('复制');
       }, 300);
     }).append(e);
-  })</script></body></html>
+  });!function(e){var l=Array.prototype.slice.call(document.querySelectorAll("img[data-original]"));function t(){for(var r=0;r<l.length;r++)t=l[r],void 0,0<=(n=t.getBoundingClientRect()).top&&0<=n.left&&n.top<=(e.innerHeight||document.documentElement.clientHeight)&&function(t){var n,e,i,o,c=l[r];n=c,e=function(){l=l.filter(function(t){return c!==t})},i=new Image,o=n.getAttribute("data-original"),i.onload=function(){n.src=o,e&&e()},i.src=o}();var t,n}t(),e.addEventListener("scroll",function(){!function(t,n){clearTimeout(t.tId),t.tId=setTimeout(function(){t.call(n)},500)}(t,e)})}(this);</script></body></html>

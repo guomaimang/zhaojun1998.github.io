@@ -1851,7 +1851,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #410eff;
+  background: #f1d675;
 }
 .feed-link,
 .chat {
@@ -3419,21 +3419,21 @@ ul.breadcrumb li+li:last-child {
 </ol>
 <h3 id="内置标签"><a href="#内置标签" class="headerlink" title="内置标签"></a>内置标签</h3><p>标签插件和 Front-matter 中的标签不同，它们是用于在文章中快速插入特定内容的插件。</p>
 <h4 id="文本居中"><a href="#文本居中" class="headerlink" title="文本居中"></a>文本居中</h4><p><strong>使用方式：</strong><br></p><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- HTML方式: 直接在 Markdown 文件中编写 HTML 来调用 --&gt;</span><br><span class="line">&lt;!-- 其中 class="blockquote-center" 是必须的 --&gt;</span><br><span class="line">  &lt;blockquote class="blockquote-center"&gt;blah blah blah&lt;/blockquote&gt;</span><br><span class="line"></span><br><span class="line">  &lt;!-- 标签 方式，要求版本在0.4.5或以上 --&gt;</span><br><span class="line">{% centerquote %}blah blah blah{% endcenterquote %}</span><br><span class="line"></span><br><span class="line">  &lt;!-- 标签别名 --&gt;</span><br><span class="line">{% cq %} blah blah blah {% endcq %}</span><br></pre></td></tr></tbody></table></figure><p></p>
-<p><strong>效果示例：</strong><br><img src="https://cdn.jun6.net/image_1b9gddh6jutf3091gv41jdl5ta9.png" alt="image_1b9gddh6jutf3091gv41jdl5ta9.png-24.8kB"></p>
+<p><strong>效果示例：</strong><br><img src="/images/loading2.gif" data-original="https://cdn.jun6.net/image_1b9gddh6jutf3091gv41jdl5ta9.png" alt="image_1b9gddh6jutf3091gv41jdl5ta9.png-24.8kB"></p>
 <h4 id="引用块"><a href="#引用块" class="headerlink" title="引用块"></a>引用块</h4><p>在文章中插入引言，可包含作者、来源和标题。<br></p><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">{% blockquote [author[, source]] [link] [source_link_title] %}</span><br><span class="line">content</span><br><span class="line">{% endblockquote %}</span><br></pre></td></tr></tbody></table></figure><p></p>
 <p>简单点说两种用法：</p>
 <ul>
 <li>引用名人名言<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">{% blockquote 鲁迅, 《记念刘和珍君》%}</span><br><span class="line">真的猛士，敢于直面惨淡的人生，敢于正视淋漓的鲜血</span><br><span class="line">{% endblockquote %}</span><br></pre></td></tr></tbody></table></figure>
 </li>
 </ul>
-<p><img src="https://cdn.jun6.net/image_1b9bd4cq3pk7b3o1u5g721bpum.png" alt="image_1b9bd4cq3pk7b3o1u5g721bpum.png-12.9kB"></p>
+<p><img src="/images/loading2.gif" data-original="https://cdn.jun6.net/image_1b9bd4cq3pk7b3o1u5g721bpum.png" alt="image_1b9bd4cq3pk7b3o1u5g721bpum.png-12.9kB"></p>
 <ul>
 <li>引用别人网站的文章或其他<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">{% blockquote @DevDocs https://twitter.com/devdocs/status/356095192085962752 %}</span><br><span class="line">NEW: DevDocs now comes with syntax highlighting. http://devdocs.io</span><br><span class="line">{% endblockquote %}</span><br></pre></td></tr></tbody></table></figure>
 </li>
 </ul>
-<p><img src="https://cdn.jun6.net/image_1b9bdj4edtvgt5k1h6512m116of13.png" alt="image_1b9bdj4edtvgt5k1h6512m116of13.png-22.5kB"></p>
+<p><img src="/images/loading2.gif" data-original="https://cdn.jun6.net/image_1b9bdj4edtvgt5k1h6512m116of13.png" alt="image_1b9bdj4edtvgt5k1h6512m116of13.png-22.5kB"></p>
 <h4 id="突破容器宽度限制的图片"><a href="#突破容器宽度限制的图片" class="headerlink" title="突破容器宽度限制的图片"></a>突破容器宽度限制的图片</h4><p>当使用此标签引用图片时，图片将自动扩大 26%，并突破文章容器的宽度。 此标签使用于需要突出显示的图片, 图片的扩大与容器的偏差从视觉上提升图片的吸引力。 此标签有两种调用方式（详细参看底下示例）：<br><strong>使用方式：</strong><br></p><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- HTML方式: 直接在 Markdown 文件中编写 HTML 来调用 --&gt;</span><br><span class="line">&lt;!-- 其中 class="full-image" 是必须的 --&gt;</span><br><span class="line">&lt;img src="/image-url" class="full-image" /&gt;</span><br><span class="line"></span><br><span class="line">    &lt;!-- 标签 方式，要求版本在0.4.5或以上 --&gt;</span><br><span class="line">{% fullimage /image-url, alt, title %}</span><br><span class="line"></span><br><span class="line">&lt;!-- 别名 --&gt;</span><br><span class="line">{% fi /image-url, alt, title %}</span><br></pre></td></tr></tbody></table></figure><p></p>
-<p><strong>效果示例：</strong><br><img src="https://cdn.jun6.net/image_1b9gdr6eq1j7b1lvu1gfh1fb820b13.png" alt="image_1b9gdr6eq1j7b1lvu1gfh1fb820b13.png-1313.3kB"></p>
+<p><strong>效果示例：</strong><br><img src="/images/loading2.gif" data-original="https://cdn.jun6.net/image_1b9gdr6eq1j7b1lvu1gfh1fb820b13.png" alt="image_1b9gdr6eq1j7b1lvu1gfh1fb820b13.png-1313.3kB"></p>
 
       
     </div>
@@ -3931,7 +3931,7 @@ ul.breadcrumb li+li:last-child {
               
               
               
-              <span class="exturl cc-opacity" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC9kZWVkLnpo"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></span>
+              <span class="exturl cc-opacity" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC9kZWVkLnpo"><img src="/images/loading2.gif" data-original="/images/cc-by-nc-sa.svg" alt="Creative Commons"></span>
              </div>
           
 
@@ -4600,4 +4600,4 @@ ul.breadcrumb li+li:last-child {
         $b.text('复制');
       }, 300);
     }).append(e);
-  })</script></body></html>
+  });!function(e){var l=Array.prototype.slice.call(document.querySelectorAll("img[data-original]"));function t(){for(var r=0;r<l.length;r++)t=l[r],void 0,0<=(n=t.getBoundingClientRect()).top&&0<=n.left&&n.top<=(e.innerHeight||document.documentElement.clientHeight)&&function(t){var n,e,i,o,c=l[r];n=c,e=function(){l=l.filter(function(t){return c!==t})},i=new Image,o=n.getAttribute("data-original"),i.onload=function(){n.src=o,e&&e()},i.src=o}();var t,n}t(),e.addEventListener("scroll",function(){!function(t,n){clearTimeout(t.tId),t.tId=setTimeout(function(){t.call(n)},500)}(t,e)})}(this);</script></body></html>

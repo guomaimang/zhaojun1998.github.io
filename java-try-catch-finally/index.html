@@ -1848,7 +1848,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #410eff;
+  background: #f1d675;
 }
 .feed-link,
 .chat {
@@ -3320,7 +3320,7 @@ ul.breadcrumb li+li:last-child {
 <li>回到 <code>main</code> 方法中的第一行输出语句，输出 <code>"A"</code>，然后执行 <code>main</code> 方法中的第二条输出语句，输出 <code>"A"</code></li>
 </ol>
 <blockquote>
-<p>所以，结果不应该是 “ABAA” 么，因为 return 中已经将 “A” 赋值给 s 了，那么 s 的值不应该是 “A” 么，这时返回值就是 “A”，再怎么第二条输出语句也不能是 “B” 呀，可看着开发工具输出的结果，我也很无奈，我当时是这个表情。。。<br><img src="https://cdn.jun6.net/201712071645_997.png" alt=""></p>
+<p>所以，结果不应该是 “ABAA” 么，因为 return 中已经将 “A” 赋值给 s 了，那么 s 的值不应该是 “A” 么，这时返回值就是 “A”，再怎么第二条输出语句也不能是 “B” 呀，可看着开发工具输出的结果，我也很无奈，我当时是这个表情。。。<br><img src="/images/loading2.gif" data-original="https://cdn.jun6.net/201712071645_997.png" alt=""></p>
 </blockquote>
 <p>但我相信开发工具是不会骗我的，一定是我自己的理解有问题，然后自己又写了几个类似的例子来测试，最后得出的结论是：<strong> finally 语句块在 return 语句之后，return 返回之前执行</strong>，可能这句话不是那么容易理解，来看下面的例子吧，看完我相信你应该能明白我这句话是什么意思了。</p>
 <h2 id="例一"><a href="#例一" class="headerlink" title="例一"></a>例一</h2><p>证明：<code>finally 语句块在 return 语句之后，return 返回之前执行。</code><br></p><figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FinallyTest1</span> </span>{</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>{</span><br><span class="line">        System.out.println(test1());</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">test1</span><span class="params">()</span> </span>{</span><br><span class="line">        <span class="keyword">int</span> b = <span class="number">20</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">try</span> {</span><br><span class="line">            System.out.println(<span class="string">"try block"</span>);</span><br><span class="line"></span><br><span class="line">            <span class="keyword">return</span> b += <span class="number">80</span>;</span><br><span class="line">        } <span class="keyword">catch</span> (Exception e) {</span><br><span class="line">            System.out.println(<span class="string">"catch block"</span>);</span><br><span class="line">        } <span class="keyword">finally</span> {</span><br><span class="line">            System.out.println(<span class="string">"finally block"</span>);</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> (b &gt; <span class="number">25</span>) {</span><br><span class="line">                System.out.println(<span class="string">"b&gt;25, b = "</span> + b);</span><br><span class="line">            }</span><br><span class="line">        }</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> b;</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure><p></p>
@@ -3890,7 +3890,7 @@ b&gt;25, b = 100
               
               
               
-              <span class="exturl cc-opacity" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC9kZWVkLnpo"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></span>
+              <span class="exturl cc-opacity" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC9kZWVkLnpo"><img src="/images/loading2.gif" data-original="/images/cc-by-nc-sa.svg" alt="Creative Commons"></span>
              </div>
           
 
@@ -4559,4 +4559,4 @@ b&gt;25, b = 100
         $b.text('复制');
       }, 300);
     }).append(e);
-  })</script></body></html>
+  });!function(e){var l=Array.prototype.slice.call(document.querySelectorAll("img[data-original]"));function t(){for(var r=0;r<l.length;r++)t=l[r],void 0,0<=(n=t.getBoundingClientRect()).top&&0<=n.left&&n.top<=(e.innerHeight||document.documentElement.clientHeight)&&function(t){var n,e,i,o,c=l[r];n=c,e=function(){l=l.filter(function(t){return c!==t})},i=new Image,o=n.getAttribute("data-original"),i.onload=function(){n.src=o,e&&e()},i.src=o}();var t,n}t(),e.addEventListener("scroll",function(){!function(t,n){clearTimeout(t.tId),t.tId=setTimeout(function(){t.call(n)},500)}(t,e)})}(this);</script></body></html>

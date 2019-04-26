@@ -1872,7 +1872,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #410eff;
+  background: #f1d675;
 }
 .feed-link,
 .chat {
@@ -3336,34 +3336,34 @@ ul.breadcrumb li+li:last-child {
 <a id="more"></a>
 <h2 id="原题"><a href="#原题" class="headerlink" title="原题"></a>原题</h2><figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>{</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>{</span><br><span class="line">        System.out.println(<span class="keyword">new</span> B().getValue());</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">A</span> </span>{</span><br><span class="line">        <span class="keyword">protected</span> <span class="keyword">int</span> value;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="title">A</span><span class="params">(<span class="keyword">int</span> v)</span> </span>{</span><br><span class="line">            setValue(v);</span><br><span class="line">        }</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setValue</span><span class="params">(<span class="keyword">int</span> value)</span> </span>{</span><br><span class="line">            <span class="keyword">this</span>.value = value;</span><br><span class="line">        }</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getValue</span><span class="params">()</span> </span>{</span><br><span class="line">            <span class="keyword">try</span> {</span><br><span class="line">                value++;</span><br><span class="line">                <span class="keyword">return</span> value;</span><br><span class="line">            } <span class="keyword">catch</span> (Exception e) {</span><br><span class="line">                System.out.println(e.toString());</span><br><span class="line">            } <span class="keyword">finally</span> {</span><br><span class="line">                <span class="keyword">this</span>.setValue(value);</span><br><span class="line">                System.out.println(value);</span><br><span class="line">            }</span><br><span class="line">            <span class="keyword">return</span> value;</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line">    <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">B</span> <span class="keyword">extends</span> <span class="title">A</span> </span>{</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="title">B</span><span class="params">()</span> </span>{</span><br><span class="line">            <span class="keyword">super</span>(<span class="number">5</span>);</span><br><span class="line">            setValue(getValue() - <span class="number">3</span>);</span><br><span class="line">        }</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setValue</span><span class="params">(<span class="keyword">int</span> value)</span> </span>{</span><br><span class="line">            <span class="keyword">super</span>.setValue(<span class="number">2</span> * value);</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
 <h2 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h2><p>这道题考的就是代码执行顺序，比较直观的方法是使用单步调试，来一起看下执行过程吧：</p>
-<p>首先从 main 方法开始执行，new 了一个对象 B，没什么可说的。<br><img src="https://cdn.jun6.net/201712080938_640.png" alt=""></p>
-<p>接下来执行到了 B 类的构造方法，也没什么问题。<br><img src="https://cdn.jun6.net/201712080940_685.png" alt=""></p>
-<p>然后执行到了父类的有参构造。<br><img src="https://cdn.jun6.net/201712080941_26.png" alt=""></p>
-<p>这里要执行 <code>setValue(v)</code> 方法了，那么这里的 <code>setValue()</code> 方法应该是执行 B 类的，还是 A 类的呢？<br><img src="https://cdn.jun6.net/201712080944_300.png" alt=""></p>
+<p>首先从 main 方法开始执行，new 了一个对象 B，没什么可说的。<br><img src="/images/loading2.gif" data-original="https://cdn.jun6.net/201712080938_640.png" alt=""></p>
+<p>接下来执行到了 B 类的构造方法，也没什么问题。<br><img src="/images/loading2.gif" data-original="https://cdn.jun6.net/201712080940_685.png" alt=""></p>
+<p>然后执行到了父类的有参构造。<br><img src="/images/loading2.gif" data-original="https://cdn.jun6.net/201712080941_26.png" alt=""></p>
+<p>这里要执行 <code>setValue(v)</code> 方法了，那么这里的 <code>setValue()</code> 方法应该是执行 B 类的，还是 A 类的呢？<br><img src="/images/loading2.gif" data-original="https://cdn.jun6.net/201712080944_300.png" alt=""></p>
 <p>其实这个结果是有些出乎我意料， 怎么会执行子类 B 的 <code>setValue()</code> 方法呢？<br><strong>因为这里正在执行 B 的构造方法中，所以调用的方法就默认是 B 的，当 B 中没有，才会去找它的父类 A 中的方法。</strong></p>
-<p>下一步是  <code>super.setValue()</code>  ，这里明确指明了调用父类的方法，所以应该没啥问题。<br><img src="https://cdn.jun6.net/201712080946_311.png" alt=""></p>
-<p>嗯，这里将 A 类的 value 属性设值为 10。<br><img src="https://cdn.jun6.net/201712080949_703.png" alt=""></p>
-<p>然后还回到 A 的构造方法中。<br><img src="https://cdn.jun6.net/201712080954_694.png" alt=""></p>
-<p>再回到 B 的构造方法中，接下来应该调用 <code>getValue</code>。<br><img src="https://cdn.jun6.net/201712080955_320.png" alt=""></p>
-<p>由于子类中没有，所以调用父类的 <code>getValue</code> 方法。<br><img src="https://cdn.jun6.net/201712080956_869.png" alt=""></p>
-<p>接下来将 A 中的 value 自增 1，然后到了 <code>return value</code> ，由于下面还有 <code>finally</code> 语句块，所以先执行 <code>finally</code> 语句块，再返回。<br><img src="https://cdn.jun6.net/201712080957_346.png" alt=""></p>
+<p>下一步是  <code>super.setValue()</code>  ，这里明确指明了调用父类的方法，所以应该没啥问题。<br><img src="/images/loading2.gif" data-original="https://cdn.jun6.net/201712080946_311.png" alt=""></p>
+<p>嗯，这里将 A 类的 value 属性设值为 10。<br><img src="/images/loading2.gif" data-original="https://cdn.jun6.net/201712080949_703.png" alt=""></p>
+<p>然后还回到 A 的构造方法中。<br><img src="/images/loading2.gif" data-original="https://cdn.jun6.net/201712080954_694.png" alt=""></p>
+<p>再回到 B 的构造方法中，接下来应该调用 <code>getValue</code>。<br><img src="/images/loading2.gif" data-original="https://cdn.jun6.net/201712080955_320.png" alt=""></p>
+<p>由于子类中没有，所以调用父类的 <code>getValue</code> 方法。<br><img src="/images/loading2.gif" data-original="https://cdn.jun6.net/201712080956_869.png" alt=""></p>
+<p>接下来将 A 中的 value 自增 1，然后到了 <code>return value</code> ，由于下面还有 <code>finally</code> 语句块，所以先执行 <code>finally</code> 语句块，再返回。<br><img src="/images/loading2.gif" data-original="https://cdn.jun6.net/201712080957_346.png" alt=""></p>
 <p>又到了一个 <code>setValue</code> 方法，那么这里调用的是子类 B 的，还是父类 A 的呢？</p>
-<p><img src="https://cdn.jun6.net/201712080958_910.png" alt=""></p>
+<p><img src="/images/loading2.gif" data-original="https://cdn.jun6.net/201712080958_910.png" alt=""></p>
 <p>可以看到，这里调用的是子类 B 的构造方法，还是刚才的那个结论：<br><strong>因为这里正在执行 B 的构造方法中，所以调用的方法就默认是 B 的，当 B 中没有，才会去找它的父类 A 中的方法。</strong></p>
-<p>接下来应该会执行 <code>super.setValue()</code> 也就是它父类 A 的 <code>setValue()</code> 方法。<br><img src="https://cdn.jun6.net/201712081003_55.png" alt=""></p>
-<p>这里会将 A 的 value 值设为 22。<br><img src="https://cdn.jun6.net/201712081007_994.png" alt=""></p>
-<p>然后回到刚才的方法里，准备打印 value 值，打印后一共会回到 try 里的 return 语句。<br><img src="https://cdn.jun6.net/201712081008_701.png" alt=""></p>
-<p>这里虽然 value 的值是 22，但是刚才执行 finally 语句块之前就已经将 reutrn 的值确定了，也就是 11，详细参见 <a href="/java-try-catch-finally/" title="由一道 Java finally 执行顺序的题引发的思考">由一道 Java finally 执行顺序的题引发的思考</a>。<br><img src="https://cdn.jun6.net/201712081010_845.png" alt=""></p>
-<p>回到刚才的调用，由于上一步返回的值是 11，所以这里应该是调用的<code>setValue(11- 3);</code>，这里调用的是 B 的方法。<br><img src="https://cdn.jun6.net/201712081012_522.png" alt=""></p>
-<p>接下来又要执行 <code>super.setValue()</code> 了，也就是父类的 <code>setValue()</code> 方法。<br><img src="https://cdn.jun6.net/201712081014_1.png" alt=""></p>
-<p>这里会将 A 类的的 value 值从 22 改为 16.<br><img src="https://cdn.jun6.net/201712081017_898.png" alt=""></p>
-<p>然后 B 类的构造方法执行完了，回到 main 方法，准备调用 <code>getValue()</code> 方法，因为 B 类没有，所以会调用其父类 A 的。<br><img src="https://cdn.jun6.net/201712081019_167.png" alt=""></p>
-<p>这里将 A 的 value 值自增1，变为 17 ，然后最为 return 的最终返回结果后，执行 finally 语句中的内容。<br><img src="https://cdn.jun6.net/201712081025_248.png" alt=""></p>
-<p>这里又到了 <code>setValue</code> 的抉择，到底执行哪个类的呢？<br><img src="https://cdn.jun6.net/201712081028_353.png" alt=""></p>
-<p>还是调到了 B 类中，因为 main 方法里调用的是 <code>new B().xxx</code> 方法，所以这里的 this 代表的是 B 类。<br>接下来这里指定 <code>super.setValue()</code> ，调用父类的方法，将父类的 value * 2 ，然后回到 finally 块中。<br><img src="https://cdn.jun6.net/201712081030_992.png" alt=""></p>
-<p>然后调用输出语句，输出结果应为 34，输出后会返回到 try 里的 return 语句中。<br><img src="https://cdn.jun6.net/201712081032_346.png" alt=""></p>
-<p>那么这里的 return 值应该是刚才已经确定的值，也就是 17，然后回到 main 方法<br><img src="https://cdn.jun6.net/201712081033_671.png" alt=""></p>
-<p>这里返回的是 17,所以输出 17,程序结束。<br><img src="https://cdn.jun6.net/201712081034_64.png" alt=""></p>
+<p>接下来应该会执行 <code>super.setValue()</code> 也就是它父类 A 的 <code>setValue()</code> 方法。<br><img src="/images/loading2.gif" data-original="https://cdn.jun6.net/201712081003_55.png" alt=""></p>
+<p>这里会将 A 的 value 值设为 22。<br><img src="/images/loading2.gif" data-original="https://cdn.jun6.net/201712081007_994.png" alt=""></p>
+<p>然后回到刚才的方法里，准备打印 value 值，打印后一共会回到 try 里的 return 语句。<br><img src="/images/loading2.gif" data-original="https://cdn.jun6.net/201712081008_701.png" alt=""></p>
+<p>这里虽然 value 的值是 22，但是刚才执行 finally 语句块之前就已经将 reutrn 的值确定了，也就是 11，详细参见 <a href="/java-try-catch-finally/" title="由一道 Java finally 执行顺序的题引发的思考">由一道 Java finally 执行顺序的题引发的思考</a>。<br><img src="/images/loading2.gif" data-original="https://cdn.jun6.net/201712081010_845.png" alt=""></p>
+<p>回到刚才的调用，由于上一步返回的值是 11，所以这里应该是调用的<code>setValue(11- 3);</code>，这里调用的是 B 的方法。<br><img src="/images/loading2.gif" data-original="https://cdn.jun6.net/201712081012_522.png" alt=""></p>
+<p>接下来又要执行 <code>super.setValue()</code> 了，也就是父类的 <code>setValue()</code> 方法。<br><img src="/images/loading2.gif" data-original="https://cdn.jun6.net/201712081014_1.png" alt=""></p>
+<p>这里会将 A 类的的 value 值从 22 改为 16.<br><img src="/images/loading2.gif" data-original="https://cdn.jun6.net/201712081017_898.png" alt=""></p>
+<p>然后 B 类的构造方法执行完了，回到 main 方法，准备调用 <code>getValue()</code> 方法，因为 B 类没有，所以会调用其父类 A 的。<br><img src="/images/loading2.gif" data-original="https://cdn.jun6.net/201712081019_167.png" alt=""></p>
+<p>这里将 A 的 value 值自增1，变为 17 ，然后最为 return 的最终返回结果后，执行 finally 语句中的内容。<br><img src="/images/loading2.gif" data-original="https://cdn.jun6.net/201712081025_248.png" alt=""></p>
+<p>这里又到了 <code>setValue</code> 的抉择，到底执行哪个类的呢？<br><img src="/images/loading2.gif" data-original="https://cdn.jun6.net/201712081028_353.png" alt=""></p>
+<p>还是调到了 B 类中，因为 main 方法里调用的是 <code>new B().xxx</code> 方法，所以这里的 this 代表的是 B 类。<br>接下来这里指定 <code>super.setValue()</code> ，调用父类的方法，将父类的 value * 2 ，然后回到 finally 块中。<br><img src="/images/loading2.gif" data-original="https://cdn.jun6.net/201712081030_992.png" alt=""></p>
+<p>然后调用输出语句，输出结果应为 34，输出后会返回到 try 里的 return 语句中。<br><img src="/images/loading2.gif" data-original="https://cdn.jun6.net/201712081032_346.png" alt=""></p>
+<p>那么这里的 return 值应该是刚才已经确定的值，也就是 17，然后回到 main 方法<br><img src="/images/loading2.gif" data-original="https://cdn.jun6.net/201712081033_671.png" alt=""></p>
+<p>这里返回的是 17,所以输出 17,程序结束。<br><img src="/images/loading2.gif" data-original="https://cdn.jun6.net/201712081034_64.png" alt=""></p>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>这道题很长，不过也只是考两个知识点：</p>
 <ol>
 <li>子类与父类之间的调用关系：<strong>动态分派 在调用new B()时调用A的构造器时和super.getValue()时的setValue(int value)方法是根据隐式对象的实际类型来确定的。只有实际类型未重写该方法时，才按照继承层次由下往上查找。这个可以参阅《深入理解JVM》</strong>的“分派”一节。</li>
@@ -3867,7 +3867,7 @@ ul.breadcrumb li+li:last-child {
               
               
               
-              <span class="exturl cc-opacity" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC9kZWVkLnpo"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></span>
+              <span class="exturl cc-opacity" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC9kZWVkLnpo"><img src="/images/loading2.gif" data-original="/images/cc-by-nc-sa.svg" alt="Creative Commons"></span>
              </div>
           
 
@@ -4536,4 +4536,4 @@ ul.breadcrumb li+li:last-child {
         $b.text('复制');
       }, 300);
     }).append(e);
-  })</script></body></html>
+  });!function(e){var l=Array.prototype.slice.call(document.querySelectorAll("img[data-original]"));function t(){for(var r=0;r<l.length;r++)t=l[r],void 0,0<=(n=t.getBoundingClientRect()).top&&0<=n.left&&n.top<=(e.innerHeight||document.documentElement.clientHeight)&&function(t){var n,e,i,o,c=l[r];n=c,e=function(){l=l.filter(function(t){return c!==t})},i=new Image,o=n.getAttribute("data-original"),i.onload=function(){n.src=o,e&&e()},i.src=o}();var t,n}t(),e.addEventListener("scroll",function(){!function(t,n){clearTimeout(t.tId),t.tId=setTimeout(function(){t.call(n)},500)}(t,e)})}(this);</script></body></html>

@@ -1850,7 +1850,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #410eff;
+  background: #f1d675;
 }
 .feed-link,
 .chat {
@@ -3311,12 +3311,12 @@ ul.breadcrumb li+li:last-child {
 
       
         <p>由于 maven 默认的中央仓库的速度不是很理想, 所以换成了阿里云的镜像, 但使用后发现, 无法正常更新索引了, Maven 的索引功能可以让 IDEA 自动提示一些信息, 如图所示:</p>
-<p><img src="https://cdn.jun6.net/201807241657_293.gif" alt=""></p>
+<p><img src="/images/loading2.gif" data-original="https://cdn.jun6.net/201807241657_293.gif" alt=""></p>
 <a id="more"></a>
 <p>废话不多说, 网上大多给出的地址都是:<br></p><figure class="highlight xml"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">mirrors</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">mirror</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">id</span>&gt;</span>alimaven<span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>aliyun maven<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">url</span>&gt;</span>http://maven.aliyun.com/nexus/content/groups/public/<span class="tag">&lt;/<span class="name">url</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">mirrorOf</span>&gt;</span>central<span class="tag">&lt;/<span class="name">mirrorOf</span>&gt;</span>        </span><br><span class="line">    <span class="tag">&lt;/<span class="name">mirror</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">mirrors</span>&gt;</span></span><br></pre></td></tr></tbody></table></figure><p></p>
-<p>但在更新时出现了错误 <code>FileNotFoundException:Resource nexus-maven-repository-index.properties does not exist</code>:<br><img src="https://cdn.jun6.net/201807241659_788.png" alt=""></p>
+<p>但在更新时出现了错误 <code>FileNotFoundException:Resource nexus-maven-repository-index.properties does not exist</code>:<br><img src="/images/loading2.gif" data-original="https://cdn.jun6.net/201807241659_788.png" alt=""></p>
 <p>看样子是没找到文件, 经过一番查询后发现去找的是 <span class="exturl" data-url="aHR0cDovL3JlcG8xLm1hdmVuLm9yZy9tYXZlbjIvLmluZGV4L25leHVzLW1hdmVuLXJlcG9zaXRvcnktaW5kZXgucHJvcGVydGllcw==" title="http://repo1.maven.org/maven2/.index/nexus-maven-repository-index.properties">http://repo1.maven.org/maven2/.index/nexus-maven-repository-index.properties<i class="fa fa-external-link"></i></span>这个地址, 即仓库目录下的隐藏文件夹 <code>.index</code>.</p>
-<p>但试图去访问阿里云的镜像下的 <code>.index</code> 目录时, 却发现压根没有这个目录:<br><img src="https://cdn.jun6.net/201807241703_485.png" alt=""></p>
+<p>但试图去访问阿里云的镜像下的 <code>.index</code> 目录时, 却发现压根没有这个目录:<br><img src="/images/loading2.gif" data-original="https://cdn.jun6.net/201807241703_485.png" alt=""></p>
 <p>但其实这个目录应该是 <span class="exturl" data-url="aHR0cDovL21hdmVuLmFsaXl1bi5jb20vbmV4dXMvY29udGVudC9yZXBvc2l0b3JpZXMvY2VudHJhbA==" title="http://maven.aliyun.com/nexus/content/repositories/central">http://maven.aliyun.com/nexus/content/repositories/central<i class="fa fa-external-link"></i></span> 这个仓库下的 <code>.index</code> 目录.</p>
 <p>也就是说, 要配置仓库地址为 :</p>
 <figure class="highlight xml"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">mirrors</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">mirror</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">id</span>&gt;</span>alimaven<span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>aliyun maven<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">url</span>&gt;</span>http://maven.aliyun.com/nexus/content/repositories/central<span class="tag">&lt;/<span class="name">url</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">mirrorOf</span>&gt;</span>central<span class="tag">&lt;/<span class="name">mirrorOf</span>&gt;</span>        </span><br><span class="line">    <span class="tag">&lt;/<span class="name">mirror</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">mirrors</span>&gt;</span></span><br></pre></td></tr></tbody></table></figure>
@@ -3807,7 +3807,7 @@ ul.breadcrumb li+li:last-child {
               
               
               
-              <span class="exturl cc-opacity" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC9kZWVkLnpo"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></span>
+              <span class="exturl cc-opacity" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC9kZWVkLnpo"><img src="/images/loading2.gif" data-original="/images/cc-by-nc-sa.svg" alt="Creative Commons"></span>
              </div>
           
 
@@ -4459,4 +4459,4 @@ ul.breadcrumb li+li:last-child {
         $b.text('复制');
       }, 300);
     }).append(e);
-  })</script></body></html>
+  });!function(e){var l=Array.prototype.slice.call(document.querySelectorAll("img[data-original]"));function t(){for(var r=0;r<l.length;r++)t=l[r],void 0,0<=(n=t.getBoundingClientRect()).top&&0<=n.left&&n.top<=(e.innerHeight||document.documentElement.clientHeight)&&function(t){var n,e,i,o,c=l[r];n=c,e=function(){l=l.filter(function(t){return c!==t})},i=new Image,o=n.getAttribute("data-original"),i.onload=function(){n.src=o,e&&e()},i.src=o}();var t,n}t(),e.addEventListener("scroll",function(){!function(t,n){clearTimeout(t.tId),t.tId=setTimeout(function(){t.call(n)},500)}(t,e)})}(this);</script></body></html>

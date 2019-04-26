@@ -1848,7 +1848,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #410eff;
+  background: #f1d675;
 }
 .feed-link,
 .chat {
@@ -3322,7 +3322,7 @@ ul.breadcrumb li+li:last-child {
 <li>将字符数组的长度 <code>+2</code></li>
 </ol>
 <h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">public int replaceBlank(char[] string, int length) {</span><br><span class="line">        for (int i = 0; i &lt; length; i++) {</span><br><span class="line"></span><br><span class="line">            if (string[i] == ' ') {</span><br><span class="line">                for (int j = length + 2; j != i + 2; j--) {</span><br><span class="line">                    string[j] = string[j - 2];</span><br><span class="line">                }</span><br><span class="line">                string[i + 2] = '0';</span><br><span class="line">                string[i + 1] = '2';</span><br><span class="line">                string[i] = '%';</span><br><span class="line">                length += 2;</span><br><span class="line">            }</span><br><span class="line">        }</span><br><span class="line">        return length;</span><br><span class="line">    }</span><br></pre></td></tr></tbody></table></figure>
-<h2 id="图解"><a href="#图解" class="headerlink" title="图解"></a>图解</h2><p><img src="https://cdn.jun6.net/sdadasdwad.png" alt="无标题.png-38.5kB"></p>
+<h2 id="图解"><a href="#图解" class="headerlink" title="图解"></a>图解</h2><p><img src="/images/loading2.gif" data-original="https://cdn.jun6.net/sdadasdwad.png" alt="无标题.png-38.5kB"></p>
 <h2 id="要点"><a href="#要点" class="headerlink" title="要点"></a>要点</h2><ol>
 <li>本题要求是<strong>将参数中的字符数组改变</strong>，而不能通过创建一个新字符数组进行操作，然后将新字符数组赋值给原字符数组。</li>
 <li>碰到空格要将字符数组的所有字符整体向后移动两位。</li>
@@ -3825,7 +3825,7 @@ ul.breadcrumb li+li:last-child {
               
               
               
-              <span class="exturl cc-opacity" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC9kZWVkLnpo"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></span>
+              <span class="exturl cc-opacity" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC9kZWVkLnpo"><img src="/images/loading2.gif" data-original="/images/cc-by-nc-sa.svg" alt="Creative Commons"></span>
              </div>
           
 
@@ -4494,4 +4494,4 @@ ul.breadcrumb li+li:last-child {
         $b.text('复制');
       }, 300);
     }).append(e);
-  })</script></body></html>
+  });!function(e){var l=Array.prototype.slice.call(document.querySelectorAll("img[data-original]"));function t(){for(var r=0;r<l.length;r++)t=l[r],void 0,0<=(n=t.getBoundingClientRect()).top&&0<=n.left&&n.top<=(e.innerHeight||document.documentElement.clientHeight)&&function(t){var n,e,i,o,c=l[r];n=c,e=function(){l=l.filter(function(t){return c!==t})},i=new Image,o=n.getAttribute("data-original"),i.onload=function(){n.src=o,e&&e()},i.src=o}();var t,n}t(),e.addEventListener("scroll",function(){!function(t,n){clearTimeout(t.tId),t.tId=setTimeout(function(){t.call(n)},500)}(t,e)})}(this);</script></body></html>

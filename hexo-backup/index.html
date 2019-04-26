@@ -1849,7 +1849,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #410eff;
+  background: #f1d675;
 }
 .feed-link,
 .chat {
@@ -3312,7 +3312,7 @@ ul.breadcrumb li+li:last-child {
         <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>由于 Hexo 是静态博客，需要在本地配置，写文章，然后生成静态页面后上传到服务器。</p>
 <p>这也就带来了备份的问题，我辛辛苦苦的配置了那么多主题相关的个性化配置，换电脑了怎么办？<br>重写？ 怎么可能。！</p>
 <a id="more"></a>
-<p>那么备份本地的 Hexo 文件吧，这就涉及到一个问题，先看下我的博客在本地占用的空间和文件数量：<br><img src="https://cdn.jun6.net/201711201901_178.png" alt=""><br>文件大小还可以接受，但…文件数量这么多，小文件复制起来那叫一个慢啊。</p>
+<p>那么备份本地的 Hexo 文件吧，这就涉及到一个问题，先看下我的博客在本地占用的空间和文件数量：<br><img src="/images/loading2.gif" data-original="https://cdn.jun6.net/201711201901_178.png" alt=""><br>文件大小还可以接受，但…文件数量这么多，小文件复制起来那叫一个慢啊。</p>
 <p>这里我们要考虑几个问题了：</p>
 <ul>
 <li>哪些文件需要备份，哪些不需要。</li>
@@ -3338,7 +3338,7 @@ ul.breadcrumb li+li:last-child {
 <h2 id="备份到哪里？"><a href="#备份到哪里？" class="headerlink" title="备份到哪里？"></a>备份到哪里？</h2><p>备份到哪里也是一个问题，备份到 U 盘的话就太麻烦了，而且也不能保证文件的实时性，万一电脑文件突然全部丢失了，还没来得及备份，那就完蛋了~。</p>
 <p>所以直接排除掉本地备份这一项，而使用云服务备份，可以使用百度云，或 OneDriver 等服务，但还要考虑一个问题，就是能不能进行增量备份、选择性备份，方便不方便。</p>
 <p>说先说说百度云，是大厂的，可靠性很高，但是呢，你可能备份上去简单，下载下来就难了。。。<br>然后就是 OneDriver 等国外的服务提供商，同样也是大厂，但是毕竟由于网速的问题，选择国外的服务商不太适合。</p>
-<p>于是就轮到今天的主角了：<span class="exturl" data-url="aHR0cHM6Ly93d3cuamlhbmd1b3l1bi5jb20=" title="https://www.jianguoyun.com"><code>坚果云</code><i class="fa fa-external-link"></i></span>，不是广告，是确实挺好用。<br>记得用 <code>选择性备份</code>：<br><img src="https://cdn.jun6.net/201711201952_281.png" alt=""></p>
+<p>于是就轮到今天的主角了：<span class="exturl" data-url="aHR0cHM6Ly93d3cuamlhbmd1b3l1bi5jb20=" title="https://www.jianguoyun.com"><code>坚果云</code><i class="fa fa-external-link"></i></span>，不是广告，是确实挺好用。<br>记得用 <code>选择性备份</code>：<br><img src="/images/loading2.gif" data-original="https://cdn.jun6.net/201711201952_281.png" alt=""></p>
 <h2 id="备份后如何恢复"><a href="#备份后如何恢复" class="headerlink" title="备份后如何恢复?"></a>备份后如何恢复?</h2><ol>
 <li><p>安装 NodeJS 和 Git 这个就不多说了，并把备份的公钥私钥放到用户目录下的 <code>.ssh</code> 文件夹下，同时还要记得配置 Git 的邮箱和用户名：</p>
 <figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name <span class="string">"Your Name"</span></span><br><span class="line">git config --global user.email <span class="string">"email@example.com"</span></span><br></pre></td></tr></tbody></table></figure>
@@ -3852,7 +3852,7 @@ ul.breadcrumb li+li:last-child {
               
               
               
-              <span class="exturl cc-opacity" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC9kZWVkLnpo"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></span>
+              <span class="exturl cc-opacity" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC9kZWVkLnpo"><img src="/images/loading2.gif" data-original="/images/cc-by-nc-sa.svg" alt="Creative Commons"></span>
              </div>
           
 
@@ -4521,4 +4521,4 @@ ul.breadcrumb li+li:last-child {
         $b.text('复制');
       }, 300);
     }).append(e);
-  })</script></body></html>
+  });!function(e){var l=Array.prototype.slice.call(document.querySelectorAll("img[data-original]"));function t(){for(var r=0;r<l.length;r++)t=l[r],void 0,0<=(n=t.getBoundingClientRect()).top&&0<=n.left&&n.top<=(e.innerHeight||document.documentElement.clientHeight)&&function(t){var n,e,i,o,c=l[r];n=c,e=function(){l=l.filter(function(t){return c!==t})},i=new Image,o=n.getAttribute("data-original"),i.onload=function(){n.src=o,e&&e()},i.src=o}();var t,n}t(),e.addEventListener("scroll",function(){!function(t,n){clearTimeout(t.tId),t.tId=setTimeout(function(){t.call(n)},500)}(t,e)})}(this);</script></body></html>

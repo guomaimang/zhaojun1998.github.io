@@ -1852,7 +1852,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #410eff;
+  background: #f1d675;
 }
 .feed-link,
 .chat {
@@ -3323,14 +3323,14 @@ ul.breadcrumb li+li:last-child {
 <p>注意：这里的1080是指本机的 Shadowsocks 所在的端口号，默认为1080，后面那个点也不能省略。（此操作要在没有打开这个软件的情况下进行）</p>
 </blockquote>
 <h2 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h2><p>请确保此时已打开 <code>SS/SSR</code>、<code>Privoxy</code> 以及确保 <code>Privoxy</code> 的配置配置文件已修改并保存。</p>
-<h2 id="常用软件配置"><a href="#常用软件配置" class="headerlink" title="常用软件配置"></a>常用软件配置</h2><h3 id="Chrome-浏览器"><a href="#Chrome-浏览器" class="headerlink" title="Chrome 浏览器"></a>Chrome 浏览器</h3><p>打开浏览器设置点击 <code>更改代理服务器设置</code>，找不到就在设置里搜索。<br><img src="https://cdn.jun6.net/201711201512_184.png" alt=""><br><img src="https://cdn.jun6.net/201711201513_388.png" alt=""></p>
-<p>配置后打开 <code>http://p.p/</code> ，如下图所示，则代表成功<br><img src="https://cdn.jun6.net/201711201506_535.png" alt="如图"></p>
+<h2 id="常用软件配置"><a href="#常用软件配置" class="headerlink" title="常用软件配置"></a>常用软件配置</h2><h3 id="Chrome-浏览器"><a href="#Chrome-浏览器" class="headerlink" title="Chrome 浏览器"></a>Chrome 浏览器</h3><p>打开浏览器设置点击 <code>更改代理服务器设置</code>，找不到就在设置里搜索。<br><img src="/images/loading2.gif" data-original="https://cdn.jun6.net/201711201512_184.png" alt=""><br><img src="/images/loading2.gif" data-original="https://cdn.jun6.net/201711201513_388.png" alt=""></p>
+<p>配置后打开 <code>http://p.p/</code> ，如下图所示，则代表成功<br><img src="/images/loading2.gif" data-original="https://cdn.jun6.net/201711201506_535.png" alt="如图"></p>
 <h3 id="Sublime-Text"><a href="#Sublime-Text" class="headerlink" title="Sublime Text"></a>Sublime Text</h3><p>打开 <code>Preferences &gt; Package Settings &gt; Package Control &gt; Settings - User</code> 菜单<br>编辑 <code>Package Control.sublime-settings</code>，添加两行:<br></p><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">"http_proxy": "http://127.0.0.1:8118",</span><br><span class="line">"https_proxy": "http://127.0.0.1:8118"</span><br></pre></td></tr></tbody></table></figure><p></p>
-<p><img src="https://cdn.jun6.net/201711201519_542.png" alt=""></p>
+<p><img src="/images/loading2.gif" data-original="https://cdn.jun6.net/201711201519_542.png" alt=""></p>
 <h3 id="IDM"><a href="#IDM" class="headerlink" title="IDM"></a>IDM</h3><p>有时使用 IDM 下载一些国外的站点的文件，会很慢，我们也配置一下带来，但毕竟 IDM 是一个下载工具，我们也不希望它下载任何东西都使用代理下载，这样会造成很大的浪费，配置如下：</p>
 <p>第一个选项，使用自动配置脚本，就是为了防止一些不必要的下载浪费代理流量：<br></p><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://softs.fun/Other/pac.txt</span><br></pre></td></tr></tbody></table></figure><p></p>
 <p>下面可以选择 <code>代理服务器</code> 或 <code>Socks</code>  ，使用 <code>Socks</code> 即是 <code>SS/SSR</code> 的代理端口</p>
-<p><img src="https://cdn.jun6.net/201711201525_991.png" alt=""></p>
+<p><img src="/images/loading2.gif" data-original="https://cdn.jun6.net/201711201525_991.png" alt=""></p>
 
       
     </div>
@@ -3828,7 +3828,7 @@ ul.breadcrumb li+li:last-child {
               
               
               
-              <span class="exturl cc-opacity" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC9kZWVkLnpo"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></span>
+              <span class="exturl cc-opacity" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC9kZWVkLnpo"><img src="/images/loading2.gif" data-original="/images/cc-by-nc-sa.svg" alt="Creative Commons"></span>
              </div>
           
 
@@ -4497,4 +4497,4 @@ ul.breadcrumb li+li:last-child {
         $b.text('复制');
       }, 300);
     }).append(e);
-  })</script></body></html>
+  });!function(e){var l=Array.prototype.slice.call(document.querySelectorAll("img[data-original]"));function t(){for(var r=0;r<l.length;r++)t=l[r],void 0,0<=(n=t.getBoundingClientRect()).top&&0<=n.left&&n.top<=(e.innerHeight||document.documentElement.clientHeight)&&function(t){var n,e,i,o,c=l[r];n=c,e=function(){l=l.filter(function(t){return c!==t})},i=new Image,o=n.getAttribute("data-original"),i.onload=function(){n.src=o,e&&e()},i.src=o}();var t,n}t(),e.addEventListener("scroll",function(){!function(t,n){clearTimeout(t.tId),t.tId=setTimeout(function(){t.call(n)},500)}(t,e)})}(this);</script></body></html>
