@@ -1,6 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[LeetCode 429 N-ary Tree Level Order Traversal]]></title>
+    <url>%2Fleetcode-429%2F</url>
+    <content type="text"><![CDATA[题意给予一颗 N 叉树，返回所有节点的层级遍历，即从左至右(逐层). 例 : 1234567891011121314给予树: 1 / | \ 3 2 4 / \ 5 6 返回:[ [1]， [3,2,4] [5,6]] 解法该题的要点是保持左右顺序，和记录当前层数，保持顺序的意思是指要将树某一层的数据从左至右放置到数组中，记录层数就更不用说了，每一层对应一个数组，要能区分数据的层级。 保持顺序这一点我们可以使用队列来实现，先进先出，获取到某一节点的左右子节点后，将其所有子节点依次添加到队列中，这样可以保证从左至右的顺序。 记录层级这一点，可以先记录队列中所有的元素，这个个数就是当前层的个数，哪怕在遍历过程中向队列中再添加了下一层的东西，也无所谓，因为我们知道遍历到多少个就应该换层了。 12345678910111213141516171819202122232425262728293031323334353637/*// Definition for a Node.class Node &#123; public int val; public List&lt;Node&gt; children; public Node() &#123;&#125; public Node(int _val,List&lt;Node&gt; _children) &#123; val = _val; children = _children; &#125;&#125;;*/public class Solution &#123; public List&lt;List&lt;Integer&gt;&gt; levelOrder(Node root) &#123; List&lt;List&lt;Integer&gt;&gt; result = new ArrayList&lt;&gt;(); if (root != null) &#123; Queue&lt;Node&gt; queue = new ArrayDeque&lt;&gt;(); queue.add(root); while (!queue.isEmpty()) &#123; List&lt;Integer&gt; list = new ArrayList&lt;&gt;(); int size = queue.size(); for (int i = 0; i &lt; size; i++) &#123; Node node = queue.remove(); list.add(node.val); if (node.children == null) &#123; continue; &#125; queue.addAll(node.children); &#125; result.add(list); &#125; &#125; return result; &#125;&#125; Runtime: 2 ms, faster than 93.07% of Java online submissions for N-ary Tree Level Order Traversal.Memory Usage: 46.8 MB, less than 86.23% of Java online submissions for N-ary Tree Level Order Traversal.]]></content>
+      <categories>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>队列</tag>
+        <tag>leetcode</tag>
+        <tag>树</tag>
+        <tag>N叉树</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[LeetCode 669 Trim a Binary Search Tree]]></title>
+    <url>%2Fleetcode-669%2F</url>
+    <content type="text"><![CDATA[题意给定二叉搜索树以及 L和 R 最低和最高边界作为修剪树，使其所有元素都在[L, R]（R&gt; = L）. 您可能需要更改树的根，因此结果应返回修剪后的二叉搜索树的新根。 例 : 12345678910111213给予树: 1 / \ 0 2 L = 1 R = 2输出: 1 \ 2 123456789101112131415161718给予树: 3 / \ 0 4 \ 2 / 1 L = 1 R = 3输出: 3 / 2 / 1 解法采用深度优先遍历, 如果当前节点的值, 在区间内, 则正常返回, 如果不在区间内, 则将当前节点删除, 并将左子树或右子树嫁接到当前节点. 123456789101112131415161718192021222324/** * Definition for a binary tree node. * public class TreeNode &#123; * int val; * TreeNode left; * TreeNode right; * TreeNode(int x) &#123; val = x; &#125; * &#125; */class Solution &#123; public TreeNode trimBST(TreeNode root, int L, int R) &#123; if (root == null) &#123; return root; &#125; root.left = trimBST(root.left, L, R); root.right = trimBST(root.right, L, R); if (root.val &lt;= R &amp;&amp; root.val &gt;= L) return root; if (root.val &lt; L) &#123; return root.right; &#125; else &#123; return root.left; &#125; &#125;&#125; Runtime: 0 ms, faster than 100.00% of Java online submissions for Trim a Binary Search Tree.Memory Usage: 36.9 MB, less than 98.26% of Java online submissions for Trim a Binary Search Tree.]]></content>
+      <categories>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>二叉树</tag>
+        <tag>leetcode</tag>
+        <tag>树</tag>
+        <tag>DFS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[LeetCode 104 Maximum Depth of Binary Tree]]></title>
+    <url>%2Fleetcode-104%2F</url>
+    <content type="text"><![CDATA[题意给予一颗二叉树，返回其树的深度。 最大深度是从根节点到最远叶节点的最长路径上的节点数。 叶子是没有子节点的节点。 例 : 1234567给予树： 3 / \ 9 20 / \ 15 7返回深度 3. 解法12345678910111213141516171819202122232425/** * Definition for a binary tree node. * public class TreeNode &#123; * int val; * TreeNode left; * TreeNode right; * TreeNode(int x) &#123; val = x; &#125; * &#125; */class Solution &#123; public int maxDepth(TreeNode root) &#123; return getMaxDepth(root, 0); &#125; public int getMaxDepth(TreeNode node, int depth) &#123; if (node == null) &#123; return depth; &#125; depth++; int leftDepth = getMaxDepth(node.left, depth); int rightDepth = getMaxDepth(node.right, depth); return depth = leftDepth &gt; rightDepth ? leftDepth : rightDepth; &#125;&#125; Runtime: 0 ms, faster than 100.00% of Java online submissions for Maximum Depth of Binary Tree.Memory Usage: 38.1 MB, less than 49.96% of Java online submissions for Maximum Depth of Binary Tree.]]></content>
+      <categories>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>二叉树</tag>
+        <tag>leetcode</tag>
+        <tag>树</tag>
+        <tag>DFS</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[LeetCode 872 Leaf-Similar Trees]]></title>
     <url>%2Fleetcode-872%2F</url>
     <content type="text"><![CDATA[题意给定两颗二叉树, 判断其叶子节点的序列是否是一致的. 例:1234567891011121314151617181920树1: 4 / \ 2 7 / \ 1 3叶子节点序列为 [1, 3, 7]树2: 9 / \ 6 7 / \ 1 3叶子节点序列为 [1, 3, 7]两棵树叶子节点序列相同, 返回 true. 解法本题主要考察的是对树的遍历，遍历获取所有叶子节点，并比较是否一致即可。下面给出递归和非递归两种实现方式。 递归写法 (DFS): 12345678910111213141516171819202122232425262728293031/** * Definition for a binary tree node. * public class TreeNode &#123; * int val; * TreeNode left; * TreeNode right; * TreeNode(int x) &#123; val = x; &#125; * &#125; */public class Solution &#123; public boolean leafSimilar(TreeNode root1, TreeNode root2) &#123; ArrayList&lt;Integer&gt; list1 = new ArrayList&lt;&gt;(); ArrayList&lt;Integer&gt; list2 = new ArrayList&lt;&gt;(); dfs(root1, list1); dfs(root2, list2); return list1.equals(list2); &#125; private void dfs(TreeNode root, ArrayList&lt;Integer&gt; list) &#123; if (root == null) &#123; return; &#125; if (root.left == null &amp;&amp; root.right == null) &#123; list.add(root.val); &#125; dfs(root.left, list); dfs(root.right, list); &#125;&#125; Runtime: 0 ms, faster than 100.00% of Java online submissions for Leaf-Similar Trees. Memory Usage: 37.3 MB, less than 6.16% of Java online submissions for Leaf-Similar Trees. 非递归写法: 12345678910111213141516171819202122232425262728293031323334353637383940414243/** * Definition for a binary tree node. * public class TreeNode &#123; * int val; * TreeNode left; * TreeNode right; * TreeNode(int x) &#123; val = x; &#125; * &#125; */public class Solution2 &#123; public boolean leafSimilar(TreeNode root1, TreeNode root2) &#123; ArrayList&lt;Integer&gt; list1 = new ArrayList&lt;&gt;(); ArrayList&lt;Integer&gt; list2 = new ArrayList&lt;&gt;(); pushLeafRoot(root1, list1); pushLeafRoot(root2, list2); return list1.equals(list2); &#125; private void pushLeafRoot(TreeNode root, ArrayList&lt;Integer&gt; list) &#123; if (root == null) &#123; return; &#125; Stack&lt;TreeNode&gt; stack = new Stack&lt;&gt;(); stack.push(root); while (!stack.isEmpty()) &#123; TreeNode node = stack.pop(); if (node.left != null) &#123; stack.push(node.left); &#125; if (node.right != null) &#123; stack.push(node.right); &#125; if (node.left == null &amp;&amp; node.right == null) &#123; list.add(node.val); &#125; &#125; &#125;&#125; Runtime: 1 ms, faster than 82.41% of Java online submissions for Leaf-Similar Trees. Memory Usage: 36.7 MB, less than 71.02% of Java online submissions for Leaf-Similar Trees.]]></content>
@@ -41,20 +83,6 @@
         <tag>树</tag>
         <tag>N叉树</tag>
         <tag>后序遍历</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[LeetCode 669 Trim a Binary Search Tree]]></title>
-    <url>%2Fleetcode-669%2F</url>
-    <content type="text"><![CDATA[题意给定二叉搜索树以及 L和 R 最低和最高边界作为修剪树，使其所有元素都在[L, R]（R&gt; = L）. 您可能需要更改树的根，因此结果应返回修剪后的二叉搜索树的新根。 例 : 12345678910111213给予树: 1 / \ 0 2 L = 1 R = 2输出: 1 \ 2 123456789101112131415161718给予树: 3 / \ 0 4 \ 2 / 1 L = 1 R = 3输出: 3 / 2 / 1 解法采用深度优先遍历, 如果当前节点的值, 在区间内, 则正常返回, 如果不在区间内, 则将当前节点删除, 并将左子树或右子树嫁接到当前节点. 123456789101112131415161718192021222324/** * Definition for a binary tree node. * public class TreeNode &#123; * int val; * TreeNode left; * TreeNode right; * TreeNode(int x) &#123; val = x; &#125; * &#125; */class Solution &#123; public TreeNode trimBST(TreeNode root, int L, int R) &#123; if (root == null) &#123; return root; &#125; root.left = trimBST(root.left, L, R); root.right = trimBST(root.right, L, R); if (root.val &lt;= R &amp;&amp; root.val &gt;= L) return root; if (root.val &lt; L) &#123; return root.right; &#125; else &#123; return root.left; &#125; &#125;&#125; Runtime: 0 ms, faster than 100.00% of Java online submissions for Trim a Binary Search Tree.Memory Usage: 36.9 MB, less than 98.26% of Java online submissions for Trim a Binary Search Tree.]]></content>
-      <categories>
-        <category>算法</category>
-      </categories>
-      <tags>
-        <tag>二叉树</tag>
-        <tag>leetcode</tag>
-        <tag>树</tag>
-        <tag>DFS</tag>
       </tags>
   </entry>
   <entry>
@@ -262,20 +290,6 @@
       <tags>
         <tag>数组</tag>
         <tag>leetcode</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[LeetCode 104 Maximum Depth of Binary Tree]]></title>
-    <url>%2Fleetcode-104%2F</url>
-    <content type="text"><![CDATA[题意给予一颗二叉树，返回其树的深度。 最大深度是从根节点到最远叶节点的最长路径上的节点数。 叶子是没有子节点的节点。 例 : 1234567给予树： 3 / \ 9 20 / \ 15 7返回深度 3. 解法12345678910111213141516171819202122232425/** * Definition for a binary tree node. * public class TreeNode &#123; * int val; * TreeNode left; * TreeNode right; * TreeNode(int x) &#123; val = x; &#125; * &#125; */class Solution &#123; public int maxDepth(TreeNode root) &#123; return getMaxDepth(root, 0); &#125; public int getMaxDepth(TreeNode node, int depth) &#123; if (node == null) &#123; return depth; &#125; depth++; int leftDepth = getMaxDepth(node.left, depth); int rightDepth = getMaxDepth(node.right, depth); return depth = leftDepth &gt; rightDepth ? leftDepth : rightDepth; &#125;&#125; Runtime: 0 ms, faster than 100.00% of Java online submissions for Maximum Depth of Binary Tree.Memory Usage: 38.1 MB, less than 49.96% of Java online submissions for Maximum Depth of Binary Tree.]]></content>
-      <categories>
-        <category>算法</category>
-      </categories>
-      <tags>
-        <tag>二叉树</tag>
-        <tag>leetcode</tag>
-        <tag>树</tag>
-        <tag>DFS</tag>
       </tags>
   </entry>
   <entry>
@@ -1023,8 +1037,8 @@
       <tags>
         <tag>剑指offer</tag>
         <tag>递归</tag>
-        <tag>二叉树</tag>
         <tag>栈</tag>
+        <tag>二叉树</tag>
       </tags>
   </entry>
   <entry>
@@ -1406,8 +1420,8 @@
         <category>算法</category>
       </categories>
       <tags>
-        <tag>二叉树</tag>
         <tag>链表</tag>
+        <tag>二叉树</tag>
         <tag>平衡二叉树</tag>
       </tags>
   </entry>
