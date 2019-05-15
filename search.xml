@@ -1,6 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[LeetCode 226 Invert Binary Tree]]></title>
+    <url>%2Fleetcode-226%2F</url>
+    <content type="text"><![CDATA[题意给予一颗二叉树，返回其每层节点的平均值. 例 : 123456789101112131415给予树： 4 / \ 2 7 / \ / \1 3 6 9返回: 4 / \ 7 2 / \ / \9 6 3 1 解法采用深度优先遍历, 从最底层节点开始, 将每个节点的左右节点进行交换即可. 123456789101112131415161718192021222324252627282930/** * Definition for a binary tree node. * public class TreeNode &#123; * int val; * TreeNode left; * TreeNode right; * TreeNode(int x) &#123; val = x; &#125; * &#125; */class Solution &#123; public TreeNode invertTree(TreeNode root) &#123; if (root == null) &#123; return root; &#125; TreeNode left = root.left; TreeNode right = root.right; if (left != null) &#123; invertTree(left); &#125; if (right != null) &#123; invertTree(right); &#125; root.left = right; root.right = left; return root; &#125;&#125; Runtime: 0 ms, faster than 100.00% of Java online submissions for Invert Binary Tree.Memory Usage: 33.5 MB, less than 98.89% of Java online submissions for Invert Binary Tree.]]></content>
+      <categories>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>二叉树</tag>
+        <tag>leetcode</tag>
+        <tag>树</tag>
+        <tag>DFS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[LeetCode 637 Average of Levels in Binary Tree]]></title>
+    <url>%2Fleetcode-637%2F</url>
+    <content type="text"><![CDATA[题意给予一颗二叉树，返回其每层节点的平均值. 例 : 1234567给予树： 3 / \ 9 20 / \ 15 7返回: [3, 14.5, 11] 解法采用广度优先遍历, 遍历每一行的数据, 相加并除以每一层的个数即可. 123456789101112131415161718192021222324252627282930313233343536373839/** * Definition for a binary tree node. * public class TreeNode &#123; * int val; * TreeNode left; * TreeNode right; * TreeNode(int x) &#123; val = x; &#125; * &#125; */class Solution &#123; public List&lt;Double&gt; averageOfLevels(TreeNode root) &#123; List&lt;Double&gt; result = new ArrayList&lt;&gt;(); if (root == null) &#123; return result; &#125; Queue&lt;TreeNode&gt; queue = new ArrayDeque&lt;&gt;(); queue.add(root); while (!queue.isEmpty()) &#123; int size = queue.size(); double sum = 0; for (int i = 0; i &lt; size; i++) &#123; TreeNode node = queue.remove(); sum += node.val; if (node.left != null) &#123; queue.add(node.left); &#125; if (node.right != null) &#123; queue.add(node.right); &#125; &#125; result.add(sum / size); &#125; return result; &#125;&#125; Runtime: 2 ms, faster than 99.14% of Java online submissions for Average of Levels in Binary Tree.Memory Usage: 39.2 MB, less than 99.96% of Java online submissions for Average of Levels in Binary Tree.]]></content>
+      <categories>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>二叉树</tag>
+        <tag>leetcode</tag>
+        <tag>树</tag>
+        <tag>BFS</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[LeetCode 429 N-ary Tree Level Order Traversal]]></title>
     <url>%2Fleetcode-429%2F</url>
     <content type="text"><![CDATA[题意给予一颗 N 叉树，返回所有节点的层级遍历，即从左至右(逐层). 例 : 1234567891011121314给予树: 1 / | \ 3 2 4 / \ 5 6 返回:[ [1]， [3,2,4] [5,6]] 解法该题的要点是保持左右顺序，和记录当前层数，保持顺序的意思是指要将树某一层的数据从左至右放置到数组中，记录层数就更不用说了，每一层对应一个数组，要能区分数据的层级。 保持顺序这一点我们可以使用队列来实现，先进先出，获取到某一节点的左右子节点后，将其所有子节点依次添加到队列中，这样可以保证从左至右的顺序。 记录层级这一点，可以先记录队列中所有的元素，这个个数就是当前层的个数，哪怕在遍历过程中向队列中再添加了下一层的东西，也无所谓，因为我们知道遍历到多少个就应该换层了。 12345678910111213141516171819202122232425262728293031323334353637/*// Definition for a Node.class Node &#123; public int val; public List&lt;Node&gt; children; public Node() &#123;&#125; public Node(int _val,List&lt;Node&gt; _children) &#123; val = _val; children = _children; &#125;&#125;;*/public class Solution &#123; public List&lt;List&lt;Integer&gt;&gt; levelOrder(Node root) &#123; List&lt;List&lt;Integer&gt;&gt; result = new ArrayList&lt;&gt;(); if (root != null) &#123; Queue&lt;Node&gt; queue = new ArrayDeque&lt;&gt;(); queue.add(root); while (!queue.isEmpty()) &#123; List&lt;Integer&gt; list = new ArrayList&lt;&gt;(); int size = queue.size(); for (int i = 0; i &lt; size; i++) &#123; Node node = queue.remove(); list.add(node.val); if (node.children == null) &#123; continue; &#125; queue.addAll(node.children); &#125; result.add(list); &#125; &#125; return result; &#125;&#125; Runtime: 2 ms, faster than 93.07% of Java online submissions for N-ary Tree Level Order Traversal.Memory Usage: 46.8 MB, less than 86.23% of Java online submissions for N-ary Tree Level Order Traversal.]]></content>
@@ -365,9 +393,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[LeetCode 520 Detect Capital]]></title>
-    <url>%2Fleetcode-520%2F</url>
-    <content type="text"><![CDATA[题意 给与一个单词，判断其大写字母的使用是否正确，即每个字母都是大写或都是小写，或首字母大写。 Example 1:12Input: &quot;USA&quot;Output: True Example 2:12Input: &quot;FlaG&quot;Output: False 解法定义两个变量，记录小写字母个数和大写字母个数，然后判断条件是否符合。 123456789101112131415161718192021222324252627class Solution &#123; public boolean detectCapitalUse(String word) &#123; if (word.length() &lt; 2) &#123; return true; &#125; char[] chars = word.toCharArray(); int lower = 0, upper = 0; for (int i = 0; i &lt; chars.length; i++) &#123; if (isLowerCaseLetter(chars[i])) &#123; lower++; &#125; else &#123; upper++; &#125; &#125; return lower == chars.length || upper == chars.length || (isUpperCaseLetter(chars[0]) &amp;&amp; lower == chars.length - 1); &#125; public boolean isUpperCaseLetter(char c) &#123; return c &gt;= 65 &amp;&amp; c &lt;= 90; &#125; public boolean isLowerCaseLetter(char c) &#123; return c &gt;= 97 &amp;&amp; c &lt;= 122; &#125;&#125; Runtime: 12 ms, faster than 98.36% of Java online submissions for Detect Capital.]]></content>
+    <title><![CDATA[LeetCode 657 Robot Return to Origin]]></title>
+    <url>%2Fleetcode-657%2F</url>
+    <content type="text"><![CDATA[题意 其实就是给一个字符串, 每个字符包含 “U”、”D”、”L”、”R”, 分别表示上下左右, 表示机器人向这个位置走一步, 判断最终是否机器人是否还在原来的位置。 解法这道题很简单，只需要假设当前节点是 0, 0，定义两个变量, i 和 j，默认值都为 0，每当向上 i + 1，向下 i - 1，向右 j + 1，向左 j - 1。最终只需要判断 i 和 j 是否都等于 0 即可。 12345678910111213141516171819class Solution &#123; public boolean judgeCircle(String moves) &#123; int i = 0; int j = 0; char[] chars = moves.toCharArray(); for (char ch : chars) &#123; if (ch == 'U') &#123; i += 1; &#125; else if (ch == 'D') &#123; i -= 1; &#125; else if (ch == 'R') &#123; j += 1; &#125; else if (ch == 'L') &#123; j -= 1; &#125; &#125; return i == 0 &amp;&amp; j == 0; &#125;&#125; Runtime: 8 ms, faster than 97.27% of Java online submissions for Robot Return to Origin.]]></content>
       <categories>
         <category>算法</category>
       </categories>
@@ -377,9 +405,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[LeetCode 657 Robot Return to Origin]]></title>
-    <url>%2Fleetcode-657%2F</url>
-    <content type="text"><![CDATA[题意 其实就是给一个字符串, 每个字符包含 “U”、”D”、”L”、”R”, 分别表示上下左右, 表示机器人向这个位置走一步, 判断最终是否机器人是否还在原来的位置。 解法这道题很简单，只需要假设当前节点是 0, 0，定义两个变量, i 和 j，默认值都为 0，每当向上 i + 1，向下 i - 1，向右 j + 1，向左 j - 1。最终只需要判断 i 和 j 是否都等于 0 即可。 12345678910111213141516171819class Solution &#123; public boolean judgeCircle(String moves) &#123; int i = 0; int j = 0; char[] chars = moves.toCharArray(); for (char ch : chars) &#123; if (ch == 'U') &#123; i += 1; &#125; else if (ch == 'D') &#123; i -= 1; &#125; else if (ch == 'R') &#123; j += 1; &#125; else if (ch == 'L') &#123; j -= 1; &#125; &#125; return i == 0 &amp;&amp; j == 0; &#125;&#125; Runtime: 8 ms, faster than 97.27% of Java online submissions for Robot Return to Origin.]]></content>
+    <title><![CDATA[LeetCode 520 Detect Capital]]></title>
+    <url>%2Fleetcode-520%2F</url>
+    <content type="text"><![CDATA[题意 给与一个单词，判断其大写字母的使用是否正确，即每个字母都是大写或都是小写，或首字母大写。 Example 1:12Input: &quot;USA&quot;Output: True Example 2:12Input: &quot;FlaG&quot;Output: False 解法定义两个变量，记录小写字母个数和大写字母个数，然后判断条件是否符合。 123456789101112131415161718192021222324252627class Solution &#123; public boolean detectCapitalUse(String word) &#123; if (word.length() &lt; 2) &#123; return true; &#125; char[] chars = word.toCharArray(); int lower = 0, upper = 0; for (int i = 0; i &lt; chars.length; i++) &#123; if (isLowerCaseLetter(chars[i])) &#123; lower++; &#125; else &#123; upper++; &#125; &#125; return lower == chars.length || upper == chars.length || (isUpperCaseLetter(chars[0]) &amp;&amp; lower == chars.length - 1); &#125; public boolean isUpperCaseLetter(char c) &#123; return c &gt;= 65 &amp;&amp; c &lt;= 90; &#125; public boolean isLowerCaseLetter(char c) &#123; return c &gt;= 97 &amp;&amp; c &lt;= 122; &#125;&#125; Runtime: 12 ms, faster than 98.36% of Java online submissions for Detect Capital.]]></content>
       <categories>
         <category>算法</category>
       </categories>
@@ -1036,8 +1064,8 @@
       </categories>
       <tags>
         <tag>剑指offer</tag>
-        <tag>递归</tag>
         <tag>栈</tag>
+        <tag>递归</tag>
         <tag>二叉树</tag>
       </tags>
   </entry>
