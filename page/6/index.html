@@ -1845,7 +1845,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #9a530f;
+  background: #90ffc9;
 }
 .feed-link,
 .chat {
@@ -3170,7 +3170,7 @@ ul.breadcrumb li+li:last-child {
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.zhaojun.im/leetcode-520/">
+    <link itemprop="mainEntityOfPage" href="http://www.zhaojun.im/leetcode-344/">
 
     <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="赵俊">
@@ -3190,7 +3190,7 @@ ul.breadcrumb li+li:last-child {
           <h2 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/leetcode-520/" class="post-title-link" itemprop="url">LeetCode 520 Detect Capital</a>
+                <a href="/leetcode-344/" class="post-title-link" itemprop="url">LeetCode 344 Reverse String</a>
               
             
           </h2>
@@ -3215,7 +3215,7 @@ ul.breadcrumb li+li:last-child {
                 
               
 
-              <time title="创建时间：2018-11-19 22:24:34" itemprop="dateCreated datePublished" datetime="2018-11-19T22:24:34+08:00">2018-11-19</time>
+              <time title="创建时间：2018-11-20 22:10:34" itemprop="dateCreated datePublished" datetime="2018-11-20T22:10:34+08:00">2018-11-20</time>
             
 
             
@@ -3232,7 +3232,7 @@ ul.breadcrumb li+li:last-child {
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-11-28 21:58:52" itemprop="dateModified" datetime="2018-11-28T21:58:52+08:00">2018-11-28</time>
+                <time title="修改时间：2018-11-21 22:17:25" itemprop="dateModified" datetime="2018-11-21T22:17:25+08:00">2018-11-21</time>
               
             
           </span>
@@ -3268,8 +3268,8 @@ ul.breadcrumb li+li:last-child {
                 </span>
             
                 <span class="post-meta-item-text">评论数：</span>
-                <a href="/leetcode-520/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/leetcode-520/" itemprop="commentCount"></span>
+                <a href="/leetcode-344/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/leetcode-344/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -3277,7 +3277,7 @@ ul.breadcrumb li+li:last-child {
 
           
           
-            <span id="/leetcode-520/" class="leancloud_visitors" data-flag-title="LeetCode 520 Detect Capital">
+            <span id="/leetcode-344/" class="leancloud_visitors" data-flag-title="LeetCode 344 Reverse String">
               <span class="post-meta-divider">|</span>
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
@@ -3309,19 +3309,17 @@ ul.breadcrumb li+li:last-child {
 
       
         
-          <h2 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h2><blockquote>
-<p>给与一个单词，判断其大写字母的使用是否正确，即每个字母都是大写或都是小写，或首字母大写。</p>
+          
+            <h2 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h2><blockquote>
+<p>翻转字符串。</p>
 </blockquote>
-<p>Example 1:<br></p><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: "USA"</span><br><span class="line">Output: True</span><br></pre></td></tr></tbody></table></figure><p></p>
-          <!--noindex-->
+<h2 id="解法"><a href="#解法" class="headerlink" title="解法"></a>解法</h2><p>两个指针，分别在首和尾，都向中间走，直到首超过尾。</p>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>{</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">reverseString</span><span class="params">(String s)</span> </span>{</span><br><span class="line">        <span class="keyword">char</span>[] chars = s.toCharArray();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>, j = chars.length - <span class="number">1</span>; i &lt; j; i++, j--) {</span><br><span class="line">            <span class="keyword">char</span> temp = chars[i];</span><br><span class="line">            chars[i] = chars[j];</span><br><span class="line">            chars[j] = temp;</span><br><span class="line">        }</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> String(chars);</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<blockquote>
+<p>Runtime: 2 ms, faster than 79.62% of Java online submissions for Reverse String.</p>
+</blockquote>
+
           
-            <div class="post-button text-center">
-              <a class="btn" href="/leetcode-520/" rel="contents">
-                阅读全文 »
-              </a>
-            </div>
-          
-          <!--/noindex-->
         
       
     </div>
@@ -3523,6 +3521,212 @@ ul.breadcrumb li+li:last-child {
           
             <div class="post-button text-center">
               <a class="btn" href="/leetcode-657/" rel="contents">
+                阅读全文 »
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.zhaojun.im/leetcode-520/">
+
+    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="赵俊">
+      <meta itemprop="description" content="一个 Java 学习者的博客，分享 Java 干货, VPS 知识, 软件推荐等。">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="赵俊的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/leetcode-520/" class="post-title-link" itemprop="url">LeetCode 520 Detect Capital</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-11-19 22:24:34" itemprop="dateCreated datePublished" datetime="2018-11-19T22:24:34+08:00">2018-11-19</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-11-28 21:58:52" itemprop="dateModified" datetime="2018-11-28T21:58:52+08:00">2018-11-28</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/算法/" itemprop="url" rel="index"><span itemprop="name">算法</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
+                <a href="/leetcode-520/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/leetcode-520/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+            <span id="/leetcode-520/" class="leancloud_visitors" data-flag-title="LeetCode 520 Detect Capital">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读次数：</span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h2><blockquote>
+<p>给与一个单词，判断其大写字母的使用是否正确，即每个字母都是大写或都是小写，或首字母大写。</p>
+</blockquote>
+<p>Example 1:<br></p><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: "USA"</span><br><span class="line">Output: True</span><br></pre></td></tr></tbody></table></figure><p></p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/leetcode-520/" rel="contents">
                 阅读全文 »
               </a>
             </div>
@@ -4185,212 +4389,6 @@ ul.breadcrumb li+li:last-child {
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.zhaojun.im/shiro-restful/">
-
-    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="赵俊">
-      <meta itemprop="description" content="一个 Java 学习者的博客，分享 Java 干货, VPS 知识, 软件推荐等。">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="赵俊的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/shiro-restful/" class="post-title-link" itemprop="url">Shiro 拓展之 Restful URL 鉴权</a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2018-11-17 18:48:30" itemprop="dateCreated datePublished" datetime="2018-11-17T18:48:30+08:00">2018-11-17</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2018-11-25 23:42:54" itemprop="dateModified" datetime="2018-11-25T23:42:54+08:00">2018-11-25</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Shiro/" itemprop="url" rel="index"><span itemprop="name">Shiro</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-              
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-            
-                <span class="post-meta-item-text">评论数：</span>
-                <a href="/shiro-restful/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/shiro-restful/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-            <span id="/shiro-restful/" class="leancloud_visitors" data-flag-title="Shiro 拓展之 Restful URL 鉴权">
-              <span class="post-meta-divider">|</span>
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              
-                <span class="post-meta-item-text">阅读次数：</span>
-              
-                <span class="leancloud-visitors-count"></span>
-            </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在使用 Shiro 的过程中，遇到一个痛点，就是对 restful 支持不太好，也查了很多资料，各种各样的方法都有，要不就是功能不完整，要不就是解释不清楚，还有一些对原有功能的侵入性太强，经过一番探索，算是最简的配置下完成了需要的功能，这里给大家分享下。大家如果又更好的方案，也可以在评论区留言，互相探讨下。</p>
-<blockquote>
-<p>虽然深入到了源码进行分析，但过程并不复杂，希望大家可以跟着我的思路捋顺了耐心看下去，而不是看见源码贴就抵触。</p>
-</blockquote>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/shiro-restful/" rel="contents">
-                阅读全文 »
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -4439,7 +4437,7 @@ ul.breadcrumb li+li:last-child {
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">163</span>
+                    <span class="site-state-item-count">164</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>

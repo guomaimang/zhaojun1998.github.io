@@ -85,24 +85,25 @@
 
 
 
-  <meta name="description" content="一个 Java 学习者的博客，分享 Java 干货, VPS 知识, 软件推荐等。">
-<meta name="keywords" content="Java, Hexo, Valine, Hexo 评论系统, Valine 邮件通知,  多线程, 算法, Spring">
-<meta property="og:type" content="website">
-<meta property="og:title" content="赵俊的博客">
-<meta property="og:url" content="http://www.zhaojun.im/tags/泛型/index.html">
+  <meta name="description" content="题意给予一颗二叉树，每个节点的值只有 0 和 1, 每个根到叶子节点的路径都是一个有效的二进制树, 如: 0 -&amp;gt; 1 -&amp;gt; 1 -&amp;gt; 0 -&amp;gt; 1, 那么用二进制表示就是 01101, 对应十进制为 13. 对于树中的所有叶子节点, 请返回根节点到这些叶子节点的路径所代表的二进制值的和. 例 : 12345678910111213141516171819202122232">
+<meta name="keywords" content="二叉树,leetcode,树,DFS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LeetCode 1022 Sum of Root To Leaf Binary Numbers">
+<meta property="og:url" content="http://www.zhaojun.im/leetcode-1022/index.html">
 <meta property="og:site_name" content="赵俊的博客">
-<meta property="og:description" content="一个 Java 学习者的博客，分享 Java 干货, VPS 知识, 软件推荐等。">
+<meta property="og:description" content="题意给予一颗二叉树，每个节点的值只有 0 和 1, 每个根到叶子节点的路径都是一个有效的二进制树, 如: 0 -&amp;gt; 1 -&amp;gt; 1 -&amp;gt; 0 -&amp;gt; 1, 那么用二进制表示就是 01101, 对应十进制为 13. 对于树中的所有叶子节点, 请返回根节点到这些叶子节点的路径所代表的二进制值的和. 例 : 12345678910111213141516171819202122232">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-05-19T05:05:42.753Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="赵俊的博客">
-<meta name="twitter:description" content="一个 Java 学习者的博客，分享 Java 干货, VPS 知识, 软件推荐等。">
+<meta name="twitter:title" content="LeetCode 1022 Sum of Root To Leaf Binary Numbers">
+<meta name="twitter:description" content="题意给予一颗二叉树，每个节点的值只有 0 和 1, 每个根到叶子节点的路径都是一个有效的二进制树, 如: 0 -&amp;gt; 1 -&amp;gt; 1 -&amp;gt; 0 -&amp;gt; 1, 那么用二进制表示就是 01101, 对应十进制为 13. 对于树中的所有叶子节点, 请返回根节点到这些叶子节点的路径所代表的二进制值的和. 例 : 12345678910111213141516171819202122232">
 
 
 
 
 
 
-  <link rel="canonical" href="http://www.zhaojun.im/tags/泛型/">
+  <link rel="canonical" href="http://www.zhaojun.im/leetcode-1022/">
 
 
 
@@ -112,7 +113,7 @@
   };
 </script>
 
-  <title>标签: 泛型 | 赵俊的博客</title>
+  <title>LeetCode 1022 Sum of Root To Leaf Binary Numbers | 赵俊的博客</title>
   
 
 
@@ -2917,7 +2918,7 @@ ul.breadcrumb li+li:last-child {
     
   
 
-  <div class="container sidebar-position-left ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
@@ -2993,7 +2994,7 @@ ul.breadcrumb li+li:last-child {
         
         
           
-          <li class="menu-item menu-item-tags menu-item-active">
+          <li class="menu-item menu-item-tags">
 
     
     
@@ -3149,92 +3150,260 @@ ul.breadcrumb li+li:last-child {
           
             
 
-    
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-    
-
-  
-
-
           
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block tag">
+  <div id="posts" class="posts-expand">
+    
 
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h2>泛型<small>标签</small>
-        </h2>
-      </div>
+  
 
-      
-        
+  
+  
+  
+
+  
 
   <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.zhaojun.im/leetcode-1022/">
 
-      <h3 class="post-title">
+    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="赵俊">
+      <meta itemprop="description" content="一个 Java 学习者的博客，分享 Java 干货, VPS 知识, 软件推荐等。">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="赵俊的博客">
+    </span>
+
+    
+      <header class="post-header">
+
         
-          <a class="post-title-link" href="/Java基础-泛型/" itemprop="url">
-            
-              <span itemprop="name">Java基础：泛型</span>
-            
-          </a>
         
-      </h3>
+          <h2 class="post-title" itemprop="name headline">LeetCode 1022 Sum of Root To Leaf Binary Numbers
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2017-03-08T18:12:09+08:00" content="2017-03-08">
-          03-08
-        </time>
-      </div>
+              
+            
+          </h2>
+        
 
-    </header>
-  </article>
+        <div class="post-meta">
+          <span class="post-time">
 
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-05-19 12:57:34 / 修改时间：13:05:42" itemprop="dateCreated datePublished" datetime="2019-05-19T12:57:34+08:00">2019-05-19</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/算法/" itemprop="url" rel="index"><span itemprop="name">算法</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
+                <a href="/leetcode-1022/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/leetcode-1022/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+            <span id="/leetcode-1022/" class="leancloud_visitors" data-flag-title="LeetCode 1022 Sum of Root To Leaf Binary Numbers">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读次数：</span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h2><p>给予一颗二叉树，每个节点的值只有 0 和 1, 每个根到叶子节点的路径都是一个有效的二进制树, 如: <code>0 -&gt; 1 -&gt; 1 -&gt; 0 -&gt; 1</code>, 那么用二进制表示就是 <code>01101</code>, 对应十进制为 <code>13</code>.</p>
+<p>对于树中的所有叶子节点, 请返回根节点到这些叶子节点的路径所代表的二进制值的和.</p>
+<p>例 :</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line">给予树：</span><br><span class="line"></span><br><span class="line">     1</span><br><span class="line">   /   \</span><br><span class="line">  0     1</span><br><span class="line"> / \   / \</span><br><span class="line">0   1 0   1</span><br><span class="line"></span><br><span class="line">返回: 22. </span><br><span class="line">说明:  (100) + (101) + (110) + (111) = 4 + 5 + 6 + 7 = 22</span><br><span class="line"></span><br><span class="line">&lt;!-- more --&gt;</span><br><span class="line"></span><br><span class="line">## 解法</span><br><span class="line"></span><br><span class="line">采用深度优先遍历, 从跟节点开始, 到下一层的时候, 将父节点的值向左移动一位, 再加上当前节点的值, 直到根节点为止.</span><br><span class="line"></span><br><span class="line">如上图中, `1 -&gt; 0 -&gt; 0` 这个路径, 从根节点 1 开始, 到第二层, 对 1 左移一位 `i = 1 &lt;&lt; 1`, 等于 `10`, 再加上当前节点的值 `0` 等于 `10`, 再到下一层, 向左移动一位 `i = 10 &lt;&lt; 1`, 等于 `100`.</span><br><span class="line"></span><br><span class="line">```java</span><br><span class="line">/**</span><br><span class="line"> * Definition for a binary tree node.</span><br><span class="line"> * public class TreeNode {</span><br><span class="line"> *     int val;</span><br><span class="line"> *     TreeNode left;</span><br><span class="line"> *     TreeNode right;</span><br><span class="line"> *     TreeNode(int x) { val = x; }</span><br><span class="line"> * }</span><br><span class="line"> */</span><br><span class="line">class Solution {</span><br><span class="line">    </span><br><span class="line">    int result = 0;</span><br><span class="line">    </span><br><span class="line">    public int sumRootToLeaf(TreeNode root) {</span><br><span class="line">        dfs(root, 0);</span><br><span class="line">        return result;</span><br><span class="line">    }</span><br><span class="line">    </span><br><span class="line">    public void dfs(TreeNode node, int currentVal) {</span><br><span class="line">        if (node != null) {</span><br><span class="line">            currentVal &lt;&lt;= 1;</span><br><span class="line">            currentVal += node.val;</span><br><span class="line">            if (node.left == null &amp;&amp; node.right == null) {</span><br><span class="line">                result += currentVal;</span><br><span class="line">            }</span><br><span class="line">            dfs(node.left, currentVal);</span><br><span class="line">            dfs(node.right, currentVal);</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<blockquote>
+<p>Runtime: 0 ms, faster than 100.00% of Java online submissions for Sum of Root To Leaf Binary Numbers.<br>Memory Usage: 35.4 MB, less than 100.00% of Java online submissions for Sum of Root To Leaf Binary Numbers.</p>
+</blockquote>
 
       
     </div>
 
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+      <div>
+        
+
+
+
+
+  
+
+
+
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>赵俊</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    
+    <a href="http://www.zhaojun.im/leetcode-1022/" title="LeetCode 1022 Sum of Root To Leaf Binary Numbers">http://www.zhaojun.im/leetcode-1022/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC9kZWVkLnpo"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</span> 许可协议。转载请注明出处！</li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/二叉树/" rel="tag"># 二叉树</a>
+          
+            <a href="/tags/leetcode/" rel="tag"># leetcode</a>
+          
+            <a href="/tags/树/" rel="tag"># 树</a>
+          
+            <a href="/tags/DFS/" rel="tag"># DFS</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/leetcode-993/" rel="next" title="LeetCode 993 Cousins in Binary Tree">
+                <i class="fa fa-chevron-left"></i> LeetCode 993 Cousins in Binary Tree
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
 
+  </div>
 
 
           </div>
           
+
+  
+    <div class="comments" id="comments">
+    </div>
+
+  
+
+
 
         </div>
         
@@ -3254,8 +3423,17 @@ ul.breadcrumb li+li:last-child {
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -3666,6 +3844,23 @@ ul.breadcrumb li+li:last-child {
       </div>
 
       
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#题意"><span class="nav-number">1.</span> <span class="nav-text">题意</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
 
       
         <div class="back-to-top">
@@ -3814,6 +4009,10 @@ ul.breadcrumb li+li:last-child {
 
 
   
+  
+
+
+
 
   
 
@@ -3857,6 +4056,8 @@ ul.breadcrumb li+li:last-child {
 
 
 
+
+  
 
 
   
