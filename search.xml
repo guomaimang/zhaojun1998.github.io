@@ -3,7 +3,7 @@
   <entry>
     <title><![CDATA[LeetCode 1022 Sum of Root To Leaf Binary Numbers]]></title>
     <url>%2Fleetcode-1022%2F</url>
-    <content type="text"><![CDATA[题意给予一颗二叉树，每个节点的值只有 0 和 1, 每个根到叶子节点的路径都是一个有效的二进制树, 如: 0 -&gt; 1 -&gt; 1 -&gt; 0 -&gt; 1, 那么用二进制表示就是 01101, 对应十进制为 13. 对于树中的所有叶子节点, 请返回根节点到这些叶子节点的路径所代表的二进制值的和. 例 : 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950给予树： 1 / \ 0 1 / \ / \0 1 0 1返回: 22. 说明: (100) + (101) + (110) + (111) = 4 + 5 + 6 + 7 = 22&lt;!-- more --&gt;## 解法采用深度优先遍历, 从跟节点开始, 到下一层的时候, 将父节点的值向左移动一位, 再加上当前节点的值, 直到根节点为止.如上图中, `1 -&gt; 0 -&gt; 0` 这个路径, 从根节点 1 开始, 到第二层, 对 1 左移一位 `i = 1 &lt;&lt; 1`, 等于 `10`, 再加上当前节点的值 `0` 等于 `10`, 再到下一层, 向左移动一位 `i = 10 &lt;&lt; 1`, 等于 `100`.```java/** * Definition for a binary tree node. * public class TreeNode &#123; * int val; * TreeNode left; * TreeNode right; * TreeNode(int x) &#123; val = x; &#125; * &#125; */class Solution &#123; int result = 0; public int sumRootToLeaf(TreeNode root) &#123; dfs(root, 0); return result; &#125; public void dfs(TreeNode node, int currentVal) &#123; if (node != null) &#123; currentVal &lt;&lt;= 1; currentVal += node.val; if (node.left == null &amp;&amp; node.right == null) &#123; result += currentVal; &#125; dfs(node.left, currentVal); dfs(node.right, currentVal); &#125; &#125;&#125; Runtime: 0 ms, faster than 100.00% of Java online submissions for Sum of Root To Leaf Binary Numbers.Memory Usage: 35.4 MB, less than 100.00% of Java online submissions for Sum of Root To Leaf Binary Numbers.]]></content>
+    <content type="text"><![CDATA[题意给予一颗二叉树，每个节点的值只有 0 和 1, 每个根到叶子节点的路径都是一个有效的二进制树, 如: 0 -&gt; 1 -&gt; 1 -&gt; 0 -&gt; 1, 那么用二进制表示就是 01101, 对应十进制为 13. 对于树中的所有叶子节点, 请返回根节点到这些叶子节点的路径所代表的二进制值的和. 例 : 12345678910给予树： 1 / \ 0 1 / \ / \0 1 0 1返回: 22. 说明: (100) + (101) + (110) + (111) = 4 + 5 + 6 + 7 = 22 解法采用深度优先遍历, 从跟节点开始, 到下一层的时候, 将父节点的值向左移动一位, 再加上当前节点的值, 直到根节点为止. 如上图中, 1 -&gt; 0 -&gt; 0 这个路径, 从根节点 1 开始, 到第二层, 对 1 左移一位 i = 1 &lt;&lt; 1, 等于 10, 再加上当前节点的值 0 等于 10, 再到下一层, 向左移动一位 i = 10 &lt;&lt; 1, 等于 100. 123456789101112131415161718192021222324252627282930/** * Definition for a binary tree node. * public class TreeNode &#123; * int val; * TreeNode left; * TreeNode right; * TreeNode(int x) &#123; val = x; &#125; * &#125; */class Solution &#123; int result = 0; public int sumRootToLeaf(TreeNode root) &#123; dfs(root, 0); return result; &#125; public void dfs(TreeNode node, int currentVal) &#123; if (node != null) &#123; currentVal &lt;&lt;= 1; currentVal += node.val; if (node.left == null &amp;&amp; node.right == null) &#123; result += currentVal; &#125; dfs(node.left, currentVal); dfs(node.right, currentVal); &#125; &#125;&#125; Runtime: 0 ms, faster than 100.00% of Java online submissions for Sum of Root To Leaf Binary Numbers.Memory Usage: 35.4 MB, less than 100.00% of Java online submissions for Sum of Root To Leaf Binary Numbers.]]></content>
       <categories>
         <category>算法</category>
       </categories>
@@ -206,8 +206,8 @@
         <category>算法</category>
       </categories>
       <tags>
-        <tag>数组</tag>
         <tag>二叉树</tag>
+        <tag>数组</tag>
         <tag>leetcode</tag>
         <tag>树</tag>
         <tag>二叉搜索树</tag>
@@ -248,8 +248,8 @@
         <category>算法</category>
       </categories>
       <tags>
-        <tag>数组</tag>
         <tag>二叉树</tag>
+        <tag>数组</tag>
         <tag>leetcode</tag>
         <tag>树</tag>
         <tag>二叉搜索树</tag>
@@ -263,8 +263,8 @@
         <category>算法</category>
       </categories>
       <tags>
-        <tag>数组</tag>
         <tag>二叉树</tag>
+        <tag>数组</tag>
         <tag>leetcode</tag>
         <tag>树</tag>
         <tag>二叉搜索树</tag>
@@ -278,8 +278,8 @@
         <category>算法</category>
       </categories>
       <tags>
-        <tag>数组</tag>
         <tag>二叉树</tag>
+        <tag>数组</tag>
         <tag>leetcode</tag>
         <tag>树</tag>
       </tags>
@@ -397,18 +397,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[LeetCode 557 Reverse Words in a String III]]></title>
-    <url>%2Fleetcode-557%2F</url>
-    <content type="text"><![CDATA[题意 给定一个字符串, 翻转字符串中的每个单词, 每个单词以空格分隔, 保留空格和初始单词顺序。 解法首先按照空格对字符串进行分隔，然后将每个单词进行翻转后再拼接回字符串即可，需要注意拼接时记得加空格，但最后一个单词不需要加。 12345678910111213141516171819class Solution &#123; public String reverseWords(String s) &#123; StringBuilder result = new StringBuilder(); String[] strs = s.split(" "); for (String str : strs) &#123; char[] chars = str.toCharArray(); for (int i = 0, j = chars.length - 1; i &lt; j; i++, j--) &#123; char c = chars[i]; chars[i] = chars[j]; chars[j] = c; &#125; result.append(new String(chars)).append(" "); &#125; return result.substring(0, result.length() - 1); &#125;&#125; Runtime: 6 ms, faster than 93.75% of Java online submissions for Reverse Words in a String III.]]></content>
-      <categories>
-        <category>算法</category>
-      </categories>
-      <tags>
-        <tag>字符串</tag>
-        <tag>leetcode</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[LeetCode 344 Reverse String]]></title>
     <url>%2Fleetcode-344%2F</url>
     <content type="text"><![CDATA[题意 翻转字符串。 解法两个指针，分别在首和尾，都向中间走，直到首超过尾。 1234567891011class Solution &#123; public String reverseString(String s) &#123; char[] chars = s.toCharArray(); for (int i = 0, j = chars.length - 1; i &lt; j; i++, j--) &#123; char temp = chars[i]; chars[i] = chars[j]; chars[j] = temp; &#125; return new String(chars); &#125;&#125; Runtime: 2 ms, faster than 79.62% of Java online submissions for Reverse String.]]></content>
@@ -421,9 +409,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[LeetCode 657 Robot Return to Origin]]></title>
-    <url>%2Fleetcode-657%2F</url>
-    <content type="text"><![CDATA[题意 其实就是给一个字符串, 每个字符包含 “U”、”D”、”L”、”R”, 分别表示上下左右, 表示机器人向这个位置走一步, 判断最终是否机器人是否还在原来的位置。 解法这道题很简单，只需要假设当前节点是 0, 0，定义两个变量, i 和 j，默认值都为 0，每当向上 i + 1，向下 i - 1，向右 j + 1，向左 j - 1。最终只需要判断 i 和 j 是否都等于 0 即可。 12345678910111213141516171819class Solution &#123; public boolean judgeCircle(String moves) &#123; int i = 0; int j = 0; char[] chars = moves.toCharArray(); for (char ch : chars) &#123; if (ch == 'U') &#123; i += 1; &#125; else if (ch == 'D') &#123; i -= 1; &#125; else if (ch == 'R') &#123; j += 1; &#125; else if (ch == 'L') &#123; j -= 1; &#125; &#125; return i == 0 &amp;&amp; j == 0; &#125;&#125; Runtime: 8 ms, faster than 97.27% of Java online submissions for Robot Return to Origin.]]></content>
+    <title><![CDATA[LeetCode 557 Reverse Words in a String III]]></title>
+    <url>%2Fleetcode-557%2F</url>
+    <content type="text"><![CDATA[题意 给定一个字符串, 翻转字符串中的每个单词, 每个单词以空格分隔, 保留空格和初始单词顺序。 解法首先按照空格对字符串进行分隔，然后将每个单词进行翻转后再拼接回字符串即可，需要注意拼接时记得加空格，但最后一个单词不需要加。 12345678910111213141516171819class Solution &#123; public String reverseWords(String s) &#123; StringBuilder result = new StringBuilder(); String[] strs = s.split(" "); for (String str : strs) &#123; char[] chars = str.toCharArray(); for (int i = 0, j = chars.length - 1; i &lt; j; i++, j--) &#123; char c = chars[i]; chars[i] = chars[j]; chars[j] = c; &#125; result.append(new String(chars)).append(" "); &#125; return result.substring(0, result.length() - 1); &#125;&#125; Runtime: 6 ms, faster than 93.75% of Java online submissions for Reverse Words in a String III.]]></content>
       <categories>
         <category>算法</category>
       </categories>
@@ -436,6 +424,18 @@
     <title><![CDATA[LeetCode 520 Detect Capital]]></title>
     <url>%2Fleetcode-520%2F</url>
     <content type="text"><![CDATA[题意 给与一个单词，判断其大写字母的使用是否正确，即每个字母都是大写或都是小写，或首字母大写。 Example 1:12Input: &quot;USA&quot;Output: True Example 2:12Input: &quot;FlaG&quot;Output: False 解法定义两个变量，记录小写字母个数和大写字母个数，然后判断条件是否符合。 123456789101112131415161718192021222324252627class Solution &#123; public boolean detectCapitalUse(String word) &#123; if (word.length() &lt; 2) &#123; return true; &#125; char[] chars = word.toCharArray(); int lower = 0, upper = 0; for (int i = 0; i &lt; chars.length; i++) &#123; if (isLowerCaseLetter(chars[i])) &#123; lower++; &#125; else &#123; upper++; &#125; &#125; return lower == chars.length || upper == chars.length || (isUpperCaseLetter(chars[0]) &amp;&amp; lower == chars.length - 1); &#125; public boolean isUpperCaseLetter(char c) &#123; return c &gt;= 65 &amp;&amp; c &lt;= 90; &#125; public boolean isLowerCaseLetter(char c) &#123; return c &gt;= 97 &amp;&amp; c &lt;= 122; &#125;&#125; Runtime: 12 ms, faster than 98.36% of Java online submissions for Detect Capital.]]></content>
+      <categories>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>字符串</tag>
+        <tag>leetcode</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[LeetCode 657 Robot Return to Origin]]></title>
+    <url>%2Fleetcode-657%2F</url>
+    <content type="text"><![CDATA[题意 其实就是给一个字符串, 每个字符包含 “U”、”D”、”L”、”R”, 分别表示上下左右, 表示机器人向这个位置走一步, 判断最终是否机器人是否还在原来的位置。 解法这道题很简单，只需要假设当前节点是 0, 0，定义两个变量, i 和 j，默认值都为 0，每当向上 i + 1，向下 i - 1，向右 j + 1，向左 j - 1。最终只需要判断 i 和 j 是否都等于 0 即可。 12345678910111213141516171819class Solution &#123; public boolean judgeCircle(String moves) &#123; int i = 0; int j = 0; char[] chars = moves.toCharArray(); for (char ch : chars) &#123; if (ch == 'U') &#123; i += 1; &#125; else if (ch == 'D') &#123; i -= 1; &#125; else if (ch == 'R') &#123; j += 1; &#125; else if (ch == 'L') &#123; j -= 1; &#125; &#125; return i == 0 &amp;&amp; j == 0; &#125;&#125; Runtime: 8 ms, faster than 97.27% of Java online submissions for Robot Return to Origin.]]></content>
       <categories>
         <category>算法</category>
       </categories>
@@ -824,8 +824,8 @@
         <category>Hexo</category>
       </categories>
       <tags>
-        <tag>Hexo优化</tag>
         <tag>Hexo</tag>
+        <tag>Hexo优化</tag>
       </tags>
   </entry>
   <entry>
@@ -1092,8 +1092,8 @@
       </categories>
       <tags>
         <tag>剑指offer</tag>
-        <tag>栈</tag>
         <tag>递归</tag>
+        <tag>栈</tag>
         <tag>二叉树</tag>
       </tags>
   </entry>
