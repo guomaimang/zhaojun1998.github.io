@@ -85,24 +85,25 @@
 
 
 
-  <meta name="description" content="一个 Java 学习者的博客，分享 Java 干货, VPS 知识, 软件推荐等。">
-<meta name="keywords" content="Java, Hexo, Valine, Hexo 评论系统, Valine 邮件通知,  多线程, 算法, Spring">
-<meta property="og:type" content="website">
-<meta property="og:title" content="赵俊的博客">
-<meta property="og:url" content="http://www.zhaojun.im/tags/哈希表/index.html">
+  <meta name="description" content="题意给予一颗二叉搜索树，每个节点都加上大于他的所有节点的和, 如节点 3, 有两个节点大于他, 分别是 10, 15, 那么节点 3 的值就要变为: 3 + 10 + 15 = 28. 例 : 12345678910给予树：     5   /   \  2     13返回树:     18    /   \  20     13">
+<meta name="keywords" content="二叉树,leetcode,树,后序遍历">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LeetCode 538 Convert BST to Greater Tree">
+<meta property="og:url" content="http://www.zhaojun.im/leetcode-538/index.html">
 <meta property="og:site_name" content="赵俊的博客">
-<meta property="og:description" content="一个 Java 学习者的博客，分享 Java 干货, VPS 知识, 软件推荐等。">
+<meta property="og:description" content="题意给予一颗二叉搜索树，每个节点都加上大于他的所有节点的和, 如节点 3, 有两个节点大于他, 分别是 10, 15, 那么节点 3 的值就要变为: 3 + 10 + 15 = 28. 例 : 12345678910给予树：     5   /   \  2     13返回树:     18    /   \  20     13">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-05-20T10:11:36.357Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="赵俊的博客">
-<meta name="twitter:description" content="一个 Java 学习者的博客，分享 Java 干货, VPS 知识, 软件推荐等。">
+<meta name="twitter:title" content="LeetCode 538 Convert BST to Greater Tree">
+<meta name="twitter:description" content="题意给予一颗二叉搜索树，每个节点都加上大于他的所有节点的和, 如节点 3, 有两个节点大于他, 分别是 10, 15, 那么节点 3 的值就要变为: 3 + 10 + 15 = 28. 例 : 12345678910给予树：     5   /   \  2     13返回树:     18    /   \  20     13">
 
 
 
 
 
 
-  <link rel="canonical" href="http://www.zhaojun.im/tags/哈希表/">
+  <link rel="canonical" href="http://www.zhaojun.im/leetcode-538/">
 
 
 
@@ -112,7 +113,7 @@
   };
 </script>
 
-  <title>标签: 哈希表 | 赵俊的博客</title>
+  <title>LeetCode 538 Convert BST to Greater Tree | 赵俊的博客</title>
   
 
 
@@ -2917,7 +2918,7 @@ ul.breadcrumb li+li:last-child {
     
   
 
-  <div class="container sidebar-position-left ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
@@ -2993,7 +2994,7 @@ ul.breadcrumb li+li:last-child {
         
         
           
-          <li class="menu-item menu-item-tags menu-item-active">
+          <li class="menu-item menu-item-tags">
 
     
     
@@ -3149,170 +3150,262 @@ ul.breadcrumb li+li:last-child {
           
             
 
-    
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-    
-
-  
-
-
           
           <div id="content" class="content">
             
 
+  <div id="posts" class="posts-expand">
+    
+
+  
+
   
   
   
-  <div class="post-block tag">
 
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h2>哈希表<small>标签</small>
-        </h2>
-      </div>
-
-      
-        
+  
 
   <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.zhaojun.im/leetcode-538/">
 
-      <h3 class="post-title">
+    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="赵俊">
+      <meta itemprop="description" content="一个 Java 学习者的博客，分享 Java 干货, VPS 知识, 软件推荐等。">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="赵俊的博客">
+    </span>
+
+    
+      <header class="post-header">
+
         
-          <a class="post-title-link" href="/concatenated-string-with-uncommon-characters-of-two-strings/" itemprop="url">
-            
-              <span itemprop="name">连接两个字符串中的不同字符</span>
-            
-          </a>
         
-      </h3>
+          <h2 class="post-title" itemprop="name headline">LeetCode 538 Convert BST to Greater Tree
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2017-11-29T16:40:05+08:00" content="2017-11-29">
-          11-29
-        </time>
-      </div>
+              
+            
+          </h2>
+        
 
-    </header>
-  </article>
+        <div class="post-meta">
+          <span class="post-time">
 
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-05-20 21:12:34 / 修改时间：18:11:36" itemprop="dateCreated datePublished" datetime="2019-05-20T21:12:34+08:00">2019-05-20</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/算法/" itemprop="url" rel="index"><span itemprop="name">算法</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
+                <a href="/leetcode-538/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/leetcode-538/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+            <span id="/leetcode-538/" class="leancloud_visitors" data-flag-title="LeetCode 538 Convert BST to Greater Tree">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读次数：</span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-        
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
-        
-          <a class="post-title-link" href="/intersection-of-two-linked-lists/" itemprop="url">
-            
-              <span itemprop="name">两个链表的交叉</span>
-            
-          </a>
-        
-      </h3>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2017-08-29T23:09:13+08:00" content="2017-08-29">
-          08-29
-        </time>
-      </div>
-
-    </header>
-  </article>
-
+      
 
       
-        
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
-        
-          <a class="post-title-link" href="/happy-number/" itemprop="url">
-            
-              <span itemprop="name">快乐数</span>
-            
-          </a>
-        
-      </h3>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2017-08-17T11:44:14+08:00" content="2017-08-17">
-          08-17
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-      
-        
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
-        
-          <a class="post-title-link" href="/two-sum/" itemprop="url">
-            
-              <span itemprop="name">两数之和</span>
-            
-          </a>
-        
-      </h3>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2017-08-06T15:48:41+08:00" content="2017-08-06">
-          08-06
-        </time>
-      </div>
-
-    </header>
-  </article>
-
+        <h2 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h2><p>给予一颗二叉搜索树，每个节点都加上大于他的所有节点的和, 如节点 3, 有两个节点大于他, 分别是 10, 15, 那么节点 3 的值就要变为: 3 + 10 + 15 = 28.</p>
+<p>例 :</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">给予树：</span><br><span class="line"></span><br><span class="line">     5</span><br><span class="line">   /   \</span><br><span class="line">  2     13</span><br><span class="line"></span><br><span class="line">返回树:</span><br><span class="line">     18</span><br><span class="line">    /   \</span><br><span class="line">  20     13</span><br></pre></td></tr></tbody></table></figure>
+<a id="more"></a>
+<h2 id="解法"><a href="#解法" class="headerlink" title="解法"></a>解法</h2><p>这道题很巧妙, 因为是一颗二叉搜索树, 所以只有所有右子树才会比当前节点大, 那么当前节点加上<strong>所有右子树的和</strong>即可, 根据这个思路, 我们可以采用后序遍历, 根据 <code>右 -&gt; 中 -&gt; 左</code> 的顺序, 所以我们总是能先得到 <strong>所有右字树的和</strong>, 然后到 <strong>中</strong>, 使用 <strong>中 = 中 + 右</strong> 即可. 这时的 <strong>中</strong> 就又称为最大的节点了.</p>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"> * public class TreeNode {</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     TreeNode left;</span></span><br><span class="line"><span class="comment"> *     TreeNode right;</span></span><br><span class="line"><span class="comment"> *     TreeNode(int x) { val = x; }</span></span><br><span class="line"><span class="comment"> * }</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>{</span><br><span class="line">    <span class="keyword">int</span> sum = <span class="number">0</span>;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> TreeNode <span class="title">convertBST</span><span class="params">(TreeNode root)</span> </span>{</span><br><span class="line">        <span class="keyword">if</span> (root == <span class="keyword">null</span>) {</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        }</span><br><span class="line"></span><br><span class="line">        convertBST(root.right);</span><br><span class="line"></span><br><span class="line">        root.val += sum;</span><br><span class="line">        sum = root.val;</span><br><span class="line"></span><br><span class="line">        convertBST(root.left);</span><br><span class="line">        <span class="keyword">return</span> root;</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<blockquote>
+<p>Runtime: 0 ms, faster than 100.00% of Java online submissions for Convert BST to Greater Tree.<br>Memory Usage: 37.4 MB, less than 99.66% of Java online submissions for Convert BST to Greater Tree.</p>
+</blockquote>
 
       
     </div>
 
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+      <div>
+        
+
+
+
+
+  
+
+
+
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>赵俊</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    
+    <a href="http://www.zhaojun.im/leetcode-538/" title="LeetCode 538 Convert BST to Greater Tree">http://www.zhaojun.im/leetcode-538/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC9kZWVkLnpo"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</span> 许可协议。转载请注明出处！</li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/二叉树/" rel="tag"># 二叉树</a>
+          
+            <a href="/tags/leetcode/" rel="tag"># leetcode</a>
+          
+            <a href="/tags/树/" rel="tag"># 树</a>
+          
+            <a href="/tags/后序遍历/" rel="tag"># 后序遍历</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/leetcode-606/" rel="next" title="LeetCode 606 Construct String from Binary Tree">
+                <i class="fa fa-chevron-left"></i> LeetCode 606 Construct String from Binary Tree
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
 
+  </div>
 
 
           </div>
           
+
+  
+    <div class="comments" id="comments">
+    </div>
+
+  
+
+
 
         </div>
         
@@ -3332,8 +3425,17 @@ ul.breadcrumb li+li:last-child {
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -3752,6 +3854,23 @@ ul.breadcrumb li+li:last-child {
       </div>
 
       
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#题意"><span class="nav-number">1.</span> <span class="nav-text">题意</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解法"><span class="nav-number">2.</span> <span class="nav-text">解法</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
 
       
         <div class="back-to-top">
@@ -3900,6 +4019,10 @@ ul.breadcrumb li+li:last-child {
 
 
   
+  
+
+
+
 
   
 
@@ -3943,6 +4066,8 @@ ul.breadcrumb li+li:last-child {
 
 
 
+
+  
 
 
   
