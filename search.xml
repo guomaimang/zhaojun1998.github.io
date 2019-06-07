@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[巧用 MyBatis 构建树形结构]]></title>
+    <url>%2Fmybatis-recursive-tree%2F</url>
+    <content type="text"><![CDATA[在项目中我们经常会碰到这种格式的数据, 需要将其转化为树形结构: menu_id parent_id menu_name url 1 0 权限管理 # 2 1 用户管理 /user/index 3 1 角色管理 /role/index 4 1 菜单权限 /menu/index 11 0 系统监控 # 12 11 登录日志 /log/login/index 19 11 操作日志 /log/sys/index 20 11 在线用户 /online/index 27 1 操作权限 /operator/index 28 1 部门管理 /dept/index 29 11 系统管理 /system/index 30 0 账号关联 /oauth2/index 一般的做法是查询出所有, 然后递归构建树形结构, 但其实可以巧用 MyBatis 在查询时就进行转换, 这用到了 MyBatis 的 resultMap 功能. 首先由以下表结构定义: 1234567create table menu( menu_id int primary key auto_increment comment '菜单 ID', parent_id int not null, menu_name varchar(20) null comment '菜单名称', url varchar(100) null comment '菜单 URL'); 实体类定义: 123456789101112public class Menu &#123; private Integer menuId; private Integer parentId; private String menuName; private String url; private List&lt;Menu&gt; children;&#125; resultMap 定义: 1234567&lt;resultMap id="BaseResultTreeMap" type="im.zhaojun.model.Menu"&gt; &lt;id column="menu_id" jdbcType="INTEGER" property="menuId"/&gt; &lt;result column="parent_id" jdbcType="INTEGER" property="parentId"/&gt; &lt;result column="menu_name" jdbcType="VARCHAR" property="menuName"/&gt; &lt;result column="url" jdbcType="VARCHAR" property="url"/&gt; &lt;collection property="children" ofType="Menu" select="selectTree" column="&#123;parent_id = menu_id&#125;"/&gt;&lt;/resultMap&gt; 查询定义:1234567891011121314&lt;select id="selectMenuTree" resultMap="BaseResultTreeMap"&gt; select * from menu &lt;where&gt; &lt;choose&gt; &lt;when test="parent_id!=null"&gt; and parent_id = #&#123;parent_id&#125; &lt;/when&gt; &lt;otherwise&gt; and parent_id = 0 &lt;/otherwise&gt; &lt;/choose&gt; &lt;/where&gt;&lt;/select&gt; 查询出的结果集: 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182838485868788[ &#123; "menuId": 1, "parentId": 0, "menuName": "权限管理", "url": "#", "children": [ &#123; "menuId": 2, "parentId": 1, "menuName": "用户管理", "url": "/user/index", "children": [] &#125;, &#123; "menuId": 3, "parentId": 1, "menuName": "角色管理", "url": "/role/index", "children": [] &#125;, &#123; "menuId": 4, "parentId": 1, "menuName": "菜单权限", "url": "/menu/index", "children": [] &#125;, &#123; "menuId": 27, "parentId": 1, "menuName": "操作权限", "url": "/operator/index", "children": [] &#125;, &#123; "menuId": 28, "parentId": 1, "menuName": "部门管理", "url": "/dept/index", "children": [] &#125; ] &#125;, &#123; "menuId": 11, "parentId": 0, "menuName": "系统监控", "url": "#", "children": [ &#123; "menuId": 12, "parentId": 11, "menuName": "登录日志", "url": "/log/login/index", "children": [] &#125;, &#123; "menuId": 19, "parentId": 11, "menuName": "操作日志", "url": "/log/sys/index", "children": [] &#125;, &#123; "menuId": 20, "parentId": 11, "menuName": "在线用户", "url": "/online/index", "children": [] &#125;, &#123; "menuId": 29, "parentId": 11, "menuName": "系统管理", "url": "/system/index", "children": [] &#125; ] &#125;, &#123; "menuId": 30, "parentId": 0, "menuName": "账号关联", "url": "/oauth2/index", "children": [] &#125;] 看完了效果, 我们来讲解下 resultMap 中的定义, 主要是 collection 语句中的内容: 1&lt;collection property="children" ofType="Menu" select="selectTree" column="&#123;parent_id = menu_id&#125;"/&gt; property=&quot;children&quot; 对应的是实体类中的 children 字段. ofType=&quot;Menu&quot; 对应 children 中泛型的的类型. select=&quot;selectTree&quot; 指定了 SELECT 语句的 id. column=&quot;{parent_id = menu_id}&quot; 参数的表达式, 向子语句中传递参数. 这个collection整体的含义可以这样理解: 通过 selectTree 这个 SELECT 语句来获取当前菜单中的 children 属性结果, 在查询子菜单的 SELECT 语句中, 需要传递一个 parent_id 参数, 这个参数的值就是当前菜单中的 id. 本章实例代码: https://github.com/zhaojun1998/mybatis-recursive-demo]]></content>
+      <categories>
+        <category>mybatis</category>
+      </categories>
+      <tags>
+        <tag>递归</tag>
+        <tag>mybatis</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[LeetCode 530 Minimum Absolute Difference in BST]]></title>
     <url>%2Fleetcode-530%2F</url>
     <content type="text"><![CDATA[题意给予一颗非负二叉搜索树, 返回任意两个节点之间的最小相差值. 注: 树至少有两个节点. 例 : 1234567891011给予树: 1 \ 4 / \ 2 7返回: 1 (1 和 2 之间相差 1). 解法因为是一颗二叉搜索树, 所以采用中序遍历可以得到所有值从小到大的排列, 那么将每个节点与上个节点的值 prev 进行比较得出相差值 answer, 判断相差值与上个相差值, 将更小的存起来. 直到遍历完整棵树. 1234567891011121314151617181920212223242526272829/** * Definition for a binary tree node. * public class TreeNode &#123; * int val; * TreeNode left; * TreeNode right; * TreeNode(int x) &#123; val = x; &#125; * &#125; */class Solution &#123; private int prev = -1; private int answer = Integer.MAX_VALUE; public int getMinimumDifference(TreeNode root) &#123; if (root.left != null) &#123; getMinimumDifference(root.left); &#125; if (prev != -1) &#123; answer = Math.min(answer, root.val - prev); &#125; prev = root.val; if (root.right != null) &#123; getMinimumDifference(root.right); &#125; return answer; &#125;&#125; Runtime: 1 ms, faster than 95.95% of Java online submissions for Minimum Absolute Difference in BST.Memory Usage: 38.4 MB, less than 97.37% of Java online submissions for Minimum Absolute Difference in BST.]]></content>
@@ -53,8 +65,8 @@
         <category>算法</category>
       </categories>
       <tags>
-        <tag>数组</tag>
         <tag>递归</tag>
+        <tag>数组</tag>
         <tag>二叉树</tag>
         <tag>leetcode</tag>
         <tag>树</tag>
@@ -243,20 +255,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[LeetCode 589 N-ary Tree Preorder Traversal]]></title>
-    <url>%2Fleetcode-589%2F</url>
-    <content type="text"><![CDATA[题意给定一颗 N 叉树 的根节点，返回前序遍历后的数组. 例 : 1234567给予树： 1 / | \ 3 2 4 / \ 5 6 将其前序遍历返回: [1,3,5,6,2,4]. 解法和二叉树的前序遍历差不多，需要注意处理好子节点的顺序即可。 非递归解法： 12345678910111213141516171819202122232425262728293031323334/*// Definition for a Node.class Node &#123; public int val; public List&lt;Node&gt; children; public Node() &#123;&#125; public Node(int _val,List&lt;Node&gt; _children) &#123; val = _val; children = _children; &#125;&#125;;*/class Solution &#123; public List&lt;Integer&gt; preorder(Node root) &#123; List&lt;Integer&gt; list = new ArrayList&lt;&gt;(); if (root == null) &#123; return list; &#125; Stack&lt;Node&gt; stack = new Stack&lt;&gt;(); stack.add(root); while (!stack.isEmpty()) &#123; root = stack.pop(); list.add(root.val); for (int i = root.children.size() - 1; i &gt;= 0; i--) &#123; stack.add(root.children.get(i)); &#125; &#125; return list; &#125;&#125; 递归解法： 12345678910111213141516171819202122232425262728293031/*// Definition for a Node.class Node &#123; public int val; public List&lt;Node&gt; children; public Node() &#123;&#125; public Node(int _val,List&lt;Node&gt; _children) &#123; val = _val; children = _children; &#125;&#125;;*/class Solution &#123; List&lt;Integer&gt; list = new ArrayList&lt;&gt;(); public List&lt;Integer&gt; preorder(Node root) &#123; if (root == null) &#123; return list; &#125; list.add(root.val); for (Node child : root.children) &#123; preorder(child); &#125; return list; &#125;&#125; Runtime: 1 ms, faster than 100.00% of Java online submissions for N-ary Tree Preorder Traversal. Memory Usage: 47.9 MB, less than 51.19% of Java online submissions for N-ary Tree Preorder Traversal.]]></content>
-      <categories>
-        <category>算法</category>
-      </categories>
-      <tags>
-        <tag>leetcode</tag>
-        <tag>树</tag>
-        <tag>N叉树</tag>
-        <tag>前序遍历</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[LeetCode 559 Maximum Depth of N-ary Tree]]></title>
     <url>%2Fleetcode-559%2F</url>
     <content type="text"><![CDATA[题意给定一颗 N 叉树 的根节点，返回树的深度. 例 : 1234567给予树： 1 / | \ 3 2 4 / \ 5 6 返回深度 3. 解法采用 DFS (深度优先算法)，代码比较简单，不再赘言。 12345678910111213141516171819202122232425/*// Definition for a Node.class Node &#123; public int val; public List&lt;Node&gt; children; public Node() &#123;&#125; public Node(int _val,List&lt;Node&gt; _children) &#123; val = _val; children = _children; &#125;&#125;;*/class Solution &#123; public int maxDepth(Node root) &#123; int depth = 1; if (root == null) return 0; for (Node n : root.children)&#123; depth = Math.max(depth, maxDepth(n) + 1); &#125; return depth; &#125;&#125; Runtime: 1 ms, faster than 99.56% of Java online submissions for Maximum Depth of N-ary Tree.Memory Usage: 49.8 MB, less than 5.41% of Java online submissions for Maximum Depth of N-ary Tree.]]></content>
@@ -268,6 +266,20 @@
         <tag>树</tag>
         <tag>DFS</tag>
         <tag>N叉树</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[LeetCode 589 N-ary Tree Preorder Traversal]]></title>
+    <url>%2Fleetcode-589%2F</url>
+    <content type="text"><![CDATA[题意给定一颗 N 叉树 的根节点，返回前序遍历后的数组. 例 : 1234567给予树： 1 / | \ 3 2 4 / \ 5 6 将其前序遍历返回: [1,3,5,6,2,4]. 解法和二叉树的前序遍历差不多，需要注意处理好子节点的顺序即可。 非递归解法： 12345678910111213141516171819202122232425262728293031323334/*// Definition for a Node.class Node &#123; public int val; public List&lt;Node&gt; children; public Node() &#123;&#125; public Node(int _val,List&lt;Node&gt; _children) &#123; val = _val; children = _children; &#125;&#125;;*/class Solution &#123; public List&lt;Integer&gt; preorder(Node root) &#123; List&lt;Integer&gt; list = new ArrayList&lt;&gt;(); if (root == null) &#123; return list; &#125; Stack&lt;Node&gt; stack = new Stack&lt;&gt;(); stack.add(root); while (!stack.isEmpty()) &#123; root = stack.pop(); list.add(root.val); for (int i = root.children.size() - 1; i &gt;= 0; i--) &#123; stack.add(root.children.get(i)); &#125; &#125; return list; &#125;&#125; 递归解法： 12345678910111213141516171819202122232425262728293031/*// Definition for a Node.class Node &#123; public int val; public List&lt;Node&gt; children; public Node() &#123;&#125; public Node(int _val,List&lt;Node&gt; _children) &#123; val = _val; children = _children; &#125;&#125;;*/class Solution &#123; List&lt;Integer&gt; list = new ArrayList&lt;&gt;(); public List&lt;Integer&gt; preorder(Node root) &#123; if (root == null) &#123; return list; &#125; list.add(root.val); for (Node child : root.children) &#123; preorder(child); &#125; return list; &#125;&#125; Runtime: 1 ms, faster than 100.00% of Java online submissions for N-ary Tree Preorder Traversal. Memory Usage: 47.9 MB, less than 51.19% of Java online submissions for N-ary Tree Preorder Traversal.]]></content>
+      <categories>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>leetcode</tag>
+        <tag>树</tag>
+        <tag>N叉树</tag>
+        <tag>前序遍历</tag>
       </tags>
   </entry>
   <entry>
@@ -419,8 +431,8 @@
         <category>Spring</category>
       </categories>
       <tags>
-        <tag>Spring</tag>
         <tag>异常处理</tag>
+        <tag>Spring</tag>
         <tag>SpringBoot</tag>
       </tags>
   </entry>
@@ -432,8 +444,8 @@
         <category>Spring</category>
       </categories>
       <tags>
-        <tag>Spring</tag>
         <tag>异常处理</tag>
+        <tag>Spring</tag>
         <tag>SpringBoot</tag>
       </tags>
   </entry>
@@ -498,9 +510,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[LeetCode 344 Reverse String]]></title>
-    <url>%2Fleetcode-344%2F</url>
-    <content type="text"><![CDATA[题意 翻转字符串。 解法两个指针，分别在首和尾，都向中间走，直到首超过尾。 1234567891011class Solution &#123; public String reverseString(String s) &#123; char[] chars = s.toCharArray(); for (int i = 0, j = chars.length - 1; i &lt; j; i++, j--) &#123; char temp = chars[i]; chars[i] = chars[j]; chars[j] = temp; &#125; return new String(chars); &#125;&#125; Runtime: 2 ms, faster than 79.62% of Java online submissions for Reverse String.]]></content>
+    <title><![CDATA[LeetCode 557 Reverse Words in a String III]]></title>
+    <url>%2Fleetcode-557%2F</url>
+    <content type="text"><![CDATA[题意 给定一个字符串, 翻转字符串中的每个单词, 每个单词以空格分隔, 保留空格和初始单词顺序。 解法首先按照空格对字符串进行分隔，然后将每个单词进行翻转后再拼接回字符串即可，需要注意拼接时记得加空格，但最后一个单词不需要加。 12345678910111213141516171819class Solution &#123; public String reverseWords(String s) &#123; StringBuilder result = new StringBuilder(); String[] strs = s.split(" "); for (String str : strs) &#123; char[] chars = str.toCharArray(); for (int i = 0, j = chars.length - 1; i &lt; j; i++, j--) &#123; char c = chars[i]; chars[i] = chars[j]; chars[j] = c; &#125; result.append(new String(chars)).append(" "); &#125; return result.substring(0, result.length() - 1); &#125;&#125; Runtime: 6 ms, faster than 93.75% of Java online submissions for Reverse Words in a String III.]]></content>
       <categories>
         <category>算法</category>
       </categories>
@@ -510,9 +522,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[LeetCode 557 Reverse Words in a String III]]></title>
-    <url>%2Fleetcode-557%2F</url>
-    <content type="text"><![CDATA[题意 给定一个字符串, 翻转字符串中的每个单词, 每个单词以空格分隔, 保留空格和初始单词顺序。 解法首先按照空格对字符串进行分隔，然后将每个单词进行翻转后再拼接回字符串即可，需要注意拼接时记得加空格，但最后一个单词不需要加。 12345678910111213141516171819class Solution &#123; public String reverseWords(String s) &#123; StringBuilder result = new StringBuilder(); String[] strs = s.split(" "); for (String str : strs) &#123; char[] chars = str.toCharArray(); for (int i = 0, j = chars.length - 1; i &lt; j; i++, j--) &#123; char c = chars[i]; chars[i] = chars[j]; chars[j] = c; &#125; result.append(new String(chars)).append(" "); &#125; return result.substring(0, result.length() - 1); &#125;&#125; Runtime: 6 ms, faster than 93.75% of Java online submissions for Reverse Words in a String III.]]></content>
+    <title><![CDATA[LeetCode 344 Reverse String]]></title>
+    <url>%2Fleetcode-344%2F</url>
+    <content type="text"><![CDATA[题意 翻转字符串。 解法两个指针，分别在首和尾，都向中间走，直到首超过尾。 1234567891011class Solution &#123; public String reverseString(String s) &#123; char[] chars = s.toCharArray(); for (int i = 0, j = chars.length - 1; i &lt; j; i++, j--) &#123; char temp = chars[i]; chars[i] = chars[j]; chars[j] = temp; &#125; return new String(chars); &#125;&#125; Runtime: 2 ms, faster than 79.62% of Java online submissions for Reverse String.]]></content>
       <categories>
         <category>算法</category>
       </categories>
@@ -821,14 +833,14 @@
   <entry>
     <title><![CDATA[Hexo 优化 --- Valine 扩展之邮件通知]]></title>
     <url>%2Fhexo-valine-admin%2F</url>
-    <content type="text"><![CDATA[简介此项目是一个对 Valine 评论系统的拓展应用，可增强 Valine 的邮件通知功能。基于 Leancloud 的云引擎与云函数。可以提供邮件 通知站长 和 @ 通知 的功能，而且还支持自定义邮件通知模板。 点击查看演示 注：本项目修改于 panjunwen 的项目 : Valine-Admin，原作者博客: Valine Admin 配置手册, (部分逻辑于功能不同，还请读者不要搞混配置项.) 快速开始首先需要确保 Valine 的基础功能是正常的，参考 Valine Docs。 然后进入 Leancloud 对应的 Valine 应用中。 点击 云引擎 -&gt; 设置 填写代码库并保存：https://github.com/zhaojun1998/Valine-Admin 切换到部署标签页，分支使用 master，点击部署即可： 配置项此外，你需要设置云引擎的环境变量以提供必要的信息，点击云引擎的设置页，设置如下信息： 必选参数 SITE_NAME : 网站名称。 SITE_URL : 网站地址, 最后不要加 / 。 SMTP_USER : SMTP 服务用户名，一般为邮箱地址。 SMTP_PASS : SMTP 密码，一般为授权码，而不是邮箱的登陆密码，请自行查询对应邮件服务商的获取方式 SMTP_SERVICE : 邮件服务提供商，支持 QQ、163、126、Gmail、&quot;Yahoo&quot;、...... ，全部支持请参考 : Nodemailer Supported services。 SENDER_NAME : 寄件人名称。 高级配置自定义邮件模板 自定义收件邮箱 自定义邮件服务器 Web 评论管理 Leancloud 休眠策略(必看) 更新历史 12.01 新增自助添加定时器方式。详见: LeanCloud 自带定时器[推荐方式] 7.30 修复 @ 邮件通知出错 bug (需 Valine 1.3.0 支持)，优化发件逻辑，站长发的评论不再收到邮件通知。 7.7 兼容 valine v1.2.0-beta 版本对 at 的更改 点击查看。 7.1 修复 Web 后台登录安全 bug 6.14 添加自定义邮件服务器功能. 点击查看 升级 FAQ部署最新代码 : 重启容器: 注: 更新新版本与更改环境变量均需要重启容器后生效。 LeanCloud 休眠策略免费版的 LeanCloud 容器，是有强制性休眠策略的，不能 24 小时运行： 每天必须休眠 6 个小时 30 分钟内没有外部请求，则休眠。 休眠后如果有新的外部请求实例则马上启动（但激活时此次发送邮件会失败）。 分析了一下上方的策略，如果不想付费的话，最佳使用方案就设置定时器，每天 7 - 23 点每 20 分钟访问一次，这样可以保持每天的绝大多数时间邮件服务是正常的。 LeanCloud 自带定时器[推荐]首先需要添加环境变量，ADMIN_URL：Web 主机域名，如图所示（添加后重启容器才会生效）： 然后点击云引擎 - 定时任务，新增定时器，按照图片上填写： 注意, LeanCloud 最近更新, 需要将 Cron 表达式写为: 0 */20 7-23 * * ? !!! 添加后要记得点击启用： 启用成功后，每 20 分钟在云引擎的 - 应用日志中可以看到提示： Linux 定时器[老版本方式]附 Linux crontab 定时器代码： 1*/20 7-23 * * * curl https://你配置的域名前缀.leanapp.cn 如对本项目有意见或建议，欢迎去 Github 提 issues。]]></content>
+    <content type="text"><![CDATA[简介此项目是一个对 Valine 评论系统的拓展应用，可增强 Valine 的邮件通知功能。基于 Leancloud 的云引擎与云函数。可以提供邮件 通知站长 和 @ 通知 的功能，而且还支持自定义邮件通知模板。 点击查看演示 注：本项目修改于 panjunwen 的项目 : Valine-Admin，原作者博客: Valine Admin 配置手册, (部分逻辑于功能不同，还请读者不要搞混配置项.) 快速开始首先需要确保 Valine 的基础功能是正常的，参考 Valine Docs。 然后进入 Leancloud 对应的 Valine 应用中。 点击 云引擎 -&gt; 设置 填写代码库并保存：https://github.com/zhaojun1998/Valine-Admin 切换到部署标签页，分支使用 master，点击部署即可： 配置项此外，你需要设置云引擎的环境变量以提供必要的信息，点击云引擎的设置页，设置如下信息： 必选参数 SITE_NAME : 网站名称。 SITE_URL : 网站地址, 最后不要加 / 。 SMTP_USER : SMTP 服务用户名，一般为邮箱地址。 SMTP_PASS : SMTP 密码，一般为授权码，而不是邮箱的登陆密码，请自行查询对应邮件服务商的获取方式 SMTP_SERVICE : 邮件服务提供商，支持 QQ、163、126、Gmail、&quot;Yahoo&quot;、...... ，全部支持请参考 : Nodemailer Supported services。 SENDER_NAME : 寄件人名称。 高级配置自定义邮件模板 自定义收件邮箱 自定义邮件服务器 Web 评论管理 Leancloud 休眠策略(必看) 更新历史 12.01 新增自助添加定时器方式。详见: LeanCloud 自带定时器[推荐方式] 7.30 修复 @ 邮件通知出错 bug (需 Valine 1.3.0 支持)，优化发件逻辑，站长发的评论不再收到邮件通知。 7.7 兼容 valine v1.2.0-beta 版本对 at 的更改 点击查看。 7.1 修复 Web 后台登录安全 bug 6.14 添加自定义邮件服务器功能. 点击查看 升级 FAQ部署最新代码 : 重启容器: 注: 更新新版本与更改环境变量均需要重启容器后生效。 LeanCloud 休眠策略免费版的 LeanCloud 容器，是有强制性休眠策略的，不能 24 小时运行： 每天必须休眠 6 个小时 30 分钟内没有外部请求，则休眠。 休眠后如果有新的外部请求实例则马上启动（但激活时此次发送邮件会失败）。 分析了一下上方的策略，如果不想付费的话，最佳使用方案就设置定时器，每天 7 - 23 点每 20 分钟访问一次，这样可以保持每天的绝大多数时间邮件服务是正常的。 LeanCloud 自带定时器[推荐]首先需要添加环境变量，ADMIN_URL：Web 主机域名，如图所示（添加后重启容器才会生效）： 然后点击云引擎 - 定时任务，新增定时器，按照图片上填写： 注意, LeanCloud 最近更新了定时器校验规则, 需要将 Cron 表达式写为: 0 */20 7-23 * * ? !!! 添加后要记得点击启用： 启用成功后，每 20 分钟在云引擎的 - 应用日志中可以看到提示： Linux 定时器[老版本方式]附 Linux crontab 定时器代码： 1*/20 7-23 * * * curl https://你配置的域名前缀.leanapp.cn 如对本项目有意见或建议，欢迎去 Github 提 issues。]]></content>
       <categories>
         <category>Hexo</category>
       </categories>
       <tags>
+        <tag>Hexo优化</tag>
         <tag>Valine</tag>
         <tag>评论系统</tag>
-        <tag>Hexo优化</tag>
       </tags>
   </entry>
   <entry>
@@ -937,9 +949,9 @@
         <category>Hexo</category>
       </categories>
       <tags>
+        <tag>Hexo优化</tag>
         <tag>Valine</tag>
         <tag>评论系统</tag>
-        <tag>Hexo优化</tag>
       </tags>
   </entry>
   <entry>
@@ -1077,9 +1089,9 @@
         <category>Hexo</category>
       </categories>
       <tags>
+        <tag>Hexo优化</tag>
         <tag>Valine</tag>
         <tag>评论系统</tag>
-        <tag>Hexo优化</tag>
       </tags>
   </entry>
   <entry>
@@ -1206,8 +1218,8 @@
         <category>算法</category>
       </categories>
       <tags>
-        <tag>位运算</tag>
         <tag>剑指offer</tag>
+        <tag>位运算</tag>
       </tags>
   </entry>
   <entry>
