@@ -1,6 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[初识 redo log 和 binlog]]></title>
+    <url>%2Fmysql-03%2F</url>
+    <content type="text"><![CDATA[redo logInnoDB 存储引擎是以页为单位来管理存储空间的, 我们的增删改查操作本质上都是在访问页面, 如读取一条数据, 会把这个数据所在的页加载到内存中, 而不仅仅是这条数据本身, 这个页的默认大小是 16KB. 在事务中, 我们有一个特性: 持久性, 指对于一个已提交的事务, 在事务提交后, 即使系统崩溃, 也要保证这个事务对数据库做的更改不会丢失, 那么我们如何保证这一点呢, 有一个简单粗暴的做法就是: 在事务提交之前, 将事务所修改的所有页面都刷新到磁盘, 但这种做法有几个问题: 刷新一个数据页太浪费了, 可能我们只修改了这个数据页中的一个字节, 但 InnoDB 所有操作都是基于页面的, 我们只修改一个字节就要刷新一个 16KB 的页到磁盘上台浪费了. 随机 IO 刷起来比较慢, 一个事务可能包含了很多语句, 即使一条语句, 也可能修改了许多页面, 有可能修改的这些页面并不相邻, 那么这就需要进行很多次随机 IO, 这相对顺序 IO 来说很慢, 尤其对机械硬盘来说. 那么如何解决这个问题呢, InnoDB 采用了 redo log 机制来解决: redo log 是 Innodb 存储引擎的特性, 即在更新数据时, 先将更新操作的结果放到 redo log 中, 他存储的是物理日志, 如 将第 0 号表空间的 100 号页面的偏移量为 1000 处的值更新为 2。, 然后过一段时间或待系统空闲时, 一起将多个更新操作在硬盘的数据文件上执行. 不过这个文件是有大小限制的, 当这个文件满的时候, 会删除最先写入的数据. 你可能会问, 写到 redo log 不也是写入到磁盘吗, 这效率会更好吗, 是不是多此一举啊. 其实不是的, 首先每次写入 redo log 的数据是非常小的, 他只记录了这次修改的物理操作. 相较于之前要刷新 1 个或多个 16KB 的页面来说操作的数据量小多了, 而且写 redo log 是顺序 IO, 这整体会快很多. binlogbinlog 是 MySQL 的功能, 所有存储引擎都可以使用. 记录的是逻辑日志, 如 给 ID = 2 的数据行的 C 字段加 1. 他是追加写入的, 当写到一定大小后, 会切换到写一个文件继续写, 不会覆盖原来的文件. 一般用来做数据库的备份和恢复使用. 两阶段提交不过既然有两个日志, 那么如何保证不会出现写完 read log, 但还没写 binlog 的时候就宕机了呢, 为了解决这个问题, MySQL 采用了两阶段提交的方式: 先写入 redo log 状态为 prepare 阶段. (存储引擎层 InnoDB) 写 binlog (MySQL 服务层) 提交事务, redo log 状态改为 commit 状态. (存储引擎层 InnoDB) 当系统出现异常宕机时: binlog 有记录，redo log 状态 commit: 正常完成的事务，不需要恢复 binlog 有记录，redo log 状态 prepare: 在 binlog 写完提交事务之前的 crash, 恢复操作：提交事务 binlog 无记录，redo log 状态 prepare: 在 binlog写完之前的 crash, 恢复操作：回滚事务 binlog 无记录，redo log 无记录: 在 redo log 写之前 crash, 恢复操作：回滚事务 相关配置innodb_flush_log_at_trx_commit 参数设置为 1, 表示每次事务的 redo log 都直接持久化到磁盘, 推荐设置为 1, 这样可以保证 MySQL 异常重启后数据不会丢失. sync_binlog 参数设置为 1, 表示每次事务的 binlog 都持久化到磁盘, 推荐设置为 1, 这样可以保证 MySQL 异常重启后 binlog 不会丢失. 总结redo log 是 InnoDB 引擎的特性, 只对使用 InnoDB 引擎的表生效, 记录的是 物理日志, 有大小限制, 他的主要目的是为了保证事务的一致性和提升更新操作的效率.binlog 是 MySQL 的功能, 所有存储引擎都可以使用, 记录的是 逻辑日志, 没有大小限制, 他的主要目的是用于备份和恢复数据使用.]]></content>
+      <categories>
+        <category>MySQL</category>
+      </categories>
+      <tags>
+        <tag>MySQL</tag>
+        <tag>redo log</tag>
+        <tag>binlog</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[MySQL 查询缓存]]></title>
+    <url>%2Fmysql-02%2F</url>
+    <content type="text"><![CDATA[MySQL 拿到一个查询请求后，会先看看之前有没有执行过这条语句，如果执行过，则直接从查询缓存中取之前查询的结果即可，但大多情况不建议使用 MySQL 的查询缓存，因为弊大于利。 因为查询缓存的失效非常频繁，只要对一个表进行更新，那么这个表的所有查询缓存将会全部被清除，所以命中率并不会很好，除非你有一张静态的表，不会改变他的数据，或者很久才会更新一次。比如系统配置表，才适合使用这个查询缓存。 还有一个原因是因为，现在有 Redis, MemoryCache 等专门用来做缓存的应用，他们对缓存的处理会更优，而且 MySQL 服务器的资源通常都比较宝贵，所以不推荐使用 MySQL 的查询缓存。 查看查询缓存状态: 1show variables like '%query_cache_type%'; 显式指定使用查询缓存: 1select SQL_CACHE * FROM user where ID = 10;]]></content>
+      <categories>
+        <category>MySQL</category>
+      </categories>
+      <tags>
+        <tag>缓存</tag>
+        <tag>MySQL</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[MySQL 连接]]></title>
+    <url>%2Fmysql-01%2F</url>
+    <content type="text"><![CDATA[进行连接使用数据库的第一步是连接，连接命令为: 1mysql -u$username -h$host -P$port -p 然后输入密码就行了，不推荐在 -p 的后面输入密码，会有安全问题。 此时会去获取你拥有的权限，之后这个连接里的所有权限判断逻辑，都会用此时读取到的权限。也就是说即使在连接后，管理员账号对此账号进行了权限更改，也不会立即生效，而是重新连接后才会生效。 查看连接连接后，可以使用命令，查看所有连接: 1show processlist; 连接过期建立连接后, 如果长时间没有操作，会被自动断开，这个时间由参数 wait_timeout 控制，查看方式为： 1show variables like &apos;wait_timeout&apos;; +---------------+-------+ | Variable_name | Value | +---------------+-------+ | wait_timeout | 28800 | +---------------+-------+ 1 row in set, 1 warning (0.00 sec) 默认为 28000 秒, 即 8 个小时，与之相关的还有 interactive_timeout 属性。 他们的区别是 interactive_timeout 针对交互式连接, wait_timeout 针对非交互式连接. 交互式连接: 通过 mysql 客户端连接. 非交互式连接: 通过 jdbc 方式连接. 长/短连接 短连接: 每次程序与数据库交互后都会关闭连接，下次查询再新建连接。 长连接: 成语与数据库建立连接后，就一直打开，后面的查询会重用这个连接。 短连接每次进行连接时比较耗费资源，但是维护很多长连接也会占用很多内存空间，两者之前的取舍要根据实际情况来定。]]></content>
+      <categories>
+        <category>MySQL</category>
+      </categories>
+      <tags>
+        <tag>MySQL</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[巧用 MyBatis 构建树形结构]]></title>
     <url>%2Fmybatis-recursive-tree%2F</url>
     <content type="text"><![CDATA[在项目中我们经常会碰到这种格式的数据, 需要将其转化为树形结构: menu_id parent_id menu_name url 1 0 权限管理 # 2 1 用户管理 /user/index 3 1 角色管理 /role/index 4 1 菜单权限 /menu/index 11 0 系统监控 # 12 11 登录日志 /log/login/index 19 11 操作日志 /log/sys/index 20 11 在线用户 /online/index 27 1 操作权限 /operator/index 28 1 部门管理 /dept/index 29 11 系统管理 /system/index 30 0 账号关联 /oauth2/index 一般的做法是查询出所有, 然后递归构建树形结构, 但其实可以巧用 MyBatis 在查询时就进行转换, 这用到了 MyBatis 的 resultMap 功能. 首先由以下表结构定义: 1234567create table menu( menu_id int primary key auto_increment comment '菜单 ID', parent_id int not null, menu_name varchar(20) null comment '菜单名称', url varchar(100) null comment '菜单 URL'); 实体类定义: 123456789101112public class Menu &#123; private Integer menuId; private Integer parentId; private String menuName; private String url; private List&lt;Menu&gt; children;&#125; resultMap 定义: 1234567&lt;resultMap id="BaseResultTreeMap" type="im.zhaojun.model.Menu"&gt; &lt;id column="menu_id" jdbcType="INTEGER" property="menuId"/&gt; &lt;result column="parent_id" jdbcType="INTEGER" property="parentId"/&gt; &lt;result column="menu_name" jdbcType="VARCHAR" property="menuName"/&gt; &lt;result column="url" jdbcType="VARCHAR" property="url"/&gt; &lt;collection property="children" ofType="Menu" select="selectTree" column="&#123;parent_id = menu_id&#125;"/&gt;&lt;/resultMap&gt; 查询定义:1234567891011121314&lt;select id="selectMenuTree" resultMap="BaseResultTreeMap"&gt; select * from menu &lt;where&gt; &lt;choose&gt; &lt;when test="parent_id!=null"&gt; and parent_id = #&#123;parent_id&#125; &lt;/when&gt; &lt;otherwise&gt; and parent_id = 0 &lt;/otherwise&gt; &lt;/choose&gt; &lt;/where&gt;&lt;/select&gt; 查询出的结果集: 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182838485868788[ &#123; "menuId": 1, "parentId": 0, "menuName": "权限管理", "url": "#", "children": [ &#123; "menuId": 2, "parentId": 1, "menuName": "用户管理", "url": "/user/index", "children": [] &#125;, &#123; "menuId": 3, "parentId": 1, "menuName": "角色管理", "url": "/role/index", "children": [] &#125;, &#123; "menuId": 4, "parentId": 1, "menuName": "菜单权限", "url": "/menu/index", "children": [] &#125;, &#123; "menuId": 27, "parentId": 1, "menuName": "操作权限", "url": "/operator/index", "children": [] &#125;, &#123; "menuId": 28, "parentId": 1, "menuName": "部门管理", "url": "/dept/index", "children": [] &#125; ] &#125;, &#123; "menuId": 11, "parentId": 0, "menuName": "系统监控", "url": "#", "children": [ &#123; "menuId": 12, "parentId": 11, "menuName": "登录日志", "url": "/log/login/index", "children": [] &#125;, &#123; "menuId": 19, "parentId": 11, "menuName": "操作日志", "url": "/log/sys/index", "children": [] &#125;, &#123; "menuId": 20, "parentId": 11, "menuName": "在线用户", "url": "/online/index", "children": [] &#125;, &#123; "menuId": 29, "parentId": 11, "menuName": "系统管理", "url": "/system/index", "children": [] &#125; ] &#125;, &#123; "menuId": 30, "parentId": 0, "menuName": "账号关联", "url": "/oauth2/index", "children": [] &#125;] 看完了效果, 我们来讲解下 resultMap 中的定义, 主要是 collection 语句中的内容: 1&lt;collection property="children" ofType="Menu" select="selectTree" column="&#123;parent_id = menu_id&#125;"/&gt; property=&quot;children&quot; 对应的是实体类中的 children 字段. ofType=&quot;Menu&quot; 对应 children 中泛型的的类型. select=&quot;selectTree&quot; 指定了 SELECT 语句的 id. column=&quot;{parent_id = menu_id}&quot; 参数的表达式, 向子语句中传递参数. 这个collection整体的含义可以这样理解: 通过 selectTree 这个 SELECT 语句来获取当前菜单中的 children 属性结果, 在查询子菜单的 SELECT 语句中, 需要传递一个 parent_id 参数, 这个参数的值就是当前菜单中的 id. 本章实例代码: https://github.com/zhaojun1998/mybatis-recursive-demo]]></content>
@@ -510,18 +546,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[LeetCode 557 Reverse Words in a String III]]></title>
-    <url>%2Fleetcode-557%2F</url>
-    <content type="text"><![CDATA[题意 给定一个字符串, 翻转字符串中的每个单词, 每个单词以空格分隔, 保留空格和初始单词顺序。 解法首先按照空格对字符串进行分隔，然后将每个单词进行翻转后再拼接回字符串即可，需要注意拼接时记得加空格，但最后一个单词不需要加。 12345678910111213141516171819class Solution &#123; public String reverseWords(String s) &#123; StringBuilder result = new StringBuilder(); String[] strs = s.split(" "); for (String str : strs) &#123; char[] chars = str.toCharArray(); for (int i = 0, j = chars.length - 1; i &lt; j; i++, j--) &#123; char c = chars[i]; chars[i] = chars[j]; chars[j] = c; &#125; result.append(new String(chars)).append(" "); &#125; return result.substring(0, result.length() - 1); &#125;&#125; Runtime: 6 ms, faster than 93.75% of Java online submissions for Reverse Words in a String III.]]></content>
-      <categories>
-        <category>算法</category>
-      </categories>
-      <tags>
-        <tag>字符串</tag>
-        <tag>leetcode</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[LeetCode 344 Reverse String]]></title>
     <url>%2Fleetcode-344%2F</url>
     <content type="text"><![CDATA[题意 翻转字符串。 解法两个指针，分别在首和尾，都向中间走，直到首超过尾。 1234567891011class Solution &#123; public String reverseString(String s) &#123; char[] chars = s.toCharArray(); for (int i = 0, j = chars.length - 1; i &lt; j; i++, j--) &#123; char temp = chars[i]; chars[i] = chars[j]; chars[j] = temp; &#125; return new String(chars); &#125;&#125; Runtime: 2 ms, faster than 79.62% of Java online submissions for Reverse String.]]></content>
@@ -534,9 +558,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[LeetCode 657 Robot Return to Origin]]></title>
-    <url>%2Fleetcode-657%2F</url>
-    <content type="text"><![CDATA[题意 其实就是给一个字符串, 每个字符包含 “U”、”D”、”L”、”R”, 分别表示上下左右, 表示机器人向这个位置走一步, 判断最终是否机器人是否还在原来的位置。 解法这道题很简单，只需要假设当前节点是 0, 0，定义两个变量, i 和 j，默认值都为 0，每当向上 i + 1，向下 i - 1，向右 j + 1，向左 j - 1。最终只需要判断 i 和 j 是否都等于 0 即可。 12345678910111213141516171819class Solution &#123; public boolean judgeCircle(String moves) &#123; int i = 0; int j = 0; char[] chars = moves.toCharArray(); for (char ch : chars) &#123; if (ch == 'U') &#123; i += 1; &#125; else if (ch == 'D') &#123; i -= 1; &#125; else if (ch == 'R') &#123; j += 1; &#125; else if (ch == 'L') &#123; j -= 1; &#125; &#125; return i == 0 &amp;&amp; j == 0; &#125;&#125; Runtime: 8 ms, faster than 97.27% of Java online submissions for Robot Return to Origin.]]></content>
+    <title><![CDATA[LeetCode 557 Reverse Words in a String III]]></title>
+    <url>%2Fleetcode-557%2F</url>
+    <content type="text"><![CDATA[题意 给定一个字符串, 翻转字符串中的每个单词, 每个单词以空格分隔, 保留空格和初始单词顺序。 解法首先按照空格对字符串进行分隔，然后将每个单词进行翻转后再拼接回字符串即可，需要注意拼接时记得加空格，但最后一个单词不需要加。 12345678910111213141516171819class Solution &#123; public String reverseWords(String s) &#123; StringBuilder result = new StringBuilder(); String[] strs = s.split(" "); for (String str : strs) &#123; char[] chars = str.toCharArray(); for (int i = 0, j = chars.length - 1; i &lt; j; i++, j--) &#123; char c = chars[i]; chars[i] = chars[j]; chars[j] = c; &#125; result.append(new String(chars)).append(" "); &#125; return result.substring(0, result.length() - 1); &#125;&#125; Runtime: 6 ms, faster than 93.75% of Java online submissions for Reverse Words in a String III.]]></content>
       <categories>
         <category>算法</category>
       </categories>
@@ -549,6 +573,18 @@
     <title><![CDATA[LeetCode 520 Detect Capital]]></title>
     <url>%2Fleetcode-520%2F</url>
     <content type="text"><![CDATA[题意 给与一个单词，判断其大写字母的使用是否正确，即每个字母都是大写或都是小写，或首字母大写。 Example 1:12Input: &quot;USA&quot;Output: True Example 2:12Input: &quot;FlaG&quot;Output: False 解法定义两个变量，记录小写字母个数和大写字母个数，然后判断条件是否符合。 123456789101112131415161718192021222324252627class Solution &#123; public boolean detectCapitalUse(String word) &#123; if (word.length() &lt; 2) &#123; return true; &#125; char[] chars = word.toCharArray(); int lower = 0, upper = 0; for (int i = 0; i &lt; chars.length; i++) &#123; if (isLowerCaseLetter(chars[i])) &#123; lower++; &#125; else &#123; upper++; &#125; &#125; return lower == chars.length || upper == chars.length || (isUpperCaseLetter(chars[0]) &amp;&amp; lower == chars.length - 1); &#125; public boolean isUpperCaseLetter(char c) &#123; return c &gt;= 65 &amp;&amp; c &lt;= 90; &#125; public boolean isLowerCaseLetter(char c) &#123; return c &gt;= 97 &amp;&amp; c &lt;= 122; &#125;&#125; Runtime: 12 ms, faster than 98.36% of Java online submissions for Detect Capital.]]></content>
+      <categories>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>字符串</tag>
+        <tag>leetcode</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[LeetCode 657 Robot Return to Origin]]></title>
+    <url>%2Fleetcode-657%2F</url>
+    <content type="text"><![CDATA[题意 其实就是给一个字符串, 每个字符包含 “U”、”D”、”L”、”R”, 分别表示上下左右, 表示机器人向这个位置走一步, 判断最终是否机器人是否还在原来的位置。 解法这道题很简单，只需要假设当前节点是 0, 0，定义两个变量, i 和 j，默认值都为 0，每当向上 i + 1，向下 i - 1，向右 j + 1，向左 j - 1。最终只需要判断 i 和 j 是否都等于 0 即可。 12345678910111213141516171819class Solution &#123; public boolean judgeCircle(String moves) &#123; int i = 0; int j = 0; char[] chars = moves.toCharArray(); for (char ch : chars) &#123; if (ch == 'U') &#123; i += 1; &#125; else if (ch == 'D') &#123; i -= 1; &#125; else if (ch == 'R') &#123; j += 1; &#125; else if (ch == 'L') &#123; j -= 1; &#125; &#125; return i == 0 &amp;&amp; j == 0; &#125;&#125; Runtime: 8 ms, faster than 97.27% of Java online submissions for Robot Return to Origin.]]></content>
       <categories>
         <category>算法</category>
       </categories>
@@ -962,8 +998,8 @@
         <category>杂谈</category>
       </categories>
       <tags>
-        <tag>杂谈</tag>
         <tag>排版</tag>
+        <tag>杂谈</tag>
       </tags>
   </entry>
   <entry>
