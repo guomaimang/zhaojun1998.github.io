@@ -93,7 +93,7 @@
 <meta property="og:site_name" content="赵俊的博客">
 <meta property="og:description" content="个人收集的各种脚本集合： 一键安装 pip2: 1wget -qO- http://98.tn/脚本/get-pip.py | python 一键安装 python3 &amp;amp; pip3 并替换为系统默认1wget -N --no-check-certificate http://98.tn/脚本/python3install.sh &amp;amp;&amp;amp; chmod +x python3inst">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-08-10T06:47:49.000Z">
+<meta property="og:updated_time" content="2019-06-10T05:40:06.167Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="常用 VPS 脚本">
 <meta name="twitter:description" content="个人收集的各种脚本集合： 一键安装 pip2: 1wget -qO- http://98.tn/脚本/get-pip.py | python 一键安装 python3 &amp;amp; pip3 并替换为系统默认1wget -N --no-check-certificate http://98.tn/脚本/python3install.sh &amp;amp;&amp;amp; chmod +x python3inst">
@@ -1846,7 +1846,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #051dbe;
+  background: #ffff74;
 }
 .feed-link,
 .chat {
@@ -3220,6 +3220,7 @@ ul.breadcrumb li+li:last-child {
 <p>VPS 一键测速<br></p><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget -qO- https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python</span><br></pre></td></tr></tbody></table></figure><p></p>
 <p>一键安装 锐速/BBR<br></p><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget -N --no-check-certificate <span class="string">"https://raw.githubusercontent.com/chiakge/Linux-NetSpeed/master/tcp.sh"</span> &amp;&amp; chmod +x tcp.sh &amp;&amp; ./tcp.sh</span><br></pre></td></tr></tbody></table></figure><p></p>
 <p>一键 dd Win7 32 位   (端口 22 administrator 密码admin.com)<br></p><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget -qO InstallNET.sh <span class="string">'http://98.tn/脚本/dd.sh'</span> &amp;&amp; bash InstallNET.sh -dd <span class="string">'http://98.tn/dd/win732.vhd.gz'</span> -rdp 22</span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>静态安装 FFMPEG:<br></p><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment"># 官网 https://www.johnvansickle.com/ffmpeg/</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># x86 下载二进制文件</span></span><br><span class="line">wget http://file.zhaojun.im/脚本/ffmpeg-git-32bit-static.tar.xz</span><br><span class="line"><span class="comment"># x86_64 下载二进制文件</span></span><br><span class="line">wget http://file.zhaojun.im/脚本/ffmpeg-git-64bit-static.tar.xz</span><br><span class="line"></span><br><span class="line"><span class="comment"># 解压文件</span></span><br><span class="line">tar xvf ffmpeg-git-*-static.tar.xz &amp;&amp; rm -rf ffmpeg-git-*-static.tar.xz</span><br><span class="line"></span><br><span class="line"><span class="comment"># 将 ffmpeg 和 ffprobe 可执行文件移至 /usr/bin 方便系统直接调用</span></span><br><span class="line">mv ffmpeg-git-*/ffmpeg  ffmpeg-git-*/ffprobe /usr/bin/</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看版本</span></span><br><span class="line">ffmpeg</span><br><span class="line">ffprobe</span><br></pre></td></tr></tbody></table></figure><p></p>
 
         
       </div>

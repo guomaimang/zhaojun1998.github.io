@@ -93,7 +93,7 @@
 <meta property="og:site_name" content="赵俊的博客">
 <meta property="og:description" content="redo logInnoDB 存储引擎是以页为单位来管理存储空间的, 我们的增删改查操作本质上都是在访问页面, 如读取一条数据, 会把这个数据所在的页加载到内存中, 而不仅仅是这条数据本身, 这个页的默认大小是 16KB. 在事务中, 我们有一个特性: 持久性, 指对于一个已提交的事务, 在事务提交后, 即使系统崩溃, 也要保证这个事务对数据库做的更改不会丢失, 那么我们如何保证这一点呢, 有一个">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-06-09T05:11:59.282Z">
+<meta property="og:updated_time" content="2019-06-10T02:05:01.486Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="初识 redo log 和 binlog">
 <meta name="twitter:description" content="redo logInnoDB 存储引擎是以页为单位来管理存储空间的, 我们的增删改查操作本质上都是在访问页面, 如读取一条数据, 会把这个数据所在的页加载到内存中, 而不仅仅是这条数据本身, 这个页的默认大小是 16KB. 在事务中, 我们有一个特性: 持久性, 指对于一个已提交的事务, 在事务提交后, 即使系统崩溃, 也要保证这个事务对数据库做的更改不会丢失, 那么我们如何保证这一点呢, 有一个">
@@ -1846,7 +1846,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #051dbe;
+  background: #ffff74;
 }
 .feed-link,
 .chat {
@@ -3213,12 +3213,24 @@ ul.breadcrumb li+li:last-child {
                 
               
 
-              <time title="创建时间：2019-06-09 11:47:35 / 修改时间：13:11:59" itemprop="dateCreated datePublished" datetime="2019-06-09T11:47:35+08:00">2019-06-09</time>
+              <time title="创建时间：2019-06-09 11:47:35" itemprop="dateCreated datePublished" datetime="2019-06-09T11:47:35+08:00">2019-06-09</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-06-10 10:05:01" itemprop="dateModified" datetime="2019-06-10T10:05:01+08:00">2019-06-10</time>
               
             
           </span>

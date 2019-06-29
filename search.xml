@@ -102,8 +102,8 @@
       </categories>
       <tags>
         <tag>递归</tag>
-        <tag>数组</tag>
         <tag>二叉树</tag>
+        <tag>数组</tag>
         <tag>leetcode</tag>
         <tag>树</tag>
       </tags>
@@ -355,8 +355,8 @@
         <category>算法</category>
       </categories>
       <tags>
-        <tag>数组</tag>
         <tag>二叉树</tag>
+        <tag>数组</tag>
         <tag>leetcode</tag>
         <tag>树</tag>
         <tag>二叉搜索树</tag>
@@ -397,8 +397,8 @@
         <category>算法</category>
       </categories>
       <tags>
-        <tag>数组</tag>
         <tag>二叉树</tag>
+        <tag>数组</tag>
         <tag>leetcode</tag>
         <tag>树</tag>
         <tag>二叉搜索树</tag>
@@ -412,8 +412,8 @@
         <category>算法</category>
       </categories>
       <tags>
-        <tag>数组</tag>
         <tag>二叉树</tag>
+        <tag>数组</tag>
         <tag>leetcode</tag>
         <tag>树</tag>
         <tag>二叉搜索树</tag>
@@ -427,8 +427,8 @@
         <category>算法</category>
       </categories>
       <tags>
-        <tag>数组</tag>
         <tag>二叉树</tag>
+        <tag>数组</tag>
         <tag>leetcode</tag>
         <tag>树</tag>
       </tags>
@@ -973,8 +973,8 @@
         <category>Hexo</category>
       </categories>
       <tags>
-        <tag>Hexo</tag>
         <tag>Hexo优化</tag>
+        <tag>Hexo</tag>
       </tags>
   </entry>
   <entry>
@@ -998,8 +998,8 @@
         <category>杂谈</category>
       </categories>
       <tags>
-        <tag>排版</tag>
         <tag>杂谈</tag>
+        <tag>排版</tag>
       </tags>
   </entry>
   <entry>
@@ -1241,8 +1241,8 @@
       </categories>
       <tags>
         <tag>剑指offer</tag>
-        <tag>递归</tag>
         <tag>栈</tag>
+        <tag>递归</tag>
         <tag>二叉树</tag>
       </tags>
   </entry>
