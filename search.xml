@@ -1,6 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[LeetCode 338 Counting Bits]]></title>
+    <url>%2Fleetcode-338%2F</url>
+    <content type="text"><![CDATA[比特位计数题意给定一个非负整数 num. 对于 0 ≤ i ≤ num 范围中的每个数字 i, 计算其二进制数中的 1 的数目并将它们作为数组返回. 示例 1: 12输入: 2输出: [0,1,1] 示例 2: 12输入: 5输出: [0,1,1,2,1,2] 解法此题是 LeetCode 191 Number of 1 Bits 的拓展版, 可以利用那道题的两种算法, 只不过套个循环, 时间和空间复杂度都是 O(n). 那两种解法就不说了. 这里说下另一种解法. 这里分为 2 的倍数 和 非 2 的倍数 两种数. 他们有一个区别就是二进制的最低位是否为 1. 2 的倍数其二进制最低位都是 0.非 2 的倍数其二进制最低位都是 1. 除 2 或右移一位后, 等于是去掉最低位, 那么既然 2 的倍数最后一位都是 0, 所以对于 2 的倍数 除 2 或右移一位后, 数字 1 的个数并不会变. 那么对于非 2 的倍数 n, n 肯定比 n - 1 的二进制中 1 的个数多一位. 如 n = 1111, n - 1 = 1110. 12345678910111213class Solution &#123; public int[] countBits(int num) &#123; int[] arr = new int[num + 1]; for (int i = 0; i &lt;= num; i++) &#123; if (i % 2 == 0) &#123; arr[i] = arr[i &gt;&gt; 1]; &#125; else &#123; arr[i] = arr[i - 1] + 1; &#125; &#125; return arr; &#125;&#125; 时间复杂度 O(n), 空间复杂度 O(n).]]></content>
+      <categories>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>位运算</tag>
+        <tag>leetcode</tag>
+        <tag>二进制</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[LeetCode 191 Number of 1 Bits]]></title>
+    <url>%2Fleetcode-191%2F</url>
+    <content type="text"><![CDATA[位1的个数题意编写一个函数，输入是一个无符号整数，返回其二进制表达式中数字位数为 1 的个数. 示例 1： 123输入：00000000000000000000000000001011输出：3解释：输入的二进制串 00000000000000000000000000001011 中，共有三位为 &apos;1&apos;。 示例 2： 123输入：00000000000000000000000010000000输出：1解释：输入的二进制串 00000000000000000000000010000000 中，共有一位为 &apos;1&apos;。 示例 3： 123输入：11111111111111111111111111111101输出：31解释：输入的二进制串 11111111111111111111111111111101 中，共有 31 位为 &apos;1&apos;。 解法一这里用到了位运算, 如数字 5, 二进制位为 101, 那么使用 &amp; 运算, 和 1 进行与运算, 如: 1234 101&amp; 001----- 001 因为 1 只有最后一位为 1, 其他为都是 0, 所以他与任何数进行 &amp; 运算后, 都只会保留这个数的最后一位, 如果运算结果还是 1, 说明这个树的最后一位是 1, 反之为 0. 那就很好解决了, 将 num &amp; 1 后判断为 1, 则计数增加 1, 然后将右移一位 num &gt;&gt;= 1, 以此类推, 直到移位 32 次. 12345678910111213public class Solution &#123; public int hammingWeight(int n) &#123; int bits = 0; int mask = 1; for (int i = 0; i &lt; 32; i++) &#123; if ((n &amp; mask) != 0) &#123; bits++; &#125; n &gt;&gt;= 1; &#125; return bits; &#125;&#125; 时间复杂度 O(1), 空间复杂度 O(1). 解法二这个解法有些取巧, 在二进制表示中，数字 n 中最低位的 1 总是对应 n - 1 中的 0. 因此, 将 n 和 n - 1 与运算总是能把 n 中最低位的 1 变成 0, 并保持其他位不变. 如对于数字 10, 和 10 - 1 进行 &amp; 运算: 1234 1010&amp; 1001------ 1000 接着对于二进制值 1000, 与 999 进行 &amp; 运算: 1234 1000&amp; 999------ 0000 由于每次都把最低位的 1 变为 0 了, 直到为 0, 那么这种个编程变了几次就说明有多少个 1. 12345678910public class Solution &#123; public int hammingWeight(int n) &#123; int sum = 0; while (n != 0) &#123; sum++; n &amp;= (n - 1); &#125; return sum; &#125;&#125; 时间复杂度 O(1), 空间复杂度 O(1). 但此算法效率相对比算法一效率高.]]></content>
+      <categories>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>位运算</tag>
+        <tag>leetcode</tag>
+        <tag>二进制</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[初识 redo log 和 binlog]]></title>
     <url>%2Fmysql-03%2F</url>
     <content type="text"><![CDATA[redo logInnoDB 存储引擎是以页为单位来管理存储空间的, 我们的增删改查操作本质上都是在访问页面, 如读取一条数据, 会把这个数据所在的页加载到内存中, 而不仅仅是这条数据本身, 这个页的默认大小是 16KB. 在事务中, 我们有一个特性: 持久性, 指对于一个已提交的事务, 在事务提交后, 即使系统崩溃, 也要保证这个事务对数据库做的更改不会丢失, 那么我们如何保证这一点呢, 有一个简单粗暴的做法就是: 在事务提交之前, 将事务所修改的所有页面都刷新到磁盘, 但这种做法有几个问题: 刷新一个数据页太浪费了, 可能我们只修改了这个数据页中的一个字节, 但 InnoDB 所有操作都是基于页面的, 我们只修改一个字节就要刷新一个 16KB 的页到磁盘上台浪费了. 随机 IO 刷起来比较慢, 一个事务可能包含了很多语句, 即使一条语句, 也可能修改了许多页面, 有可能修改的这些页面并不相邻, 那么这就需要进行很多次随机 IO, 这相对顺序 IO 来说很慢, 尤其对机械硬盘来说. 那么如何解决这个问题呢, InnoDB 采用了 redo log 机制来解决: redo log 是 Innodb 存储引擎的特性, 即在更新数据时, 先将更新操作的结果放到 redo log 中, 他存储的是物理日志, 如 将第 0 号表空间的 100 号页面的偏移量为 1000 处的值更新为 2。, 然后过一段时间或待系统空闲时, 一起将多个更新操作在硬盘的数据文件上执行. 不过这个文件是有大小限制的, 当这个文件满的时候, 会删除最先写入的数据. 你可能会问, 写到 redo log 不也是写入到磁盘吗, 这效率会更好吗, 是不是多此一举啊. 其实不是的, 首先每次写入 redo log 的数据是非常小的, 他只记录了这次修改的物理操作. 相较于之前要刷新 1 个或多个 16KB 的页面来说操作的数据量小多了, 而且写 redo log 是顺序 IO, 这整体会快很多. binlogbinlog 是 MySQL 的功能, 所有存储引擎都可以使用. 记录的是逻辑日志, 如 给 ID = 2 的数据行的 C 字段加 1. 他是追加写入的, 当写到一定大小后, 会切换到写一个文件继续写, 不会覆盖原来的文件. 一般用来做数据库的备份和恢复使用. 两阶段提交不过既然有两个日志, 那么如何保证不会出现写完 read log, 但还没写 binlog 的时候就宕机了呢, 为了解决这个问题, MySQL 采用了两阶段提交的方式: 先写入 redo log 状态为 prepare 阶段. (存储引擎层 InnoDB) 写 binlog (MySQL 服务层) 提交事务, redo log 状态改为 commit 状态. (存储引擎层 InnoDB) 当系统出现异常宕机时: binlog 有记录，redo log 状态 commit: 正常完成的事务，不需要恢复 binlog 有记录，redo log 状态 prepare: 在 binlog 写完提交事务之前的 crash, 恢复操作：提交事务 binlog 无记录，redo log 状态 prepare: 在 binlog写完之前的 crash, 恢复操作：回滚事务 binlog 无记录，redo log 无记录: 在 redo log 写之前 crash, 恢复操作：回滚事务 相关配置innodb_flush_log_at_trx_commit 参数设置为 1, 表示每次事务的 redo log 都直接持久化到磁盘, 推荐设置为 1, 这样可以保证 MySQL 异常重启后数据不会丢失. sync_binlog 参数设置为 1, 表示每次事务的 binlog 都持久化到磁盘, 推荐设置为 1, 这样可以保证 MySQL 异常重启后 binlog 不会丢失. 总结redo log 是 InnoDB 引擎的特性, 只对使用 InnoDB 引擎的表生效, 记录的是 物理日志, 有大小限制, 他的主要目的是为了保证事务的一致性和提升更新操作的效率.binlog 是 MySQL 的功能, 所有存储引擎都可以使用, 记录的是 逻辑日志, 没有大小限制, 他的主要目的是用于备份和恢复数据使用.]]></content>
@@ -102,8 +128,8 @@
       </categories>
       <tags>
         <tag>递归</tag>
-        <tag>二叉树</tag>
         <tag>数组</tag>
+        <tag>二叉树</tag>
         <tag>leetcode</tag>
         <tag>树</tag>
       </tags>
@@ -291,20 +317,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[LeetCode 559 Maximum Depth of N-ary Tree]]></title>
-    <url>%2Fleetcode-559%2F</url>
-    <content type="text"><![CDATA[题意给定一颗 N 叉树 的根节点，返回树的深度. 例 : 1234567给予树： 1 / | \ 3 2 4 / \ 5 6 返回深度 3. 解法采用 DFS (深度优先算法)，代码比较简单，不再赘言。 12345678910111213141516171819202122232425/*// Definition for a Node.class Node &#123; public int val; public List&lt;Node&gt; children; public Node() &#123;&#125; public Node(int _val,List&lt;Node&gt; _children) &#123; val = _val; children = _children; &#125;&#125;;*/class Solution &#123; public int maxDepth(Node root) &#123; int depth = 1; if (root == null) return 0; for (Node n : root.children)&#123; depth = Math.max(depth, maxDepth(n) + 1); &#125; return depth; &#125;&#125; Runtime: 1 ms, faster than 99.56% of Java online submissions for Maximum Depth of N-ary Tree.Memory Usage: 49.8 MB, less than 5.41% of Java online submissions for Maximum Depth of N-ary Tree.]]></content>
-      <categories>
-        <category>算法</category>
-      </categories>
-      <tags>
-        <tag>leetcode</tag>
-        <tag>树</tag>
-        <tag>DFS</tag>
-        <tag>N叉树</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[LeetCode 589 N-ary Tree Preorder Traversal]]></title>
     <url>%2Fleetcode-589%2F</url>
     <content type="text"><![CDATA[题意给定一颗 N 叉树 的根节点，返回前序遍历后的数组. 例 : 1234567给予树： 1 / | \ 3 2 4 / \ 5 6 将其前序遍历返回: [1,3,5,6,2,4]. 解法和二叉树的前序遍历差不多，需要注意处理好子节点的顺序即可。 非递归解法： 12345678910111213141516171819202122232425262728293031323334/*// Definition for a Node.class Node &#123; public int val; public List&lt;Node&gt; children; public Node() &#123;&#125; public Node(int _val,List&lt;Node&gt; _children) &#123; val = _val; children = _children; &#125;&#125;;*/class Solution &#123; public List&lt;Integer&gt; preorder(Node root) &#123; List&lt;Integer&gt; list = new ArrayList&lt;&gt;(); if (root == null) &#123; return list; &#125; Stack&lt;Node&gt; stack = new Stack&lt;&gt;(); stack.add(root); while (!stack.isEmpty()) &#123; root = stack.pop(); list.add(root.val); for (int i = root.children.size() - 1; i &gt;= 0; i--) &#123; stack.add(root.children.get(i)); &#125; &#125; return list; &#125;&#125; 递归解法： 12345678910111213141516171819202122232425262728293031/*// Definition for a Node.class Node &#123; public int val; public List&lt;Node&gt; children; public Node() &#123;&#125; public Node(int _val,List&lt;Node&gt; _children) &#123; val = _val; children = _children; &#125;&#125;;*/class Solution &#123; List&lt;Integer&gt; list = new ArrayList&lt;&gt;(); public List&lt;Integer&gt; preorder(Node root) &#123; if (root == null) &#123; return list; &#125; list.add(root.val); for (Node child : root.children) &#123; preorder(child); &#125; return list; &#125;&#125; Runtime: 1 ms, faster than 100.00% of Java online submissions for N-ary Tree Preorder Traversal. Memory Usage: 47.9 MB, less than 51.19% of Java online submissions for N-ary Tree Preorder Traversal.]]></content>
@@ -316,6 +328,20 @@
         <tag>树</tag>
         <tag>N叉树</tag>
         <tag>前序遍历</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[LeetCode 559 Maximum Depth of N-ary Tree]]></title>
+    <url>%2Fleetcode-559%2F</url>
+    <content type="text"><![CDATA[题意给定一颗 N 叉树 的根节点，返回树的深度. 例 : 1234567给予树： 1 / | \ 3 2 4 / \ 5 6 返回深度 3. 解法采用 DFS (深度优先算法)，代码比较简单，不再赘言。 12345678910111213141516171819202122232425/*// Definition for a Node.class Node &#123; public int val; public List&lt;Node&gt; children; public Node() &#123;&#125; public Node(int _val,List&lt;Node&gt; _children) &#123; val = _val; children = _children; &#125;&#125;;*/class Solution &#123; public int maxDepth(Node root) &#123; int depth = 1; if (root == null) return 0; for (Node n : root.children)&#123; depth = Math.max(depth, maxDepth(n) + 1); &#125; return depth; &#125;&#125; Runtime: 1 ms, faster than 99.56% of Java online submissions for Maximum Depth of N-ary Tree.Memory Usage: 49.8 MB, less than 5.41% of Java online submissions for Maximum Depth of N-ary Tree.]]></content>
+      <categories>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>leetcode</tag>
+        <tag>树</tag>
+        <tag>DFS</tag>
+        <tag>N叉树</tag>
       </tags>
   </entry>
   <entry>
@@ -355,8 +381,8 @@
         <category>算法</category>
       </categories>
       <tags>
-        <tag>二叉树</tag>
         <tag>数组</tag>
+        <tag>二叉树</tag>
         <tag>leetcode</tag>
         <tag>树</tag>
         <tag>二叉搜索树</tag>
@@ -397,8 +423,8 @@
         <category>算法</category>
       </categories>
       <tags>
-        <tag>二叉树</tag>
         <tag>数组</tag>
+        <tag>二叉树</tag>
         <tag>leetcode</tag>
         <tag>树</tag>
         <tag>二叉搜索树</tag>
@@ -412,8 +438,8 @@
         <category>算法</category>
       </categories>
       <tags>
-        <tag>二叉树</tag>
         <tag>数组</tag>
+        <tag>二叉树</tag>
         <tag>leetcode</tag>
         <tag>树</tag>
         <tag>二叉搜索树</tag>
@@ -427,8 +453,8 @@
         <category>算法</category>
       </categories>
       <tags>
-        <tag>二叉树</tag>
         <tag>数组</tag>
+        <tag>二叉树</tag>
         <tag>leetcode</tag>
         <tag>树</tag>
       </tags>
@@ -467,8 +493,8 @@
         <category>Spring</category>
       </categories>
       <tags>
-        <tag>异常处理</tag>
         <tag>Spring</tag>
+        <tag>异常处理</tag>
         <tag>SpringBoot</tag>
       </tags>
   </entry>
@@ -480,8 +506,8 @@
         <category>Spring</category>
       </categories>
       <tags>
-        <tag>异常处理</tag>
         <tag>Spring</tag>
+        <tag>异常处理</tag>
         <tag>SpringBoot</tag>
       </tags>
   </entry>
@@ -546,18 +572,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[LeetCode 344 Reverse String]]></title>
-    <url>%2Fleetcode-344%2F</url>
-    <content type="text"><![CDATA[题意 翻转字符串。 解法两个指针，分别在首和尾，都向中间走，直到首超过尾。 1234567891011class Solution &#123; public String reverseString(String s) &#123; char[] chars = s.toCharArray(); for (int i = 0, j = chars.length - 1; i &lt; j; i++, j--) &#123; char temp = chars[i]; chars[i] = chars[j]; chars[j] = temp; &#125; return new String(chars); &#125;&#125; Runtime: 2 ms, faster than 79.62% of Java online submissions for Reverse String.]]></content>
-      <categories>
-        <category>算法</category>
-      </categories>
-      <tags>
-        <tag>字符串</tag>
-        <tag>leetcode</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[LeetCode 557 Reverse Words in a String III]]></title>
     <url>%2Fleetcode-557%2F</url>
     <content type="text"><![CDATA[题意 给定一个字符串, 翻转字符串中的每个单词, 每个单词以空格分隔, 保留空格和初始单词顺序。 解法首先按照空格对字符串进行分隔，然后将每个单词进行翻转后再拼接回字符串即可，需要注意拼接时记得加空格，但最后一个单词不需要加。 12345678910111213141516171819class Solution &#123; public String reverseWords(String s) &#123; StringBuilder result = new StringBuilder(); String[] strs = s.split(" "); for (String str : strs) &#123; char[] chars = str.toCharArray(); for (int i = 0, j = chars.length - 1; i &lt; j; i++, j--) &#123; char c = chars[i]; chars[i] = chars[j]; chars[j] = c; &#125; result.append(new String(chars)).append(" "); &#125; return result.substring(0, result.length() - 1); &#125;&#125; Runtime: 6 ms, faster than 93.75% of Java online submissions for Reverse Words in a String III.]]></content>
@@ -570,9 +584,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[LeetCode 520 Detect Capital]]></title>
-    <url>%2Fleetcode-520%2F</url>
-    <content type="text"><![CDATA[题意 给与一个单词，判断其大写字母的使用是否正确，即每个字母都是大写或都是小写，或首字母大写。 Example 1:12Input: &quot;USA&quot;Output: True Example 2:12Input: &quot;FlaG&quot;Output: False 解法定义两个变量，记录小写字母个数和大写字母个数，然后判断条件是否符合。 123456789101112131415161718192021222324252627class Solution &#123; public boolean detectCapitalUse(String word) &#123; if (word.length() &lt; 2) &#123; return true; &#125; char[] chars = word.toCharArray(); int lower = 0, upper = 0; for (int i = 0; i &lt; chars.length; i++) &#123; if (isLowerCaseLetter(chars[i])) &#123; lower++; &#125; else &#123; upper++; &#125; &#125; return lower == chars.length || upper == chars.length || (isUpperCaseLetter(chars[0]) &amp;&amp; lower == chars.length - 1); &#125; public boolean isUpperCaseLetter(char c) &#123; return c &gt;= 65 &amp;&amp; c &lt;= 90; &#125; public boolean isLowerCaseLetter(char c) &#123; return c &gt;= 97 &amp;&amp; c &lt;= 122; &#125;&#125; Runtime: 12 ms, faster than 98.36% of Java online submissions for Detect Capital.]]></content>
+    <title><![CDATA[LeetCode 344 Reverse String]]></title>
+    <url>%2Fleetcode-344%2F</url>
+    <content type="text"><![CDATA[题意 翻转字符串。 解法两个指针，分别在首和尾，都向中间走，直到首超过尾。 1234567891011class Solution &#123; public String reverseString(String s) &#123; char[] chars = s.toCharArray(); for (int i = 0, j = chars.length - 1; i &lt; j; i++, j--) &#123; char temp = chars[i]; chars[i] = chars[j]; chars[j] = temp; &#125; return new String(chars); &#125;&#125; Runtime: 2 ms, faster than 79.62% of Java online submissions for Reverse String.]]></content>
       <categories>
         <category>算法</category>
       </categories>
@@ -585,6 +599,18 @@
     <title><![CDATA[LeetCode 657 Robot Return to Origin]]></title>
     <url>%2Fleetcode-657%2F</url>
     <content type="text"><![CDATA[题意 其实就是给一个字符串, 每个字符包含 “U”、”D”、”L”、”R”, 分别表示上下左右, 表示机器人向这个位置走一步, 判断最终是否机器人是否还在原来的位置。 解法这道题很简单，只需要假设当前节点是 0, 0，定义两个变量, i 和 j，默认值都为 0，每当向上 i + 1，向下 i - 1，向右 j + 1，向左 j - 1。最终只需要判断 i 和 j 是否都等于 0 即可。 12345678910111213141516171819class Solution &#123; public boolean judgeCircle(String moves) &#123; int i = 0; int j = 0; char[] chars = moves.toCharArray(); for (char ch : chars) &#123; if (ch == 'U') &#123; i += 1; &#125; else if (ch == 'D') &#123; i -= 1; &#125; else if (ch == 'R') &#123; j += 1; &#125; else if (ch == 'L') &#123; j -= 1; &#125; &#125; return i == 0 &amp;&amp; j == 0; &#125;&#125; Runtime: 8 ms, faster than 97.27% of Java online submissions for Robot Return to Origin.]]></content>
+      <categories>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>字符串</tag>
+        <tag>leetcode</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[LeetCode 520 Detect Capital]]></title>
+    <url>%2Fleetcode-520%2F</url>
+    <content type="text"><![CDATA[题意 给与一个单词，判断其大写字母的使用是否正确，即每个字母都是大写或都是小写，或首字母大写。 Example 1:12Input: &quot;USA&quot;Output: True Example 2:12Input: &quot;FlaG&quot;Output: False 解法定义两个变量，记录小写字母个数和大写字母个数，然后判断条件是否符合。 123456789101112131415161718192021222324252627class Solution &#123; public boolean detectCapitalUse(String word) &#123; if (word.length() &lt; 2) &#123; return true; &#125; char[] chars = word.toCharArray(); int lower = 0, upper = 0; for (int i = 0; i &lt; chars.length; i++) &#123; if (isLowerCaseLetter(chars[i])) &#123; lower++; &#125; else &#123; upper++; &#125; &#125; return lower == chars.length || upper == chars.length || (isUpperCaseLetter(chars[0]) &amp;&amp; lower == chars.length - 1); &#125; public boolean isUpperCaseLetter(char c) &#123; return c &gt;= 65 &amp;&amp; c &lt;= 90; &#125; public boolean isLowerCaseLetter(char c) &#123; return c &gt;= 97 &amp;&amp; c &lt;= 122; &#125;&#125; Runtime: 12 ms, faster than 98.36% of Java online submissions for Detect Capital.]]></content>
       <categories>
         <category>算法</category>
       </categories>
@@ -1241,8 +1267,8 @@
       </categories>
       <tags>
         <tag>剑指offer</tag>
-        <tag>栈</tag>
         <tag>递归</tag>
+        <tag>栈</tag>
         <tag>二叉树</tag>
       </tags>
   </entry>
@@ -1254,8 +1280,8 @@
         <category>算法</category>
       </categories>
       <tags>
-        <tag>剑指offer</tag>
         <tag>位运算</tag>
+        <tag>剑指offer</tag>
       </tags>
   </entry>
   <entry>
