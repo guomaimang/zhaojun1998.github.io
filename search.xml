@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[LeetCode 461 Hamming Distance]]></title>
+    <url>%2Fleetcode-461%2F</url>
+    <content type="text"><![CDATA[汉明距离题意两个整数之间的汉明距离指的是这两个数字对应二进制位不同的位置的数目。 给出两个整数 x 和 y，计算它们之间的汉明距离。 注意：0 ≤ x, y &lt; 231. 示例: 12345678输入: x = 1, y = 4输出: 2解释:1 (0 0 0 1)4 (0 1 0 0) ↑ ↑ 解法一解法一可是基于 LeetCode 191 Number of 1 Bits 中的解法二. 1234567891011121314class Solution &#123; public int hammingDistance(int x, int y) &#123; int res = 0; for (int i = 0; i &lt; 32; i++) &#123; if ((x &amp; 1) != (y &amp; 1)) &#123; res++; &#125; x &gt;&gt;= 1; y &gt;&gt;= 1; &#125; return res; &#125;&#125; 时间复杂度 O(1), 空间复杂度 O(1). 00101000 解法二解法二可是基于 LeetCode 191 Number of 1 Bits 中的解法二. 这里使用到了异或, 他的运算逻辑为参与运算的两个二进制位同号, 则结果为 0, 异号则为 1， 即 0 ∧ 0 ＝ 0, 0 ∧ 1 ＝ 1, 1 ^ 0 = 1, 1 ∧ 1 ＝ 0. 这个规则很符合我们这道题, 两个数异或的结果的二进制位中, 1 的数量就是本题的解. 1234567891011121314class Solution &#123; public int hammingDistance(int x, int y) &#123; int res = 0; int z = x ^ y; while (z != 0) &#123; z = z &amp; (z - 1); res++; &#125; return res; &#125;&#125; 时间复杂度 O(1), 空间复杂度 O(1). 但此解法相对解法一更快一些.]]></content>
+      <categories>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>位运算</tag>
+        <tag>leetcode</tag>
+        <tag>二进制</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[LeetCode 338 Counting Bits]]></title>
     <url>%2Fleetcode-338%2F</url>
     <content type="text"><![CDATA[比特位计数题意给定一个非负整数 num. 对于 0 ≤ i ≤ num 范围中的每个数字 i, 计算其二进制数中的 1 的数目并将它们作为数组返回. 示例 1: 12输入: 2输出: [0,1,1] 示例 2: 12输入: 5输出: [0,1,1,2,1,2] 解法此题是 LeetCode 191 Number of 1 Bits 的拓展版, 可以利用那道题的两种算法, 只不过套个循环, 时间和空间复杂度都是 O(n). 那两种解法就不说了. 这里说下另一种解法. 这里分为 2 的倍数 和 非 2 的倍数 两种数. 他们有一个区别就是二进制的最低位是否为 1. 2 的倍数其二进制最低位都是 0.非 2 的倍数其二进制最低位都是 1. 除 2 或右移一位后, 等于是去掉最低位, 那么既然 2 的倍数最后一位都是 0, 所以对于 2 的倍数 除 2 或右移一位后, 数字 1 的个数并不会变. 那么对于非 2 的倍数 n, n 肯定比 n - 1 的二进制中 1 的个数多一位. 如 n = 1111, n - 1 = 1110. 12345678910111213class Solution &#123; public int[] countBits(int num) &#123; int[] arr = new int[num + 1]; for (int i = 0; i &lt;= num; i++) &#123; if (i % 2 == 0) &#123; arr[i] = arr[i &gt;&gt; 1]; &#125; else &#123; arr[i] = arr[i - 1] + 1; &#125; &#125; return arr; &#125;&#125; 时间复杂度 O(n), 空间复杂度 O(n).]]></content>
@@ -493,8 +506,8 @@
         <category>Spring</category>
       </categories>
       <tags>
-        <tag>Spring</tag>
         <tag>异常处理</tag>
+        <tag>Spring</tag>
         <tag>SpringBoot</tag>
       </tags>
   </entry>
@@ -506,8 +519,8 @@
         <category>Spring</category>
       </categories>
       <tags>
-        <tag>Spring</tag>
         <tag>异常处理</tag>
+        <tag>Spring</tag>
         <tag>SpringBoot</tag>
       </tags>
   </entry>
@@ -572,18 +585,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[LeetCode 557 Reverse Words in a String III]]></title>
-    <url>%2Fleetcode-557%2F</url>
-    <content type="text"><![CDATA[题意 给定一个字符串, 翻转字符串中的每个单词, 每个单词以空格分隔, 保留空格和初始单词顺序。 解法首先按照空格对字符串进行分隔，然后将每个单词进行翻转后再拼接回字符串即可，需要注意拼接时记得加空格，但最后一个单词不需要加。 12345678910111213141516171819class Solution &#123; public String reverseWords(String s) &#123; StringBuilder result = new StringBuilder(); String[] strs = s.split(" "); for (String str : strs) &#123; char[] chars = str.toCharArray(); for (int i = 0, j = chars.length - 1; i &lt; j; i++, j--) &#123; char c = chars[i]; chars[i] = chars[j]; chars[j] = c; &#125; result.append(new String(chars)).append(" "); &#125; return result.substring(0, result.length() - 1); &#125;&#125; Runtime: 6 ms, faster than 93.75% of Java online submissions for Reverse Words in a String III.]]></content>
-      <categories>
-        <category>算法</category>
-      </categories>
-      <tags>
-        <tag>字符串</tag>
-        <tag>leetcode</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[LeetCode 344 Reverse String]]></title>
     <url>%2Fleetcode-344%2F</url>
     <content type="text"><![CDATA[题意 翻转字符串。 解法两个指针，分别在首和尾，都向中间走，直到首超过尾。 1234567891011class Solution &#123; public String reverseString(String s) &#123; char[] chars = s.toCharArray(); for (int i = 0, j = chars.length - 1; i &lt; j; i++, j--) &#123; char temp = chars[i]; chars[i] = chars[j]; chars[j] = temp; &#125; return new String(chars); &#125;&#125; Runtime: 2 ms, faster than 79.62% of Java online submissions for Reverse String.]]></content>
@@ -596,9 +597,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[LeetCode 657 Robot Return to Origin]]></title>
-    <url>%2Fleetcode-657%2F</url>
-    <content type="text"><![CDATA[题意 其实就是给一个字符串, 每个字符包含 “U”、”D”、”L”、”R”, 分别表示上下左右, 表示机器人向这个位置走一步, 判断最终是否机器人是否还在原来的位置。 解法这道题很简单，只需要假设当前节点是 0, 0，定义两个变量, i 和 j，默认值都为 0，每当向上 i + 1，向下 i - 1，向右 j + 1，向左 j - 1。最终只需要判断 i 和 j 是否都等于 0 即可。 12345678910111213141516171819class Solution &#123; public boolean judgeCircle(String moves) &#123; int i = 0; int j = 0; char[] chars = moves.toCharArray(); for (char ch : chars) &#123; if (ch == 'U') &#123; i += 1; &#125; else if (ch == 'D') &#123; i -= 1; &#125; else if (ch == 'R') &#123; j += 1; &#125; else if (ch == 'L') &#123; j -= 1; &#125; &#125; return i == 0 &amp;&amp; j == 0; &#125;&#125; Runtime: 8 ms, faster than 97.27% of Java online submissions for Robot Return to Origin.]]></content>
+    <title><![CDATA[LeetCode 557 Reverse Words in a String III]]></title>
+    <url>%2Fleetcode-557%2F</url>
+    <content type="text"><![CDATA[题意 给定一个字符串, 翻转字符串中的每个单词, 每个单词以空格分隔, 保留空格和初始单词顺序。 解法首先按照空格对字符串进行分隔，然后将每个单词进行翻转后再拼接回字符串即可，需要注意拼接时记得加空格，但最后一个单词不需要加。 12345678910111213141516171819class Solution &#123; public String reverseWords(String s) &#123; StringBuilder result = new StringBuilder(); String[] strs = s.split(" "); for (String str : strs) &#123; char[] chars = str.toCharArray(); for (int i = 0, j = chars.length - 1; i &lt; j; i++, j--) &#123; char c = chars[i]; chars[i] = chars[j]; chars[j] = c; &#125; result.append(new String(chars)).append(" "); &#125; return result.substring(0, result.length() - 1); &#125;&#125; Runtime: 6 ms, faster than 93.75% of Java online submissions for Reverse Words in a String III.]]></content>
       <categories>
         <category>算法</category>
       </categories>
@@ -611,6 +612,18 @@
     <title><![CDATA[LeetCode 520 Detect Capital]]></title>
     <url>%2Fleetcode-520%2F</url>
     <content type="text"><![CDATA[题意 给与一个单词，判断其大写字母的使用是否正确，即每个字母都是大写或都是小写，或首字母大写。 Example 1:12Input: &quot;USA&quot;Output: True Example 2:12Input: &quot;FlaG&quot;Output: False 解法定义两个变量，记录小写字母个数和大写字母个数，然后判断条件是否符合。 123456789101112131415161718192021222324252627class Solution &#123; public boolean detectCapitalUse(String word) &#123; if (word.length() &lt; 2) &#123; return true; &#125; char[] chars = word.toCharArray(); int lower = 0, upper = 0; for (int i = 0; i &lt; chars.length; i++) &#123; if (isLowerCaseLetter(chars[i])) &#123; lower++; &#125; else &#123; upper++; &#125; &#125; return lower == chars.length || upper == chars.length || (isUpperCaseLetter(chars[0]) &amp;&amp; lower == chars.length - 1); &#125; public boolean isUpperCaseLetter(char c) &#123; return c &gt;= 65 &amp;&amp; c &lt;= 90; &#125; public boolean isLowerCaseLetter(char c) &#123; return c &gt;= 97 &amp;&amp; c &lt;= 122; &#125;&#125; Runtime: 12 ms, faster than 98.36% of Java online submissions for Detect Capital.]]></content>
+      <categories>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>字符串</tag>
+        <tag>leetcode</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[LeetCode 657 Robot Return to Origin]]></title>
+    <url>%2Fleetcode-657%2F</url>
+    <content type="text"><![CDATA[题意 其实就是给一个字符串, 每个字符包含 “U”、”D”、”L”、”R”, 分别表示上下左右, 表示机器人向这个位置走一步, 判断最终是否机器人是否还在原来的位置。 解法这道题很简单，只需要假设当前节点是 0, 0，定义两个变量, i 和 j，默认值都为 0，每当向上 i + 1，向下 i - 1，向右 j + 1，向左 j - 1。最终只需要判断 i 和 j 是否都等于 0 即可。 12345678910111213141516171819class Solution &#123; public boolean judgeCircle(String moves) &#123; int i = 0; int j = 0; char[] chars = moves.toCharArray(); for (char ch : chars) &#123; if (ch == 'U') &#123; i += 1; &#125; else if (ch == 'D') &#123; i -= 1; &#125; else if (ch == 'R') &#123; j += 1; &#125; else if (ch == 'L') &#123; j -= 1; &#125; &#125; return i == 0 &amp;&amp; j == 0; &#125;&#125; Runtime: 8 ms, faster than 97.27% of Java online submissions for Robot Return to Origin.]]></content>
       <categories>
         <category>算法</category>
       </categories>
@@ -999,8 +1012,8 @@
         <category>Hexo</category>
       </categories>
       <tags>
-        <tag>Hexo优化</tag>
         <tag>Hexo</tag>
+        <tag>Hexo优化</tag>
       </tags>
   </entry>
   <entry>
@@ -1280,8 +1293,8 @@
         <category>算法</category>
       </categories>
       <tags>
-        <tag>位运算</tag>
         <tag>剑指offer</tag>
+        <tag>位运算</tag>
       </tags>
   </entry>
   <entry>
