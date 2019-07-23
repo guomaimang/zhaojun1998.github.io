@@ -1845,7 +1845,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #9c1f98;
+  background: #3378f0;
 }
 .feed-link,
 .chat {
@@ -3170,7 +3170,7 @@ ul.breadcrumb li+li:last-child {
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.zhaojun.im/leetcode-589/">
+    <link itemprop="mainEntityOfPage" href="http://www.zhaojun.im/leetcode-590/">
 
     <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="赵俊">
@@ -3190,7 +3190,7 @@ ul.breadcrumb li+li:last-child {
           <h2 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/leetcode-589/" class="post-title-link" itemprop="url">LeetCode 589 N-ary Tree Preorder Traversal</a>
+                <a href="/leetcode-590/" class="post-title-link" itemprop="url">LeetCode 590 N-ary Tree Postorder Traversal</a>
               
             
           </h2>
@@ -3215,24 +3215,12 @@ ul.breadcrumb li+li:last-child {
                 
               
 
-              <time title="创建时间：2019-04-15 21:11:34" itemprop="dateCreated datePublished" datetime="2019-04-15T21:11:34+08:00">2019-04-15</time>
+              <time title="创建时间：2019-04-16 22:20:34 / 修改时间：22:50:01" itemprop="dateCreated datePublished" datetime="2019-04-16T22:20:34+08:00">2019-04-16</time>
             
 
             
               
 
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-04-16 22:20:42" itemprop="dateModified" datetime="2019-04-16T22:20:42+08:00">2019-04-16</time>
               
             
           </span>
@@ -3268,8 +3256,8 @@ ul.breadcrumb li+li:last-child {
                 </span>
             
                 <span class="post-meta-item-text">评论数：</span>
-                <a href="/leetcode-589/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/leetcode-589/" itemprop="commentCount"></span>
+                <a href="/leetcode-590/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/leetcode-590/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -3277,7 +3265,7 @@ ul.breadcrumb li+li:last-child {
 
           
           
-            <span id="/leetcode-589/" class="leancloud_visitors" data-flag-title="LeetCode 589 N-ary Tree Preorder Traversal">
+            <span id="/leetcode-590/" class="leancloud_visitors" data-flag-title="LeetCode 590 N-ary Tree Postorder Traversal">
               <span class="post-meta-divider">|</span>
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
@@ -3309,14 +3297,14 @@ ul.breadcrumb li+li:last-child {
 
       
         
-          <h2 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h2><p>给定一颗 <code>N 叉树</code> 的根节点，返回前序遍历后的数组.</p>
+          <h2 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h2><p>给定一颗 <code>N 叉树</code> 的根节点，返回后序遍历后的数组.</p>
 <p>例 :</p>
-<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">给予树：</span><br><span class="line">         1 </span><br><span class="line">       / | \ </span><br><span class="line">      3  2  4</span><br><span class="line">     / \ </span><br><span class="line">    5   6 </span><br><span class="line">将其前序遍历返回: [1,3,5,6,2,4].</span><br></pre></td></tr></tbody></table></figure>
-<h2 id="解法"><a href="#解法" class="headerlink" title="解法"></a>解法</h2><p>和二叉树的前序遍历差不多，需要注意处理好子节点的顺序即可。</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">给予树：</span><br><span class="line">         1 </span><br><span class="line">       / | \ </span><br><span class="line">      3  2  4</span><br><span class="line">     / \ </span><br><span class="line">    5   6 </span><br><span class="line">将其后序遍历返回: [5,6,3,2,4,1].</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="解法"><a href="#解法" class="headerlink" title="解法"></a>解法</h2><p>和二叉树的中序遍历差不多，需要注意处理好子节点的顺序即可。</p>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/leetcode-589/" rel="contents">
+              <a class="btn" href="/leetcode-590/" rel="contents">
                 阅读全文 »
               </a>
             </div>
@@ -3523,6 +3511,212 @@ ul.breadcrumb li+li:last-child {
           
             <div class="post-button text-center">
               <a class="btn" href="/leetcode-559/" rel="contents">
+                阅读全文 »
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.zhaojun.im/leetcode-589/">
+
+    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="赵俊">
+      <meta itemprop="description" content="一个 Java 学习者的博客，分享 Java 干货, VPS 知识, 软件推荐等。">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="赵俊的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/leetcode-589/" class="post-title-link" itemprop="url">LeetCode 589 N-ary Tree Preorder Traversal</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-04-15 21:11:34" itemprop="dateCreated datePublished" datetime="2019-04-15T21:11:34+08:00">2019-04-15</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-04-16 22:20:42" itemprop="dateModified" datetime="2019-04-16T22:20:42+08:00">2019-04-16</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/算法/" itemprop="url" rel="index"><span itemprop="name">算法</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
+                <a href="/leetcode-589/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/leetcode-589/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+            <span id="/leetcode-589/" class="leancloud_visitors" data-flag-title="LeetCode 589 N-ary Tree Preorder Traversal">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读次数：</span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h2><p>给定一颗 <code>N 叉树</code> 的根节点，返回前序遍历后的数组.</p>
+<p>例 :</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">给予树：</span><br><span class="line">         1 </span><br><span class="line">       / | \ </span><br><span class="line">      3  2  4</span><br><span class="line">     / \ </span><br><span class="line">    5   6 </span><br><span class="line">将其前序遍历返回: [1,3,5,6,2,4].</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="解法"><a href="#解法" class="headerlink" title="解法"></a>解法</h2><p>和二叉树的前序遍历差不多，需要注意处理好子节点的顺序即可。</p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/leetcode-589/" rel="contents">
                 阅读全文 »
               </a>
             </div>
@@ -4152,211 +4346,6 @@ ul.breadcrumb li+li:last-child {
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.zhaojun.im/java-dynamic-proxy/">
-
-    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="赵俊">
-      <meta itemprop="description" content="一个 Java 学习者的博客，分享 Java 干货, VPS 知识, 软件推荐等。">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="赵俊的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/java-dynamic-proxy/" class="post-title-link" itemprop="url">Java 动态代理初探</a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-04-08 20:15:28" itemprop="dateCreated datePublished" datetime="2019-04-08T20:15:28+08:00">2019-04-08</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-04-09 21:36:24" itemprop="dateModified" datetime="2019-04-09T21:36:24+08:00">2019-04-09</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-              
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-            
-                <span class="post-meta-item-text">评论数：</span>
-                <a href="/java-dynamic-proxy/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/java-dynamic-proxy/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-            <span id="/java-dynamic-proxy/" class="leancloud_visitors" data-flag-title="Java 动态代理初探">
-              <span class="post-meta-divider">|</span>
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              
-                <span class="post-meta-item-text">阅读次数：</span>
-              
-                <span class="leancloud-visitors-count"></span>
-            </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>对于使用过 Spring 的朋友, 应该都使用过 AOP, 那么今天我们来对 AOP 的原理: <strong>动态代理</strong> 来一探究竟.</p>
-<h2 id="静态代理"><a href="#静态代理" class="headerlink" title="静态代理"></a>静态代理</h2><p>在动态代理之前, 我们先来看看静态代理, 看下其实现方式及其优缺点.</p>
-<p>静态代理的原理是委托类和代理类都实现同一个接口, 代理类中会调用委托类的方法, 同时代理类中可以加一些自己的逻辑.</p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/java-dynamic-proxy/" rel="contents">
-                阅读全文 »
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -4405,7 +4394,7 @@ ul.breadcrumb li+li:last-child {
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">178</span>
+                    <span class="site-state-item-count">179</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -4735,7 +4724,9 @@ ul.breadcrumb li+li:last-child {
                     
                       
                     
-                    <span class="site-state-item-count">92</span>
+                      
+                    
+                    <span class="site-state-item-count">93</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
