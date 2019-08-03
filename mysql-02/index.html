@@ -86,7 +86,7 @@
 
 
   <meta name="description" content="MySQL 拿到一个查询请求后，会先看看之前有没有执行过这条语句，如果执行过，则直接从查询缓存中取之前查询的结果即可，但大多情况不建议使用 MySQL 的查询缓存，因为弊大于利。 因为查询缓存的失效非常频繁，只要对一个表进行更新，那么这个表的所有查询缓存将会全部被清除，所以命中率并不会很好，除非你有一张静态的表，不会改变他的数据，或者很久才会更新一次。比如系统配置表，才适合使用这个查询缓存。 还有">
-<meta name="keywords" content="缓存,MySQL">
+<meta name="keywords" content="Java, Hexo, Valine, Hexo 评论系统, Valine 邮件通知,  多线程, 算法, Spring">
 <meta property="og:type" content="article">
 <meta property="og:title" content="MySQL 查询缓存">
 <meta property="og:url" content="http://www.zhaojun.im/mysql-02/index.html">
@@ -1846,7 +1846,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #3378f0;
+  background: #422b20;
 }
 .feed-link,
 .chat {
@@ -3224,24 +3224,6 @@ ul.breadcrumb li+li:last-child {
           </span>
 
           
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/MySQL/" itemprop="url" rel="index"><span itemprop="name">MySQL</span></a></span>
-
-                
-                
-              
-            </span>
-          
 
           
             
@@ -3345,14 +3327,6 @@ ul.breadcrumb li+li:last-child {
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/缓存/" rel="tag"># 缓存</a>
-          
-            <a href="/tags/MySQL/" rel="tag"># MySQL</a>
-          
-        </div>
-      
 
       
       
@@ -3372,8 +3346,8 @@ ul.breadcrumb li+li:last-child {
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/mysql-04/" rel="prev" title="MySQL 索引">
-                MySQL 索引 <i class="fa fa-chevron-right"></i>
+              <a href="/mysql-03/" rel="prev" title="初识 redo log 和 binlog">
+                初识 redo log 和 binlog <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -3517,265 +3491,12 @@ ul.breadcrumb li+li:last-child {
                     
                       
                     
-                    <span class="site-state-item-count">14</span>
+                    <span class="site-state-item-count">0</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
               
 
-              
-                
-                
-                <div class="site-state-item site-state-tags">
-                  
-                    
-                      <a href="/tags/">
-                    
-                  
-                    
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                    <span class="site-state-item-count">93</span>
-                    <span class="site-state-item-name">标签</span>
-                  </a>
-                </div>
               
             </nav>
           
