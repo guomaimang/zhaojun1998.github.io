@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Spring 动态注入依赖设计]]></title>
+    <url>%2Fspring-dynamic-injection-dependency%2F</url>
+    <content type="text"><![CDATA[前言最近在开发一个在线网盘的功能, 支持多个存储策略. 启动时, 读取数据库, 获取当前启用的存储类型, 然后项目启动后, 还可以动态切换存储类型. 由于是基于 Spring 开发的, 所以一般是这么写的: 接口: 1234567891011121314public interface FileService &#123; /** * 接口中的方法, 以此为例. */ void method1(); /** * 获取当前的存储类型 * @return 存储类型 */ String getStorageType();&#125; 阿里云实现类: 1234567891011121314@Servicepublic class AliyunFileService implements FileService &#123; @Override public void method1() &#123; // do something... &#125; @Override public String getStorageType() &#123; return "阿里云"; &#125; &#125; 腾讯云实现类: 1234567891011121314@Servicepublic class TencentFileService implements FileService &#123; @Override public void method1() &#123; // do something... &#125; @Override public String getStorageType() &#123; return "腾讯云"; &#125;&#125; 然后在 Controller 层注入: 123456789101112@Controllerpublic class FileController &#123; @Resource private FileService fileService; @GetMapping("xxx") public void method1() &#123; fileService.method1(); &#125;&#125; 但, 这样肯定会出错的, 因为 FileService 接口, 有两个实现类, 都标注了 @Service, 注入时, Spring 不知道到底注入哪个. 这办法不可行, 即使指定了注入哪个, 也没办法实现动态切换注入的类. 实现那么换个思路, 不使用 @Resource 注入, 而是在项目启动完后, 获取 FileService 类型的所有类, 然后从数据库获取当前启用的存储类型, set 到 Controller 的 fileService 属性中. 具体看代码吧: 两个 Service 类的代码不变, 新增获取存储类型的工厂类: 123456789101112131415161718192021222324252627282930313233343536373839404142@Componentpublic class StorageTypeFactory implements ApplicationContextAware &#123; private static Map&lt;String, FileService&gt; storageTypeEnumFileServiceMap; private static ApplicationContext applicationContext; /** * 项目启动时执行 */ @Override public void setApplicationContext(ApplicationContext act) throws BeansException &#123; applicationContext = act; // 获取 Spring 容器中所有 FileService 类型的类 storageTypeEnumFileServiceMap = act.getBeansOfType(FileService.class); &#125; /** * 获取指定存储类型 Service */ public static FileService getStorageTypeService(String type) &#123; FileService result = null; for (FileService fileService : storageTypeEnumFileServiceMap.values()) &#123; if (fileService.getStorageType() == type) &#123; result = fileService; break; &#125; &#125; if (result == null) &#123; // 未知的存储类型 throw new UnknownStorageTypeException(type.getDescription()); &#125; return result; &#125; public static ApplicationContext getApplicationContext() &#123; return applicationContext; &#125;&#125; 123456789101112131415161718192021222324252627@Controllerpublic class FileController &#123; private FileService fileService; @GetMapping("xxx") public void method1() &#123; fileService.method1(); &#125; /** * PostConstruct 注解, 表示该类初始化的时候, 自动调用该方法. */ @PostConstruct @GetMapping("/updateStorageType") public void initStorageType(String storageType) &#123; // 如果 storageType 为空, 则表示是启动时初始化, 有值则说明是 Web 接口动态更改的 if (storageType == null) &#123; // 伪代码, 读取数据库获取当前存储类型 storageType = xxxService.getCurrentStorage(); &#125; // 设置 fileService 类为当前存储类型对应的 Service fileService = StorageTypeFactory.getStorageTypeService(storageType); &#125;&#125; 大概就是这样, 主要就是不直接使用 @Resouce 注入, 而是在启动时, 先获取所有的 Service, 存储到 Map 中, 提供静态方法, 然后利用 @PostConstruct 启动时自动调用初始化方法, 动态注入 fileService.]]></content>
+      <categories>
+        <category>Spring</category>
+      </categories>
+      <tags>
+        <tag>Spring</tag>
+        <tag>Java</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[LeetCode 461 Hamming Distance]]></title>
     <url>%2Fleetcode-461%2F</url>
     <content type="text"><![CDATA[汉明距离题意两个整数之间的汉明距离指的是这两个数字对应二进制位不同的位置的数目。 给出两个整数 x 和 y，计算它们之间的汉明距离。 注意：0 ≤ x, y &lt; 231. 示例: 12345678输入: x = 1, y = 4输出: 2解释:1 (0 0 0 1)4 (0 1 0 0) ↑ ↑ 解法一解法一可是基于 LeetCode 191 Number of 1 Bits 中的解法二. 1234567891011121314class Solution &#123; public int hammingDistance(int x, int y) &#123; int res = 0; for (int i = 0; i &lt; 32; i++) &#123; if ((x &amp; 1) != (y &amp; 1)) &#123; res++; &#125; x &gt;&gt;= 1; y &gt;&gt;= 1; &#125; return res; &#125;&#125; 时间复杂度 O(1), 空间复杂度 O(1). 00101000 解法二解法二可是基于 LeetCode 191 Number of 1 Bits 中的解法二. 这里使用到了异或, 他的运算逻辑为参与运算的两个二进制位同号, 则结果为 0, 异号则为 1， 即 0 ∧ 0 ＝ 0, 0 ∧ 1 ＝ 1, 1 ^ 0 = 1, 1 ∧ 1 ＝ 0. 这个规则很符合我们这道题, 两个数异或的结果的二进制位中, 1 的数量就是本题的解. 1234567891011121314class Solution &#123; public int hammingDistance(int x, int y) &#123; int res = 0; int z = x ^ y; while (z != 0) &#123; z = z &amp; (z - 1); res++; &#125; return res; &#125;&#125; 时间复杂度 O(1), 空间复杂度 O(1). 但此解法相对解法一更快一些.]]></content>
@@ -154,8 +166,8 @@
       </categories>
       <tags>
         <tag>递归</tag>
-        <tag>数组</tag>
         <tag>二叉树</tag>
+        <tag>数组</tag>
         <tag>leetcode</tag>
         <tag>树</tag>
       </tags>
@@ -407,8 +419,8 @@
         <category>算法</category>
       </categories>
       <tags>
-        <tag>数组</tag>
         <tag>二叉树</tag>
+        <tag>数组</tag>
         <tag>leetcode</tag>
         <tag>树</tag>
         <tag>二叉搜索树</tag>
@@ -449,8 +461,8 @@
         <category>算法</category>
       </categories>
       <tags>
-        <tag>数组</tag>
         <tag>二叉树</tag>
+        <tag>数组</tag>
         <tag>leetcode</tag>
         <tag>树</tag>
         <tag>二叉搜索树</tag>
@@ -464,8 +476,8 @@
         <category>算法</category>
       </categories>
       <tags>
-        <tag>数组</tag>
         <tag>二叉树</tag>
+        <tag>数组</tag>
         <tag>leetcode</tag>
         <tag>树</tag>
         <tag>二叉搜索树</tag>
@@ -479,8 +491,8 @@
         <category>算法</category>
       </categories>
       <tags>
-        <tag>数组</tag>
         <tag>二叉树</tag>
+        <tag>数组</tag>
         <tag>leetcode</tag>
         <tag>树</tag>
       </tags>
@@ -1025,8 +1037,8 @@
         <category>Hexo</category>
       </categories>
       <tags>
-        <tag>Hexo优化</tag>
         <tag>Hexo</tag>
+        <tag>Hexo优化</tag>
       </tags>
   </entry>
   <entry>
@@ -1293,8 +1305,8 @@
       </categories>
       <tags>
         <tag>剑指offer</tag>
-        <tag>栈</tag>
         <tag>递归</tag>
+        <tag>栈</tag>
         <tag>二叉树</tag>
       </tags>
   </entry>
