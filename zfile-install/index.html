@@ -99,7 +99,7 @@
 <meta property="og:image" content="http://www.zhaojun.im/images/loading2.gif">
 <meta property="og:image" content="http://www.zhaojun.im/images/loading2.gif">
 <meta property="og:image" content="http://www.zhaojun.im/images/loading2.gif">
-<meta property="og:updated_time" content="2020-01-30T11:19:41.495Z">
+<meta property="og:updated_time" content="2020-01-30T11:38:01.428Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ZFile 安装文档">
 <meta name="twitter:description" content="前言最近开发了一个在线网盘程序 ZFile, 支持各种对象存储、OneDrive、FTP、本地存储. 本文包含普通用户和宝塔用户的安装方式. 安装依赖123456# CentOS系统yum install -y java-1.8.0-openjdk unzip# Debian/Ubuntu系统apt updateapt install -y openjdk-8-jre-headless unzip">
@@ -1853,7 +1853,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #52c126;
+  background: #ffe3ff;
 }
 .feed-link,
 .chat {
@@ -3220,7 +3220,7 @@ ul.breadcrumb li+li:last-child {
                 
               
 
-              <time title="创建时间：2020-01-30 19:00:21 / 修改时间：19:19:41" itemprop="dateCreated datePublished" datetime="2020-01-30T19:00:21+08:00">2020-01-30</time>
+              <time title="创建时间：2020-01-30 19:00:21 / 修改时间：19:38:01" itemprop="dateCreated datePublished" datetime="2020-01-30T19:00:21+08:00">2020-01-30</time>
             
 
             
@@ -3305,7 +3305,7 @@ ul.breadcrumb li+li:last-child {
 <h2 id="安装依赖"><a href="#安装依赖" class="headerlink" title="安装依赖"></a>安装依赖</h2><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># CentOS系统</span></span><br><span class="line">yum install -y java-1.8.0-openjdk unzip</span><br><span class="line"></span><br><span class="line"><span class="comment"># Debian/Ubuntu系统</span></span><br><span class="line">apt update</span><br><span class="line">apt install -y openjdk-8-jre-headless unzip</span><br></pre></td></tr></tbody></table></figure>
 <a id="more"></a>
 <blockquote>
-<p>如为更新程序, 则请先执行 <code>rm -rf ~/zfile</code> 清理旧程序. 首次安装请忽略此选项.</p>
+<p>如为更新程序, 则请先执行 <code>~/zfile/bin/stop.sh</code> 停止命令和 <code>rm -rf ~/zfile</code> 清理旧程序. 首次安装请忽略此选项. 不会删除数据文件.</p>
 </blockquote>
 <h2 id="下载项目"><a href="#下载项目" class="headerlink" title="下载项目"></a>下载项目</h2><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">wget -P ~ https://c.jun6.net/ZFILE/zfile-1.0.war</span><br><span class="line"><span class="built_in">cd</span> ~</span><br><span class="line">mkdir zfile &amp;&amp; unzip zfile-1.0.war -d zfile &amp;&amp; rm -rf zfile-1.0.war</span><br><span class="line">chmod +x ~/zfile/bin/*.sh</span><br></pre></td></tr></tbody></table></figure>
 <h2 id="目录结构"><a href="#目录结构" class="headerlink" title="目录结构"></a>目录结构</h2><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">├── zfile</span><br><span class="line">    ├── META-INF</span><br><span class="line">    ├── WEB-INF</span><br><span class="line">    └── bin</span><br><span class="line">        ├── start.sh    <span class="comment"># 启动脚本</span></span><br><span class="line">        └── stop.sh     <span class="comment"># 停止脚本</span></span><br><span class="line">        ├── restart.sh  <span class="comment"># 重启脚本</span></span><br></pre></td></tr></tbody></table></figure>
