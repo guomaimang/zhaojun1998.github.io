@@ -1,9 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[解决 Oracle 导入导出占用大量表空间的问题]]></title>
+    <url>%2Foracle-tablespace-shrink%2F</url>
+    <content type="text"><![CDATA[出现原因对于 Oracle 而言, 每个表建立是, 都有一个属性为 initial, 表示此表占用的空间大小, 随着数据的新增, 此值也会一直增大, 但删除这个表的数据后, initial 也不会缩小. 所以使用时间越长, 每个表占用的空间都会很大. 且导出后, 其他机器再次导入, 也会占用其同样的 initial 大小. 解决过程注意: 进行以下操作前, 要先对数据进行备份. 以防出错! 查询每个用户占用空间大小 (dba 用户执行)1select owner, sum(bytes / 1024 / 1024) "MB", sum(bytes / 1024 / 1024 / 1024) "GB" from dba_segments group by owner order by GB DESC; 执行结果: 查询结果中 OWNER 表示用户, 后两列表示占用空间大小, 根据上图所知, DSP2 这个用户, 占用了 18.6GB 的空间. 那么这个用户导出数据后, 其他电脑导入, 也会占用 18.6GB 空间. 缩小表 initial 空间 (dba 用户执行)123select 'ALTER TABLE '||owner||'.'||table_name||' MOVE TABLESPACE '||tablespace_name||' STORAGE(INITIAL 64K NEXT 32K);' from dba_tables where owner='DSP2' and initial_extent&gt;65536 执行结果: 注意 where owner=&#39;DSP2&#39; 要中的用户改为你要缩小表空间的用户. 重建索引 (要导出的用户执行)这里我切换到 DSP2 用户, 由于缩小表 initial 空间后, 索引会失效, 需要重建索引. 123456789101112131415161718declare cursor c is select index_name, owner from dba_indexes where status='UNUSABLE'; owner dba_indexes.owner%type; index_name dba_indexes.index_name%type;begin open c; loop fetch c into index_name, owner; exit when c%notfound; execute immediate 'alter index ' || owner || '.' || index_name || ' rebuild'; end loop; close c;end; 缩小表空间 (dba 用户执行)查询表空间占用大小和可缩小大小: 1234567891011121314select a.file#, a.name, a.bytes / 1024 / 1024 CurrentMB, ceil(HWM * a.block_size) / 1024 / 1024 ResizeTo, (a.bytes - HWM * a.block_size) / 1024 / 1024 ReleaseMB, 'alter database datafile ''' || a.name || ''' resize ' || ceil(HWM * a.block_size / 1024 / 1024) || 'M;' ResizeCMD from v$datafile a, (select file_id, max(block_id + blocks - 1) HWM from dba_extents group by file_id) b where a.file# = b.file_id(+) and (a.bytes - HWM * block_size) &gt; 0 order by CURRENTMB DESC 执行结果: 执行最后一列的命令，进行缩小表空间. 缩小完后, 再次查询用户占用空间大小 (dba 用户执行) 1select owner, sum(bytes / 1024 / 1024) "MB", sum(bytes / 1024 / 1024 / 1024) "GB" from dba_segments group by owner order by GB DESC; 可见由 18G 占用, 缩小到了 0.2G. 此时这个用户再导出的数据文件, 其他电脑再导入, 就只会占用 0.2G 空间, 而不是 18GB. 彻底清理空间上述操作, 只能缩小这个用户部分占用空间, 仅能用于再次导出后, 导入时不会占用大量空间. 如想彻底清空表空间, 可以导出数据后, 删除此用户, 再执行清理命令, 然后再次建立用户导入即可. 一定要注意先备份数据, 且确定导出的数据无误, 再进行此操作. 删除用户1drop user 用户名 cascade; 查询表空间占用大小和可缩小大小1234567891011121314select a.file#, a.name, a.bytes / 1024 / 1024 CurrentMB, ceil(HWM * a.block_size) / 1024 / 1024 ResizeTo, (a.bytes - HWM * a.block_size) / 1024 / 1024 ReleaseMB, 'alter database datafile ''' || a.name || ''' resize ' || ceil(HWM * a.block_size / 1024 / 1024) || 'M;' ResizeCMD from v$datafile a, (select file_id, max(block_id + blocks - 1) HWM from dba_extents group by file_id) b where a.file# = b.file_id(+) and (a.bytes - HWM * block_size) &gt; 0 order by CURRENTMB DESC 操作步骤与上方一致. 执行最后一列的缩小表空间的 SQL 即可.]]></content>
+      <categories>
+        <category>oracle</category>
+      </categories>
+      <tags>
+        <tag>oracle</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Z-File 在线网盘程序，支持对象存储、本地存储、S3 协议、OneDrive 商业/家庭/个人/世纪互联版]]></title>
     <url>%2Fzfile-readme%2F</url>
-    <content type="text"><![CDATA[前言此项目是一个在线文件目录的程序, 支持各种对象存储和本地存储, 使用定位是个人放常用工具下载, 或做公共的文件库. 不会向多账户方向开发. 前端基于 h5ai 的原有功能使用 Vue 重新开发了一遍. 后端采用 SpringBoot, 数据库采用内嵌数据库. 预览地址: https://zfile.jun6.net项目地址: https://github.com/zhaojun1998/zfile 系统特色 内存缓存 (免安装) 内存数据库 (免安装) 个性化配置 自定义目录的 header 说明文件 自定义 JS, CSS 文件夹密码 支持在线浏览文本文件, 视频, 图片, 音乐. (支持 FLV 和 HLS) 文件/目录二维码 缓存动态开启, 缓存自动刷新 全局搜索 支持 阿里云 OSS, FTP, 华为云 OBS, 本地存储, MINIO, OneDrive 国际/家庭/个人版, OneDrive 世纪互联版, 七牛云 KODO, 腾讯云 COS, 又拍云 USS. 快速开始安装依赖环境: 123456# CentOS系统yum install -y java-1.8.0-openjdk unzip# Debian/Ubuntu系统apt updateapt install -y openjdk-8-jre-headless unzip 如为更新程序, 则请先执行 rm -rf ~/zfile 清理旧程序. 首次安装请忽略此选项. 下载项目: 1234wget -P ~ https://c.jun6.net/ZFILE/zfile-1.2.warcd ~mkdir zfile &amp;&amp; unzip zfile-1.2.war -d zfile &amp;&amp; rm -rf zfile-1.2.warchmod +x ~/zfile/bin/*.sh 程序的目录结构为:1234567├── zfile ├── META-INF ├── WEB-INF └── bin ├── start.sh # 启动脚本 └── stop.sh # 停止脚本 ├── restart.sh # 重启脚本 启动项目: 1~/zfile/bin/start.sh 篇幅有限, 更详细的安装教程请参考: 安装文档 访问地址: 用户前台: http://127.0.0.1:8080/#/main 初始安装: http://127.0.0.1:8080/#/install 管理后台: http://127.0.0.1:8080/#/admin OneDrive 使用教程.访问地址进行授权, 获取 accessToken 和 refreshToken: 国际/家庭/个人版: https://login.microsoftonline.com/common/oauth2/v2.0/authorize?client_id=09939809-c617-43c8-a220-a93c1513c5d4&amp;response_type=code&amp;redirect_uri=https://zfile.jun6.net/onedirve/callback&amp;scope=offline_access%20User.Read%20Files.ReadWrite.All 世纪互联版: https://login.chinacloudapi.cn/common/oauth2/v2.0/authorize?client_id=4a72d927-1907-488d-9eb2-1b465c53c1c5&amp;response_type=code&amp;redirect_uri=https://zfile.jun6.net/onedirve/china-callback&amp;scope=offline_access%20User.Read%20Files.ReadWrite.All 然后分别填写至访问令牌和刷新令牌即可: 运行环境 JDK: 1.8 缓存: caffeine 数据库: h2/mysql 预览 常见问题数据库缓存默认支持 h2 和 mysql, 前者为嵌入式数据库, 无需安装, 但后者相对性能更好. 默认路径默认 H2 数据库文件地址: ~/.zfile/db/, ~ 表示用户目录, windows 为 C:/Users/用户名/, linux 为 /home/用户名/, root 用户为 /root/ 头尾文件和加密文件 目录头部显示文件名为 header.md 目录需要密码访问, 添加文件 password.txt (无法拦截此文件被下载, 但可以改名文件) TODO API 支持 点击查看文档 更方便的部署方式 文本预览更换更好用的编辑器 后台支持上传、编辑、删除等操作 WebDav 支持 Docker 支持 支持作者如果本项目对你有帮助，请作者喝杯咖啡吧。]]></content>
+    <content type="text"><![CDATA[前言此项目是一个在线文件目录的程序, 支持各种对象存储和本地存储, 使用定位是个人放常用工具下载, 或做公共的文件库. 不会向多账户方向开发. 前端基于 h5ai 的原有功能使用 Vue 重新开发了一遍. 后端采用 SpringBoot, 数据库采用内嵌数据库. 预览地址: https://zfile.jun6.net项目地址: https://github.com/zhaojun1998/zfile 系统特色 内存缓存 (免安装) 内存数据库 (免安装) 个性化配置 自定义目录的 header 说明文件 自定义 JS, CSS 文件夹密码 支持在线浏览文本文件, 视频, 图片, 音乐. (支持 FLV 和 HLS) 文件/目录二维码 缓存动态开启, 缓存自动刷新 全局搜索 支持 阿里云 OSS, FTP, 华为云 OBS, 本地存储, MINIO, OneDrive 国际/家庭/个人版, OneDrive 世纪互联版, 七牛云 KODO, 腾讯云 COS, 又拍云 USS. 快速开始安装依赖环境: 123456# CentOS系统yum install -y java-1.8.0-openjdk unzip# Debian/Ubuntu系统apt updateapt install -y openjdk-8-jre-headless unzip 如为更新程序, 则请先执行 rm -rf ~/zfile 清理旧程序. 首次安装请忽略此选项. 下载项目: 1234wget -P ~ https://c.jun6.net/ZFILE/zfile-1.2.1.warcd ~mkdir zfile &amp;&amp; unzip zfile-1.2.1.war -d zfile &amp;&amp; rm -rf zfile-1.2.1.warchmod +x ~/zfile/bin/*.sh 程序的目录结构为:1234567├── zfile ├── META-INF ├── WEB-INF └── bin ├── start.sh # 启动脚本 └── stop.sh # 停止脚本 ├── restart.sh # 重启脚本 启动项目: 1~/zfile/bin/start.sh 篇幅有限, 更详细的安装教程请参考: 安装文档 访问地址: 用户前台: http://127.0.0.1:8080/#/main 初始安装: http://127.0.0.1:8080/#/install 管理后台: http://127.0.0.1:8080/#/admin OneDrive 使用教程.访问地址进行授权, 获取 accessToken 和 refreshToken: 国际/家庭/个人版: https://login.microsoftonline.com/common/oauth2/v2.0/authorize?client_id=09939809-c617-43c8-a220-a93c1513c5d4&amp;response_type=code&amp;redirect_uri=https://zfile.jun6.net/onedirve/callback&amp;scope=offline_access%20User.Read%20Files.ReadWrite.All 世纪互联版: https://login.chinacloudapi.cn/common/oauth2/v2.0/authorize?client_id=4a72d927-1907-488d-9eb2-1b465c53c1c5&amp;response_type=code&amp;redirect_uri=https://zfile.jun6.net/onedirve/china-callback&amp;scope=offline_access%20User.Read%20Files.ReadWrite.All 然后分别填写至访问令牌和刷新令牌即可: 运行环境 JDK: 1.8 缓存: caffeine 数据库: h2/mysql 预览 常见问题数据库缓存默认支持 h2 和 mysql, 前者为嵌入式数据库, 无需安装, 但后者相对性能更好. 默认路径默认 H2 数据库文件地址: ~/.zfile/db/, ~ 表示用户目录, windows 为 C:/Users/用户名/, linux 为 /home/用户名/, root 用户为 /root/ 头尾文件和加密文件 目录头部显示文件名为 header.md 目录需要密码访问, 添加文件 password.txt (无法拦截此文件被下载, 但可以改名文件) TODO API 支持 点击查看文档 更方便的部署方式 文本预览更换更好用的编辑器 后台支持上传、编辑、删除等操作 WebDav 支持 Docker 支持 支持作者如果本项目对你有帮助，请作者喝杯咖啡吧。]]></content>
       <categories>
         <category>开源项目</category>
       </categories>
@@ -16,7 +27,7 @@
   <entry>
     <title><![CDATA[ZFile 安装文档]]></title>
     <url>%2Fzfile-install%2F</url>
-    <content type="text"><![CDATA[前言最近开发了一个在线网盘程序 ZFile, 支持各种对象存储、OneDrive、FTP、本地存储. 本文包含普通用户和宝塔用户的安装方式. 安装依赖123456# CentOS系统yum install -y java-1.8.0-openjdk unzip# Debian/Ubuntu系统apt updateapt install -y openjdk-8-jre-headless unzip 如为更新程序, 则请先执行 ~/zfile/bin/stop.sh 停止命令和 rm -rf ~/zfile 清理旧程序. 首次安装请忽略此选项. 不会删除数据文件. 下载项目1234wget -P ~ https://c.jun6.net/ZFILE/zfile-1.2.warcd ~mkdir zfile &amp;&amp; unzip zfile-1.2.war -d zfile &amp;&amp; rm -rf zfile-1.2.warchmod +x ~/zfile/bin/*.sh 目录结构1234567├── zfile ├── META-INF ├── WEB-INF └── bin ├── start.sh # 启动脚本 └── stop.sh # 停止脚本 ├── restart.sh # 重启脚本 启动项目1~/zfile/bin/start.sh 停止项目1~/zfile/bin/stop.sh 重启项目1~/zfile/bin/restart.sh 修改配置文件1vim ~/zfile/WEB-INF/classes/application.yml 默认启动端口为 8080, 如需请配置文件请编辑上述文件, 修改后重启程序生效. 开放端口 (重点)如部署后无法访问, 请检查防火墙是否开启此端口: 宝塔用户宝塔用户可以去后台开放端口: CentOS 7.x12firewall-cmd --zone=public --add-port=8080/tcp --permanent # 开放 8080 端口firewall-cmd --reload # 重启firewall Ubuntu 16.x / Debian 9.x12345iptables -I INPUT -p tcp --dport 8080 -j ACCEPTiptables-savesudo apt-get install iptables-persistentsudo netfilter-persistent savesudo netfilter-persistent reload 域名访问域名访问可直接将域名 A 记录解析到服务器 IP, 即可通过 域名:端口 访问. 如需直接使用域名, 不带端口, 可将程序设置为 80 端口, 或者使用 nginx 或 caddy 等工具进行反向代理. 这里只简单介绍下宝塔如何进行反向代理: 首先点击 网站 -&gt; 新增站点: 点击反向代理: 设置反向代理: 然后就可以使用域名访问了. 教程到此结束, 如有其它问题, 可联系我 QQ: 873019219 支持作者如果本项目对你有帮助，请作者喝杯咖啡吧。]]></content>
+    <content type="text"><![CDATA[前言最近开发了一个在线网盘程序 ZFile, 支持各种对象存储、OneDrive、FTP、本地存储. 本文包含普通用户和宝塔用户的安装方式. 安装依赖123456# CentOS系统yum install -y java-1.8.0-openjdk unzip# Debian/Ubuntu系统apt updateapt install -y openjdk-8-jre-headless unzip 如为更新程序, 则请先执行 ~/zfile/bin/stop.sh 停止命令和 rm -rf ~/zfile 清理旧程序. 首次安装请忽略此选项. 不会删除数据文件. 下载项目1234wget -P ~ https://c.jun6.net/ZFILE/zfile-1.2.1.warcd ~mkdir zfile &amp;&amp; unzip zfile-1.2.1.war -d zfile &amp;&amp; rm -rf zfile-1.2.1.warchmod +x ~/zfile/bin/*.sh 目录结构1234567├── zfile ├── META-INF ├── WEB-INF └── bin ├── start.sh # 启动脚本 └── stop.sh # 停止脚本 ├── restart.sh # 重启脚本 启动项目1~/zfile/bin/start.sh 停止项目1~/zfile/bin/stop.sh 重启项目1~/zfile/bin/restart.sh 修改配置文件1vim ~/zfile/WEB-INF/classes/application.yml 默认启动端口为 8080, 如需请配置文件请编辑上述文件, 修改后重启程序生效. 开放端口 (重点)如部署后无法访问, 请检查防火墙是否开启此端口: 宝塔用户宝塔用户可以去后台开放端口: CentOS 7.x12firewall-cmd --zone=public --add-port=8080/tcp --permanent # 开放 8080 端口firewall-cmd --reload # 重启firewall Ubuntu 16.x / Debian 9.x12345iptables -I INPUT -p tcp --dport 8080 -j ACCEPTiptables-savesudo apt-get install iptables-persistentsudo netfilter-persistent savesudo netfilter-persistent reload 域名访问域名访问可直接将域名 A 记录解析到服务器 IP, 即可通过 域名:端口 访问. 如需直接使用域名, 不带端口, 可将程序设置为 80 端口, 或者使用 nginx 或 caddy 等工具进行反向代理. 这里只简单介绍下宝塔如何进行反向代理: 首先点击 网站 -&gt; 新增站点: 点击反向代理: 设置反向代理: 然后就可以使用域名访问了. 教程到此结束, 如有其它问题, 可联系我 QQ: 873019219 支持作者如果本项目对你有帮助，请作者喝杯咖啡吧。]]></content>
       <categories>
         <category>开源项目</category>
       </categories>
@@ -557,8 +568,8 @@
         <category>Spring</category>
       </categories>
       <tags>
-        <tag>Spring</tag>
         <tag>异常处理</tag>
+        <tag>Spring</tag>
         <tag>SpringBoot</tag>
       </tags>
   </entry>
@@ -570,8 +581,8 @@
         <category>Spring</category>
       </categories>
       <tags>
-        <tag>Spring</tag>
         <tag>异常处理</tag>
+        <tag>Spring</tag>
         <tag>SpringBoot</tag>
       </tags>
   </entry>
@@ -1344,8 +1355,8 @@
         <category>算法</category>
       </categories>
       <tags>
-        <tag>位运算</tag>
         <tag>剑指offer</tag>
+        <tag>位运算</tag>
       </tags>
   </entry>
   <entry>
