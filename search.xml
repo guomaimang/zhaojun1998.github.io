@@ -14,7 +14,7 @@
   <entry>
     <title><![CDATA[Z-File 在线网盘程序，支持对象存储、本地存储、S3 协议、OneDrive 商业/家庭/个人/世纪互联版]]></title>
     <url>%2Fzfile-readme%2F</url>
-    <content type="text"><![CDATA[前言此项目是一个在线文件目录的程序, 支持各种对象存储和本地存储, 使用定位是个人放常用工具下载, 或做公共的文件库. 不会向多账户方向开发. 前端基于 h5ai 的原有功能使用 Vue 重新开发了一遍. 后端采用 SpringBoot, 数据库采用内嵌数据库. 预览地址: https://zfile.jun6.net项目地址: https://github.com/zhaojun1998/zfile 系统特色 内存缓存 (免安装) 内存数据库 (免安装) 个性化配置 自定义目录的 header 说明文件 自定义 JS, CSS 文件夹密码 支持在线浏览文本文件, 视频, 图片, 音乐. (支持 FLV 和 HLS) 文件/目录二维码 缓存动态开启, 缓存自动刷新 全局搜索 支持 阿里云 OSS, FTP, 华为云 OBS, 本地存储, MINIO, OneDrive 国际/家庭/个人版, OneDrive 世纪互联版, 七牛云 KODO, 腾讯云 COS, 又拍云 USS. 快速开始安装依赖环境: 123456# CentOS系统yum install -y java-1.8.0-openjdk unzip# Debian/Ubuntu系统apt updateapt install -y openjdk-8-jre-headless unzip 如为更新程序, 则请先执行 rm -rf ~/zfile 清理旧程序. 首次安装请忽略此选项. 下载项目: 1234wget -P ~ https://c.jun6.net/ZFILE/zfile-1.2.1.warcd ~mkdir zfile &amp;&amp; unzip zfile-1.2.1.war -d zfile &amp;&amp; rm -rf zfile-1.2.1.warchmod +x ~/zfile/bin/*.sh 程序的目录结构为:1234567├── zfile ├── META-INF ├── WEB-INF └── bin ├── start.sh # 启动脚本 └── stop.sh # 停止脚本 ├── restart.sh # 重启脚本 启动项目: 1~/zfile/bin/start.sh 篇幅有限, 更详细的安装教程请参考: 安装文档 访问地址: 用户前台: http://127.0.0.1:8080/#/main 初始安装: http://127.0.0.1:8080/#/install 管理后台: http://127.0.0.1:8080/#/admin OneDrive 使用教程.访问地址进行授权, 获取 accessToken 和 refreshToken: 国际/家庭/个人版: https://login.microsoftonline.com/common/oauth2/v2.0/authorize?client_id=09939809-c617-43c8-a220-a93c1513c5d4&amp;response_type=code&amp;redirect_uri=https://zfile.jun6.net/onedirve/callback&amp;scope=offline_access%20User.Read%20Files.ReadWrite.All 世纪互联版: https://login.chinacloudapi.cn/common/oauth2/v2.0/authorize?client_id=4a72d927-1907-488d-9eb2-1b465c53c1c5&amp;response_type=code&amp;redirect_uri=https://zfile.jun6.net/onedirve/china-callback&amp;scope=offline_access%20User.Read%20Files.ReadWrite.All 然后分别填写至访问令牌和刷新令牌即可: 运行环境 JDK: 1.8 缓存: caffeine 数据库: h2/mysql 预览 常见问题数据库缓存默认支持 h2 和 mysql, 前者为嵌入式数据库, 无需安装, 但后者相对性能更好. 默认路径默认 H2 数据库文件地址: ~/.zfile/db/, ~ 表示用户目录, windows 为 C:/Users/用户名/, linux 为 /home/用户名/, root 用户为 /root/ 头尾文件和加密文件 目录头部显示文件名为 header.md 目录需要密码访问, 添加文件 password.txt (无法拦截此文件被下载, 但可以改名文件) TODO API 支持 点击查看文档 更方便的部署方式 文本预览更换更好用的编辑器 后台支持上传、编辑、删除等操作 WebDav 支持 Docker 支持 支持作者如果本项目对你有帮助，请作者喝杯咖啡吧。]]></content>
+    <content type="text"><![CDATA[前言此项目是一个在线文件目录的程序, 支持各种对象存储和本地存储, 使用定位是个人放常用工具下载, 或做公共的文件库. 不会向多账户方向开发. 前端基于 h5ai 的原有功能使用 Vue 重新开发了一遍. 后端采用 SpringBoot, 数据库采用内嵌数据库. 预览地址: https://zfile.jun6.net项目地址: https://github.com/zhaojun1998/zfile 系统特色 内存缓存 (免安装) 内存数据库 (免安装) 个性化配置 自定义目录的 header 说明文件 自定义 JS, CSS 文件夹密码 支持在线浏览文本文件, 视频, 图片, 音乐. (支持 FLV 和 HLS) 文件/目录二维码 缓存动态开启, 缓存自动刷新 全局搜索 支持 阿里云 OSS, FTP, 华为云 OBS, 本地存储, MINIO, OneDrive 国际/家庭/个人版, OneDrive 世纪互联版, 七牛云 KODO, 腾讯云 COS, 又拍云 USS. 快速开始安装依赖环境: 123456# CentOS系统yum install -y java-1.8.0-openjdk unzip# Debian/Ubuntu系统apt updateapt install -y openjdk-8-jre-headless unzip 如为更新程序, 则请先执行 rm -rf ~/zfile 清理旧程序. 首次安装请忽略此选项. 下载项目: 1234wget -P ~ https://c.jun6.net/ZFILE/zfile-1.3.warcd ~mkdir zfile &amp;&amp; unzip zfile-1.3.war -d zfile &amp;&amp; rm -rf zfile-1.3.warchmod +x ~/zfile/bin/*.sh 程序的目录结构为:1234567├── zfile ├── META-INF ├── WEB-INF └── bin ├── start.sh # 启动脚本 └── stop.sh # 停止脚本 ├── restart.sh # 重启脚本 启动项目: 1~/zfile/bin/start.sh 篇幅有限, 更详细的安装教程请参考: 安装文档 访问地址: 用户前台: http://127.0.0.1:8080/#/main 初始安装: http://127.0.0.1:8080/#/install 管理后台: http://127.0.0.1:8080/#/admin OneDrive 使用教程.访问地址进行授权, 获取 accessToken 和 refreshToken: 国际/家庭/个人版: https://login.microsoftonline.com/common/oauth2/v2.0/authorize?client_id=09939809-c617-43c8-a220-a93c1513c5d4&amp;response_type=code&amp;redirect_uri=https://zfile.jun6.net/onedirve/callback&amp;scope=offline_access%20User.Read%20Files.ReadWrite.All 世纪互联版: https://login.chinacloudapi.cn/common/oauth2/v2.0/authorize?client_id=4a72d927-1907-488d-9eb2-1b465c53c1c5&amp;response_type=code&amp;redirect_uri=https://zfile.jun6.net/onedirve/china-callback&amp;scope=offline_access%20User.Read%20Files.ReadWrite.All 然后分别填写至访问令牌和刷新令牌即可: 运行环境 JDK: 1.8 缓存: caffeine 数据库: h2/mysql 预览 常见问题数据库缓存默认支持 h2 和 mysql, 前者为嵌入式数据库, 无需安装, 但后者相对性能更好. 默认路径默认 H2 数据库文件地址: ~/.zfile/db/, ~ 表示用户目录, windows 为 C:/Users/用户名/, linux 为 /home/用户名/, root 用户为 /root/ 头尾文件和加密文件 目录头部显示文件名为 header.md 目录需要密码访问, 添加文件 password.txt (无法拦截此文件被下载, 但可以改名文件) TODO API 支持 点击查看文档 更方便的部署方式 文本预览更换更好用的编辑器 后台支持上传、编辑、删除等操作 WebDav 支持 Docker 支持 支持作者如果本项目对你有帮助，请作者喝杯咖啡吧。]]></content>
       <categories>
         <category>开源项目</category>
       </categories>
@@ -27,7 +27,7 @@
   <entry>
     <title><![CDATA[ZFile 安装文档]]></title>
     <url>%2Fzfile-install%2F</url>
-    <content type="text"><![CDATA[前言最近开发了一个在线网盘程序 ZFile, 支持各种对象存储、OneDrive、FTP、本地存储. 本文包含普通用户和宝塔用户的安装方式. 安装依赖123456# CentOS系统yum install -y java-1.8.0-openjdk unzip# Debian/Ubuntu系统apt updateapt install -y openjdk-8-jre-headless unzip 如为更新程序, 则请先执行 ~/zfile/bin/stop.sh 停止命令和 rm -rf ~/zfile 清理旧程序. 首次安装请忽略此选项. 不会删除数据文件. 下载项目1234wget -P ~ https://c.jun6.net/ZFILE/zfile-1.2.1.warcd ~mkdir zfile &amp;&amp; unzip zfile-1.2.1.war -d zfile &amp;&amp; rm -rf zfile-1.2.1.warchmod +x ~/zfile/bin/*.sh 目录结构1234567├── zfile ├── META-INF ├── WEB-INF └── bin ├── start.sh # 启动脚本 └── stop.sh # 停止脚本 ├── restart.sh # 重启脚本 启动项目1~/zfile/bin/start.sh 停止项目1~/zfile/bin/stop.sh 重启项目1~/zfile/bin/restart.sh 修改配置文件1vim ~/zfile/WEB-INF/classes/application.yml 默认启动端口为 8080, 如需请配置文件请编辑上述文件, 修改后重启程序生效. 开放端口 (重点)如部署后无法访问, 请检查防火墙是否开启此端口: 宝塔用户宝塔用户可以去后台开放端口: CentOS 7.x12firewall-cmd --zone=public --add-port=8080/tcp --permanent # 开放 8080 端口firewall-cmd --reload # 重启firewall Ubuntu 16.x / Debian 9.x12345iptables -I INPUT -p tcp --dport 8080 -j ACCEPTiptables-savesudo apt-get install iptables-persistentsudo netfilter-persistent savesudo netfilter-persistent reload 域名访问域名访问可直接将域名 A 记录解析到服务器 IP, 即可通过 域名:端口 访问. 如需直接使用域名, 不带端口, 可将程序设置为 80 端口, 或者使用 nginx 或 caddy 等工具进行反向代理. 这里只简单介绍下宝塔如何进行反向代理: 首先点击 网站 -&gt; 新增站点: 点击反向代理: 设置反向代理: 然后就可以使用域名访问了. 教程到此结束, 如有其它问题, 可联系我 QQ: 873019219 支持作者如果本项目对你有帮助，请作者喝杯咖啡吧。]]></content>
+    <content type="text"><![CDATA[前言最近开发了一个在线网盘程序 ZFile, 支持各种对象存储、OneDrive、FTP、本地存储. 本文包含普通用户和宝塔用户的安装方式. 安装依赖123456# CentOS系统yum install -y java-1.8.0-openjdk unzip# Debian/Ubuntu系统apt updateapt install -y openjdk-8-jre-headless unzip 如为更新程序, 则请先执行 ~/zfile/bin/stop.sh 停止命令和 rm -rf ~/zfile 清理旧程序. 首次安装请忽略此选项. 不会删除数据文件. 下载项目1234wget -P ~ https://c.jun6.net/ZFILE/zfile-1.3.warcd ~mkdir zfile &amp;&amp; unzip zfile-1.3.war -d zfile &amp;&amp; rm -rf zfile-1.3.warchmod +x ~/zfile/bin/*.sh 目录结构1234567├── zfile ├── META-INF ├── WEB-INF └── bin ├── start.sh # 启动脚本 └── stop.sh # 停止脚本 ├── restart.sh # 重启脚本 启动项目1~/zfile/bin/start.sh 停止项目1~/zfile/bin/stop.sh 重启项目1~/zfile/bin/restart.sh 修改配置文件1vim ~/zfile/WEB-INF/classes/application.yml 默认启动端口为 8080, 如需请配置文件请编辑上述文件, 修改后重启程序生效. 开放端口 (重点)如部署后无法访问, 请检查防火墙是否开启此端口: 宝塔用户宝塔用户可以去后台开放端口: CentOS 7.x12firewall-cmd --zone=public --add-port=8080/tcp --permanent # 开放 8080 端口firewall-cmd --reload # 重启firewall Ubuntu 16.x / Debian 9.x12345iptables -I INPUT -p tcp --dport 8080 -j ACCEPTiptables-savesudo apt-get install iptables-persistentsudo netfilter-persistent savesudo netfilter-persistent reload 域名访问域名访问可直接将域名 A 记录解析到服务器 IP, 即可通过 域名:端口 访问. 如需直接使用域名, 不带端口, 可将程序设置为 80 端口, 或者使用 nginx 或 caddy 等工具进行反向代理. 这里只简单介绍下宝塔如何进行反向代理: 首先点击 网站 -&gt; 新增站点: 点击反向代理: 设置反向代理: 然后就可以使用域名访问了. 教程到此结束, 如有其它问题, 可联系我 QQ: 873019219 支持作者如果本项目对你有帮助，请作者喝杯咖啡吧。]]></content>
       <categories>
         <category>开源项目</category>
       </categories>
@@ -45,8 +45,8 @@
         <category>Spring</category>
       </categories>
       <tags>
-        <tag>Java</tag>
         <tag>Spring</tag>
+        <tag>Java</tag>
       </tags>
   </entry>
   <entry>
@@ -202,8 +202,8 @@
         <category>算法</category>
       </categories>
       <tags>
-        <tag>递归</tag>
         <tag>数组</tag>
+        <tag>递归</tag>
         <tag>二叉树</tag>
         <tag>leetcode</tag>
         <tag>树</tag>
@@ -392,20 +392,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[LeetCode 559 Maximum Depth of N-ary Tree]]></title>
-    <url>%2Fleetcode-559%2F</url>
-    <content type="text"><![CDATA[题意给定一颗 N 叉树 的根节点，返回树的深度. 例 : 1234567给予树： 1 / | \ 3 2 4 / \ 5 6 返回深度 3. 解法采用 DFS (深度优先算法)，代码比较简单，不再赘言。 12345678910111213141516171819202122232425/*// Definition for a Node.class Node &#123; public int val; public List&lt;Node&gt; children; public Node() &#123;&#125; public Node(int _val,List&lt;Node&gt; _children) &#123; val = _val; children = _children; &#125;&#125;;*/class Solution &#123; public int maxDepth(Node root) &#123; int depth = 1; if (root == null) return 0; for (Node n : root.children)&#123; depth = Math.max(depth, maxDepth(n) + 1); &#125; return depth; &#125;&#125; Runtime: 1 ms, faster than 99.56% of Java online submissions for Maximum Depth of N-ary Tree.Memory Usage: 49.8 MB, less than 5.41% of Java online submissions for Maximum Depth of N-ary Tree.]]></content>
-      <categories>
-        <category>算法</category>
-      </categories>
-      <tags>
-        <tag>leetcode</tag>
-        <tag>树</tag>
-        <tag>DFS</tag>
-        <tag>N叉树</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[LeetCode 589 N-ary Tree Preorder Traversal]]></title>
     <url>%2Fleetcode-589%2F</url>
     <content type="text"><![CDATA[题意给定一颗 N 叉树 的根节点，返回前序遍历后的数组. 例 : 1234567给予树： 1 / | \ 3 2 4 / \ 5 6 将其前序遍历返回: [1,3,5,6,2,4]. 解法和二叉树的前序遍历差不多，需要注意处理好子节点的顺序即可。 非递归解法： 12345678910111213141516171819202122232425262728293031323334/*// Definition for a Node.class Node &#123; public int val; public List&lt;Node&gt; children; public Node() &#123;&#125; public Node(int _val,List&lt;Node&gt; _children) &#123; val = _val; children = _children; &#125;&#125;;*/class Solution &#123; public List&lt;Integer&gt; preorder(Node root) &#123; List&lt;Integer&gt; list = new ArrayList&lt;&gt;(); if (root == null) &#123; return list; &#125; Stack&lt;Node&gt; stack = new Stack&lt;&gt;(); stack.add(root); while (!stack.isEmpty()) &#123; root = stack.pop(); list.add(root.val); for (int i = root.children.size() - 1; i &gt;= 0; i--) &#123; stack.add(root.children.get(i)); &#125; &#125; return list; &#125;&#125; 递归解法： 12345678910111213141516171819202122232425262728293031/*// Definition for a Node.class Node &#123; public int val; public List&lt;Node&gt; children; public Node() &#123;&#125; public Node(int _val,List&lt;Node&gt; _children) &#123; val = _val; children = _children; &#125;&#125;;*/class Solution &#123; List&lt;Integer&gt; list = new ArrayList&lt;&gt;(); public List&lt;Integer&gt; preorder(Node root) &#123; if (root == null) &#123; return list; &#125; list.add(root.val); for (Node child : root.children) &#123; preorder(child); &#125; return list; &#125;&#125; Runtime: 1 ms, faster than 100.00% of Java online submissions for N-ary Tree Preorder Traversal. Memory Usage: 47.9 MB, less than 51.19% of Java online submissions for N-ary Tree Preorder Traversal.]]></content>
@@ -417,6 +403,20 @@
         <tag>树</tag>
         <tag>N叉树</tag>
         <tag>前序遍历</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[LeetCode 559 Maximum Depth of N-ary Tree]]></title>
+    <url>%2Fleetcode-559%2F</url>
+    <content type="text"><![CDATA[题意给定一颗 N 叉树 的根节点，返回树的深度. 例 : 1234567给予树： 1 / | \ 3 2 4 / \ 5 6 返回深度 3. 解法采用 DFS (深度优先算法)，代码比较简单，不再赘言。 12345678910111213141516171819202122232425/*// Definition for a Node.class Node &#123; public int val; public List&lt;Node&gt; children; public Node() &#123;&#125; public Node(int _val,List&lt;Node&gt; _children) &#123; val = _val; children = _children; &#125;&#125;;*/class Solution &#123; public int maxDepth(Node root) &#123; int depth = 1; if (root == null) return 0; for (Node n : root.children)&#123; depth = Math.max(depth, maxDepth(n) + 1); &#125; return depth; &#125;&#125; Runtime: 1 ms, faster than 99.56% of Java online submissions for Maximum Depth of N-ary Tree.Memory Usage: 49.8 MB, less than 5.41% of Java online submissions for Maximum Depth of N-ary Tree.]]></content>
+      <categories>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>leetcode</tag>
+        <tag>树</tag>
+        <tag>DFS</tag>
+        <tag>N叉树</tag>
       </tags>
   </entry>
   <entry>
@@ -485,9 +485,9 @@
         <category>Shiro</category>
       </categories>
       <tags>
+        <tag>Shiro</tag>
         <tag>权限管理</tag>
         <tag>RBAC</tag>
-        <tag>Shiro</tag>
       </tags>
   </entry>
   <entry>
@@ -568,8 +568,8 @@
         <category>Spring</category>
       </categories>
       <tags>
-        <tag>异常处理</tag>
         <tag>Spring</tag>
+        <tag>异常处理</tag>
         <tag>SpringBoot</tag>
       </tags>
   </entry>
@@ -581,8 +581,8 @@
         <category>Spring</category>
       </categories>
       <tags>
-        <tag>异常处理</tag>
         <tag>Spring</tag>
+        <tag>异常处理</tag>
         <tag>SpringBoot</tag>
       </tags>
   </entry>
@@ -750,8 +750,8 @@
         <category>Shiro</category>
       </categories>
       <tags>
-        <tag>权限管理</tag>
         <tag>Shiro</tag>
+        <tag>权限管理</tag>
       </tags>
   </entry>
   <entry>
@@ -762,9 +762,9 @@
         <category>Shiro</category>
       </categories>
       <tags>
+        <tag>Shiro</tag>
         <tag>权限管理</tag>
         <tag>RBAC</tag>
-        <tag>Shiro</tag>
       </tags>
   </entry>
   <entry>
@@ -775,9 +775,9 @@
         <category>Shiro</category>
       </categories>
       <tags>
+        <tag>Shiro</tag>
         <tag>权限管理</tag>
         <tag>RBAC</tag>
-        <tag>Shiro</tag>
       </tags>
   </entry>
   <entry>
@@ -788,9 +788,9 @@
         <category>Shiro</category>
       </categories>
       <tags>
+        <tag>Shiro</tag>
         <tag>权限管理</tag>
         <tag>RBAC</tag>
-        <tag>Shiro</tag>
       </tags>
   </entry>
   <entry>
@@ -801,9 +801,9 @@
         <category>Shiro</category>
       </categories>
       <tags>
+        <tag>Shiro</tag>
         <tag>权限管理</tag>
         <tag>RBAC</tag>
-        <tag>Shiro</tag>
         <tag>Redis</tag>
       </tags>
   </entry>
@@ -815,9 +815,9 @@
         <category>Shiro</category>
       </categories>
       <tags>
+        <tag>Shiro</tag>
         <tag>权限管理</tag>
         <tag>RBAC</tag>
-        <tag>Shiro</tag>
         <tag>Redis</tag>
       </tags>
   </entry>
@@ -829,9 +829,9 @@
         <category>Shiro</category>
       </categories>
       <tags>
+        <tag>Shiro</tag>
         <tag>权限管理</tag>
         <tag>RBAC</tag>
-        <tag>Shiro</tag>
       </tags>
   </entry>
   <entry>
@@ -842,9 +842,9 @@
         <category>Shiro</category>
       </categories>
       <tags>
+        <tag>Shiro</tag>
         <tag>权限管理</tag>
         <tag>RBAC</tag>
-        <tag>Shiro</tag>
       </tags>
   </entry>
   <entry>
@@ -855,9 +855,9 @@
         <category>Shiro</category>
       </categories>
       <tags>
+        <tag>Shiro</tag>
         <tag>权限管理</tag>
         <tag>RBAC</tag>
-        <tag>Shiro</tag>
       </tags>
   </entry>
   <entry>
@@ -876,9 +876,9 @@
         <category>Shiro</category>
       </categories>
       <tags>
+        <tag>Shiro</tag>
         <tag>权限管理</tag>
         <tag>RBAC</tag>
-        <tag>Shiro</tag>
       </tags>
   </entry>
   <entry>
@@ -889,9 +889,9 @@
         <category>Shiro</category>
       </categories>
       <tags>
+        <tag>Shiro</tag>
         <tag>权限管理</tag>
         <tag>RBAC</tag>
-        <tag>Shiro</tag>
       </tags>
   </entry>
   <entry>
@@ -902,9 +902,9 @@
         <category>Shiro</category>
       </categories>
       <tags>
+        <tag>Shiro</tag>
         <tag>权限管理</tag>
         <tag>RBAC</tag>
-        <tag>Shiro</tag>
       </tags>
   </entry>
   <entry>
@@ -915,9 +915,9 @@
         <category>Shiro</category>
       </categories>
       <tags>
+        <tag>Shiro</tag>
         <tag>权限管理</tag>
         <tag>RBAC</tag>
-        <tag>Shiro</tag>
       </tags>
   </entry>
   <entry>
@@ -939,9 +939,9 @@
         <category>Shiro</category>
       </categories>
       <tags>
+        <tag>Shiro</tag>
         <tag>权限管理</tag>
         <tag>RBAC</tag>
-        <tag>Shiro</tag>
       </tags>
   </entry>
   <entry>
@@ -1099,8 +1099,8 @@
         <category>杂谈</category>
       </categories>
       <tags>
-        <tag>排版</tag>
         <tag>杂谈</tag>
+        <tag>排版</tag>
       </tags>
   </entry>
   <entry>
@@ -1342,8 +1342,8 @@
       </categories>
       <tags>
         <tag>剑指offer</tag>
-        <tag>递归</tag>
         <tag>栈</tag>
+        <tag>递归</tag>
         <tag>二叉树</tag>
       </tags>
   </entry>
@@ -1355,8 +1355,8 @@
         <category>算法</category>
       </categories>
       <tags>
-        <tag>剑指offer</tag>
         <tag>位运算</tag>
+        <tag>剑指offer</tag>
       </tags>
   </entry>
   <entry>
