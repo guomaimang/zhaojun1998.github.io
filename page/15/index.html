@@ -1845,7 +1845,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #ff30c6;
+  background: #71be2a;
 }
 .feed-link,
 .chat {
@@ -3170,6 +3170,213 @@ ul.breadcrumb li+li:last-child {
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.zhaojun.im/hexo-valine-modify/">
+
+    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="赵俊">
+      <meta itemprop="description" content="一个 Java 学习者的博客，分享 Java 干货, VPS 知识, 软件推荐等。">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="赵俊的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/hexo-valine-modify/" class="post-title-link" itemprop="url">Hexo 优化 --- 支持邮件通知的评论 Valine 增强版</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-01-11 18:15:21" itemprop="dateCreated datePublished" datetime="2018-01-11T18:15:21+08:00">2018-01-11</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-10-06 14:17:08" itemprop="dateModified" datetime="2018-10-06T14:17:08+08:00">2018-10-06</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Hexo/" itemprop="url" rel="index"><span itemprop="name">Hexo</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
+                <a href="/hexo-valine-modify/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/hexo-valine-modify/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+            <span id="/hexo-valine-modify/" class="leancloud_visitors" data-flag-title="Hexo 优化 --- 支持邮件通知的评论 Valine 增强版">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读次数：</span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>此项目是一个对 <span class="exturl" data-url="aHR0cHM6Ly92YWxpbmUuanMub3Jn" title="https://valine.js.org">Valine<i class="fa fa-external-link"></i></span> 评论系统的拓展应用，可增强 <code>Valine</code> 的邮件通知功能。基于 Leancloud 的云引擎与云函数。可以提供邮件 <code>通知站长</code> 和 <code>@ 通知</code> 的功能，而且还支持自定义邮件通知模板。</p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3poYW9qdW4xOTk4L1ZhbGluZS1BZG1pbi9ibG9iL21hc3Rlci8lRTklQUIlOTglRTclQkElQTclRTklODUlOEQlRTclQkQlQUUubWQj6YKu5Lu26YCa55+l5bGV56S6" title="https://github.com/zhaojun1998/Valine-Admin/blob/master/%E9%AB%98%E7%BA%A7%E9%85%8D%E7%BD%AE.md#邮件通知展示">点击查看演示<i class="fa fa-external-link"></i></span></p>
+<blockquote>
+<p><strong>注：本项目修改于 panjunwen 的项目 : <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3Bhbmp1bndlbi9WYWxpbmUtQWRtaW4=" title="https://github.com/panjunwen/Valine-Admin">Valine-Admin<i class="fa fa-external-link"></i></span>，原作者博客: <span class="exturl" data-url="aHR0cHM6Ly9wYW5qdW53ZW4uY29tL3ZhbGluZS1hZG1pbi1kb2N1bWVudC8=" title="https://panjunwen.com/valine-admin-document/">Valine Admin 配置手册<i class="fa fa-external-link"></i></span></strong>, (部分逻辑于功能不同，还请读者不要搞混配置项.)</p>
+</blockquote>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/hexo-valine-modify/" rel="contents">
+                阅读全文 »
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://www.zhaojun.im/nice_blog/">
 
     <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -4188,210 +4395,6 @@ ul.breadcrumb li+li:last-child {
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.zhaojun.im/concatenated-string-with-uncommon-characters-of-two-strings/">
-
-    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="赵俊">
-      <meta itemprop="description" content="一个 Java 学习者的博客，分享 Java 干货, VPS 知识, 软件推荐等。">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="赵俊的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/concatenated-string-with-uncommon-characters-of-two-strings/" class="post-title-link" itemprop="url">连接两个字符串中的不同字符</a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2017-11-29 16:40:05" itemprop="dateCreated datePublished" datetime="2017-11-29T16:40:05+08:00">2017-11-29</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2018-07-06 11:32:38" itemprop="dateModified" datetime="2018-07-06T11:32:38+08:00">2018-07-06</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/算法/" itemprop="url" rel="index"><span itemprop="name">算法</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-              
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-            
-                <span class="post-meta-item-text">评论数：</span>
-                <a href="/concatenated-string-with-uncommon-characters-of-two-strings/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/concatenated-string-with-uncommon-characters-of-two-strings/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-            <span id="/concatenated-string-with-uncommon-characters-of-two-strings/" class="leancloud_visitors" data-flag-title="连接两个字符串中的不同字符">
-              <span class="post-meta-divider">|</span>
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              
-                <span class="post-meta-item-text">阅读次数：</span>
-              
-                <span class="leancloud-visitors-count"></span>
-            </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h2><p>给出两个字符串, 你需要修改第一个字符串，将所有与第二个字符串中相同的字符删除, 并且第二个字符串中不同的字符与第一个字符串的不同字符连接</p>
-<h2 id="样例"><a href="#样例" class="headerlink" title="样例"></a>样例</h2><p>给出 s1 = <code>aacdb</code>, s2 = <code>gafd</code><br>返回 <code>cbgf</code><br>给出 s1 = <code>abcs</code>, s2 = <code>cxzca</code><br>返回 <code>bsxz</code></p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/concatenated-string-with-uncommon-characters-of-two-strings/" rel="contents">
-                阅读全文 »
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -4440,7 +4443,7 @@ ul.breadcrumb li+li:last-child {
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">183</span>
+                    <span class="site-state-item-count">184</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -4836,19 +4839,19 @@ ul.breadcrumb li+li:last-child {
               <ul class="links-of-blogroll-list">
                 
                   <li class="links-of-blogroll-item">
-                    <span class="exturl" data-url="aHR0cHM6Ly9uYXB5eS5jb20v" title="https://napyy.com/">内网穿透</span>
+                    <span class="exturl" data-url="aHR0cHM6Ly9maWxlLnpoYW9qdW4uaW0=" title="https://file.zhaojun.im">在线网盘</span>
                   </li>
                 
                   <li class="links-of-blogroll-item">
-                    <span class="exturl" data-url="aHR0cDovLzk4LnRu" title="http://98.tn">在线网盘</span>
-                  </li>
-                
-                  <li class="links-of-blogroll-item">
-                    <span class="exturl" data-url="aHR0cDovL2ltZy56aGFvanVuLmlt" title="http://img.zhaojun.im">免费图床</span>
+                    <span class="exturl" data-url="aHR0cDovL2ltZy5qdW42Lm5ldA==" title="http://img.jun6.net">免费图床</span>
                   </li>
                 
                   <li class="links-of-blogroll-item">
                     <span class="exturl" data-url="aHR0cDovL2pzb24uemhhb2p1bi5pbQ==" title="http://json.zhaojun.im">在线 JSON 解析</span>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <span class="exturl" data-url="aHR0cHM6Ly91LWZpbGUuY24=" title="https://u-file.cn">U-FILE 云盘</span>
                   </li>
                 
               </ul>

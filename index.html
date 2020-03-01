@@ -1845,7 +1845,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #ff30c6;
+  background: #71be2a;
 }
 .feed-link,
 .chat {
@@ -3170,6 +3170,205 @@ ul.breadcrumb li+li:last-child {
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.zhaojun.im/mysql-mvvc/">
+
+    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="赵俊">
+      <meta itemprop="description" content="一个 Java 学习者的博客，分享 Java 干货, VPS 知识, 软件推荐等。">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="赵俊的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/mysql-mvvc/" class="post-title-link" itemprop="url">MySQL InnoDB 事务隔离级别的实现原理</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2020-03-01 18:30:21 / 修改时间：18:46:19" itemprop="dateCreated datePublished" datetime="2020-03-01T18:30:21+08:00">2020-03-01</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/MySQL/" itemprop="url" rel="index"><span itemprop="name">MySQL</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
+                <a href="/mysql-mvvc/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/mysql-mvvc/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+            <span id="/mysql-mvvc/" class="leancloud_visitors" data-flag-title="MySQL InnoDB 事务隔离级别的实现原理">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读次数：</span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>今天介绍下，在 <code>MySQL</code> 的 <code>InnoDB</code> 存储引擎中，事务隔离是如何实现的。</p>
+<p><code>InnoDB</code> 里面每个事务有一个唯一的事务 <code>ID</code>，叫作 <code>transaction id</code>。它是在事务开始的时候向 <code>InnoDB</code> 的事务系统申请的，是按申请顺序严格递增的。</p>
+<p>对于数据库的每行记录，都会有三个隐藏字段：<code>db_trx_id (事务 id)</code>、<code>db_roll_pt (回滚指针)</code>、<code>delete_flag(删除标记)</code>。— <em>有懂的朋友，还望别细纠，其实 <code>delete_flag</code> 是在头信息中，这里是为了方便理解</em></p>
+<p>对于 <code>DML</code> 操作来说：</p>
+<ul>
+<li><strong>INSERT</strong>：创建一条数据，<code>db_trx_id</code> 的值为当前事务 <code>id</code>, <code>db_roll_pt</code> 为 <code>null</code> 。</li>
+<li><strong>UPDATE</strong>：复制一行数据，将当前复制后这一行的 <code>db_trx_id</code> 置为当前事务的 <code>id</code>，<code>db_roll_pt</code> 是一个指针，指向复制前的那一条的。</li>
+<li><strong>DELETE</strong>：复制一行数据，将当前复制后这一行的 <code>db_trx_id</code> 置为当前事务的 <code>id</code>，<code>db_roll_pt</code> 是一个指针，指向复制前的那一条的。并把 <code>delete_flag</code> 置为 <code>true</code> 。</li>
+</ul>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/mysql-mvvc/" rel="contents">
+                阅读全文 »
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://www.zhaojun.im/oracle-tablespace-shrink/">
 
     <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -4147,201 +4346,6 @@ ul.breadcrumb li+li:last-child {
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.zhaojun.im/leetcode-338/">
-
-    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="赵俊">
-      <meta itemprop="description" content="一个 Java 学习者的博客，分享 Java 干货, VPS 知识, 软件推荐等。">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="赵俊的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/leetcode-338/" class="post-title-link" itemprop="url">LeetCode 338 Counting Bits</a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-07-11 20:23:34 / 修改时间：21:22:16" itemprop="dateCreated datePublished" datetime="2019-07-11T20:23:34+08:00">2019-07-11</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/算法/" itemprop="url" rel="index"><span itemprop="name">算法</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-              
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-            
-                <span class="post-meta-item-text">评论数：</span>
-                <a href="/leetcode-338/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/leetcode-338/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-            <span id="/leetcode-338/" class="leancloud_visitors" data-flag-title="LeetCode 338 Counting Bits">
-              <span class="post-meta-divider">|</span>
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              
-                <span class="post-meta-item-text">阅读次数：</span>
-              
-                <span class="leancloud-visitors-count"></span>
-            </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="比特位计数"><a href="#比特位计数" class="headerlink" title="比特位计数"></a>比特位计数</h1><h2 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h2><p>给定一个非负整数 <code>num</code>. 对于 <code>0 ≤ i ≤ num</code> 范围中的每个数字 <code>i</code>, 计算其二进制数中的 <code>1</code> 的数目并将它们作为数组返回.</p>
-<p>示例 1:</p>
-<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: 2</span><br><span class="line">输出: [0,1,1]</span><br></pre></td></tr></tbody></table></figure>
-<p>示例 2:</p>
-<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: 5</span><br><span class="line">输出: [0,1,1,2,1,2]</span><br></pre></td></tr></tbody></table></figure>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/leetcode-338/" rel="contents">
-                阅读全文 »
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -4390,7 +4394,7 @@ ul.breadcrumb li+li:last-child {
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">183</span>
+                    <span class="site-state-item-count">184</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -4786,19 +4790,19 @@ ul.breadcrumb li+li:last-child {
               <ul class="links-of-blogroll-list">
                 
                   <li class="links-of-blogroll-item">
-                    <span class="exturl" data-url="aHR0cHM6Ly9uYXB5eS5jb20v" title="https://napyy.com/">内网穿透</span>
+                    <span class="exturl" data-url="aHR0cHM6Ly9maWxlLnpoYW9qdW4uaW0=" title="https://file.zhaojun.im">在线网盘</span>
                   </li>
                 
                   <li class="links-of-blogroll-item">
-                    <span class="exturl" data-url="aHR0cDovLzk4LnRu" title="http://98.tn">在线网盘</span>
-                  </li>
-                
-                  <li class="links-of-blogroll-item">
-                    <span class="exturl" data-url="aHR0cDovL2ltZy56aGFvanVuLmlt" title="http://img.zhaojun.im">免费图床</span>
+                    <span class="exturl" data-url="aHR0cDovL2ltZy5qdW42Lm5ldA==" title="http://img.jun6.net">免费图床</span>
                   </li>
                 
                   <li class="links-of-blogroll-item">
                     <span class="exturl" data-url="aHR0cDovL2pzb24uemhhb2p1bi5pbQ==" title="http://json.zhaojun.im">在线 JSON 解析</span>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <span class="exturl" data-url="aHR0cHM6Ly91LWZpbGUuY24=" title="https://u-file.cn">U-FILE 云盘</span>
                   </li>
                 
               </ul>
